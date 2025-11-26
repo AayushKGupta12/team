@@ -1,0 +1,197 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { ExternalLink, Calendar } from "lucide-react";
+
+export default function ModernTechGrid() {
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fixed: Only ONE useEffect that fetches from all 3 endpoints
+  useEffect(() => {
+    const fetchAll = async () => {
+      try {
+        const endpoints = [
+          "http://127.0.0.1:5000/tech",
+          "http://127.0.0.1:5000/science",
+          "http://127.0.0.1:5000/stock",
+          "http://127.0.0.1:5000/business"
+        ];
+
+        const responses = await Promise.all(
+          endpoints.map(url => fetch(url).then(res => res.json()))
+        );
+
+        let allArticles = [];
+        responses.forEach(data => {
+          const withImage = (data.results || []).filter(
+            (a) => a.image_url && a.image_url.trim() !== ""
+          );
+          allArticles = [...allArticles, ...withImage];
+        });
+
+        // Optional: shuffle or sort by date if you want variety
+        setArticles(allArticles);
+      } catch (err) {
+        console.error("Error fetching news:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAll();
+  }, []); // Only runs once
+
+  // Fixed: Grid positions — now supports more than 11 items dynamically
+  const getPosition = (index) => {
+    const basePositions = [
+      { row: 1, col: 1 },
+      { row: 1, col: 3 },
+      { row: 1, col: 5 },
+      { row: 1, col: 7 },
+      { row: 3, col: 2 },
+      { row: 3, col: 4 },
+      { row: 3, col: 6 },
+      { row: 3, col: 8 },
+      { row: 5, col: 1 },
+      { row: 5, col: 3 },
+      { row: 5, col: 6 },
+    ];
+
+    // Repeat pattern for more items
+    if (index < basePositions.length) {
+      return basePositions[index];
+    }
+
+    // Dynamic fallback for extra items
+    const extraRow = Math.floor((index - 11) / 4) * 2 + 7;
+    const extraCol = ((index - 11) % 4) * 2 + 1;
+    return { row: extraRow, col: extraCol };
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-white text-2xl font-light animate-pulse">Loading latest Spread...</div>
+      </div>
+    );
+  }
+
+  const displayed = articles.slice(0, 50); // Show as many as you want
+
+  return (
+    <div className="min-h-screen bg-white p-2">
+      {/* Hero Title */}
+      <motion.div
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-center mb-20"
+      >
+        <h2 className="text-7xl font-bold text-center mt-8 text-[#0d2440] kaushan-script-regular">
+          What was that ?
+        </h2>
+        <p className="text-[#7ba4d0] text-7xl mt-4 kaushan-script-regular">Latest Happening In India Today</p>
+      </motion.div>
+
+      <div className="relative max-w-7xl mx-auto">
+        <div className="grid grid-cols-8 gap-5 md:gap-7">
+          {displayed.map((item, i) => {
+            const pos = getPosition(i);
+            if (!pos) return null;
+
+            return (
+              <motion.a
+                key={i}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 80 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.02, duration: 0.4, ease: "easeOut" }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className={`
+                  group relative 
+                  col-start-${pos.col} row-start-${pos.row} col-span-2
+                  ${i === 4 || i === 8 ? "col-span-2" : ""}
+                  ${i >= 9 && i < 11 ? "col-span-3" : ""}
+                  ${i >= 11 ? "col-span-2" : ""}
+                  h-60 md:h-65 lg:h-[340px] 
+                  rounded-3xl overflow-hidden
+                  shadow-2xl
+                  backdrop-blur-xl
+                  transition-all duration-420
+                `}
+              >
+                <div className="absolute inset-0">
+                  <Image
+                    fill
+                    src={item.image_url}
+                    alt={item.title}
+                    className="object-cover transition-transform duration-500 group-hover:scale-106"
+                    unoptimized
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"/>
+                </div>
+
+                <div className="relative h-full flex flex-col justify-end p-6 md:p-8 text-[#ffffff] ">
+                  <h3 className="text-lg font-semibold leading-tight line-clamp-3 mb-2 drop-shadow-lg">
+                    {item.title}
+                  </h3>
+
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-5 h-5" />
+                      <span>
+                        {new Date(item.pubDate).toLocaleDateString("en", {
+                          month: "short",
+                          day: "numeric",
+                        })}
+                      </span>
+                    </div>
+
+                    {item.source_icon && (
+                      <Image
+                        src={item.source_icon}
+                        width={32}
+                        height={32}
+                        alt="Source"
+                        className="rounded-full ring-2 ring-[#0d2440]"
+                        unoptimized
+                      />
+                    )}
+                  </div>
+
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <ExternalLink className="w-6 h-6 text-white drop-shadow-lg" />
+                  </div>
+                </div>
+
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-white/20" />
+                </div>
+              </motion.a>
+            );
+          })}
+        </div>
+
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute top-20 left-1/4 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-22 right-1/3 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl animate-pulse delay-900" />
+        </div>
+      </div>
+
+      {articles.length > displayed.length && (
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="text-center mt-20 text-gray-400 text-lg"
+        >
+          +{articles.length - displayed.length} more stories today
+        </motion.p>
+      )}
+    </div>
+  );
+}

@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import Features from './components/Features'
 import CompaniesTimeline from './components/Timeline'
 import HeroCTA from './components/HeroCTA'
+import Countdown from './components/Countdown'
 
 const Page = () => {
   return (
@@ -15,6 +16,7 @@ const Page = () => {
       <Features />
       <FAQ />
       <HeroCTA />
+      <Countdown />
       <Footer />
     </div>
   )

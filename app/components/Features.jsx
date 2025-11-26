@@ -44,7 +44,7 @@ const Features = () => {
           title="Roadmaps & Tech Blogs"
           desc1="Follow career roadmaps for Software, Data and AI, and read practical blog posts that explain the why and how behind each skill."
           desc2="Roadmaps are updated monthly; blogs are published weekly. Learn, practice, and apply with guided tasks and examples."
-          route="/resources"
+          route="/blog"
         />
       </TextParallaxContent>
     </div>

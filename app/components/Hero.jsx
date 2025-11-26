@@ -40,7 +40,7 @@ export default function Hero() {
               role="button"
               className="group relative inline-flex items-center justify-center text-sm md:text-base rounded-xl bg-[#0d2440] px-6 py-2.5 md:px-8 md:py-3 font-semibold text-white transition-all duration-200 hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5 hover:shadow-gray-600/30"
               title="payment"
-              href="/services/it-jobs"
+              href="/it-jobs"
             >
               Explore Jobs
               <svg

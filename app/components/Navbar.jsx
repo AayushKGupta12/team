@@ -21,8 +21,8 @@ export default function Navbar() {
       href: "",
       hasDropdown: true,
       dropdown: [
+        { label: "AI Resume Analysis", href: "/ai-resume-analysis" },
         { label: "IT Jobs", href: "/it-jobs" },
-        { label: "Ai Resume Analysis", href: "/ai-resume-analysis" },
         { label: "Roadmaps", href: "/roadmaps" },
         { label: "Blogs", href: "/blog" },
       ],
@@ -91,10 +91,10 @@ export default function Navbar() {
                       <div key={item.label} className="relative group">
                         <Link
                           href={item.href}
-                          className="relative font-semibold text-[#0d2440] hover:text-[#0d2440] transition-colors px-2 py-1 rounded-md"
+                          className="relative font-semibold text-[#0d2440] hover:text-[#0d2440] transition-colors px-2 py-1 rounded-md text-xl"
                         >
                           {item.label}
-                          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#0d2440] transition-all duration-300 group-hover:w-full" />
+                          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#0d2440] transition-all duration-300 group-hover:w-full text-xl" />
                         </Link>
 
                         {/* Dropdown panel (appears on hover) */}
@@ -120,7 +120,7 @@ export default function Navbar() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="relative text-sm font-medium text-[#0d2440] hover:text-[#0d2440] transition-colors px-2 py-1 rounded-md group"
+                      className="text-xl relative text-[#0d2440] hover:text-[#0d2440] transition-colors px-2 py-1 rounded-md group font-semibold"
                     >
                       {item.label}
                       <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#0d2440] transition-all duration-300 group-hover:w-full" />
