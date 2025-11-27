@@ -9,18 +9,26 @@ export default function Hero() {
       <div className="relative overflow-hidden w-full bg-[#e7f0fa] py-12 md:py-20 lg:py-25 px-4 sm:px-6 md:px-16 lg:px-20">
 
         {/* BACKGROUND STATIC LETTERS */}
-        <div className="absolute inset-0 flex flex-col justify-center place-items-center md:place-items-end pointer-events-none mr-0 md:mr-2 px-4">
-          <div className="text-[clamp(24px,8vw,150px)] md:text-[clamp(50px,15vw,150px)] font-extrabold leading-[1.1] md:leading-[0.85] text-[#7ba4d0]/45 text-center md:text-right whitespace-nowrap md:whitespace-normal">
-            <div className="hidden md:block">
-              <br /><br /><br /><br />Careers
+        <div className="absolute inset-0 flex flex-col justify-center items-center md:items-end md:mr-2 px-4">
+
+              <div className="text-[clamp(24px,8vw,150px)] md:text-[clamp(50px,15vw,150px)]
+              font-extrabold leading-[1.1] md:leading-[0.85]
+              text-[#7ba4d0]/45 text-center md:text-right whitespace-nowrap md:whitespace-normal">
+
+            {/* MOBILE VERSION - visible only on mobile */}
+            <div className="block md:hidden mt-100 text-7xl">  
+              Career
             </div>
-            <div className="block md:hidden space-y-2">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div>Careers</div>
+            <div className="text-sm text-[#2e5e99]">We are in hunt for talented developers</div>
+
+            {/* DESKTOP VERSION - visible only on md+ */}
+            <div className="hidden md:block mt-19">
+              <br /><br /><br />
+              Career
+              <div className="text-4xl text-[#2e5e99]">We are in hunt for talented developers</div>
             </div>
+            
+
           </div>
         </div>
 

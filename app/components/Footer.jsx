@@ -8,8 +8,7 @@ export default function Footer() {
 
   const services = [
     { label: "IT Jobs", href: "/it-jobs" },
-    { label: "AI Resume Analysis", href: "/ai-resume-analysis" },
-    { label: "Roadmaps", href: "/services/roadmaps" },
+    { label: "Advance Analysis", href: "/ai-resume-analysis" },
     { label: "Blogs", href: "/blog" },
   ];
 
@@ -17,11 +16,13 @@ export default function Footer() {
     { label: "About us", href: "/about" },
     { label: "Careers", href: "/careers" },
     { label: "Contact", href: "/contact" },
+    { label: "Pricing", href: "/pricing" }
   ];
 
   const products = [
-    { label: "Pricing", href: "/pricing" },
-    { label: "Roadmaps", href: "/services/roadmaps" }, // duplicated on purpose for easy access
+    { label: "Launching New Products Soon :D", href: "#" }
+    
+     // duplicated on purpose for easy access
   ];
 
   return (

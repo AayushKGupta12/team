@@ -1,11 +1,10 @@
 'use client';
 
-export default function BlogHero() {
+export default function Hero() {
   const logoUrl = "/mnt/data/38d2223f-ef6a-42e3-98db-181046034e36.png";
 
   return (
-    <div>
-      {/* HERO SECTION */}
+    <>
       <div className="relative overflow-hidden w-full bg-[#e7f0fa] py-12 md:py-20 lg:py-25 px-4 sm:px-6 md:px-16 lg:px-20">
 
         {/* BACKGROUND STATIC LETTERS */}
@@ -17,20 +16,21 @@ export default function BlogHero() {
 
             {/* MOBILE VERSION - visible only on mobile */}
             <div className="block md:hidden mt-100 text-7xl">  
-              Blogs
+              Our Price
             </div>
-            <div className="text-sm text-[#2e5e99] mt-2 mb-2">Eveything that is happening around IT Sector</div>
+            <div className="text-sm text-[#2e5e99]">Priced lower than a packet of chips</div>
 
             {/* DESKTOP VERSION - visible only on md+ */}
             <div className="hidden md:block mt-19">
               <br /><br /><br />
-              Blogs
-              <div className="text-4xl text-[#2e5e99] mt-2 mb-8">Eveything that is happening around IT Sector</div>
+              Our Price
+              <div className="text-4xl text-[#2e5e99]">Priced lower than a packet of chips</div>
             </div>
             
 
           </div>
         </div>
+
 
         {/* OVERLAY TEXT CONTENT */}
         <div className="relative z-20 min-h-[450px] md:min-h-[450px] flex items-center justify-center md:justify-start md:items-end">
@@ -45,15 +45,9 @@ export default function BlogHero() {
         </div>
       </div>
 
-        
 
 
 
-
-
-
-
-
-    </div>
+    </>
   );
 }

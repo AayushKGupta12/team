@@ -24,6 +24,9 @@ export default function Hero() {
           </div>
         </div>
 
+
+
+
         {/* MAIN HEADLINE */}
         <div className="relative z-20 min-h-[450px] md:min-h-[450px] flex items-center justify-center md:justify-start md:items-end">
           <div className="w-full max-w-md md:max-w-lg text-center md:text-left px-4 sm:px-6 md:px-0">

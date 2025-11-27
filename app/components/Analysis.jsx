@@ -8,10 +8,6 @@ import {
   Upload,
   FileText,
 } from "lucide-react";
-import Jobs from "./Jobs";
-import Jobs4 from "./Jobs4";
-import Jobs3 from "./Jobs3";
-import Jobs2 from "./Jobs2";
 
 function ConnectionTest() {
   const [file, setFile] = useState(null);
@@ -113,7 +109,7 @@ function ConnectionTest() {
 };
 
   return (
-    <div className="min-h-screen bg-white p-4 sm:p-6 md:p-3 flex flex-col md:flex-row gap-4 md:gap-10 items-start justify-center font-sans">
+    <div className="bg-white p-4 sm:p-6 md:p-3 flex flex-col md:flex-row gap-4 md:gap-10 items-start justify-center font-sans">
       {/* Upload Box (Left Section) */}
       <div className="w-full md:w-1/3 lg:w-1/4 rounded-xl border border-[#0d2440] bg-[#e7f0fa] p-4 sm:p-6 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
         <div className="bg-[#e7f0fa] rounded-lg p-1">

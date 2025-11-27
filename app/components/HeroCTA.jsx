@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from "next/link";
 
 export default function HeroCTA() {
   return (
@@ -42,9 +43,11 @@ export default function HeroCTA() {
         </div>
 
         {/* CTA Button - Perfect touch target on mobile */}
-        <button className="bg-white text-purple-700 font-bold text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 rounded-2xl shadow-2xl hover:shadow-purple-600/40 hover:scale-105 active:scale-95 transition-all duration-300 min-w-[200px]">
-          Sign In
-        </button>
+        <Link href="/ai-resume-analysis">
+          <button className="bg-white text-purple-700 font-bold text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 rounded-2xl shadow-2xl hover:shadow-purple-600/40 hover:scale-105 active:scale-95 transition-all duration-300 min-w-[200px]">
+            Get Started
+          </button>
+        </Link>
       </div>
     </section>
   );

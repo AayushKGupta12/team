@@ -24,6 +24,16 @@ export default function FAQ() {
     answer:
       "We focus only on developers and the IT field. That means the Resume Analyzer & Job listings are designed specifically for software engineers, data engineers similar roles. We also provide live job updates so you can quickly find the right job for your skills.",
   },
+  {
+    question: "Do you offer a free trial?",
+    answer:
+      "Yes, we offer a free trial for our Resume Analysis tool. You can upload your resume and get instant feedback without any cost.",
+  },
+  {
+    question: "Do you use ChatGPT or other LLMs?",
+    answer:
+      "Our AI-powered features are driven by advanced large language models that help you analyse, improve, and optimize your resume effectively.",
+  },
 ];
 
 
