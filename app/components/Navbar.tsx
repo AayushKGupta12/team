@@ -43,7 +43,7 @@ const navItems: NavItem[] = [
   { label: "Pricing", href: "/pricing" },
 ];
 
-export default function Navbar(): JSX.Element {
+export default function Navbar(): React.JSX.Element {
   const [open, setOpen] = useState(false); // mobile menu
   const [visible, setVisible] = useState(true); // hide on scroll
   const lastY = useRef(0);
