@@ -16,7 +16,7 @@ function Jobs() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://127.0.0.1:5000/software-engineering");
+      const response = await fetch("https://edstack.onrender.com/software-engineering");
       const jsonData = await response.json();
 
       const companyJobs = Object.keys(jsonData || {}).map((company) => ({

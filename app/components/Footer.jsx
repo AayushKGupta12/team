@@ -31,7 +31,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10">
           {/* Branding */}
           <div className="flex-1 min-w-[200px]">
-            <Link href="http://localhost:3000" className="flex items-center gap-3">
+            <Link href="https://vfoundin.vercel.app" className="flex items-center gap-3">
                 <span className="hidden sm:inline kaushan-script-regular text-4xl">
                   Vfound.in
                 </span>

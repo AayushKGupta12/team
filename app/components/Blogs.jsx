@@ -13,10 +13,10 @@ export default function ModernTechGrid() {
     const fetchAll = async () => {
       try {
         const endpoints = [
-          "http://127.0.0.1:5000/tech",
-          "http://127.0.0.1:5000/science",
-          "http://127.0.0.1:5000/stock",
-          "http://127.0.0.1:5000/business",
+          "https://edstack.onrender.com/tech",
+          "https://edstack.onrender.com/science",
+          "https://edstack.onrender.com/stock",
+          "https://edstack.onrender.com/business",
         ];
 
         const responses = await Promise.all(
