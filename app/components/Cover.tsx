@@ -16,7 +16,7 @@ export default function CoverLetterGenerator() {
   const [copied, setCopied] = useState(false);
 
   // Your Flask backend URL - update this to your actual backend URL
-  const API_BASE_URL = 'http://localhost:5000';
+  const API_BASE_URL = 'https://edstack.onrender.com';
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
