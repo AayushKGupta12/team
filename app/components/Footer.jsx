@@ -10,6 +10,7 @@ export default function Footer() {
     { label: "IT Jobs", href: "/it-jobs" },
     { label: "Advance Analysis", href: "/ai-resume-analysis" },
     { label: "Blogs", href: "/blog" },
+    { label: "Cover Letter", href: "/cover-letter" },
   ];
 
   const company = [

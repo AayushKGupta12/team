@@ -7,7 +7,7 @@ export default function FAQ() {
   {
     question: "Is the Resume Analysis free?",
     answer:
-      "Yes, You can upload your resume and get instant feedback. Our resume analyzer is not a simple tool. It reads your resume, checks your technical depth, compares it with current market competition, estimates your average expected salary, and gives you tips to improve. The system is powered by an advanced multi-level model trained on 1,00,000+ Indian IT resumes.",
+      "Yes, You can upload your resume and get instant feedback. Our resume analyzer is not a simple tool. It reads your resume, checks your technical depth, compares it with current market competition and gives you tips to improve.",
   },
   {
     question: "Do you offer job placement support?",
@@ -22,7 +22,7 @@ export default function FAQ() {
   {
     question: "How is your service different from others?",
     answer:
-      "We focus only on developers and the IT field. That means the Resume Analyzer & Job listings are designed specifically for software engineers, data engineers similar roles. We also provide live job updates so you can quickly find the right job for your skills.",
+      "We focus on recent undergrads in IT field. That means the our tools are designed specifically for software engineers, data engineers similar roles. We also provide live job updates.",
   },
   {
     question: "Do you offer a free trial?",

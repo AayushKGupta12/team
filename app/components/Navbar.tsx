@@ -26,8 +26,9 @@ const navItems: NavItem[] = [
     hasDropdown: true,
     dropdown: [
       { label: "Advance Analysis", href: "/ai-resume-analysis" },
+      { label: "Cover Letter", href: "/cover-letter" },
       { label: "IT Jobs", href: "/it-jobs" },
-      { label: "Blogs", href: "/blog" },
+      { label: "Blogs", href: "/blog" }, 
     ],
   },
   {
