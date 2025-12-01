@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Upload, FileText, Loader2, Download, Copy, Check } from 'lucide-react';
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -15,7 +15,12 @@ export default function CoverLetterGenerator() {
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
 
-  // Your Flask backend URL - update this to your actual backend URL
+  // Refs for uncontrolled editing
+  const editableRef = useRef(null);
+  const isEditingRef = useRef(false);
+  const latestHtmlRef = useRef(''); // track latest html while editing
+
+  // Your Flask backend URL - update if needed
   const API_BASE_URL = 'https://edstack.onrender.com';
 
   const handleFileChange = (e) => {
@@ -63,10 +68,10 @@ export default function CoverLetterGenerator() {
       setIsResumeUploaded(true);
       setError('');
     } catch (err) {
-      if (err.message.includes('fetch')) {
-        setError('Cannot connect to backend. Make sure Flask server is running on http://localhost:5000');
+      if (err.message && err.message.includes('fetch')) {
+        setError('Cannot connect to backend');
       } else {
-        setError(err.message);
+        setError(err.message || 'Failed to upload resume');
       }
       setIsResumeUploaded(false);
     } finally {
@@ -107,10 +112,18 @@ export default function CoverLetterGenerator() {
         throw new Error(data.error || 'Failed to generate cover letter');
       }
 
-      setCoverLetter(data.cover_letter);
+      // store HTML safe version (backend should send plain text or simple HTML)
+      const newHtml = data.cover_letter ?? data.coverLetter ?? data.cover_letter_html ?? String(data.cover_letter || '');
+      setCoverLetter(newHtml);
+
+      // If not editing, update the editable area directly:
+      if (editableRef.current && !isEditingRef.current) {
+        editableRef.current.innerHTML = newHtml;
+        latestHtmlRef.current = newHtml;
+      }
       setError('');
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Failed to generate cover letter');
     } finally {
       setIsGenerating(false);
     }
@@ -118,7 +131,9 @@ export default function CoverLetterGenerator() {
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(coverLetter);
+      // copy plain text to clipboard
+      const text = editableRef.current ? editableRef.current.innerText : coverLetter;
+      await navigator.clipboard.writeText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -127,11 +142,12 @@ export default function CoverLetterGenerator() {
   };
 
   const handleDownload = () => {
-    const blob = new Blob([coverLetter], { type: 'text/plain' });
+    const text = editableRef.current ? editableRef.current.innerText : coverLetter;
+    const blob = new Blob([text], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `cover-letter-${company.replace(/\s+/g, '-')}.txt`;
+    a.download = `cover-letter-${(company || 'company').replace(/\s+/g, '-')}.txt`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -139,22 +155,69 @@ export default function CoverLetterGenerator() {
   };
 
   const downloadPDF = async () => {
-  const element = document.getElementById("pdf-content");
+    const element = document.getElementById("pdf-content");
+    const canvas = await html2canvas(element, {
+      scale: 2,
+    });
 
-  const canvas = await html2canvas(element, {
-    scale: 2,
-  });
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF("p", "pt", "a4");
 
-  const imgData = canvas.toDataURL("image/png");
-  const pdf = new jsPDF("p", "pt", "a4");
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
 
-  const pdfWidth = pdf.internal.pageSize.getWidth();
-  const pdfHeight = pdf.internal.pageSize.getHeight();
+    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save("CoverLetter.pdf");
+  };
 
-  pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-  pdf.save("CoverLetter.pdf");
-};
+  // Keep editableRef in sync with coverLetter when not editing
+  useEffect(() => {
+    if (!editableRef.current) return;
+    if (!isEditingRef.current) {
+      // Only overwrite when user isn't actively editing
+      editableRef.current.innerHTML = coverLetter ?? '';
+      latestHtmlRef.current = coverLetter ?? '';
+    }
+  }, [coverLetter]);
 
+  // onFocus -> mark editing started
+  const handleFocus = () => {
+    isEditingRef.current = true;
+  };
+
+  // onInput -> update latestHtmlRef but DO NOT set React state each keystroke
+  const handleInput = (e) => {
+    latestHtmlRef.current = editableRef.current ? editableRef.current.innerHTML : e.currentTarget.innerHTML;
+  };
+
+  // onBlur -> user stopped editing, sync to React state
+  const handleBlur = () => {
+    isEditingRef.current = false;
+    const newHtml = latestHtmlRef.current ?? (editableRef.current ? editableRef.current.innerHTML : '');
+    setCoverLetter(newHtml);
+  };
+
+  // handle paste -> force plain-text paste (preserve newlines). This prevents messy markup from external sources.
+  const handlePaste = (e) => {
+    e.preventDefault();
+    const text = (e.clipboardData || window.clipboardData).getData('text');
+    // Replace special characters for HTML safety and preserve line breaks:
+    const escaped = text
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('\n', '<br/>');
+    // Insert html at caret position
+    if (document.queryCommandSupported && document.queryCommandSupported('insertHTML')) {
+      document.execCommand('insertHTML', false, escaped);
+    } else {
+      // Fallback: append
+      if (editableRef.current) {
+        editableRef.current.innerHTML += escaped;
+      }
+    }
+    latestHtmlRef.current = editableRef.current ? editableRef.current.innerHTML : escaped;
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-amber-200 p-4 sm:p-8">
@@ -289,78 +352,84 @@ export default function CoverLetterGenerator() {
           </div>
 
           {/* Right Column - Output + PDF Preview + PDF Download */}
-<div className="bg-white rounded-lg shadow-md p-6">
+  <div className="bg-white rounded-lg shadow-md p-6">
 
-  <div className="flex items-center justify-between">
-    <h2 className="text-xl font-bold text-[#0d2440]">Professional Cover Letter is Ready </h2>
-    
+    <div className="flex items-center justify-between">
+      <h2 className="text-xl font-bold text-[#0d2440]">Professional Cover Letter is Ready </h2>
+      
 
+      {coverLetter && (
+        <div className="flex gap-2">
+          {/* Copy Button */}
+          <button
+            onClick={handleCopy}
+            className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+            title="Copy to clipboard"
+          >
+            {copied ? <Check className="w-6 h-6 text-green-600" /> : <Copy className="w-5 h-5" />}
+          </button>
 
-    {coverLetter && (
-      <div className="flex gap-2">
-        {/* Copy Button */}
-        <button
-          onClick={handleCopy}
-          className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-          title="Copy to clipboard"
-        >
-          {copied ? <Check className="w-6 h-6 text-green-600" /> : <Copy className="w-5 h-5" />}
-        </button>
-
-        {/* PDF Download Button */}
-        <button
-          onClick={downloadPDF}
-          className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-          title="Download PDF"
-        >
-          <Download className="w-6 h-6 mb-2" />
-        </button>
-      </div>
-    )}
-  </div>
-
-  {error && (
-    <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
-      <p className="text-sm text-red-800">{error}</p>
+          {/* PDF Download Button */}
+          <button
+            onClick={downloadPDF}
+            className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+            title="Download PDF"
+          >
+            <Download className="w-6 h-6 mb-2" />
+          </button>
+        </div>
+      )}
     </div>
-  )}
 
-  {/* PDF-Friendly Preview Box */}
-  <div className="min-h-[500px] max-h-[600px] overflow-y-auto bg-gray-50">
-    {coverLetter ? (
-      <div
-        id="pdf-content"
-        className="border-1 w-full mx-auto rounded-md text-black"
-        style={{
-          padding: "10px",
-          fontSize: "11px",
-          lineHeight: "16px",
-        }}
-      >
-        <h1 className="text-4xl font-bold mb-4 mt-3 text-center font-sans text-[#0d2440]">Cover Letter</h1>
-        <hr className="border-t-3 border-[#2e5e99] my-4" />
-        <br />
-        <pre
-          className="whitespace-pre-wrap"
-          style={{ fontSize: "10px", lineHeight: "15px" }}
-        >
-          {coverLetter}
-        </pre>
-        <br />
-        <hr className="border-t-3 border-[#2e5e99] my-4" />
-      </div>
-    ) : (
-      <div className="flex flex-col items-center justify-center h-full text-gray-400 mt-50">
-        <FileText className="w-18 h-18 mb-4" />
-        <p className="text-center">
-          {isGenerating ? "Building your cover letter..." : "Your cover letter will appear here"}
-        </p>
+    {error && (
+      <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
+        <p className="text-sm text-red-800">{error}</p>
       </div>
     )}
+
+    {/* PDF-Friendly Preview Box */}
+    <div className="min-h-[500px] max-h-[600px] overflow-y-auto bg-gray-50">
+      {coverLetter ? (
+        <div
+          id="pdf-content"
+          className="border-1 w-full mx-auto rounded-md text-black"
+          style={{
+            padding: "15px",
+            fontSize: "11px",
+            lineHeight: "16px",
+          }}
+        >
+          <h1 className="text-4xl font-bold mb-4 mt-3 text-center font-sans text-[#0d2440]">Cover Letter</h1>
+          <hr className="border-t-3 border-[#2e5e99] my-4" />
+          <br />
+          <div
+            ref={editableRef}
+            className="whitespace-pre-wrap"
+            style={{ fontSize: "10px", lineHeight: "15px" }}
+            contentEditable={true}
+            suppressContentEditableWarning={true}
+            onInput={handleInput}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+            onPaste={handlePaste}
+          />
+          <br />
+          <hr className="border-t-3 border-[#2e5e99] my-4" />
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center h-full text-gray-400 mt-50">
+          <FileText className="w-18 h-18 mb-4" />
+          <p className="text-center">
+            {isGenerating ? "Building your cover letter..." : "Your cover letter will appear here"}
+          </p>
+          <p className="text-center">You can also modify this.. </p>
+        </div>
+      )}
+    </div>
   </div>
-</div>
+          </div>
         </div>
       </div>
-    </div>
+    
   );
 }
