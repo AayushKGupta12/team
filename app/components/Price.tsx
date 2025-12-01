@@ -82,6 +82,7 @@ export default function PricingSection() {
                     title: "Features",
                     items: [
                       "Advanced Resume Analysis using AI",
+                      "AI-Powered Cover Letter Generator",
                       "Daily Job updates and Insights",
                     ],
                   },
@@ -140,7 +141,6 @@ export default function PricingSection() {
                 <ul className="space-y-4">
                   {[
                     "ATS Optimization Suggestions",
-                    "AI-Powered Cover Letter Generator",
                     "IT Job Alerts and Notifications",
                     "Resume Templates and Optimization Tips",
                     "Interview Preparation Tools",
