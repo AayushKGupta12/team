@@ -198,26 +198,33 @@ export default function CoverLetterGenerator() {
   };
 
   // handle paste -> force plain-text paste (preserve newlines). This prevents messy markup from external sources.
-  const handlePaste = (e) => {
-    e.preventDefault();
-    const text = (e.clipboardData || window.clipboardData).getData('text');
-    // Replace special characters for HTML safety and preserve line breaks:
-    const escaped = text
-      .replaceAll('&', '&amp;')
-      .replaceAll('<', '&lt;')
-      .replaceAll('>', '&gt;')
-      .replaceAll('\n', '<br/>');
-    // Insert html at caret position
-    if (document.queryCommandSupported && document.queryCommandSupported('insertHTML')) {
-      document.execCommand('insertHTML', false, escaped);
-    } else {
-      // Fallback: append
-      if (editableRef.current) {
-        editableRef.current.innerHTML += escaped;
-      }
+  const handlePaste = (e: React.ClipboardEvent<HTMLDivElement>) => {
+  e.preventDefault();
+
+  // Always safe in React
+  const text = e.clipboardData.getData("text");
+
+  // Escape HTML and preserve line breaks
+  const escaped = text
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll("\n", "<br/>");
+
+  // Insert HTML at caret position
+  if (document.queryCommandSupported("insertHTML")) {
+    document.execCommand("insertHTML", false, escaped);
+  } else {
+    if (editableRef.current) {
+      editableRef.current.innerHTML += escaped;
     }
-    latestHtmlRef.current = editableRef.current ? editableRef.current.innerHTML : escaped;
-  };
+  }
+
+  latestHtmlRef.current = editableRef.current
+    ? editableRef.current.innerHTML
+    : escaped;
+};
+
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-amber-200 p-4 sm:p-8">
