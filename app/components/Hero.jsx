@@ -32,9 +32,9 @@ export default function Hero() {
       <div className="relative z-20 min-h-[450px] md:min-h-[450px] flex items-center justify-center md:justify-start md:items-end">
         <div className="w-full max-w-md md:max-w-lg text-center md:text-left px-4 sm:px-6 md:px-0">
           <h1 className="font-extrabold tracking-tight text-[clamp(28px,8vw,80px)] md:text-[clamp(36px,6vw,80px)] leading-[0.95] md:leading-[0.92] text-[#0b1724]">
-            <span className="block">India's Largest IT</span>
+            <span className="block">India's Largest</span>
             <span className="block">
-              Jobs Portal for <span className="text-[#2e5e99]">Recent Undergrads</span>
+              Developer Builder for <span className="text-[#2e5e99]">Recent Undergrads</span>
             </span>
           </h1>
 

@@ -3,7 +3,6 @@ import Footer from './components/Footer'
 import Hero from './components/Hero'
 import Navbar from './components/Navbar'
 import Features from './components/Features'
-import CompaniesTimeline from './components/Timeline'
 import HeroCTA from './components/HeroCTA'
 import Countdown from './components/Countdown'
 import PricingSection from './components/Price'
@@ -13,7 +12,6 @@ const Page = () => {
     <div>
       <Navbar />
       <Hero />
-      <CompaniesTimeline/>
       <Features />
       <FAQ />
       <PricingSection />
