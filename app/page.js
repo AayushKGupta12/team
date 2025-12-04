@@ -6,6 +6,7 @@ import Features from './components/Features'
 import HeroCTA from './components/HeroCTA'
 import Countdown from './components/Countdown'
 import PricingSection from './components/Price'
+import Testimonials from './components/test'
 
 const Page = () => {
   return (
@@ -13,6 +14,7 @@ const Page = () => {
       <Navbar />
       <Hero />
       <Features />
+      <Testimonials/>
       <FAQ />
       <PricingSection />
       <HeroCTA />

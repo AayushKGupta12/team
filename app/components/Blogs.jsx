@@ -86,12 +86,12 @@ export default function ModernTechGrid() {
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-20"
       >
-        <h2 className="text-5xl sm:text-7xl font-bold text-center mt-8 text-[#0d2440] kaushan-script-regular">
-  What was that ?
+        <h2 className="text-5xl sm:text-6xl font-bold text-center mt-8 text-[#0d2440] kaushan-script-regular">
+  India’s IT headlines
 </h2>
 
 <p className="text-[#7ba4d0] text-4xl sm:text-7xl mt-4 kaushan-script-regular">
-  Latest Happening In India Today
+  Your quick scan of India’s tech scene.
 </p>
 
       </motion.div>
