@@ -4,6 +4,7 @@ import ResumeHero from '../components/ResumeHero'
 import Footer from '../components/Footer'
 import ATSResumeCheckerApp from '../components/Analysis'
 import LLM from '../components/LLM'
+import FeatureGrid from '../components/Feature2'
 
 const page = () => {
   return (
@@ -11,6 +12,7 @@ const page = () => {
       <Navbar />
       <ResumeHero />
       <ATSResumeCheckerApp />
+      <FeatureGrid/>
       <LLM />
       <Footer/>
       

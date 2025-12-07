@@ -186,6 +186,25 @@ function ConnectionTest() {
       {/* Result Display (Right Section) */}
       <div className="w-full md:flex-1">
         <div className="bg-amber-50/80 rounded-xl shadow-lg p-6 sm:p-8 transition-all duration-300 hover:shadow-xl">
+
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <p className="text- sm:text-sm font-semibold text-amber-800 uppercase tracking-wide">
+                AI Resume Insights
+              </p>
+              <p className="text-sm sm:text-base text-gray-700 mt-1">
+                Visual analysis of your resume in seconds.
+              </p>
+            </div>
+            <div className="hidden sm:flex items-center gap-3">
+              <img
+                src="https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/WhatsApp%20Image%202025-11-01%20at%2000.56.19_aacc0583.jpg"
+                alt="Resume card illustration"
+                className="w-14 h-14 rounded-lg shadow-md object-cover"
+              />
+            </div>
+          </div>
+
           {showPlaceholder ? (
             <div className="flex items-center justify-center h-full">
               <div className="animate-pulse text-center">

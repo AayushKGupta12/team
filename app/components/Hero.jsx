@@ -31,16 +31,18 @@ export default function Hero() {
       {/* OVERLAY TEXT CONTENT – 100% untouched */}
       <div className="relative z-20 min-h-[450px] md:min-h-[450px] flex items-center justify-center md:justify-start md:items-end">
         <div className="w-full max-w-md md:max-w-lg text-center md:text-left px-4 sm:px-6 md:px-0">
-          <h1 className="font-extrabold tracking-tight text-[clamp(28px,8vw,80px)] md:text-[clamp(36px,6vw,80px)] leading-[0.95] md:leading-[0.92] text-[#0b1724]">
-            <span className="block">India's Largest</span>
-            <span className="block">
-              Developer Builder for <span className="text-[#2e5e99]">Recent Undergrads</span>
+          <h1 className="font-extrabold tracking-tight text-[clamp(22px,6vw,60px)] md:text-[clamp(36px,6vw,80px)] leading-[1.05] md:leading-[0.92] text-[#0b1724]">
+            <span className="block text-4xl sm:text-5xl md:text-6xl">
+              India's Largest
+            </span>
+            <span className="text-[#2e5e99] text-5xl sm:text-6xl md:text-8xl">
+              Developer Builder
             </span>
           </h1>
 
           <div className="relative inline-flex items-center justify-center gap-4 group mt-6 md:mt-8 md:px-2">
             <div
-              className="absolute inset-0 duration-1000 opacity-60 transitiona-all bg-gradient-to-r from-indigo-700 via-pink-700 to-yellow-700 rounded-xl blur-lg filter group-hover:opacity-100 group-hover:duration-200"
+              className="absolute inset-0 duration-1000 opacity-50 transitiona-all bg-gradient-to-r from-indigo-700 via-pink-700 to-yellow-700 rounded-xl blur-md filter group-hover:opacity-100 group-hover:duration-200"
             ></div>
             <a
               role="button"
