@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { LucideIcon } from 'lucide-react';
 
 type Features = {
-  icon: LucideIcon;
+  icon: () => React.ReactElement;
   title: string;
   description: string;
 };
