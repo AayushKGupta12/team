@@ -40,7 +40,7 @@ const navItems: NavItem[] = [
       { label: "Contact Us", href: "/contact" },
     ],
   },
-  { label: "Pricing", href: "/pricing" },
+  // { label: "Pricing", href: "/pricing" }, Pricing ka route nai dalenge abhi, om namah shivay
 ];
 
 export default function Navbar(): React.JSX.Element {
