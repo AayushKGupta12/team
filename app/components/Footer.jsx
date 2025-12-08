@@ -8,16 +8,16 @@ export default function Footer() {
 
   const services = [
     { label: "IT Jobs", href: "/it-jobs" },
-    { label: "Advance Analysis", href: "/ai-resume-analysis" },
+    { label: "Analysis", href: "/ai-resume-analysis" },
     { label: "Blogs", href: "/blog" },
-    { label: "Cover Letter", href: "/cover-letter" },
+    { label: "CV", href: "/cover-letter" },
   ];
 
   const company = [
     { label: "About us", href: "/about" },
     { label: "Careers", href: "/careers" },
     { label: "Contact", href: "/contact" },
-    { label: "Pricing", href: "/pricing" }
+    // { label: "Pricing", href: "/pricing" } Pricing ka route nai dalenge abhi, om namah shivay
   ];
 
   const products = [
