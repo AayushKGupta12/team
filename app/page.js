@@ -5,7 +5,7 @@ import Navbar from './components/Navbar'
 import Features from './components/Features'
 import HeroCTA from './components/HeroCTA'
 import Countdown from './components/Countdown'
-import PricingSection from './components/Price'
+// import PricingSection from './components/Price' Pricing ka route nai dalenge abhi, om namah shivay
 import Testimonials from './components/test'
 
 const Page = () => {
@@ -16,7 +16,7 @@ const Page = () => {
       <Features />
       <Testimonials/>
       <FAQ />
-      <PricingSection />
+      // <PricingSection /> Pricing ka route nai dalenge abhi, om namah shivay
       <HeroCTA />
       <Countdown />
       <Footer />
