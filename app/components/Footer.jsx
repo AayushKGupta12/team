@@ -10,14 +10,14 @@ export default function Footer() {
     { label: "IT Jobs", href: "/it-jobs" },
     { label: "Analysis", href: "/ai-resume-analysis" },
     { label: "Blogs", href: "/blog" },
-    { label: "CV ", href: "/cover-letter" },
+    { label: "CV", href: "/cover-letter" },
   ];
 
   const company = [
     { label: "About us", href: "/about" },
     { label: "Careers", href: "/careers" },
     { label: "Contact", href: "/contact" },
-    // { label: "Pricing", href: "/pricing" } Pricing ka route nai dalna hai abhi, sab log dekhega iss liye
+    // { label: "Pricing", href: "/pricing" } Pricing ka route nai dalenge abhi, om namah shivay
   ];
 
   const products = [
