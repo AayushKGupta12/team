@@ -108,7 +108,7 @@ export default function FeatureGrid() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group p-8 rounded-2xl bg-gray-50 hover:bg-[#e7f0fa] hover:shadow-md transition-all duration-300 border border-transparent hover:border-gray-200 hover:text-[#0d2440]"
+              className="group p-8 rounded-2xl bg-gray-200/70 hover:bg-[#d0e2f6] hover:shadow-md transition-all duration-300 border border-transparent hover:border-gray-200 hover:text-[#0d2440]"
             >
               <div className="mb-6 text-gray-600 group-hover:text-[#0d2440] transition-colors">
                 {feature.icon()}
