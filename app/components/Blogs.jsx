@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ExternalLink, Calendar } from "lucide-react";
+import { ExternalLink, Calendar, Sparkles } from "lucide-react";
 
 export default function ModernTechGrid() {
   const [articles, setArticles] = useState([]);
@@ -31,6 +31,8 @@ export default function ModernTechGrid() {
           allArticles = [...allArticles, ...withImage];
         });
 
+        // Sort by date (newest first)
+        allArticles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
         setArticles(allArticles);
       } catch (err) {
         console.error("Error fetching news:", err);
@@ -42,163 +44,119 @@ export default function ModernTechGrid() {
     fetchAll();
   }, []);
 
-  const getPosition = (index) => {
-    const basePositions = [
-      { row: 1, col: 1 },
-      { row: 1, col: 3 },
-      { row: 1, col: 5 },
-      { row: 1, col: 7 },
-      { row: 3, col: 2 },
-      { row: 3, col: 4 },
-      { row: 3, col: 6 },
-      { row: 3, col: 8 },
-      { row: 5, col: 1 },
-      { row: 5, col: 3 },
-      { row: 5, col: 6 },
+  // Staggered grid layout (optimized for beauty + performance)
+  const getGridClasses = (index) => {
+    const patterns = [
+      "md:col-span-4 md:row-span-2",     // 0: Hero card
+      "md:col-span-2",                   // 1
+      "md:col-span-2",                   // 2
+      "md:col-span-3",                   // 3
+      "md:col-span-3",                   // 4
+      "md:col-span-2",                   // 5
+      "md:col-span-2",                   // 6
+      "md:col-span-4",                   // 7: Wide
+      "md:col-span-2",                   // 8
+      "md:col-span-2",                   // 9
     ];
-
-    if (index < basePositions.length) {
-      return basePositions[index];
-    }
-
-    const extraRow = Math.floor((index - 11) / 4) * 2 + 7;
-    const extraCol = ((index - 11) % 4) * 2 + 1;
-    return { row: extraRow, col: extraCol };
+    return patterns[index % patterns.length] || "md:col-span-2";
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-white text-2xl font-light animate-pulse">
-          Loading latest Spread...
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#e7f0fa] to-white">
+        <div className="text-center">
+          <Sparkles className="w-16 h-16 text-[#2e5e99] mx-auto mb-6" />
+          <p className="text-2xl font-light text-[#0d2440]">Curating today’s top IT stories...</p>
         </div>
       </div>
     );
   }
 
-  const displayed = articles.slice(0, 50);
+  const displayed = articles.slice(0, 40);
 
   return (
-    <div className="min-h-screen bg-white p-2">
-      {/* Title */}
+    <div className="min-h-screen bg-gradient-to-br from-[#f8fbff] via-white to-[#e7f0fa] py-16 px-4 lg:px-8">
+      {/* Hero Title – Premium */}
       <motion.div
-        initial={{ opacity: 0, y: -30 }}
+        initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-20"
+        transition={{ duration: 0.8 }}
+        className="text-center mb-20 max-w-5xl mx-auto"
       >
-        <h2 className="text-5xl sm:text-6xl font-bold text-center mt-8 text-[#0d2440] kaushan-script-regular">
-  India’s IT headlines
-</h2>
-
-<p className="text-[#7ba4d0] text-4xl sm:text-7xl mt-4 kaushan-script-regular">
-  Your quick scan of India’s tech scene.
-</p>
-
+        
+        <div className="flex justify-center mt-2">
+          <span className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-6 py-3 rounded-full shadow-lg border border-[#7ba4d0]/20">
+            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+            <span className="text-[#0d2440] font-medium text-2xl">{articles.length} fresh stories this hour</span>
+          </span>
+        </div>
       </motion.div>
 
-      <div className="relative max-w-7xl mx-auto">
-        {/* MOBILE OVERRIDE: grid-cols-1 */}
-        <div className="grid grid-cols-1 md:grid-cols-8 gap-5 md:gap-7">
-          {displayed.map((item, i) => {
-            const pos = getPosition(i);
-            if (!pos) return null;
+      {/* Masonry Grid */}
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-8 gap-6 auto-rows-[280px]">
+          {displayed.map((item, i) => (
+            <motion.a
+              key={`${item.link}-${i}`}
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: i * 0.05, duration: 0.6 }}
+              whileHover={{ y: -12, scale: 1.03 }}
+              className={`
+                relative group overflow-hidden rounded-3xl shadow-xl
+                bg-white/50 backdrop-blur-sm border border-white/30
+                ${getGridClasses(i)}
+                ${i === 0 ? "md:row-span-2 md:col-span-4" : ""}
+              `}
+            >
+              {/* Image */}
+              <div className="absolute inset-0">
+                <Image
+                  fill
+                  src={item.image_url}
+                  alt={item.title}
+                  unoptimized
+                  priority={i < 6}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-transparent" />
+              </div>
 
-            return (
-              <motion.a
-                key={i}
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.02, duration: 0.4, ease: "easeOut" }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className={`
-                  group relative 
-                  
-                  /* MOBILE FALLBACK */
-                  col-span-full 
-                  row-auto
+              {/* Content */}
+              <div className="relative h-full flex flex-col justify-end p-2 md:p-8 text-white">
+                
 
-                  /* DESKTOP ORIGINAL POSITIONING UNCHANGED */
-                  md:col-start-${pos.col} md:row-start-${pos.row} md:col-span-2
-                  ${i === 4 || i === 8 ? "md:col-span-2" : ""}
-                  ${i >= 9 && i < 11 ? "md:col-span-3" : ""}
-                  ${i >= 11 ? "md:col-span-2" : ""}
+                <h3 className="text-xl md:text-xl font-bold leading-tight line-clamp-3">
+                  {item.title}
+                </h3>
 
-                  h-60 md:h-65 lg:h-[340px]
-                  rounded-3xl overflow-hidden shadow-2xl backdrop-blur-xl
-                  transition-all duration-420
-                `}
-              >
-                <div className="absolute inset-0">
-                  <Image
-                    fill
-                    src={item.image_url}
-                    alt={item.title}
-                    className="object-cover transition-transform duration-500 group-hover:scale-106"
-                    unoptimized
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                </div>
-
-                <div className="relative h-full flex flex-col justify-end p-6 md:p-8 text-white">
-                  <h3 className="text-lg font-semibold leading-tight line-clamp-3 mb-2 drop-shadow-lg">
-                    {item.title}
-                  </h3>
-
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-5 h-5" />
-                      <span>
-                        {new Date(item.pubDate).toLocaleDateString("en", {
-                          month: "short",
-                          day: "numeric",
-                        })}
-                      </span>
-                    </div>
-
-                    {item.source_icon && (
-                      <Image
-                        src={item.source_icon}
-                        width={32}
-                        height={32}
-                        alt="Source"
-                        className="rounded-full ring-2 ring-[#0d2440]"
-                        unoptimized
-                      />
-                    )}
+                <div className="mt-4 flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-2 opacity-90">
+                    <Calendar className="w-4 h-4" />
+                    <span>{new Date(item.pubDate).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}</span>
                   </div>
-
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ExternalLink className="w-6 h-6 text-white drop-shadow-lg" />
-                  </div>
+                  <ExternalLink className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-white/20" />
-                </div>
-              </motion.a>
-            );
-          })}
-        </div>
-
-        {/* Background blobs (unchanged) */}
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-20 left-1/4 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-22 right-1/3 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl animate-pulse delay-900" />
+              </div>
+            </motion.a>
+          ))}
         </div>
       </div>
 
+      {/* More Indicator */}
       {articles.length > displayed.length && (
-        <motion.p
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          className="text-center mt-20 text-gray-400 text-lg"
+          className="text-center mt-20"
         >
-          +{articles.length - displayed.length} more stories today
-        </motion.p>
+          <p className="text-2xl text-[#0d2440]/70 font-medium">
+            +{articles.length - displayed.length} more stories loading in the background
+          </p>
+        </motion.div>
       )}
     </div>
   );

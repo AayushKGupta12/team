@@ -1,17 +1,11 @@
 import React from "react";
 import { Check } from "lucide-react";
 import Link from "next/link";
-import {
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-} from "@clerk/nextjs";
-
-
+import { SignUpButton, SignedIn, SignedOut } from "@clerk/nextjs";
 
 export default function PricingSection() {
   return (
-    <section className="py-5 bg-gradient-to-b from-white to-amber-200 pb-10">
+    <section className="py-5 bg-amber-50 pb-10">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -35,7 +29,7 @@ export default function PricingSection() {
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-2xl font-bold text-gray-900">Go</h3>
                 <span className="px-3 py-1 text-xs font-semibold text-amber-700 bg-amber-100 rounded-full">
-                    Basic
+                  Basic
                 </span>
               </div>
 
@@ -48,33 +42,28 @@ export default function PricingSection() {
                   <span className="ml-2 text-gray-950 text-xl font-bold">/ 6 month</span>
                 </div>
                 <span className="text-xl text-gray-500 ml-2"> ₹ 0 / day</span>
-                
               </div>
 
               <p className="text-gray-700 mb-5">
                 For individuals looking to enhance their job search and resume
                 optimization
               </p>
-                                  
-                                  <div className="w-full">
-      <SignedOut>
-        <SignUpButton>
-          <button className="w-full bg-[#0d2440] text-white py-3 rounded-lg font-semibold hover:bg-[#2e5e99] transition shadow-lg">
-            Try it Free
-          </button>
-        </SignUpButton>
-      </SignedOut>
 
-      <SignedIn>
-        <button className="w-full bg-[#bd9a1a] text-white py-3 rounded-lg font-semibold hover:bg-[#2e5e99] transition shadow-lg">
-          Yayy...!! Enjoy it
-        </button>
-      </SignedIn>
-    </div>
+              <div className="w-full">
+                <SignedOut>
+                  <SignUpButton>
+                    <button className="w-full bg-[#0d2440] text-white py-3 rounded-lg font-semibold hover:bg-[#2e5e99] transition shadow-lg">
+                      Try it Free
+                    </button>
+                  </SignUpButton>
+                </SignedOut>
 
-
-              
-              
+                <SignedIn>
+                  <button className="w-full bg-[#bd9a1a] text-white py-3 rounded-lg font-semibold hover:bg-[#2e5e99] transition shadow-lg">
+                    Yayy...!! Enjoy it
+                  </button>
+                </SignedIn>
+              </div>
 
               <div className="mt-10 space-y-8">
                 {[
@@ -100,9 +89,7 @@ export default function PricingSection() {
                       ))}
                     </ul>
                   </div>
-                  
                 ))}
-                
               </div>
             </div>
           </div>
@@ -113,7 +100,7 @@ export default function PricingSection() {
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-2xl font-bold text-gray-900">Go Plus</h3>
                 <span className="px-3 py-1 text-xs font-semibold text-amber-700 bg-amber-100 rounded-full">
-                    Rich
+                  Rich
                 </span>
               </div>
 
@@ -161,7 +148,7 @@ export default function PricingSection() {
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-2xl font-bold text-gray-900">Go Plus Pro</h3>
                 <span className="px-3 py-1 text-xs font-semibold text-amber-700 bg-amber-100 rounded-full">
-                    Premium
+                  Premium
                 </span>
               </div>
 
@@ -203,7 +190,6 @@ export default function PricingSection() {
           </div>
         </div>
       </div>
-
     </section>
   );
 }

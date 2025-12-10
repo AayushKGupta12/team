@@ -1,135 +1,139 @@
 'use client';
 
-export default function Hero() {
-  const logoUrl = "/mnt/data/38d2223f-ef6a-42e3-98db-181046034e36.png";
-
+export default function CareersPage() {
   return (
-    <div>
-      {/* HERO SECTION */}
-      <div className="relative overflow-hidden w-full bg-[#e7f0fa] py-12 md:py-20 lg:py-25 px-4 sm:px-6 md:px-16 lg:px-20">
+    <>
+      {/* HERO – "We Are Hiring" */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#e7f0fa] via-white to-[#d0e2f7] py-28 md:py-36 lg:py-44 px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
 
-        {/* BACKGROUND STATIC LETTERS */}
-        <div className="absolute inset-0 flex flex-col justify-center items-center md:items-end md:mr-2 px-4">
-
-              <div className="text-[clamp(24px,8vw,150px)] md:text-[clamp(50px,15vw,150px)]
-              font-extrabold leading-[1.1] md:leading-[0.85]
-              text-[#7ba4d0]/45 text-center md:text-right whitespace-nowrap md:whitespace-normal">
-
-            {/* MOBILE VERSION - visible only on mobile */}
-            <div className="block md:hidden mt-100 text-7xl">  
-              Career
+          {/* Floating "Join" text – visible only on large screens, right side */}
+          <div className="hidden lg:block absolute inset-0 pointer-events-none overflow-hidden">
+            <div 
+              className="absolute right-0 top-3/4 -translate-y-1/2 
+                        text-[19vw] leading-none font-black 
+                        text-[#7ba4d0]/12 tracking-tighter 
+                          select-none mr-3"
+              style={{ letterSpacing: '-0.06em' }}
+            >
+              Join
             </div>
-            <div className="text-sm text-[#2e5e99]">We are in hunt for talented developers</div>
+          </div>
 
-            {/* DESKTOP VERSION - visible only on md+ */}
-            <div className="hidden md:block mt-19">
-              <br /><br /><br />
-              Career
-              <div className="text-4xl text-[#2e5e99]">We are in hunt for talented developers</div>
+          {/* Main Hero Content */}
+          <div className="relative z-10 max-w-4xl mt-8">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-[#0b1724] leading-tight md:leading-none">
+              <span className="block">We’re Hiring</span>
+              <span className="text-[#2e5e99]">Builders</span>
+            </h1>
+
+            <p className="mt-8 text-xl md:text-2xl text-gray-700 max-w-2xl leading-relaxed">
+              Not just coders. Not just designers.<br />
+              <span className="font-semibold text-[#0d2440]">
+                People who want to shape the future of how India builds software.
+              </span>
+            </p>
+
+            <div className="mt-10 flex gap-6">
+              <a
+                href="#roles"
+                className="border relative h-14 py-2 p-15 text-black text-3xl font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
+                Check us
+              </a>
             </div>
-            
-
           </div>
         </div>
+      </section>
 
-        {/* OVERLAY TEXT CONTENT */}
-        <div className="relative z-20 min-h-[450px] md:min-h-[450px] flex items-center justify-center md:justify-start md:items-end">
-          <div className="w-full max-w-md md:max-w-lg text-center md:text-left px-4 sm:px-6 md:px-0">
-            <h1 className="font-extrabold tracking-tight text-[clamp(22px,6vw,60px)] md:text-[clamp(36px,6vw,80px)] leading-[1.05] md:leading-[0.92] text-[#0b1724]">
-            <span className="block text-4xl sm:text-5xl md:text-6xl">
-              India's Largest
-            </span>
-            <span className="text-[#2e5e99] text-5xl sm:text-6xl md:text-8xl">
-              Developer Builder
-            </span>
-          </h1>
+
+      {/* HIRING SECTION – Left-aligned, modern, human */}
+      <section id="roles" className="py-24 px-6 lg:px-8 bg-gradient-to-b from-white to-[#f8fbff]">
+        <div className="max-w-4xl mx-auto space-y-24">
+
+          {/* Intro */}
+          <div className="space-y-8">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#0d2440]">
+              Come build the future with us
+            </h2>
+            <p className="text-xl text-gray-700 leading-relaxed">
+              We’re a fast-growing team obsessed with fixing the broken developer journey in India.
+              If you’re passionate, a little crazy (in a good way), and ready to move fast — we want you.
+            </p>
           </div>
-        </div>
-      </div>
 
-      {/* ABOUT SECTION - Clean & Professional */}
-      <div className="bg-[#7ba4d0]">
-        <div className="bg-white py-20 px-6">
-          <div className="max-w-5xl mx-auto space-y-20">
+          {/* Roles – Beautiful Cards */}
+          <div className="space-y-12">
 
-            {/* Who We Are */}
-            <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0d2440]">
-                What We Are Looking For ?
-              </h2>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                We are seeking passionate and talented individuals to join our dynamic team. If you are driven by innovation, eager to make a difference, and ready to contribute to a fast-growing company, we want to hear from you. Explore our current openings and find the perfect role that matches your skills and aspirations.
-                </p>
-            </div>
-
-            {/* Our Values */}
-            <div className="space-y-8">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0d2440]">
-                Domains We Are Hiring For
-              </h2>
-              <div className="grid md:grid-cols-2 gap-10">
-                {[
-                  { title: "Software Engineer", desc: "As a Software Engineer, you will design, develop, and maintain scalable applications using modern programming languages such as Java, Python, or JavaScript. You’ll work with frameworks like Spring Boot or Node.js, manage databases such as MySQL or MongoDB, and collaborate on system design and API development. Strong knowledge of data structures, algorithms, and version control with Git is essential to ensure clean, efficient, and reliable code delivery" },
-                  { title: "UI/UX", desc: "As a UI/UX Designer, you will craft intuitive and engaging digital experiences by combining creativity with user‑centered design principles. You’ll use tools like Figma, Adobe XD, and Sketch to create wireframes, prototypes, and polished interfaces, while ensuring accessibility and responsive layouts. Collaborating closely with developers, you’ll translate design concepts into functional interfaces that delight users and improve overall usability." },
-                  { title: "ML Engineer", desc: "As an ML Engineer, you will build, train, and deploy machine learning models that solve real‑world problems. You’ll work with Python, TensorFlow, PyTorch, and Scikit‑learn to handle large datasets, develop predictive algorithms, and optimize model performance. Experience with data pipelines, model evaluation, and deployment tools like Docker or Kubernetes will help ensure scalable, ethical, and transparent AI solutions." },
-                  { title: "Web Developer", desc: "As a Web Developer, you will create responsive, high‑performance websites and applications using technologies such as HTML, CSS, JavaScript, and frameworks like React or Next.js. You’ll integrate backend services with Node.js or Express, manage databases like MongoDB or PostgreSQL, and ensure seamless collaboration with design and product teams. A strong grasp of modern styling libraries, CI/CD pipelines, and version control will help deliver robust, user‑friendly solutions." },
-                ].map((value) => (
-                  <div
-                    key={value.title}
-                    className="border-l-4 border-[#0d2440] pl-6 py-4 bg-gray-50 rounded-r-lg"
-                  >
-                    <h4 className="text-2xl font-semibold text-[#0d2440] mb-2">
-                      {value.title}
-                    </h4>
-                    <p className="text-gray-700 text-base leading-relaxed">
-                      {value.desc}
-                    </p>
-                  </div>
-                ))}
+            {[
+              {
+                title: "Software Engineer",
+                desc: "You live for clean code, scalable systems, and shipping fast. You’ll build the core platform using React, Next.js, Node.js, and modern backend tech.",
+                stack: "React · Next.js · Node.js · PostgreSQL · AWS"
+              },
+              {
+                title: "UI/UX Designer",
+                desc: "You turn complex problems into beautiful, intuitive experiences. You’ll design the entire user journey from onboarding to job matches with Figma and real user feedback.",
+                stack: "Figma · Framer · Design Systems · User Research"
+              },
+              {
+                title: "ML Engineer",
+                desc: "You love turning data into magic. You’ll improve our resume parser, skill matching engine, and career recommendations using Python, PyTorch, and real-world impact.",
+                stack: "Python · PyTorch · NLP · Docker · ML Ops"
+              },
+              {
+                title: "Full-Stack Web Developer",
+                desc: "You’re a builder at heart. You’ll work across the stack to ship features that developers actually love fast, responsive, and pixel-perfect.",
+                stack: "Next.js · TypeScript · Tailwind · Prisma · Vercel"
+              },
+            ].map((role) => (
+              <div
+                key={role.title}
+                className="group flex gap-8 items-start bg-white rounded-2xl p-8 shadow-lg border border-gray-400"
+              >
+                <div className="flex-shrink-0 w-16 h-16 bg-[#7ba4d0]/10 rounded-full flex items-center justify-center group-hover:bg-[#2e5e99]/10 transition-colors">
+                  <svg className="w-9 h-9 text-[#2e5e99]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-[#0d2440] mb-3">{role.title}</h3>
+                  <p className="text-lg text-gray-700 mb-4 leading-relaxed">{role.desc}</p>
+                  <p className="text-sm font-medium text-[#2e5e99]/80 uppercase tracking-wider">{role.stack}</p>
+                </div>
               </div>
-            </div>
-
-                <a
-  href="https://docs.google.com/forms/d/e/1FAIpQLScUZ5y_RpNN9FXlm5U5ZtGaZuAmOeb_PDwldEUrMG6RO-lRXA/viewform?usp=publish-editor"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <button
-    className="relative group border-none bg-transparent p-0 outline-none cursor-pointer font-mono font-light uppercase text-base"
-  >
-    <span
-      className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-25 rounded-lg transform translate-y-0.5 transition duration-[600ms] ease-[cubic-bezier(0.3,0.7,0.4,1)] group-hover:translate-y-1 group-hover:duration-[250ms] group-active:translate-y-px"
-    ></span>
-
-    <span
-      className="absolute top-0 left-0 w-full h-full rounded-lg bg-gradient-to-l from-[hsl(217,33%,16%)] via-[hsl(217,33%,32%)] to-[hsl(217,33%,16%)]"
-    ></span>
-
-    <div
-      className="relative flex items-center justify-between py-3 px-6 text-lg text-white rounded-lg transform -translate-y-1 bg-gradient-to-r from-[#f27121] via-[#e94057] to-[#8a2387] gap-3 transition duration-[600ms] ease-[cubic-bezier(0.3,0.7,0.4,1)] group-hover:-translate-y-1.5 group-hover:duration-[250ms] group-active:-translate-y-0.5 brightness-100 group-hover:brightness-110"
-    >
-      <span className="select-none">Apply Now</span>
-
-      <svg
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        className="w-5 h-5 ml-2 -mr-1 transition duration-250 group-hover:translate-x-1"
-      >
-        <path
-          clip-rule="evenodd"
-          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-          fill-rule="evenodd"
-        ></path>
-      </svg>
-    </div>
-  </button>
-</a>
-
-
-
+            ))}
           </div>
+
+          {/* Apply Now – Stunning Button */}
+          <div className="text-center py-16">
+            <p className="text-2xl md:text-3xl font-bold text-[#0d2440] mb-8">
+              Think you’d be a great fit?
+            </p>
+
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLScUZ5y_RpNN9FXlm5U5ZtGaZuAmOeb_PDwldEUrMG6RO-lRXA/viewform?usp=publish-editor"
+              target="_blank"
+              rel="noopener noreferrer"
+              
+              className="relative inline-block px-8 py-3 text-black text-2xl font-bold 
+                        bg-white border rounded-3xl shadow-md overflow-hidden
+                        transition-transform duration-200 ease-in-out
+                        hover:scale-105 hover:text-white hover:shadow-lg active:scale-95
+                        before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full
+                        before:bg-gradient-to-r before:from-blue-700 before:to-blue-400
+                        before:transition-all before:duration-500 before:ease-in-out
+                        before:rounded-3xl hover:before:left-0">
+                          Apply
+                        </a>
+            
+                
+            <p className="mt-6 text-lg text-gray-600">
+              We reply to <strong>every</strong> application usually within 48 hours
+            </p>
+          </div>
+
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

@@ -30,7 +30,7 @@
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx"
-, "app/components/Jobs.jsx", "app/components/Navbar.tsx", "app/components/Features.jsx"  ],
+, "app/components/Jobs.jsx", "app/components/Navbar.tsx", "app/components/Features.tsx"  ],
   "exclude": [
     "node_modules"
   ]

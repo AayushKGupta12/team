@@ -26,7 +26,7 @@ export default function Testimonials() {
 
             <div className="relative grid max-w-lg grid-cols-1 gap-6 mx-auto md:max-w-none lg:gap-10 md:grid-cols-3">
               {/* Card 1 */}
-              <div className="flex flex-col overflow-hidden shadow-xl">
+              <div className="flex flex-col overflow-hidden shadow-xl rounded-xl">
                 <div className="flex flex-col justify-between flex-1 p-6 bg-white lg:py-8 lg:px-7">
                   <div className="flex-1">
                     <div className="flex items-center">
@@ -76,19 +76,20 @@ export default function Testimonials() {
                       <p className="text-lg leading-relaxed text-gray-900 font-pj">
                         "Everything was made clear by the resume analysis, which highlighted my gaps, highlighted my technical strengths, and indicated which jobs I would be most suited for."</p>
                     </blockquote>
+                    <hr className="mt-3"/>
                   </div>
 
-                  <div className="flex items-center mt-8">
+                  <div className="flex items-center mt-3">
                     <div className="ml-4">
-                      <p className="text-base font-bold text-gray-900 font-pj">Shreya Sharma</p>
-                      <p className="mt-0.5 text-sm font-pj text-gray-600">Lead Software Engineer @ Walmart</p>
+                      <p className="text-base font-bold text-gray-900 font-pj">Archana Gupta</p>
+                      <p className="mt-0.5 text-sm font-pj text-gray-600">Software Engineer @ Walmart</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Card 2 */}
-              <div className="flex flex-col overflow-hidden shadow-xl">
+              <div className="flex flex-col overflow-hidden shadow-xl rounded-xl">
                 <div className="flex flex-col justify-between flex-1 p-6 bg-white lg:py-8 lg:px-7">
                   <div className="flex-1">
                     <div className="flex items-center">
@@ -135,14 +136,15 @@ export default function Testimonials() {
                     </div>
 
                       <blockquote className="flex-1 mt-8">
-                          <p className="text-lg leading-relaxed text-gray-900 font-pj">"To be honest, it was the simplest IT job application process I've ever encountered.  Just me, my resume, and the business—no additional steps or third-party platforms."</p>
+                          <p className="text-lg leading-relaxed text-gray-900 font-pj">"To be honest, it was the simplest IT job application process I've ever encountered.  Just me, my resume, and the business, no additional steps or third party platforms."</p>
                       </blockquote>
                   </div>
+                  <hr className="mt-3"/>
 
-                  <div className="flex items-center mt-8">
+                  <div className="flex items-center mt-3">
                     
                     <div className="ml-4">
-                      <p className="text-base font-bold text-gray-900 font-pj">Aayush Gupta</p>
+                      <p className="text-base font-bold text-gray-900 font-pj">Aayush Kumar</p>
                       <p className="mt-0.5 text-sm font-pj text-gray-600">Sr. Data Scientist @ Databricks</p>
                     </div>
                   </div>
@@ -150,7 +152,7 @@ export default function Testimonials() {
               </div>
 
               {/* Card 3 */}
-              <div className="flex flex-col overflow-hidden shadow-xl">
+              <div className="flex flex-col overflow-hidden shadow-xl rounded-xl">
                 <div className="flex flex-col justify-between flex-1 p-6 bg-white lg:py-8 lg:px-7">
                   <div className="flex-1">
                     <div className="flex items-center">
@@ -198,13 +200,15 @@ export default function Testimonials() {
 
                     <blockquote className="flex-1 mt-8">
                       <p className="text-lg leading-relaxed text-gray-900 font-pj">
-                        "I was astounded by how simple it was to write a polished cover letter.  The entire process was quick and easy thanks to the two-step builder."</p>
+                        "I was astounded by how simple it was to write a polished cover letter.  The entire process was quick and easy thanks to the two step builder."</p>
                     </blockquote>
                   </div>
+                  <hr className="mt-3"/>
+                  
 
-                  <div className="flex items-center mt-8">
+                  <div className="flex items-center mt-3">
                     <div className="ml-4">
-                      <p className="text-base font-bold text-gray-900 font-pj">Manu Raj</p>
+                      <p className="text-base font-bold text-gray-900 font-pj">Shambhavi Kiran</p>
                       <p className="mt-0.5 text-sm font-pj text-gray-600">Product Manager @ Google</p>
                     </div>
                   </div>

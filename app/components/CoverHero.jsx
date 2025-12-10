@@ -1,50 +1,69 @@
 'use client';
 
-export default function Hero() {
-  const logoUrl = "/mnt/data/38d2223f-ef6a-42e3-98db-181046034e36.png";
-
+export default function CoverLetterHero() {
   return (
-    <div>
-      {/* HERO SECTION */}
-      <div className="relative overflow-hidden w-full bg-[#e7f0fa] py-12 md:py-20 lg:py-25 px-4 sm:px-6 md:px-16 lg:px-20">
+    <>
+      {/* COVER LETTER HERO – Premium & Modern */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#e7f0fa] via-white to-[#d0e2f7] py-24 md:py-32 lg:py-44 px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto">
 
-        {/* BACKGROUND STATIC LETTERS */}
-        <div className="absolute inset-0 flex flex-col justify-center items-center md:items-end md:mr-2 px-4">
+          {/* Subtle Grid Background – Light & Faded from Top */}
+          <div className="pointer-events-none absolute inset-0 hidden lg:block scale-184">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `
+                  linear-gradient(to right, #cbd5e1 1px, transparent 1px),
+                  linear-gradient(to bottom, #cbd5e1 1px, transparent 1px)
+                `,
+                backgroundSize: '50px 50px',
+                backgroundPosition: 'center top',
+                maskImage: `radial-gradient(ellipse 110% 85% at 50% 0%, black 40%, transparent 90%)`,
+                WebkitMaskImage: `radial-gradient(ellipse 110% 85% at 50% 0%, black 40%, transparent 90%)`,
+                opacity: 0.45
+              }}
+            />
+          </div>
 
-              <div className="text-[clamp(24px,8vw,150px)] md:text-[clamp(50px,15vw,150px)]
-              font-extrabold leading-[1.1] md:leading-[0.85]
-              text-[#7ba4d0]/45 text-center md:text-right whitespace-nowrap md:whitespace-normal">
-
-            {/* MOBILE VERSION - visible only on mobile */}
-            <div className="block md:hidden mt-100 text-5xl">  
-              Cover Letter
+          {/* Main Content – Clean & Powerful */}
+          <div className="relative z-10 max-w-4xl text-center md:text-left mt-6">
+            <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-white/50 mb-8">
+              <span className="w-3 h-3 bg-[#2e5e99] rounded-full animate-pulse"></span>
+              <span className="text-sm font-semibold text-[#0d2440] uppercase tracking-wider">
+                Cover letter Builder
+              </span>
             </div>
-            <div className="text-sm text-[#2e5e99]">Best in class cover letter</div>
 
-            {/* DESKTOP VERSION - visible only on md+ */}
-            <div className="hidden md:block mt-19 text-9xl">
-              <br /><br /><br />
-              Cover Letter
-              <div className="text-4xl text-[#2e5e99]">Industry Standard | Optimised | Personalised</div>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-[#0b1724] leading-tight md:leading-none">
+              <span className="block">Your Story,</span>
+              <span className="text-[#2e5e99]">Perfectly Told</span>
+            </h1>
+
+            <p className="mt-8 text-xl md:text-2xl lg:text-3xl text-gray-700 font-light max-w-3xl leading-relaxed">
+              <span className="block font-bold text-[#0d2440] mb-1">
+                Stop writing generic cover letters.
+              </span>
+              <span className="block font-medium text-gray-800 sm:text-base md:text-lg">
+                Get a personalized, ATS‑friendly, recruiter‑approved cover letter in seconds.
+              </span>
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-12 text-gray-600">
+              <div>
+                <div className="text-3xl font-bold text-[#0d2440]">6000+</div>
+                <div className="text-lg">Letter Generated</div>
+                
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-[#0d2440]">390+</div>
+                <div className="text-lg">Companies targetted</div>
+              </div>
             </div>
+
 
           </div>
         </div>
-
-        {/* OVERLAY TEXT CONTENT */}
-        <div className="relative z-20 min-h-[450px] md:min-h-[450px] flex items-center justify-center md:justify-start md:items-end">
-          <div className="w-full max-w-md md:max-w-lg text-center md:text-left px-4 sm:px-6 md:px-0">
-            <h1 className="font-extrabold tracking-tight text-[clamp(22px,6vw,60px)] md:text-[clamp(36px,6vw,80px)] leading-[1.05] md:leading-[0.92] text-[#0b1724]">
-            <span className="block text-4xl sm:text-5xl md:text-6xl">
-              India's Largest
-            </span>
-            <span className="text-[#2e5e99] text-5xl sm:text-6xl md:text-8xl">
-              Developer Builder
-            </span>
-          </h1>
-          </div>
-        </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

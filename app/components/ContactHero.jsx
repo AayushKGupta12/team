@@ -1,86 +1,107 @@
 'use client';
 
-export default function Hero() {
-  const logoUrl = "/mnt/data/38d2223f-ef6a-42e3-98db-181046034e36.png";
-
+export default function AboutPage() {
   return (
     <>
-      {/* HERO SECTION - 100% UNCHANGED */}
-      <div className="relative overflow-hidden w-full bg-[#e7f0fa] py-12 md:py-20 lg:py-25 px-4 sm:px-6 md:px-16 lg:px-20">
+      {/* HERO – Clean, Modern, Floating "About" only on large screens */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#e7f0fa] via-white to-[#d0e2f7] py-24 md:py-32 lg:py-40 px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
 
-        {/* BACKGROUND STATIC LETTERS */}
-        <div className="absolute inset-0 flex flex-col justify-center items-center md:items-end md:mr-2 px-4">
-
-              <div className="text-[clamp(24px,8vw,150px)] md:text-[clamp(50px,15vw,150px)]
-              font-extrabold leading-[1.1] md:leading-[0.85]
-              text-[#7ba4d0]/45 text-center md:text-right whitespace-nowrap md:whitespace-normal">
-
-            {/* MOBILE VERSION - visible only on mobile */}
-            <div className="block md:hidden mt-100 text-7xl">  
+          {/* Floating "About" – visible ONLY on lg+ screens, right side */}
+          <div className="hidden lg:block absolute inset-0 pointer-events-none overflow-hidden">
+            <div 
+              className="absolute right-0 top-3/4 -translate-y-1/2 
+                         text-[17vw] leading-none font-black 
+                         text-[#7ba4d0]/12 tracking-tighter select-none"
+              style={{ letterSpacing: '-0.05em' }}
+            >
               Contact
             </div>
-            <div className="text-sm text-[#2e5e99]">Always available to serve you</div>
+          </div>
 
-            {/* DESKTOP VERSION - visible only on md+ */}
-            <div className="hidden md:block mt-19">
-              <br /><br /><br />
-              Contact
-              <div className="text-4xl text-[#2e5e99]">Always available to serve you</div>
-            </div>
+          {/* Main Hero Content */}
+          <div className="relative z-10 max-w-4xl mt-8">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-[#0b1724] leading-tight md:leading-none">
+              <span className="block">India’s Largest</span>
+              <span className="text-[#2e5e99]">Developer</span>
+              <span className="block text-[#2e5e99]">Builder</span>
+            </h1>
+
+            <p className="mt-8 text-xl md:text-2xl text-gray-700 max-w-2xl leading-relaxed">
+              You can contact us anytime you like<br />
+            </p>
+
             
-
+            <div className="mt-10 flex gap-6">
+              <a
+                href="#contact"
+                className="border relative h-14 py-2 p-15 text-black text-3xl font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
+                Contact us
+              </a>
+            </div>
           </div>
         </div>
+      </section>
 
 
+      {/* ABOUT + CONTACT SECTION – Left-aligned, warm & modern */}
+      <section id="contact" className="py-24 lg:py-32 px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-4xl mx-auto space-y-24">
 
-
-        {/* MAIN HEADLINE */}
-        <div className="relative z-20 min-h-[450px] md:min-h-[450px] flex items-center justify-center md:justify-start md:items-end">
-          <div className="w-full max-w-md md:max-w-lg text-center md:text-left px-4 sm:px-6 md:px-0">
-            <h1 className="font-extrabold tracking-tight text-[clamp(22px,6vw,60px)] md:text-[clamp(36px,6vw,80px)] leading-[1.05] md:leading-[0.92] text-[#0b1724]">
-            <span className="block text-4xl sm:text-5xl md:text-6xl">
-              India's Largest
-            </span>
-            <span className="text-[#2e5e99] text-5xl sm:text-6xl md:text-8xl">
-              Developer Builder
-            </span>
-          </h1>
+          {/* Intro */}
+          <div className="space-y-8">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0d2440] leading-tight">
+              Your next tech role shouldn’t feel impossible
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
+              We’re a small team that got fed up with endless applications, ghosting, and fake job posts.
+              So we built something different honest, fast, and actually human.
+            </p>
           </div>
-        </div>
-      </div>
 
-      {/* NEW SECTION: About + Contact (Added AFTER Hero) */}
-      <section className="bg-white py-16 px-6 md:py-20">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-            We are dedicated to connecting talented individuals with their dream IT jobs. 
-            Our platform is designed to simplify your job search and help you find the 
-            perfect opportunity to kickstart your career in the tech industry.
-          </p>
-
-          <p className="text-lg text-gray-800">
-            If you have any queries, feel free to reach out to us anytime.
-          </p>
+          {/* Feature Cards */}
+          <div className="space-y-10">
+            {[
+              { title: "No more ghosting", desc: "Every application gets a real reply. No exceptions." },
+              { title: "Honest feedback", desc: "We tell you what recruiters actually think so you improve fast." },
+              { title: "Real connections", desc: "We work directly with founders and hiring teams. Never job boards." },
+            ].map((item) => (
+              <div key={item.title} className="flex gap-6 items-start bg-white rounded-2xl p-8 shadow-lg border border-gray-100 ">
+                <div className="flex-shrink-0 w-16 h-16 bg-[#7ba4d0]/10 rounded-full flex items-center justify-center">
+                  <svg className="w-9 h-9 text-[#2e5e99]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-[#0d2440] mb-2">{item.title}</h3>
+                  <p className="text-lg text-gray-600 leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
 
           {/* Contact CTA */}
-          <div className="pt-6">
-            <p className="text-gray-700 font-medium mb-4">
-              Have questions or ready to get started?
+          <div className="bg-gradient-to-r from-[#0d2440] to-[#1e3a5c] text-white rounded-3xl p-12 lg:p-16 shadow-2xl">
+            <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6">
+              Got questions? Say hello
+            </h3>
+            <p className="text-xl md:text-2xl opacity-90 mb-10 leading-relaxed max-w-2xl">
+              Resume advice, career doubts, or just want to chat? We reply to everyone.
             </p>
-            <a
-              href="mailto:hello@vfound.in"
-              className="inline-flex items-center gap-3 text-[#0d2440] font-bold text-xl underline underline-offset-4 hover:text-[#2e5e99] transition-colors"
-            >
-              Write to us :  hello@vfound.in
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </a>
-            <p className="text-sm text-gray-600 mt-3">
-              We reply within <strong>48 hours</strong>
+
+            <div className="mt-10 flex gap-6">
+              <a
+                href="mailto:aayushgupta120305@gmail.com"
+                className="border relative h-14 py-2 p-15 text-black text-3xl font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
+                Mail us
+              </a>
+            </div>
+
+            <p className="mt-8 text-lg md:text-xl text-white/80">
+              You’ll hear back within <span className="font-bold text-white">48 hours</span>
             </p>
           </div>
+
         </div>
       </section>
     </>

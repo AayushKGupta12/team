@@ -113,10 +113,21 @@ function Jobs() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
-        <div className="text-2xl font-semibold text-gray-700">Loading fresh opportunities...</div>
-      </div>
-    );
+  <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center">
+    <div className="text-2xl font-semibold text-gray-700 mb-6">
+      Loading fresh opportunities...
+    </div>
+
+    <div className="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+);
   }
 
   return (
@@ -170,7 +181,7 @@ function Jobs() {
             <div className="flex flex-col lg:flex-row gap-8">
               {/* Sidebar */}
               <aside className="lg:w-80 space-y-8">
-                <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                <div className="bg-gray-200 rounded-2xl p-6 border border-gray-200">
                   <h3 className="font-bold text-lg mb-5">Filters</h3>
 
                   {/* Categories */}
@@ -195,7 +206,7 @@ function Jobs() {
                     <select
                       value={selectedLocation}
                       onChange={(e) => setSelectedLocation(e.target.value)}
-                      className="mt-2 w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#2e5e99]/20"
+                      className="mt-2 w-full px-4 py-3 rounded-xl border border-gray-500 focus:outline-none focus:ring-1 focus:ring-[#2e5e99]"
                     >
                       <option value="">All Locations</option>
                       {availableLocations.map((loc) => (
@@ -203,26 +214,7 @@ function Jobs() {
                       ))}
                     </select>
                   </div>
-
-                  {/* Stipend */}
-                  <div className="mt-6">
-                    <div className="flex justify-between text-sm">
-                      <span className="font-semibold">Max Package</span>
-                      <span className="text-gray-600">
-                        {maxStipend ? `${(maxStipend / 1000).toFixed(1)} LPA` : "Any"}
-                      </span>
-                    </div>
-                    <input
-                      type="range"
-                      min={stipendRange.min}
-                      max={stipendRange.max || 1000000}
-                      step="50000"
-                      value={maxStipend || stipendRange.max}
-                      onChange={(e) => setMaxStipend(Number(e.target.value))}
-                      className="w-full h-2 mt-3 rounded-lg accent-[#0d2440]"
-                    />
-                  </div>
-
+                  
                   <button
                     onClick={clearFilters}
                     className="mt-6 w-full text-white py-3 rounded-xl bg-[#0d2440] font-medium transition"
@@ -346,12 +338,12 @@ function JobCard({ job, getWhatsappLink }) {
                 className="w-5 h-5">
               <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm.5-13h-1v6l5.25 3.15.5-.85-4.75-2.8V7z"/>
             </svg>
-            <span>{job.Batch || immediate}</span>
+            <span>{job.Batch || "immediate"} +</span>
           </div>
 
           {/* Stipend */}
           <div className="font-semibold text-green-600 text-xl">
-            {job.Stipend || "Competitive"}
+            ₹{job.Stipend || "Competitive"} LPA
           </div>
         </div>
 

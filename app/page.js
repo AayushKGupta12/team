@@ -2,10 +2,9 @@ import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
 import Navbar from './components/Navbar'
-import Features from './components/Features'
+import Features from './components/FeatureSection'
 import HeroCTA from './components/HeroCTA'
 import Countdown from './components/Countdown'
-import PricingSection from './components/Price'
 import Testimonials from './components/test'
 
 const Page = () => {
@@ -16,7 +15,6 @@ const Page = () => {
       <Features />
       <Testimonials/>
       <FAQ />
-      <PricingSection />
       <HeroCTA />
       <Countdown />
       <Footer />

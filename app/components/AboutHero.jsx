@@ -1,119 +1,129 @@
 'use client';
 
-export default function Hero() {
-  const logoUrl = "/mnt/data/38d2223f-ef6a-42e3-98db-181046034e36.png";
-
+export default function HeroAndAbout() {
   return (
-    <div>
-      {/* HERO SECTION */}
-      <div className="relative overflow-hidden w-full bg-[#e7f0fa] py-12 md:py-20 lg:py-25 px-4 sm:px-6 md:px-16 lg:px-20">
+    <>
+      {/* HERO SECTION – Clean, Bold, Human */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#e7f0fa] via-white to-[#d0e2f7] py-24 md:py-32 lg:py-40 px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
 
-        {/* BACKGROUND STATIC LETTERS */}
-        <div className="absolute inset-0 flex flex-col justify-center items-center md:items-end md:mr-2 px-4">
-
-              <div className="text-[clamp(24px,8vw,150px)] md:text-[clamp(50px,15vw,150px)]
-              font-extrabold leading-[1.1] md:leading-[0.85]
-              text-[#7ba4d0]/45 text-center md:text-right whitespace-nowrap md:whitespace-normal">
-
-            {/* MOBILE VERSION - visible only on mobile */}
-            <div className="block md:hidden mt-100 text-7xl">  
+          {/* Floating "About" – Visible ONLY on large screens (lg+), positioned to the right */}
+          <div className="hidden lg:block absolute inset-0 pointer-events-none overflow-hidden">
+            <div 
+              className="absolute right-0 top-3/4 -translate-y-1/2 
+                        text-[19vw] leading-none font-black 
+                        text-[#7ba4d0]/12 tracking-tighter 
+                          select-none mr-2"
+              style={{ letterSpacing: '-0.05em' }}
+            >
               About
             </div>
-            <div className="text-sm text-[#2e5e99]">Every thing you need to know about us</div>
+          </div>
 
-            {/* DESKTOP VERSION - visible only on md+ */}
-            <div className="hidden md:block mt-19">
-              <br /><br /><br />
-              About us
-              <div className="text-4xl text-[#2e5e99]">Every thing you need to know about us</div>
+          {/* Main Hero Content – Left-aligned, Punchy */}
+          <div className="relative z-10 max-w-4xl mt-8">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-[#0b1724] leading-tight md:leading-none">
+              <span className="block">India’s Largest</span>
+              <span className="text-[#2e5e99]">Developer</span>
+              <span className="block text-[#2e5e99]">Builder</span>
+            </h1>
+
+            <p className="mt-8 text-xl md:text-2xl text-gray-700 max-w-2xl leading-relaxed">
+              We don’t just help developers find jobs.<br />
+              <span className="font-semibold text-[#0d2440]">We help them become unstoppable.</span>
+            </p>
+
+            <div className="mt-10 flex gap-6">
+              <a
+                href="#about"
+                className="border relative h-14 py-2 p-15 text-black text-3xl font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
+                About us
+              </a>
             </div>
-            
-
           </div>
         </div>
+      </section>
 
 
-        {/* OVERLAY TEXT CONTENT */}
-        <div className="relative z-20 min-h-[450px] md:min-h-[450px] flex items-center justify-center md:justify-start md:items-end">
-          <div className="w-full max-w-md md:max-w-lg text-center md:text-left px-4 sm:px-6 md:px-0">
-            <h1 className="font-extrabold tracking-tight text-[clamp(22px,6vw,60px)] md:text-[clamp(36px,6vw,80px)] leading-[1.05] md:leading-[0.92] text-[#0b1724]">
-            <span className="block text-4xl sm:text-5xl md:text-6xl">
-              India's Largest
-            </span>
-            <span className="text-[#2e5e99] text-5xl sm:text-6xl md:text-8xl">
-              Developer Builder
-            </span>
-          </h1>
+      {/* ABOUT SECTION – Warm, Modern, Left-Aligned */}
+      <section id="about" className="py-24 px-6 lg:px-8 bg-gradient-to-b from-white to-[#f8fbff]">
+        <div className="max-w-4xl mx-auto space-y-24">
+
+          {/* Who We Are */}
+          <div className="space-y-8">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#0d2440]">
+              We’re building the future of tech careers in India
+            </h2>
+            <p className="text-xl text-gray-700 leading-relaxed">
+              Most job platforms treat you like a resume. We see you as a developer with dreams, gaps, and insane potential.
+            </p>
+            <p className="text-xl text-gray-700 leading-relaxed">
+              That’s why we use AI not just to match jobs but to <span className="font-semibold text-[#2e5e99]">actually understand your skills</span>, show you exactly what’s missing, give you a clear learning path, and connect you with companies that will fight to hire you.
+            </p>
+            <p className="text-xl text-gray-700 leading-relaxed">
+              Oh, and we keep you updated daily on tech, markets, health, sports everything a developer cares about in one clean feed.
+            </p>
           </div>
-        </div>
-      </div>
 
-      {/* ABOUT SECTION - Clean & Professional */}
-      <div className="bg-[#7ba4d0]">
-        <div className="bg-white py-20 px-6">
-          <div className="max-w-5xl mx-auto space-y-20">
+          {/* Mission – Bold Card */}
+          <div className="bg-gradient-to-r from-[#0d2440] to-[#1e3a5c] text-white p-12 rounded-3xl shadow-xl">
+            <h3 className="text-3xl md:text-4xl font-bold mb-6">Our Mission</h3>
+            <p className="text-2xl leading-relaxed opacity-95">
+              One click → the perfect company that deserves <em>you</em>.
+            </p>
+            <p className="mt-4 text-lg opacity-80">
+              No noise. No spam. No praying your resume isn’t ignored.
+            </p>
+          </div>
 
-            {/* Who We Are */}
-            <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0d2440]">
-                Who We Are
-              </h2>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                We are an organization redefining the job search experience. Observing the youth's skill mismatch and employment challenges, we've developed a platform that aligns users' skills with suitable companies. Using Artificial Intelligence, we parse resumes, recommend roles, and provide structured learning roadmaps for trending IT jobs. Our integrated news feature also keeps users updated across seven domains: technology, science, Indian stock market, IT, health, sports, and fitness.
-              </p>
-            </div>
+          {/* Our Values – Beautiful Cards */}
+          <div className="space-y-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#0d2440]">What we stand for</h2>
 
-            {/* Our Mission */}
-            <div className="bg-[#0d2440] text-white p-10 rounded-2xl">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">Our Mission</h3>
-              <p className="text-lg md:text-xl leading-relaxed opacity-95">
-                To revolutionize job searching in India by helping users find the best-fit company at a single click.
-              </p>
-            </div>
-
-            {/* Our Values */}
-            <div className="space-y-8">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0d2440]">
-                Our Values
-              </h2>
-              <div className="grid md:grid-cols-2 gap-10">
-                {[
-                  { title: "Excellence", desc: "We aim to maintain a seamless and high-quality user experience." },
-                  { title: "Innovation", desc: "We constantly explore creative and impactful approaches." },
-                  { title: "Integrity", desc: "We operate transparently and uphold ethical values." },
-                  { title: "Partnership", desc: "We value lasting collaborations with teams and clients." },
-                ].map((value) => (
-                  <div
-                    key={value.title}
-                    className="border-l-4 border-[#0d2440] pl-6 py-4 bg-gray-50 rounded-r-lg"
-                  >
-                    <h4 className="text-2xl font-semibold text-[#0d2440] mb-2">
-                      {value.title}
-                    </h4>
-                    <p className="text-gray-700 text-base leading-relaxed">
-                      {value.desc}
-                    </p>
+            <div className="space-y-10">
+              {[
+                { title: "Radical Honesty", icon: "HeartHandshake", desc: "We’ll tell you what’s wrong with your profile because sugarcoating helps no one." },
+                { title: "Real Growth", icon: "Rocket", desc: "Personalized roadmaps that actually turn juniors into seniors." },
+                { title: "Zero BS", icon: "Shield", desc: "No fake jobs. No ghosting. We work only with companies that respect developers." },
+                { title: "Community First", icon: "Users", desc: "Everything we build is shaped by real developers not boardrooms." },
+              ].map((value) => (
+                <div key={value.title} className="flex gap-6 items-start bg-white rounded-2xl p-8 shadow-md border border-gray-200 transition-all">
+                  <div className="flex-shrink-0 w-16 h-16 bg-[#7ba4d0]/10 rounded-full flex items-center justify-center">
+                    <svg className="w-9 h-9 text-[#2e5e99]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      {value.icon === "HeartHandshake" && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />}
+                      {value.icon === "Rocket" && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />}
+                      {value.icon === "Shield" && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />}
+                      {value.icon === "Users" && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />}
+                    </svg>
                   </div>
-                ))}
-              </div>
+                  <div>
+                    <h4 className="text-2xl font-bold text-[#0d2440] mb-3">{value.title}</h4>
+                    <p className="text-lg text-gray-700 leading-relaxed">{value.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-
-            {/* Our Approach */}
-            <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0d2440]">
-                Our Approach
-              </h2>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                We adopt a collaborative methodology that places users and clients at the core of our decisions. Our process integrates understanding, strategic planning, and efficient execution.
-              </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                By combining proven frameworks with creative problem-solving, we deliver practical and transformative results ensuring long-term success.
-              </p>
-            </div>
-
           </div>
+
+          {/* Final Touch – Warm Closing */}
+          <div className="bg-[#7ba4d0]/10 rounded-3xl p-12 text-center md:text-left">
+            <h3 className="text-3xl md:text-4xl font-bold text-[#0d2440] mb-6">
+              Ready to stop applying and start getting noticed?
+            </h3>
+            <p className="text-xl text-gray-700 mb-8">
+              Join thousands of developers who’ve already taken control of their careers.
+            </p>
+            <div className="mt-10 flex gap-6">
+              <a
+                href="mailto:aayushgupta120305@gmail.com"
+                className="border relative h-14 py-2 p-15 text-black text-3xl font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
+                Mail us
+              </a>
+            </div>
+          </div>
+
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }
