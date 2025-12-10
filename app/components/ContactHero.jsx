@@ -50,39 +50,91 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* NEW SECTION: About + Contact (Added AFTER Hero) */}
-      <section className="bg-white py-16 px-6 md:py-20">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-            We are dedicated to connecting talented individuals with their dream IT jobs. 
-            Our platform is designed to simplify your job search and help you find the 
-            perfect opportunity to kickstart your career in the tech industry.
-          </p>
+      {/* About + Contact Section – Left-aligned, spacious & modern */}
+<section className="py-24 px-6 lg:px-8 bg-gray-50">
+  <div className="max-w-4xl mx-auto">
 
-          <p className="text-lg text-gray-800">
-            If you have any queries, feel free to reach out to us anytime.
-          </p>
+    {/* Intro */}
+    <div className="mb-16">
+      <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+        Your next tech role shouldn’t feel impossible
+      </h2>
+      <p className="text-xl text-gray-700 leading-relaxed max-w-3xl">
+        We’re a small, passionate team that hates the broken job search experience as much as you do. 
+      </p>
+    </div>
 
-          {/* Contact CTA */}
-          <div className="pt-6">
-            <p className="text-gray-700 font-medium mb-4">
-              Have questions or ready to get started?
-            </p>
-            <a
-              href="mailto:hello@vfound.in"
-              className="inline-flex items-center gap-3 text-[#0d2440] font-bold text-xl underline underline-offset-4 hover:text-[#2e5e99] transition-colors"
-            >
-              Write to us :  hello@vfound.in
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </a>
-            <p className="text-sm text-gray-600 mt-3">
-              We reply within <strong>48 hours</strong>
-            </p>
-          </div>
+    {/* Feature Cards – Vertical stack with nice spacing */}
+    <div className="space-y-8 mb-20">
+
+      {/* Card 1 */}
+      <div className="flex gap-6 items-start bg-white rounded-2xl p-8 shadow-md border border-indigo-100 hover:shadow-xl hover:border-indigo-200 transition-all">
+        <div className="flex-shrink-0 w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center">
+          <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m0 16v1m8.227-9.5l-.707.707M5.48 12.207l-.707-.707m14.954 3.5l-.707-.707M4.773 8.707l-.707.707M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z" />
+          </svg>
         </div>
-      </section>
+        <div>
+          <h3 className="text-2xl font-semibold text-gray-900 mb-2">No more ghosting</h3>
+          <p className="text-lg text-gray-600">Every single application you send through us gets a reply</p>
+        </div>
+      </div>
+
+      {/* Card 2 */}
+      <div className="flex gap-6 items-start bg-white rounded-2xl p-8 shadow-md border border-emerald-100 hover:shadow-xl hover:border-emerald-200 transition-all">
+        <div className="flex-shrink-0 w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center">
+          <svg className="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <div>
+          <h3 className="text-2xl font-semibold text-gray-900 mb-2">Fast & brutally honest feedback</h3>
+          <p className="text-lg text-gray-600">We tell you exactly what hiring managers think no fluff, just truth that helps you improve.</p>
+        </div>
+      </div>
+
+      {/* Card 3 */}
+      <div className="flex gap-6 items-start bg-white rounded-2xl p-8 shadow-md border border-amber-100 hover:shadow-xl hover:border-amber-200 transition-all">
+        <div className="flex-shrink-0 w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center">
+          <svg className="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </div>
+        <div>
+          <h3 className="text-2xl font-semibold text-gray-900 mb-2">Real jobs from real people</h3>
+          <p className="text-lg text-gray-600">We work directly with founders and hiring teams never just scrape job boards.</p>
+        </div>
+      </div>
+
+    </div>
+
+    {/* Contact CTA – Prominent left-aligned card */}
+    <div className="bg-gradient-to-r from-[#0d2440] to-[#1e3a5c] text-white rounded-3xl p-10 lg:p-12 shadow-2xl">
+      <h3 className="text-3xl lg:text-4xl font-bold mb-6">
+        Ready to make your next move?
+      </h3>
+      <p className="text-xl opacity-90 mb-10 leading-relaxed max-w-2xl">
+        Whether you’re actively job hunting, just curious, or want a quick resume review drop us a line. 
+        We read and reply to every email personally.
+      </p>
+
+      <a
+        href="mailto:hello@vfound.in"
+        className="group inline-flex items-center gap-4 bg-white text-[#0d2440] font-bold text-xl px-10 py-5 rounded-full hover:bg-gray-100 transform hover:scale-105 transition-all shadow-lg"
+      >
+        <span>hello@vfound.in</span>
+        <svg className="w-7 h-7 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+
+      <p className="mt-8 text-white/80 text-lg">
+        You’ll hear back from us within <span className="font-bold text-white">48 hours</span>
+      </p>
+    </div>
+
+  </div>
+</section>
     </>
   );
 }
