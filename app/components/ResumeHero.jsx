@@ -4,11 +4,12 @@ export default function ResumeHero() {
   return (
     <>
       {/* RESUME CHECKER HERO – Premium & Powerful */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#e7f0fa] via-white to-[#d0e2f7] py-24 md:py-32 lg:py-44 px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#e7f0fa] via-white to-[#d0e2f7] py-24 md:py-32 lg:py-28 px-6 lg:px-8">
+
         <div className="relative max-w-7xl mx-auto">
 
-          {/* Subtle Grid Background – Light & Faded */}
-          <div className="pointer-events-none absolute inset-0 hidden lg:block scale-176">
+          {/* Subtle Grid Background – now visible on mobile */}
+          <div className="pointer-events-none absolute inset-0 block scale-176">
             <div
               className="absolute inset-0"
               style={{
@@ -20,7 +21,9 @@ export default function ResumeHero() {
                 backgroundPosition: 'center top',
                 maskImage: `radial-gradient(ellipse 110% 85% at 50% 0%, black 40%, transparent 90%)`,
                 WebkitMaskImage: `radial-gradient(ellipse 110% 85% at 50% 0%, black 40%, transparent 90%)`,
-                opacity: 0.45
+                
+                /* Slightly reduce opacity ONLY on mobile */
+                opacity: 0.45,
               }}
             />
           </div>
@@ -46,17 +49,19 @@ export default function ResumeHero() {
             </p>
 
             {/* Trust + Stats */}
-            <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-2 text-left">
-              <div>
-                <div className="text-5xl font-bold text-[#0d2440]">7000+</div>
-                <p className="text-lg text-gray-600 ">Resumes Scanned</p>
+            <div className="mt-5 grid grid-cols-2 md:grid-cols-3 gap-4 text-left">
+              <div className="flex flex-col items-center md:items-start">
+                <div className="text-3xl sm:text-5xl font-bold text-[#0d2440]">7000+</div>
+                <p className="mt-1 text-sm sm:text-lg text-gray-600">Resumes Scanned</p>
               </div>
-              <div>
-                <div className="text-5xl font-bold text-[#0d2440]">4.9★</div>
-                <p className="text-lg text-gray-600">User Rating</p>
+
+              <div className="flex flex-col items-center md:items-start">
+                <div className="text-3xl sm:text-5xl font-bold text-[#0d2440]">4.4 <span className="text-amber-400">★</span></div>
+                <p className="mt-1 text-sm sm:text-lg text-gray-600">User Rating</p>
               </div>
             </div>
           </div>
+
         </div>
       </section>
     </>
