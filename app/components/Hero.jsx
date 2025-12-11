@@ -2,11 +2,11 @@
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#e7f0fa] via-white to-[#d0e2f7] py-20 md:py-28 lg:py-40 px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#e7f0fa] via-white to-[#d0e2f7] py-20 md:py-28 lg:py-28 px-6 lg:px-8">
       <div className="relative max-w-7xl mx-auto">
 
         {/* === LIGHT, MODERN GRID – FADED FROM TOP CENTER (FIXED & PERFECT) === */}
-        <div className="pointer-events-none absolute inset-0 hidden lg:block scale-177">
+        <div className="pointer-events-none absolute inset-0 block scale-177">
           <div
             className="absolute inset-0"
             style={{
@@ -26,12 +26,12 @@ export default function Hero() {
                 black 45%,
                 transparent 85%
               )`,
-              opacity: 0.45
+              opacity: 0.45,
             }}
           />
         </div>
 
-        {/* Optional: Very subtle circuit overlay (you can remove if you want pure grid) */}
+        {/* Optional: Very subtle circuit overlay (hidden on small screens to avoid clutter) */}
         <div className="pointer-events-none absolute inset-0 hidden lg:block opacity-20">
           <svg className="w-full h-full" viewBox="0 0 1920 1080" fill="none">
             <g stroke="#2e5e99" strokeWidth="1.2" opacity="0.25">
