@@ -67,7 +67,7 @@ export default function AboutPage() {
               { 
                 title: "No more ghosting", 
                 desc: "Every application gets a real reply. No exceptions.",
-                color: "indigo"
+                color: "blue"
               },
               { 
                 title: "Fast & brutally honest feedback", 
@@ -105,19 +105,16 @@ export default function AboutPage() {
               Got questions? Say hello
             </h3>
             <p className="text-xl md:text-2xl opacity-90 mb-10 leading-relaxed max-w-2xl">
-              Resume advice, career doubts, or just want to chat? We reply to everyone — personally.
+              Resume advice, career doubts, or just want to chat? We reply to everyone personally.
             </p>
 
-            <a
-              href="mailto:aayushgupta120305@gmail.com"
-              className="group inline-flex items-center gap-4 bg-white text-[#0d2440] font-bold text-xl px-10 py-5 rounded-full 
-                         hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg"
-            >
-              <span>aayushgupta120305@gmail.com</span>
-              <svg className="w-7 h-7 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </a>
+            <div className="mt-10 flex gap-6">
+              <a
+                href="mailto:aayushgupta120305@gmail.com"
+                className="border relative h-14 py-2 p-15 text-black text-3xl font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
+                Mail us
+              </a>
+            </div>
 
             <p className="mt-8 text-lg md:text-xl text-white/80">
               You’ll hear back within <span className="font-bold text-white">48 hours</span>
