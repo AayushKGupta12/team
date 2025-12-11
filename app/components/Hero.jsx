@@ -45,7 +45,7 @@ export default function Hero() {
         </div>
 
         {/* Main Content */}
-        <div className="relative z-10 max-w-4xl text-center md:text-left sm:mt-8">
+        <div className="relative z-10 max-w-4xl text-center md:text-left sm:mt-8 mt-4">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-[#0b1724] leading-tight md:leading-none">
             <span className="block">India’s Largest</span>
             <span className="text-[#2e5e99]">Developer Builder</span>
