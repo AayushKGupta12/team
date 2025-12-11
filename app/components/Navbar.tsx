@@ -45,7 +45,7 @@ const navItems: NavItem[] = [
       { label: "Contact Us", href: "/contact" },
     ],
   },
-  // { label: "Pricing", href: "/pricing" }, Pricing ka route nai dalenge abhi, om namah shivay
+  // { label: "Pricing", href: "/pricing" }, //Pricing ka route nai dalenge abhi, om namah shivay
 ];
 
 export default function Navbar(): React.JSX.Element {
@@ -95,7 +95,7 @@ export default function Navbar(): React.JSX.Element {
 
 
               {/* Desktop Nav */}
-              <nav className="hidden font-semibold md:flex items-center gap-8">
+              <nav className="hidden font-semibold md:flex ml-auto mr-22 gap-8">
                 {navItems.map((item) => {
                   if (item.hasDropdown && item.dropdown) {
                     return (
@@ -183,7 +183,7 @@ export default function Navbar(): React.JSX.Element {
                 transform transition-transform duration-400 ease-out z-[99]
                 ${open ? 'translate-x-0' : 'translate-x-full'} p-6 overflow-y-auto`}>
           <button
-            className="mb-6 p-1 h-8 w-8 rounded-sm bg-[#0d2440] float-right"
+            className="mb-6 p-0.5 h-9 w-9 rounded-sm bg-[#0d2440] float-right text-white font-bold"
             onClick={() => setOpen(false)}
           >
             ✕

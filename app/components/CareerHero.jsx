@@ -57,7 +57,7 @@ export default function CareersPage() {
             </h2>
             <p className="text-xl text-gray-700 leading-relaxed">
               We’re a fast-growing team obsessed with fixing the broken developer journey in India.
-              If you’re passionate, a little crazy (in a good way), and ready to move fast — we want you.
+              If you’re passionate, a little crazy in a good way, and ready to move fast.
             </p>
           </div>
 
@@ -67,8 +67,8 @@ export default function CareersPage() {
             {[
               {
                 title: "Software Engineer",
-                desc: "You live for clean code, scalable systems, and shipping fast. You’ll build the core platform using React, Next.js, Node.js, and modern backend tech.",
-                stack: "React · Next.js · Node.js · PostgreSQL · AWS"
+                desc: "You live for clean code, scalable systems, and shipping fast. You’ll build the core platform and modern backend tech.",
+                stack: "Next.js ·  PostgreSQL · AWS"
               },
               {
                 title: "UI/UX Designer",
@@ -83,7 +83,7 @@ export default function CareersPage() {
               {
                 title: "Full-Stack Web Developer",
                 desc: "You’re a builder at heart. You’ll work across the stack to ship features that developers actually love fast, responsive, and pixel-perfect.",
-                stack: "Next.js · TypeScript · Tailwind · Prisma · Vercel"
+                stack: "Next.js · TypeScript · Tailwind · Key Database"
               },
             ].map((role) => (
               <div
