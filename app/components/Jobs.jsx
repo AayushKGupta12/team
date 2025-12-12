@@ -72,7 +72,7 @@ function Jobs() {
   };
 
   const getWhatsappLink = (job) => {
-    const msg = `*Exciting Opportunity!* 🎉\n\n*${job.company}* is hiring off-campus!\n\nRole: ${job.Role}\nApply here: ${job.Link || "https://edstack.netlify.app"}\n\nStay updated → https://edstack.netlify.app`;
+    const msg = `*Exciting Opportunity!* 🎉\n\n*${job.company}* is hiring off-campus!\n\nRole: ${job.Role}\nApply here: ${job.Link || "vfound.in"}\n\nStay updated → vfound.in`;
     return `https://wa.me/?text=${encodeURIComponent(msg)}`;
   };
 
