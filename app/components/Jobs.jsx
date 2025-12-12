@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
+import { useAuth, useClerk } from "@clerk/nextjs";
 
 const CATEGORY_MAP = {
-  "Software Engineer": "https://edstack.onrender.com/software-engineering", 
+  "Software Engineer": "https://edstack.onrender.com/software-engineering",
   "Graduate Trainee": "https://edstack.onrender.com/Graduate-Engineering-Trainee",
-  "Data Science": "https://edstack.onrender.com/data-science-and-Ml-ai", 
-  "Internship" : "https://edstack.onrender.com/internship",
-  "Devops" : "https://edstack.onrender.com/other-roles",
+  "Data Science": "https://edstack.onrender.com/data-science-and-Ml-ai",
+  "Internship": "https://edstack.onrender.com/internship",
+  "Devops": "https://edstack.onrender.com/other-roles",
 };
 
 const SOURCES = Object.values(CATEGORY_MAP);
@@ -20,9 +21,28 @@ function Jobs() {
   const [selectedLocation, setSelectedLocation] = useState("");
   const [maxStipend, setMaxStipend] = useState(null);
 
+  // Clerk
+  const { isSignedIn } = useAuth();
+  const clerk = useClerk();
+  const [pendingApplyLink, setPendingApplyLink] = useState(null);
+
   useEffect(() => {
     fetchAll();
   }, []);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // When user signs in and there was a pending apply link, open it
+  useEffect(() => {
+    if (isSignedIn && pendingApplyLink) {
+      window.open(pendingApplyLink, "_blank", "noopener,noreferrer");
+      setPendingApplyLink(null);
+    }
+  }, [isSignedIn, pendingApplyLink]);
 
   const fetchAll = async () => {
     try {
@@ -111,24 +131,48 @@ function Jobs() {
     setMaxStipend(stipendRange.max || 0);
   };
 
+  // New: handle apply flow
+  const handleApply = (e, job) => {
+    e.preventDefault();
+    const link = job.Link;
+    if (!link) return;
+
+    if (isSignedIn) {
+      window.open(link, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    // Not signed in: remember the link and open Clerk sign-in modal
+    setPendingApplyLink(link);
+
+    try {
+      clerk.openSignIn();
+    } catch (err) {
+      console.warn("clerk.openSignIn failed, redirecting to /sign-in", err);
+      window.location.href = "/sign-in";
+    }
+  };
+
   if (loading) {
     return (
-  <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center">
-    <div className="text-2xl font-semibold text-gray-700 mb-6">
-      Loading fresh opportunities...
-    </div>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center">
+        <div className="text-2xl font-semibold text-gray-700 mb-6">
+          Loading fresh opportunities...
+        </div>
 
-    <div className="loader">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-);
+        <div className="loader">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    );
   }
+
+  
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
@@ -145,7 +189,6 @@ function Jobs() {
 
         {/* Feature Cards Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-8 mb-16 w-full">
-          {/* Card 1 */}
           <FeatureCard
             title="Advance Resume Analyser"
             desc="2-step ATS check + score on 32 technical parameters"
@@ -153,7 +196,6 @@ function Jobs() {
             cta="Get Started"
             cta2="Right Now"
           />
-          {/* Card 2 */}
           <FeatureCard
             title="Generate Cover Letter"
             desc="AI-powered, job-specific cover letters that get shortlists"
@@ -161,7 +203,6 @@ function Jobs() {
             cta="Create Now"
             cta2="Instantly"
           />
-          {/* Card 3 - Coming Soon */}
           <FeatureCard
             title="AI Resume Builder"
             desc="Trained on 10,000+ Indian IT resumes • Coming soon"
@@ -174,17 +215,15 @@ function Jobs() {
 
         {/* Filters + Jobs Grid */}
         <div className="bg-white shadow-sm border border-gray-100 overflow-hidden">
-          <div class="text-center bg-red-100 text-red-500 font-bold text-2xl p-1">
-          Live Jobs
-        </div>
+          <div className="text-center bg-red-100 text-red-500 font-bold text-2xl p-1">
+            Live Jobs
+          </div>
           <div className="p-5">
             <div className="flex flex-col lg:flex-row gap-8">
-              {/* Sidebar */}
               <aside className="lg:w-80 space-y-8">
-                <div className="bg-gray-200 rounded-2xl p-6 border border-gray-200">
+                <div className="bg-gray-200 text-black rounded-2xl p-6 border border-gray-200">
                   <h3 className="font-bold text-lg mb-5">Filters</h3>
 
-                  {/* Categories */}
                   <div className="space-y-3">
                     <p className="text-sm font-semibold text-gray-700">Job Type</p>
                     {Object.keys(CATEGORY_MAP).map((cat) => (
@@ -200,7 +239,6 @@ function Jobs() {
                     ))}
                   </div>
 
-                  {/* Location */}
                   <div className="mt-6">
                     <label className="text-sm font-semibold text-gray-700">Location</label>
                     <select
@@ -214,25 +252,80 @@ function Jobs() {
                       ))}
                     </select>
                   </div>
-                  
+
                   <button
                     onClick={clearFilters}
                     className="mt-6 w-full text-white py-3 rounded-xl bg-[#0d2440] font-medium transition"
                   >
                     Clear All Filters
                   </button>
+                  
+                  
+                </div>
+
+
+                <div className="mt-6 w-full max-w-2xl mx-auto">
+                  {/* Toggle Button */}
+                  <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="w-full flex items-center justify-between px-6 py-4 bg-red-200/75 rounded-xl hover:border-red-500 transition-colors duration-200 shadow-sm"
+                    aria-expanded={isOpen}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className="w-10 h-10 border border-red-300 bg-white rounded-full flex items-center justify-center">
+                        <svg className="w-5 h-5 text-red-300" fill="currentColor" viewBox="0 0 20 20">
+                          <path
+                            fillRule="evenodd"
+                            d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-gray-900">Job Application Notice</p>
+                        <p className="text-xs text-gray-600">Application deadlines may change</p>
+                      </div>
+                    </div>
+                    <svg 
+                      className={`w-4 h-4 text-red-600 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+
+                  {/* Dropdown Content */}
+                  <div
+                    className={`overflow-hidden bg-white border border-red-300/20 rounded-xl shadow-md transition-all duration-300 ease-in-out ${
+                      isOpen
+                        ? 'mt-2 max-h-auto border-red-400'
+                        : 'max-h-0 mt-0'
+                    }`}
+                  >
+                    <div className="p-3">
+                      <div className="flex items-start space-x-4">
+                        <div className="flex-1 pt-1">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-2">Positions may close without notice</h3>
+                          <p className="text-sm text-gray-700 mb-4 leading-relaxed">
+                            Job openings can be filled anytime. Apply promptly to avoid missing opportunities.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </aside>
 
-              {/* Main Content */}
               <main className="flex-1">
-                <div className="relative w-full">
+                <div className="relative w-full text-gray-300">
                   <input
                     type="text"
                     placeholder="Search company, role, or location..."
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    className="w-full pl-12 pr-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#2e5e99] text-lg"
+                    className="w-full pl-12 pr-5 py-4 rounded-xl border border-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2e5e99] text-lg text-gray-600"
                   />
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -247,7 +340,7 @@ function Jobs() {
                 {filteredJobs.length > 0 ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 mt-8">
                     {filteredJobs.map((job, i) => (
-                      <JobCard key={`${job.company}-${i}`} job={job} getWhatsappLink={getWhatsappLink} />
+                      <JobCard key={`${job.company}-${i}`} job={job} getWhatsappLink={getWhatsappLink} onApply={handleApply} />
                     ))}
                   </div>
                 ) : (
@@ -265,12 +358,11 @@ function Jobs() {
   );
 }
 
-// Reusable Feature Card
 function FeatureCard({ title, desc, link, cta, cta2, comingSoon }) {
   return (
     <div className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-lg border border-gray-100 transition-all">
       <div className="absolute -top-12 -right-12 h-40 w-40 rounded-full bg-[#7ba4d0]/70 blur-3xl"></div>
-      
+
       <div className="relative">
         <h3 className="text-2xl font-bold text-gray-900">{title}</h3>
         <p className="mt-4 text-gray-600 leading-relaxed">{desc}</p>
@@ -300,8 +392,7 @@ function FeatureCard({ title, desc, link, cta, cta2, comingSoon }) {
   );
 }
 
-// Job Card (unchanged style you love)
-function JobCard({ job, getWhatsappLink }) {
+function JobCard({ job, getWhatsappLink, onApply }) {
   return (
     <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-300 overflow-hidden">
       <div className="p-5">
@@ -319,43 +410,39 @@ function JobCard({ job, getWhatsappLink }) {
         </div>
 
         <div className="text-sm text-gray-600 space-y-2 mb-3">
-          {/* Location */}
           <div className="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 24 24" 
-                fill="currentColor" 
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
                 className="w-5 h-5">
               <path d="M12 2c-4.15 0-7.5 3.35-7.5 7.5 0 5.62 6.45 11.07 7.05 11.58a1 1 0 0 0 1.3 0c.6-.51 7.15-5.96 7.15-11.58C20 5.35 16.65 2 12 2zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
             </svg>
             <span>{job.Loc || "Remote"}</span>
           </div>
 
-          {/* Batch */}
           <div className="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 24 24" 
-                fill="currentColor" 
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
                 className="w-5 h-5">
               <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm.5-13h-1v6l5.25 3.15.5-.85-4.75-2.8V7z"/>
             </svg>
             <span>{job.Batch || "immediate"} +</span>
           </div>
 
-          {/* Stipend */}
           <div className="font-semibold text-green-600 text-xl">
             ₹{job.Stipend || "Competitive"} LPA
           </div>
         </div>
 
         <div className="flex gap-3">
-          <a
-            href={job.Link}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={(e) => onApply(e, job)}
             className="border relative py-2 px-8 text-black text-base font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0"
           >
             Apply Now
-          </a>
+          </button>
+
           <a
             href={getWhatsappLink(job)}
             target="_blank"
