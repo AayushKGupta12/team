@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   CheckCircle,
   XCircle,
@@ -8,8 +8,19 @@ import {
   Upload,
   FileText,
 } from "lucide-react";
+import { useAuth, useClerk } from "@clerk/nextjs";
 
 function ConnectionTest() {
+  /* =======================
+     Clerk Auth Setup
+  ======================= */
+  const { isSignedIn } = useAuth();
+  const clerk = useClerk();
+  const [pendingAnalyze, setPendingAnalyze] = useState(false);
+
+  /* =======================
+     Local State
+  ======================= */
   const [file, setFile] = useState(null);
   const [testing, setTesting] = useState(false);
   const [uploadResult, setUploadResult] = useState(null);
@@ -19,8 +30,22 @@ function ConnectionTest() {
 
   const fileInputRef = useRef(null);
 
-  const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://edstack.onrender.com";
+  const API_BASE =
+    process.env.NEXT_PUBLIC_API_URL || "https://edstack.onrender.com";
 
+  /* =======================
+     Resume after login
+  ======================= */
+  useEffect(() => {
+    if (isSignedIn && pendingAnalyze) {
+      setPendingAnalyze(false);
+      testConnection();
+    }
+  }, [isSignedIn, pendingAnalyze]);
+
+  /* =======================
+     File Handlers
+  ======================= */
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile && selectedFile.type === "application/pdf") {
@@ -50,138 +75,154 @@ function ConnectionTest() {
     }
   };
 
+  /* =======================
+     Main Analyze Function
+  ======================= */
   const testConnection = async () => {
-  if (!file) {
-    setError("Please select a PDF file first");
-    return;
-  }
-
-  setTesting(true);
-  setError(null);
-  setUploadResult(null);
-  setAnalyzeResult(null);
-  setShowPlaceholder(true);
-
-  try {
-    const formData = new FormData();
-    formData.append("resume", file);
-
-    const uploadResponse = await fetch(`${API_BASE}/upload-resume`, {
-      method: "POST",
-      body: formData,
-    });
-
-    const uploadData = await uploadResponse.json();
-    setUploadResult({ success: uploadResponse.ok, data: uploadData });
-
-    if (!uploadResponse.ok) {
-      throw new Error(uploadData.error || "Upload failed");
+    if (!file) {
+      setError("Please select a PDF file first");
+      return;
     }
 
-    const resumeText = uploadData.text || uploadData.TEXT || "";
+    setTesting(true);
+    setError(null);
+    setUploadResult(null);
+    setAnalyzeResult(null);
+    setShowPlaceholder(true);
 
-    const analyzeResponse = await fetch(`${API_BASE}/analyze`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ resume_text: resumeText }),
-    });
+    try {
+      const formData = new FormData();
+      formData.append("resume", file);
 
-    const analyzeData = await analyzeResponse.json();
+      const uploadResponse = await fetch(`${API_BASE}/upload-resume`, {
+        method: "POST",
+        body: formData,
+      });
 
-    // REMOVE THE setTimeout — show result IMMEDIATELY
-    setAnalyzeResult({
-      success: analyzeResponse.ok,
-      status: analyzeResponse.status,
-      data: analyzeData,
-    });
+      const uploadData = await uploadResponse.json();
+      setUploadResult({ success: uploadResponse.ok, data: uploadData });
 
-    if (!analyzeResponse.ok) {
-      throw new Error(analyzeData.error || "Analysis failed");
+      if (!uploadResponse.ok) {
+        throw new Error(uploadData.error || "Upload failed");
+      }
+
+      const resumeText = uploadData.text || uploadData.TEXT || "";
+
+      const analyzeResponse = await fetch(`${API_BASE}/analyze`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ resume_text: resumeText }),
+      });
+
+      const analyzeData = await analyzeResponse.json();
+
+      setAnalyzeResult({
+        success: analyzeResponse.ok,
+        status: analyzeResponse.status,
+        data: analyzeData,
+      });
+
+      if (!analyzeResponse.ok) {
+        throw new Error(analyzeData.error || "Analysis failed");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      setError(err.message || "Something went wrong");
+    } finally {
+      setTesting(false);
+      setShowPlaceholder(false);
     }
+  };
 
-  } catch (err) {
-    console.error("Error:", err);
-    setError(err.message || "Something went wrong");
-  } finally {
-    setTesting(false);
-    setShowPlaceholder(false); // ← Hide loader immediately
-  }
-};
-
+  /* =======================
+     JSX
+  ======================= */
   return (
     <div className="bg-white p-4 sm:p-6 md:p-3 flex flex-col md:flex-row gap-4 md:gap-10 items-start justify-center font-sans">
-      {/* Upload Box (Left Section) */}
-      <div className="w-full md:w-1/3 lg:w-1/4 rounded-xl border border-[#0d2440] bg-[#e7f0fa] p-4 sm:p-6 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-        <div className="bg-[#e7f0fa] rounded-lg p-1">
-          {/* Header */}
-          <div className="text-center mb-6 flex items-center justify-center">
-            <FileText className="w-8 h-8 sm:w-10 sm:h-10 text-[#0d2440] transition-transform duration-300 group-hover:scale-110" />
-            <h1 className="text-xl sm:text-2xl font-semibold text-gray-800 mx-3 tracking-tight">Upload Resume</h1>
-          </div>
-
-          {/* Dropzone */}
-          <div
-            className="border-2 border-dashed border-[#2e5e99] rounded-xl p-6 sm:p-10 mb-6 text-center bg-emerald-50/50 hover:bg-amber-50 hover:border-amber-600 transition-all duration-300 cursor-pointer group"
-            onDragOver={handleDragOver}
-            onDrop={handleDrop}
-            onClick={() => fileInputRef.current?.click()}
-          >
-            <Upload className="w-8 h-8 sm:w-10 sm:h-10 text-emerald-700 mx-auto mb-4 transition-transform duration-300 group-hover:scale-110" />
-            <p className="mb-2 text-gray-700 font-medium text-sm sm:text-base">Drag and drop your resume, or click to browse</p>
-            <p className="text-xs sm:text-sm text-gray-500">PDF files only</p>
-            <input
-              ref={fileInputRef}
-              id="fileInput"
-              type="file"
-              accept=".pdf"
-              onChange={handleFileChange}
-              className="hidden"
-            />
-          </div>
-
-          {/* Error Display */}
-          {error && (
-            <div className="bg-red-50 text-red-700 rounded-lg p-4 mb-6 flex items-center animate-slide-in">
-              <XCircle className="w-5 h-5 sm:w-6 sm:h-6 mr-3" />
-              <span className="text-sm sm:text-base">{error}</span>
-            </div>
-          )}
-
-          {/* File Info */}
-          {file && (
-            <div className="bg-gray-200 rounded-lg p-4 mb-6 flex items-center justify-between transition-all duration-200 ">
-              <div className="flex items-center">
-                <FileText className="w-6 h-6 sm:w-8 sm:h-8 text-gray-700 mr-4" />
-                <div>
-                  <p className="font-semibold text-gray-800 text-sm sm:text-base">{file.name}</p>
-                  <p className="text-xs sm:text-sm text-gray-500">
-                    {(file.size / 1024).toFixed(2)} KB
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Action Button */}
-          <button
-            onClick={testConnection}
-            disabled={!file || testing}
-            className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center group"
-          >
-            {testing ? (
-              <>
-                <Loader2 className="w-5 h-5 sm:w-6 sm:h-6 mr-3 animate-spin" />
-                Analyzing...
-              </>
-            ) : (
-              <>
-                <Upload className="w-5 h-5 sm:w-6 sm:h-6 mr-3 transition-transform duration-300 group-hover:scale-110" />
-                Analyze Resume
-              </>
-            )}
-          </button>
+      {/* Upload Section */}
+      <div className="w-full md:w-1/3 lg:w-1/4 rounded-xl border border-[#0d2440] bg-[#e7f0fa] p-4 sm:p-6 shadow-lg">
+        <div className="text-left mb-6 flex items-center justify-center">
+          <FileText className="w-8 h-8 text-[#0d2440]" />
+          <h1 className="text-2xl font-semibold text-gray-800 mx-3">
+            Upload Resume
+          </h1>
         </div>
+
+        <div
+          className="border-2 border-dashed border-[#2e5e99] rounded-xl p-6 mb-6 text-center cursor-pointer hover:scale-101 transition duration-300 hover:bg-amber-50 hover:border-amber-600"
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
+          onClick={() => fileInputRef.current?.click()}
+        >
+          <Upload className="w-8 h-8 text-emerald-700 mx-auto mb-4" />
+          <p className="text-gray-700 font-light">
+            Drag and drop your resume, or click to browse
+          </p>
+          <p className="text-sm text-gray-500 font-light">PDF files only</p>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".pdf"
+            onChange={handleFileChange}
+            className="hidden"
+          />
+        </div>
+
+        {error && (
+          <div className="bg-red-50 text-red-700 rounded-lg p-4 mb-4 flex items-center">
+            <XCircle className="w-5 h-5 mr-2" />
+            {error}
+          </div>
+        )}
+
+        {file && (
+          <div className="bg-gray-200 rounded-lg p-4 mb-4 flex items-center">
+            <FileText className="w-6 h-6 mr-3" />
+            <div>
+              <p className="font-semibold">{file.name}</p>
+              <p className="text-xs text-gray-500">
+                {(file.size / 1024).toFixed(2)} KB
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Analyze Button */}
+        <button
+          onClick={() => {
+            if (!file) {
+              setError("Please select a PDF file first");
+              return;
+            }
+
+            if (isSignedIn) {
+              testConnection();
+            } else {
+              setPendingAnalyze(true);
+              try {
+                clerk.openSignIn();
+              } catch {
+                window.location.href = "/sign-in";
+              }
+            }
+          }}
+          disabled={testing}
+          className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold flex items-center justify-center cursor-pointer"
+        >
+          {testing ? (
+            <>
+              <Loader2 className="w-5 h-5 mr-3 animate-spin" />
+              Analyzing...
+            </>
+          ) : (
+            <>
+              <Upload className="w-5 h-5 mr-3" />
+              Analyze Resume
+            </>
+          )}
+        </button>
       </div>
+
 
       {/* Result Display (Right Section) */}
       <div className="w-full md:flex-1">
