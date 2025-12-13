@@ -3,6 +3,8 @@ import { useState, useRef, useEffect } from 'react';
 import { Upload, FileText, Loader2, Download, Copy, Check } from 'lucide-react';
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { useAuth, useClerk } from "@clerk/nextjs";
+
 
 export default function CoverLetterGenerator() {
   const [file, setFile] = useState(null);
@@ -14,6 +16,21 @@ export default function CoverLetterGenerator() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
+
+
+  // Clerk Auth
+  const { isSignedIn } = useAuth();
+  const clerk = useClerk();
+  const [pendingCoverLetter, setPendingCoverLetter] = useState(false);
+
+  useEffect(() => {
+  if (isSignedIn && pendingCoverLetter) {
+    setPendingCoverLetter(false);
+    handleGenerateCoverLetter();
+  }
+  }, [isSignedIn, pendingCoverLetter]);
+
+
 
   // Refs for uncontrolled editing
   const editableRef = useRef(null);
@@ -227,14 +244,14 @@ export default function CoverLetterGenerator() {
 
 
   return (
-    <div className="min-h-screen bg-white p-4 sm:p-8">
+    <div className="relative min-h-screen bg-gradient-to-br from-blue-100 via-white to-amber-100 p-4 sm:p-8 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-6">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
             Professional CV, Built in Seconds
           </h1>
           <p className="mt-2 text-xl text-gray-600 max-w-3xl mx-auto">
-            Upload your resume. Enter the job. Get a perfectly crafted, ATS-friendly cover letter instantly.
+            Upload your resume. Enter the job. Get a perfect ATS-friendly cover letter instantly.
           </p>
         </div>
 
@@ -242,7 +259,7 @@ export default function CoverLetterGenerator() {
           {/* Left Column - Upload & Input */}
           <div className="space-y-6">
             {/* Step 1: Upload Section */}
-            <div className="bg-white rounded-lg shadow-md p-6 border border-gray-600">
+            <div className="bg-white/90 backdrop-blur-sm rounded-lg shadow-lg p-6 border border-gray-200 hover:shadow-xl transition-shadow">
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-10 h-10 bg-[#7ba4d0] border-2 border-[#0d2440] text-white rounded-full flex items-center justify-center font-semibold">
                   1
@@ -251,7 +268,7 @@ export default function CoverLetterGenerator() {
               </div>
               
               <div className="space-y-4">
-                <div className="hover:scale-101 transition duration-200 border-2 border-dashed border-gray-600 rounded-lg p-6 text-center hover:border-blue-500">
+                <div className="hover:scale-102 transition duration-200 border-2 border-dashed border-gray-400 rounded-lg p-6 text-center hover:border-[#7ba4d0] bg-blue-50/30">
                   <input
                     type="file"
                     accept=".pdf"
@@ -263,7 +280,7 @@ export default function CoverLetterGenerator() {
                     htmlFor="resume-upload"
                     className="cursor-pointer flex flex-col items-center gap-2"
                   >
-                    <FileText className="w-12 h-12 text-gray-700" />
+                    <FileText className="w-12 h-12 text-[#0d2440]" />
                     <span className="text-sm text-gray-700">
                       {file ? file.name : 'Click to upload PDF'}
                       <p className="text-sm text-gray-500 mt-2">Max 5MB • PDF only</p>
@@ -287,7 +304,6 @@ export default function CoverLetterGenerator() {
                         <Upload className="w-4 h-4 text-gray-50 font-bold" />
                         <span className="text-gray-50 font-bold">Upload Resume</span>
                       </div>
-                      
                     </>
                   )}
                 </button>
@@ -304,7 +320,7 @@ export default function CoverLetterGenerator() {
             </div>
 
             {/* Step 2: Job Details Section */}
-            <div className={`bg-white border border-gray-600 rounded-lg shadow-md p-6 transition-opacity ${!isResumeUploaded ? 'opacity-50' : ''}`}>
+            <div className={`bg-white/90 backdrop-blur-sm rounded-lg shadow-lg p-6 border border-gray-200 transition-all ${!isResumeUploaded ? 'opacity-50' : ''}`}>
               <div className="flex items-center gap-2 mb-4">
                 <div className={`w-10 h-10 ${isResumeUploaded ? 'bg-[#7ba4d0] border-2 border-[#0d2440]' : 'bg-gray-400'} text-white rounded-full flex items-center justify-center font-semibold`}>
                   2
@@ -323,7 +339,7 @@ export default function CoverLetterGenerator() {
                     onChange={(e) => setJobTitle(e.target.value)}
                     placeholder="e.g, Senior Software Engineer"
                     disabled={!isResumeUploaded}
-                    className="w-full px-3 py-2 border text-gray-500 border-gray-500 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+                    className="w-full px-3 py-2 border border-gray-400 rounded-lg focus:ring-2 focus:ring-[#7ba4d0] focus:border-[#7ba4d0] disabled:bg-gray-100 disabled:cursor-not-allowed bg-white/70"
                   />
                 </div>
 
@@ -337,12 +353,27 @@ export default function CoverLetterGenerator() {
                     onChange={(e) => setCompany(e.target.value)}
                     placeholder="e.g, Microsoft"
                     disabled={!isResumeUploaded}
-                    className="w-full px-3 py-2 border text-gray-500 border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+                    className="w-full px-3 py-2 border border-gray-400 rounded-lg focus:ring-2 focus:ring-[#7ba4d0] focus:border-[#7ba4d0] disabled:bg-gray-100 disabled:cursor-not-allowed bg-white/70"
                   />
                 </div>
 
                 <button
-                  onClick={handleGenerateCoverLetter}
+                  onClick={() => {
+                    if (!isResumeUploaded || !jobTitle || !company) {
+                      return;
+                    }
+
+                    if (isSignedIn) {
+                      handleGenerateCoverLetter();
+                    } else {
+                      setPendingCoverLetter(true);
+                      try {
+                        clerk.openSignIn();
+                      } catch {
+                        window.location.href = "/sign-in";
+                      }
+                    }
+                  }}
                   disabled={!isResumeUploaded || !jobTitle || !company || isGenerating}
                   className="w-full bg-[#0d2440] text-white py-3 px-4 rounded-lg hover:bg-[#2e5e99] disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-semibold transition-colors"
                 >
@@ -352,7 +383,7 @@ export default function CoverLetterGenerator() {
                       Building
                     </>
                   ) : (
-                    'Build My Cover Letter Now'
+                    "Build My Cover Letter Now"
                   )}
                 </button>
               </div>
@@ -360,113 +391,102 @@ export default function CoverLetterGenerator() {
           </div>
 
           {/* Right Column - Output + PDF Preview + PDF Download */}
-  <div className="bg-white rounded-lg shadow-md p-3 border border-gray-600">
+          <div className="bg-white/90 backdrop-blur-sm rounded-lg shadow-lg p-3 border border-gray-200">
+            <div className="flex items-center justify-between">
+              <div className="border-b border-gray-200 px-2 mb-3">
+                <div className="flex items-center gap-3">
+                  <div
+                    className={`w-10 h-10 ${
+                      isResumeUploaded ? "bg-[#7ba4d0] border-2 border-[#0d2440]" : "bg-gray-400"
+                    } text-white rounded-full flex items-center justify-center font-semibold`}
+                  >
+                    3
+                  </div>
 
-    <div className="flex items-center justify-between">
-      <div className="border-b border-gray-200 px-2 mb-3">
-        <div className="flex items-center gap-3">
-  {/* Step Number */}
-  <div
-    className={`w-10 h-10 ${
-      isResumeUploaded ? "bg-[#7ba4d0] border-2 border-[#0d2440]" : "bg-gray-400"
-    } text-white rounded-full flex items-center justify-center font-semibold`}
-  >
-    3
-  </div>
+                  <h2 className="text-2xl font-bold text-gray-900">
+                    Your Cover Letter
+                  </h2>
+                </div>
+              </div>
 
-  {/* Title */}
-  <h2 className="text-2xl font-bold text-gray-900">
-    Your Cover Letter
-  </h2>
-</div>
+              {coverLetter && (
+                <div className="flex gap-2">
+                  <button
+                    onClick={handleCopy}
+                    className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                    title="Copy to clipboard"
+                  >
+                    {copied ? <Check className="w-6 h-6 text-green-600" /> : <Copy className="w-5 h-5" />}
+                  </button>
 
-      </div>
+                  <button
+                    onClick={downloadPDF}
+                    className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                    title="Download PDF"
+                  >
+                    <Download className="w-6 h-6 mb-2" />
+                  </button>
+                </div>
+              )}
+            </div>
 
-      {coverLetter && (
-        <div className="flex gap-2">
-          {/* Copy Button */}
-          <button
-            onClick={handleCopy}
-            className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-            title="Copy to clipboard"
-          >
-            {copied ? <Check className="w-6 h-6 text-green-600" /> : <Copy className="w-5 h-5" />}
-          </button>
+            {error && (
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
+                <p className="text-sm text-red-800">{error}</p>
+              </div>
+            )}
 
-          {/* PDF Download Button */}
-          <button
-            onClick={downloadPDF}
-            className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-            title="Download PDF"
-          >
-            <Download className="w-6 h-6 mb-2" />
-          </button>
-        </div>
-      )}
-    </div>
-
-    {error && (
-      <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
-        <p className="text-sm text-red-800">{error}</p>
-      </div>
-    )}
-
-     <div className="min-h-[500px] max-h-[600px] overflow-y-auto bg-gray-50">
-    {coverLetter ? (
-      <div
-        id="pdf-content"
-        className="border-1 w-full mx-auto text-black"
-        style={{
-          padding: "18px",
-          fontSize: "11.5px",
-          lineHeight: "18px",
-          fontFamily: "Arial, Helvetica, sans-serif",
-        }}
-      >
-        <h1 className="text-4xl font-bold mt-3 text-center font-serif text-[#0d2440] mb-8">Cover Letter</h1>
-        <hr className="h-px border-[#2e5e99] mt-4 mb-8" />
-        
-
-        {/* Editable Body */}
-        <div
-          ref={editableRef}
-          contentEditable
-          suppressContentEditableWarning
-          onInput={handleInput}
-          onBlur={handleBlur}
-          onFocus={handleFocus}
-          onPaste={handlePaste}
-          className="whitespace-pre-wrap text-left mb-8"
-          style={{
-            fontSize: "11.5px",
-            lineHeight: "18px",
-            fontFamily: "Arial, Helvetica, sans-serif",
-
-          }}
-        />
-      </div>
-
-      ) : (
-        <div className="text-center py-28 text-gray-400">
-            <div className="text-center py-32 text-gray-400">
+            <div className="min-h-[500px] max-h-[600px] overflow-y-auto bg-gradient-to-b from-blue-50/50 to-pink-50/30 rounded-lg border border-gray-200">
+              {coverLetter ? (
+                <div
+                  id="pdf-content"
+                  className="border-1 w-full mx-auto text-black bg-white"
+                  style={{
+                    padding: "18px",
+                    fontSize: "11.5px",
+                    lineHeight: "18px",
+                    fontFamily: "Arial, Helvetica, sans-serif",
+                  }}
+                >
+                  <h1 className="text-4xl font-bold mt-3 text-center font-serif text-[#0d2440] mb-8">Cover Letter</h1>
+                  <hr className="h-px border-[#2e5e99] mt-4 mb-8" />
+                  
+                  <div
+                    ref={editableRef}
+                    contentEditable
+                    suppressContentEditableWarning
+                    onInput={handleInput}
+                    onBlur={handleBlur}
+                    onFocus={handleFocus}
+                    onPaste={handlePaste}
+                    className="whitespace-pre-wrap text-left mb-8"
+                    style={{
+                      fontSize: "11.5px",
+                      lineHeight: "18px",
+                      fontFamily: "Arial, Helvetica, sans-serif",
+                    }}
+                  />
+                </div>
+              ) : (
+                <div className="text-center py-28 text-gray-400">
+                  <div className="text-center py-32 text-gray-400">
                     <FileText className="w-20 h-20 mx-auto mb-6 opacity-40" />
                     <p className="text-xl font-medium text-gray-600">
                       {isGenerating ? 'Generating your cover letter...' : 'Your cover letter will appear here'}
                       <p className="text-gray-500 mt-3">Fully editable after generation</p>
-                    {isGenerating && (
-                      <div className="flex justify-center mb-6 mt-4">
-                        <div className="w-7 h-7 border-4 border-black border-t-transparent rounded-full animate-spin"></div>
-                      </div>
-                    )}
+                      {isGenerating && (
+                        <div className="flex justify-center mb-6 mt-4">
+                          <div className="w-7 h-7 border-4 border-[#0d2440] border-t-transparent rounded-full animate-spin"></div>
+                        </div>
+                      )}
                     </p>
                   </div>
                 </div>
-                )}
-              </div>
+              )}
             </div>
           </div>
         </div>
       </div>
-    
+    </div>
   );
 }

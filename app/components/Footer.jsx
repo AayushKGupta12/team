@@ -43,23 +43,6 @@ export default function Footer() {
             </p>
 
             <div className="mt-6 flex items-center gap-3">
-                
-              <a
-                href="https://x.com/AayushKGupta?t=cGgssllgz8zfZ5J78TBkvw&s=09"
-                target="_blank"
-                rel="noreferrer"
-                className="text-white hover:text-[#7ba4d0] transition-colors"
-              >
-                <img src="https://img.logo.dev/x.com?token=pk_djKZ3gIOQqyja8btgxBpBA" alt="" className="h-9 w-9 rounded-2xl"/>
-              </a>
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noreferrer"
-                className="text-white hover:text-[#7ba4d0] transition-colors"
-              >
-                <img src="https://img.logo.dev/github.com?token=pk_djKZ3gIOQqyja8btgxBpBA" alt="" className="h-9 w-9 rounded-2xl"/>
-              </a>
               <a
                 href="https://linkedin.com"
                 target="_blank"
