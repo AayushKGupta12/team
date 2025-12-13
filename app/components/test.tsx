@@ -2,13 +2,13 @@
 
 export default function Testimonials() {
   return (
-    <section className="py-12 bg-[#e7f0fa]/60 sm:py-16 lg:py-20">
+    <section className="py-12 bg-[#e7f0fa] sm:py-16 lg:py-20">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex flex-col items-center">
           <div className="text-center">
             
             <h2 className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl xl:text-5xl font-pj">
-              Our happy clients say about us
+              Our Happy Clients
             </h2>
           </div>
 
