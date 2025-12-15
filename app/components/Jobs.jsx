@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo } from "react";
 import { useAuth, useClerk } from "@clerk/nextjs";
 
 const CATEGORY_MAP = {
-  "Software Engineer": "http://127.0.0.1:5000/software-engineering",
+  "Software Engineer": "https://edstack.onrender.com/software-engineering",
   // "Graduate Trainee": "https://edstack.onrender.com/Graduate-Engineering-Trainee",
   // "Data Science": "https://edstack.onrender.com/data-science-and-Ml-ai",
   // "Internship": "https://edstack.onrender.com/internship",
