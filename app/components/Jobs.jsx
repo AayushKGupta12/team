@@ -4,11 +4,11 @@ import { useEffect, useState, useMemo } from "react";
 import { useAuth, useClerk } from "@clerk/nextjs";
 
 const CATEGORY_MAP = {
-  "Software Engineer": "https://edstack.onrender.com/software-engineering",
-  "Graduate Trainee": "https://edstack.onrender.com/Graduate-Engineering-Trainee",
-  "Data Science": "https://edstack.onrender.com/data-science-and-Ml-ai",
-  "Internship": "https://edstack.onrender.com/internship",
-  "Devops": "https://edstack.onrender.com/other-roles",
+  "Software Engineer": "http://127.0.0.1:5000/software-engineering",
+  // "Graduate Trainee": "https://edstack.onrender.com/Graduate-Engineering-Trainee",
+  // "Data Science": "https://edstack.onrender.com/data-science-and-Ml-ai",
+  // "Internship": "https://edstack.onrender.com/internship",
+  // "Devops": "https://edstack.onrender.com/other-roles",
 };
 
 const SOURCES = Object.values(CATEGORY_MAP);
@@ -17,9 +17,13 @@ function Jobs() {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
-  const [selectedCategories, setSelectedCategories] = useState(new Set());
+
+  // New dynamic filters
+  const [selectedDomains, setSelectedDomains] = useState(new Set());
+  const [selectedRoles, setSelectedRoles] = useState(new Set());
+  const [selectedCompanies, setSelectedCompanies] = useState(new Set());
   const [selectedLocation, setSelectedLocation] = useState("");
-  const [maxStipend, setMaxStipend] = useState(null);
+  const [selectedStipendRange, setSelectedStipendRange] = useState(""); // e.g., "0-200000"
 
   // Clerk
   const { isSignedIn } = useAuth();
@@ -31,10 +35,6 @@ function Jobs() {
   }, []);
 
   const [isOpen, setIsOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
 
   // When user signs in and there was a pending apply link, open it
   useEffect(() => {
@@ -66,8 +66,6 @@ function Jobs() {
       });
 
       setJobs(combined);
-      const { max } = computeStipendRange(combined);
-      setMaxStipend(max);
     } catch (err) {
       console.error("Error fetching jobs:", err);
     } finally {
@@ -78,17 +76,12 @@ function Jobs() {
   const parseStipend = (s) => {
     if (!s) return 0;
     const str = String(s).toLowerCase();
-    const match = str.match(/([\d.]+)\s*k/) || str.match(/([\d.]+)/);
+    const match = str.match(/([\d.]+)\s*lpa/) || str.match(/([\d.]+)\s*k/) || str.match(/([\d.]+)/);
     if (!match) return 0;
     let num = parseFloat(match[1]);
-    if (str.includes("k") && num < 1000) num *= 1000;
+    if (str.includes("k") && !str.includes("lpa") && num < 1000) num *= 1000;
+    if (str.includes("lpa")) num *= 100000;
     return Math.round(num);
-  };
-
-  const computeStipendRange = (list) => {
-    const values = list.map((j) => parseStipend(j.Stipend)).filter((v) => v > 0);
-    if (values.length === 0) return { min: 0, max: 0 };
-    return { min: Math.min(...values), max: Math.max(...values) };
   };
 
   const getWhatsappLink = (job) => {
@@ -96,12 +89,47 @@ function Jobs() {
     return `https://wa.me/?text=${encodeURIComponent(msg)}`;
   };
 
+  // Dynamic filter options derived from fetched jobs
   const availableLocations = useMemo(() => {
     const set = new Set(jobs.map((j) => (j.Loc || "Remote").trim()).filter(Boolean));
     return Array.from(set).sort();
   }, [jobs]);
 
-  const stipendRange = useMemo(() => computeStipendRange(jobs), [jobs]);
+  const availableDomains = useMemo(() => {
+    const set = new Set(jobs.map((j) => j._category).filter(Boolean));
+    return Array.from(set).sort();
+  }, [jobs]);
+
+  const availableRoles = useMemo(() => {
+    const set = new Set(jobs.map((j) => j.Role).filter(Boolean));
+    return Array.from(set).sort();
+  }, [jobs]);
+
+  const availableCompanies = useMemo(() => {
+    const set = new Set(jobs.map((j) => j.company).filter(Boolean));
+    return Array.from(set).sort();
+  }, [jobs]);
+
+  // Stipend ranges: 0–2L, 2L–4L, ..., up to >10L (in rupees)
+  const stipendRanges = useMemo(() => {
+    const ranges = [];
+    for (let low = 0; low < 10000000; low += 200000) {
+      const high = low + 200000;
+      ranges.push({
+        label: low === 0 ? "₹0 - ₹2 Lakh" : `₹${low / 100000} - ₹${high / 100000} Lakh`,
+        value: `${low}-${high}`,
+        low,
+        high,
+      });
+    }
+    ranges.push({
+      label: "> ₹10 Lakh",
+      value: "10000000+",
+      low: 10000000,
+      high: Infinity,
+    });
+    return ranges;
+  }, []);
 
   const filteredJobs = useMemo(() => {
     return jobs.filter((job) => {
@@ -112,23 +140,52 @@ function Jobs() {
         const inLoc = (job.Loc || "remote").toLowerCase().includes(q);
         if (!(inCompany || inRole || inLoc)) return false;
       }
-      if (selectedCategories.size > 0 && !selectedCategories.has(job._category)) return false;
+
+      if (selectedDomains.size > 0 && !selectedDomains.has(job._category)) return false;
+      if (selectedRoles.size > 0 && !selectedRoles.has(job.Role)) return false;
+      if (selectedCompanies.size > 0 && !selectedCompanies.has(job.company)) return false;
       if (selectedLocation && (job.Loc || "Remote") !== selectedLocation) return false;
-      if (maxStipend != null && parseStipend(job.Stipend) > maxStipend) return false;
+
+      if (selectedStipendRange) {
+        const stipend = parseStipend(job.Stipend);
+        if (selectedStipendRange === "10000000+") {
+          if (stipend < 10000000) return false;
+        } else {
+          const [low, high] = selectedStipendRange.split("-").map(Number);
+          if (stipend < low || stipend >= high) return false;
+        }
+      }
+
       return true;
     });
-  }, [jobs, query, selectedCategories, selectedLocation, maxStipend]);
+  }, [jobs, query, selectedDomains, selectedRoles, selectedCompanies, selectedLocation, selectedStipendRange]);
 
-  const toggleCategory = (cat) => {
-    const next = new Set(selectedCategories);
-    next.has(cat) ? next.delete(cat) : next.add(cat);
-    setSelectedCategories(next);
-  };
+  // Example for Domain
+{availableDomains.map((domain) => (
+  <label key={domain} className="flex items-center gap-3 text-sm">
+    <input
+      type="checkbox"
+      checked={selectedDomains.has(domain)}
+      onChange={() =>
+        setSelectedDomains((prev) => {
+          const next = new Set(prev);
+          if (next.has(domain)) next.delete(domain);
+          else next.add(domain);
+          return next;
+        })
+      }
+      className="w-4 h-4 text-[#2e5e99] rounded focus:ring-[#2e5e99]"
+    />
+    <span>{domain}</span>
+  </label>
+))}
 
   const clearFilters = () => {
-    setSelectedCategories(new Set());
+    setSelectedDomains(new Set());
+    setSelectedRoles(new Set());
+    setSelectedCompanies(new Set());
     setSelectedLocation("");
-    setMaxStipend(stipendRange.max || 0);
+    setSelectedStipendRange("");
   };
 
   // New: handle apply flow
@@ -172,11 +229,9 @@ function Jobs() {
     );
   }
 
-  
-
   return (
     <div className="min-h-screen bg-gray-50 py-12">
-      <div className="w-full mx-0 px-6">
+      <div className="w-full mx-0">
         {/* Dynamic Premium Header */}
         <div className="text-center mb-12">
           <h1 className="text-5xl md:text-6xl font-extrabold bg-clip-text text-[#0d2440] leading-tight">
@@ -188,7 +243,7 @@ function Jobs() {
         </div>
 
         {/* Feature Cards Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-8 mb-16 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-8 mb-16 w-full px-6">
           <FeatureCard
             title="Advance Resume Analyser"
             desc="2-step ATS check + score on 32 technical parameters"
@@ -224,31 +279,52 @@ function Jobs() {
                 <div className="bg-gray-200 text-black rounded-2xl p-6 border border-gray-200">
                   <h3 className="font-bold text-lg mb-5">Filters</h3>
 
-                  <div className="space-y-3">
-                    <p className="text-sm font-semibold text-gray-700">Job Type</p>
-                    {Object.keys(CATEGORY_MAP).map((cat) => (
-                      <label key={cat} className="flex items-center gap-3 text-sm">
+                  {/* Role Filter */}
+                  <div className="mt-6 space-y-3">
+                    <p className="text-sm font-semibold text-gray-700">Role</p>
+                    {availableRoles.map((role) => (
+                      <label key={role} className="flex items-center gap-3 text-sm">
                         <input
                           type="checkbox"
-                          checked={selectedCategories.has(cat)}
-                          onChange={() => toggleCategory(cat)}
+                          checked={selectedRoles.has(role)}
+                          onChange={() => toggleSet(setSelectedRoles, role)}
                           className="w-4 h-4 text-[#2e5e99] rounded focus:ring-[#2e5e99]"
                         />
-                        <span>{cat}</span>
+                        <span>{role}</span>
                       </label>
                     ))}
                   </div>
 
+                  {/* Location Filter */}
                   <div className="mt-6">
                     <label className="text-sm font-semibold text-gray-700">Location</label>
                     <select
                       value={selectedLocation}
                       onChange={(e) => setSelectedLocation(e.target.value)}
-                      className="mt-2 w-full px-4 py-3 rounded-xl border border-gray-500 focus:outline-none focus:ring-1 focus:ring-[#2e5e99]"
+                      className="mt-2 w-full sm:w-72 px-4 py-3 rounded-xl border border-gray-500 focus:outline-none focus:ring-1 focus:ring-[#2e5e99]"
                     >
                       <option value="">All Locations</option>
                       {availableLocations.map((loc) => (
                         <option key={loc} value={loc}>{loc}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Stipend Range Filter */}
+                  <div className="mt-6">
+                    <label className="text-sm font-semibold text-gray-700">
+                      Stipend / Salary (per annum)
+                    </label>
+                    <select
+                      value={selectedStipendRange}
+                      onChange={(e) => setSelectedStipendRange(e.target.value)}
+                      className="mt-2 w-full sm:w-72 px-4 py-3 rounded-xl border border-gray-500 focus:outline-none focus:ring-1 focus:ring-[#2e5e99] mr-3"
+                    >
+                      <option value="">All Ranges</option>
+                      {stipendRanges.map((range) => (
+                        <option key={range.value} value={range.value}>
+                          {range.label}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -259,10 +335,7 @@ function Jobs() {
                   >
                     Clear All Filters
                   </button>
-                  
-                  
                 </div>
-
 
                 <div className="mt-6 w-full max-w-2xl mx-auto">
                   {/* Toggle Button */}
