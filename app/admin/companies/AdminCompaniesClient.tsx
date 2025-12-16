@@ -1,6 +1,9 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { supabase } from "../../../lib/supabase-client";
+
+/* -------------------- TYPES -------------------- */
 
 type Company = {
   id: string;
@@ -12,11 +15,13 @@ type FormState = {
   company_name: string;
   domain: string;
   role: string;
-  stipend: string;
+  stipend: string; // numeric string or empty
   location: string;
   batch: string;
   link: string;
 };
+
+/* -------------------- COMPONENT -------------------- */
 
 export default function AdminCompaniesClient() {
   const [companies, setCompanies] = useState<Company[]>([]);
@@ -38,6 +43,8 @@ export default function AdminCompaniesClient() {
     fetchCompanies();
   }, []);
 
+  /* -------------------- FETCH -------------------- */
+
   async function fetchCompanies() {
     const { data } = await supabase
       .from("companies")
@@ -46,6 +53,8 @@ export default function AdminCompaniesClient() {
 
     setCompanies(data || []);
   }
+
+  /* -------------------- VALIDATION -------------------- */
 
   function validateForm(): FormState | null {
     if (!form.company_name.trim())
@@ -60,19 +69,23 @@ export default function AdminCompaniesClient() {
     if (!form.link.trim())
       return setError("Application link is required"), null;
 
-    // Clear errors if all checks pass
     setError("");
 
     return {
       ...form,
-      stipend: form.stipend.trim() || "Competitive",
+      stipend:
+        form.stipend.trim() === ""
+          ? "Competitive"
+          : `₹${form.stipend}`,
       location: form.location.trim() || "Pan India",
     };
   }
 
+  /* -------------------- SUBMIT -------------------- */
+
   async function submitCompany() {
-    setSuccess("");
     setError("");
+    setSuccess("");
 
     const payload = validateForm();
     if (!payload) return;
@@ -86,23 +99,24 @@ export default function AdminCompaniesClient() {
         body: JSON.stringify(payload),
       });
 
-      if (res.ok) {
-        setSuccess("Company added successfully");
-
-        setForm({
-          company_name: "",
-          domain: "",
-          role: "",
-          stipend: "",
-          location: "",
-          batch: "",
-          link: "",
-        });
-
-        fetchCompanies();
-      } else {
+      if (!res.ok) {
         setError("Failed to add company. Please try again.");
+        return;
       }
+
+      setSuccess("Company added successfully");
+
+      setForm({
+        company_name: "",
+        domain: "",
+        role: "",
+        stipend: "",
+        location: "",
+        batch: "",
+        link: "",
+      });
+
+      fetchCompanies();
     } catch {
       setError("Network error. Please check your connection.");
     } finally {
@@ -110,12 +124,14 @@ export default function AdminCompaniesClient() {
     }
   }
 
+  /* -------------------- UI -------------------- */
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-100 via-slate-50 to-slate-200 p-6">
       <div className="max-w-6xl mx-auto space-y-8">
 
-        {/* Dashboard Header */}
-        <div className="flex items-center justify-between bg-white/80 backdrop-blur rounded-xl border border-slate-200 px-6 py-4 shadow-sm mt-30">
+        {/* Header */}
+        <div className="flex items-center justify-between bg-white/80 backdrop-blur rounded-xl border border-slate-200 px-6 py-4 shadow-sm">
           <div>
             <h1 className="text-2xl font-semibold text-slate-800">
               Admin Dashboard
@@ -124,30 +140,29 @@ export default function AdminCompaniesClient() {
               Manage company listings and roles
             </p>
           </div>
-
-          <div className="text-md text-slate-500">
-            Status: <span className="text-green-600 font-medium text-2xl">Active</span>
-          </div>
+          <span className="text-green-600 font-semibold text-lg">
+            Active
+          </span>
         </div>
 
-        {/* Main Content */}
+        {/* Content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-          {/* Form Section */}
+          {/* Form */}
           <div className="lg:col-span-2">
-            <div className="bg-white/90 backdrop-blur rounded-xl border border-slate-200 p-6 shadow-lg">
-              <h2 className="text-lg font-medium text-slate-800 mb-4">
+            <div className="bg-white/90 rounded-xl border border-slate-200 p-6 shadow-lg">
+              <h2 className="text-lg font-medium mb-4">
                 Add New Company
               </h2>
 
               {error && (
-                <div className="mb-4 rounded-md bg-red-100 border border-red-200 px-4 py-2 text-sm text-red-700">
+                <div className="mb-4 bg-red-100 border border-red-200 px-4 py-2 text-sm text-red-700 rounded">
                   ❌ {error}
                 </div>
               )}
 
               {success && (
-                <div className="mb-4 rounded-md bg-green-100 border border-green-200 px-4 py-2 text-sm text-green-800">
+                <div className="mb-4 bg-green-100 border border-green-200 px-4 py-2 text-sm text-green-800 rounded">
                   ✅ {success}
                 </div>
               )}
@@ -158,17 +173,26 @@ export default function AdminCompaniesClient() {
                     <label className="text-xs font-medium text-slate-500 mb-1 capitalize">
                       {key.replace("_", " ")}
                     </label>
+
                     <input
                       type={key === "stipend" ? "number" : "text"}
                       value={value}
-                      onChange={(e) =>
-                        setForm({ ...form, [key]: e.target.value })
-                      }
-                      placeholder={getPlaceholder(key)}
                       min={key === "stipend" ? 0 : undefined}
                       step={key === "stipend" ? 1 : undefined}
+                      onWheel={(e) => e.currentTarget.blur()}
+                      onChange={(e) => {
+                        if (key === "stipend") {
+                          const val = e.target.value;
+                          if (/^\d*$/.test(val)) {
+                            setForm({ ...form, stipend: val });
+                          }
+                        } else {
+                          setForm({ ...form, [key]: e.target.value });
+                        }
+                      }}
+                      placeholder={getPlaceholder(key)}
                       className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm
-                                focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     />
                   </div>
                 ))}
@@ -178,8 +202,8 @@ export default function AdminCompaniesClient() {
                 <button
                   onClick={submitCompany}
                   disabled={loading}
-                  className="rounded-md bg-indigo-600 px-6 py-2 text-sm font-medium text-white
-                            hover:bg-indigo-700 disabled:opacity-60 shadow"
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-md
+                             text-sm font-medium disabled:opacity-60"
                 >
                   {loading ? "Adding..." : "Add Company"}
                 </button>
@@ -187,43 +211,41 @@ export default function AdminCompaniesClient() {
             </div>
           </div>
 
-          {/* Sidebar / Stats */}
-          <div className="space-y-4">
-            <div className="bg-white/80 backdrop-blur rounded-xl border border-slate-200 p-5 shadow-sm">
-              <h3 className="text-sm font-medium text-slate-600 mb-1">
+          {/* Sidebar */}
+          <div>
+            <div className="bg-white/80 rounded-xl border border-slate-200 p-5 shadow-sm">
+              <h3 className="text-sm font-medium text-slate-600">
                 Admin Access
               </h3>
-              <p className="text-sm text-green-700 font-medium">
+              <p className="text-green-700 font-semibold mt-1">
                 Verified
               </p>
             </div>
           </div>
+
         </div>
       </div>
     </div>
   );
 }
 
+/* -------------------- HELPERS -------------------- */
 
-/* Helpers */
 function getPlaceholder(key: string) {
   switch (key) {
     case "domain":
       return "google.com";
-
     case "link":
-      return "application form link ";
-
+      return "Application link";
     case "role":
-      return "eg. Software Engineer 1";
+      return "Software Engineer I";
     case "stipend":
       return "Competitive";
     case "location":
       return "Pan India";
     case "batch":
-      return "e.g. 2+ years experience required";
+      return "2024 / 2025 / 2+ yrs";
     default:
-      return "Google";
+      return "";
   }
-
 }
