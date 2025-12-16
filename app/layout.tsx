@@ -15,10 +15,38 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Vfound.in | Developer Builder",
+  title: {
+    default: "VFound – AI Resume Analyzer & IT Jobs in India",
+    template: "%s | VFound",
+  },
   description:
-    "Hyper-advanced resume analysis and job compatibility checker with built-in latest IT sector news and developer tools.",
+    "VFound is an AI-powered Developer Builder that checks your resume on 32+ technical parameters, generates ATS-friendly cover letters, and lists Only verified IT jobs in India.",
+  keywords: [
+    "Developer Builder",
+    "AI resume analyzer",
+    "resume ATS checker",
+    "IT jobs India",
+    "software jobs India",
+    "cover letter generator",
+    "resume analysis for developers",
+    "ATS score for my resume",
+    "How to make resume",
+    "How to make cover letter",
+  ],
+  metadataBase: new URL("https://vfound.in"),
+  alternates: {
+    canonical: "https://vfound.in",
+  },
+  openGraph: {
+    title: "VFound - Smart Resume Analyzer & IT Jobs Platform",
+    description:
+      "Analyze your resume, generate ATS-optimized cover letters, and apply to verified IT jobs in India.",
+    url: "https://vfound.in",
+    siteName: "VFound",
+    type: "website",
+  },
 };
+
 
 export default function RootLayout({ children }) {
   return (
