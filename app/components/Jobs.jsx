@@ -3,10 +3,9 @@
 import { useEffect, useState, useMemo } from "react";
 import { useAuth, useClerk } from "@clerk/nextjs";
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL;
+const API_BASE = process.env.NEXT_PUBLIC_API_URL;
 
-const CATEGORY_MAP: Record<string, string> = {
+const CATEGORY_MAP = {
   "Software Engineer": `${API_BASE}/software-engineering`,
 };
 
@@ -85,7 +84,7 @@ function Jobs() {
   };
 
   const getWhatsappLink = (job) => {
-    const msg = `*Apply ASAP*
+  const msg = `*Exciting Off-Campus Opportunity!*
 
   *${job.company}* is hiring
 
