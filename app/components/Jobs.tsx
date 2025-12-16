@@ -3,13 +3,13 @@
 import { useEffect, useState, useMemo } from "react";
 import { useAuth, useClerk } from "@clerk/nextjs";
 
-const CATEGORY_MAP = {
-  "Software Engineer": "https://edstack.onrender.com/software-engineering",
-  // "Graduate Trainee": "https://edstack.onrender.com/Graduate-Engineering-Trainee",
-  // "Data Science": "https://edstack.onrender.com/data-science-and-Ml-ai",
-  // "Internship": "https://edstack.onrender.com/internship",
-  // "Devops": "https://edstack.onrender.com/other-roles",
+const API_BASE =
+  process.env.NEXT_PUBLIC_API_URL;
+
+const CATEGORY_MAP: Record<string, string> = {
+  "Software Engineer": `${API_BASE}/software-engineering`,
 };
+
 
 const SOURCES = Object.values(CATEGORY_MAP);
 
@@ -85,9 +85,21 @@ function Jobs() {
   };
 
   const getWhatsappLink = (job) => {
-    const msg = `*Exciting Opportunity!* 🎉\n\n*${job.company}* is hiring off-campus!\n\nRole: ${job.Role}\nApply here: ${job.Link || "vfound.in"}\n\nStay updated → vfound.in`;
+    const msg = `*Apply ASAP*
+
+  *${job.company}* is hiring
+
+  *Role:* ${job.Role}
+  *Stipend/CTC:* ${job.Stipend || "Not disclosed"}
+  *Eligible Batch:* ${job.Batch || "Check official notification"}
+
+  *Apply here:* ${job.Link || "https://vfound.in"}
+
+  Stay updated with latest IT jobs → https://vfound.in`;
+
     return `https://wa.me/?text=${encodeURIComponent(msg)}`;
   };
+
 
   // Dynamic filter options derived from fetched jobs
   const availableLocations = useMemo(() => {

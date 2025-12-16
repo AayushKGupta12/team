@@ -38,7 +38,7 @@ export default function CoverLetterGenerator() {
   const latestHtmlRef = useRef(''); // track latest html while editing
 
   // Your Flask backend URL - update if needed
-  const API_BASE_URL = 'https://edstack.onrender.com';
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];

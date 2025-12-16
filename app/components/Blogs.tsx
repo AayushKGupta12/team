@@ -10,39 +10,54 @@ export default function ModernTechGrid() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchAll = async () => {
-      try {
-        const endpoints = [
-          "https://edstack.onrender.com/tech",
-          "https://edstack.onrender.com/science",
-          "https://edstack.onrender.com/stock",
-          "https://edstack.onrender.com/business",
-        ];
+  const fetchAll = async () => {
+    try {
+      const API_BASE =
+        process.env.NEXT_PUBLIC_API_URL;
 
-        const responses = await Promise.all(
-          endpoints.map((url) => fetch(url).then((res) => res.json()))
+      const endpoints = [
+        `${API_BASE}/tech`,
+        `${API_BASE}/science`,
+        `${API_BASE}/stock`,
+        `${API_BASE}/business`,
+      ];
+
+      const responses = await Promise.all(
+        endpoints.map((url) =>
+          fetch(url).then((res) => {
+            if (!res.ok) {
+              throw new Error(`Failed to fetch ${url}`);
+            }
+            return res.json();
+          })
+        )
+      );
+
+      let allArticles: any[] = [];
+
+      responses.forEach((data) => {
+        const withImage = (data.results || []).filter(
+          (a: any) => a.image_url && a.image_url.trim() !== ""
         );
+        allArticles.push(...withImage);
+      });
 
-        let allArticles = [];
-        responses.forEach((data) => {
-          const withImage = (data.results || []).filter(
-            (a) => a.image_url && a.image_url.trim() !== ""
-          );
-          allArticles = [...allArticles, ...withImage];
-        });
+      // Sort by date (newest first)
+      allArticles.sort(
+        (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
+      );
 
-        // Sort by date (newest first)
-        allArticles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-        setArticles(allArticles);
-      } catch (err) {
-        console.error("Error fetching news:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
+      setArticles(allArticles);
+    } catch (err) {
+      console.error("Error fetching news:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchAll();
-  }, []);
+  fetchAll();
+}, []);
+
 
   // Staggered grid layout (optimized for beauty + performance)
   const getGridClasses = (index) => {

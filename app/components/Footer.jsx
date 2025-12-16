@@ -32,7 +32,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10">
           {/* Branding */}
           <div className="flex-1 min-w-[200px]">
-            <Link href="https://vfoundin.vercel.app" className="flex items-center gap-3">
+            <Link href="https://vfound.in" className="flex items-center gap-3">
                 <span className="hidden sm:inline kaushan-script-regular text-4xl">
                   Vfound.in
                 </span>
@@ -49,8 +49,11 @@ export default function Footer() {
                 rel="noreferrer"
                 className="text-white hover:text-[#7ba4d0] transition-colors"
               >
-                <img src="https://img.logo.dev/instagram.com?token=pk_djKZ3gIOQqyja8btgxBpBA" alt="" className="h-9 w-9 rounded-xl"/>
-
+                <img
+                  src={`https://img.logo.dev/instagram.com?token=${process.env.LOGO_API_TOKEN}`}
+                  alt=""
+                  className="h-9 w-9 rounded-xl"
+                />
               </a>
               <a
                 href="https://t.me/EdstackUpdates"
@@ -58,8 +61,12 @@ export default function Footer() {
                 rel="noreferrer"
                 className="text-white hover:text-[#7ba4d0] transition-colors"
               >
-                <img src="https://img.logo.dev/telegram.org?token=pk_djKZ3gIOQqyja8btgxBpBA" alt="" className="h-9 w-9 rounded-2xl"/>
-                
+                <img
+                  src={`https://img.logo.dev/telegram.org?token=${process.env.LOGO_API_TOKEN}`}
+                  alt=""
+                  className="h-9 w-9 rounded-xl"
+                />
+
               </a>
             </div>
           </div>
@@ -113,7 +120,6 @@ export default function Footer() {
             <p className="mt-3 text-white text-2xs">
               Infocity Bhubaneswar, Odisha <br />
               India - 751024 <br/>
-              Email: hello@vfound.in
             </p>
           </div>
         </div>

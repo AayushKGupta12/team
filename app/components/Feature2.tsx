@@ -1,7 +1,3 @@
-// components/FeatureGrid.tsx
-import { ReactNode } from 'react';
-import { LucideIcon } from 'lucide-react';
-
 type Features = {
   icon: () => React.ReactElement;
   title: string;

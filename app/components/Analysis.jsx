@@ -31,7 +31,7 @@ function ConnectionTest() {
   const fileInputRef = useRef(null);
 
   const API_BASE =
-    process.env.NEXT_PUBLIC_API_URL || "https://edstack.onrender.com";
+    process.env.NEXT_PUBLIC_API_URL;
 
   /* =======================
      Resume after login

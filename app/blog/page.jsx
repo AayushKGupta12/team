@@ -10,7 +10,6 @@ const page = () => {
         <BlogHero />
         <Blogs /> 
         <Footer />
-      
     </div>
   )
 }

@@ -3,7 +3,7 @@
 import { useAnimate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-const COUNTDOWN_FROM_ISO = "2026-01-01T00:00:00.000Z"; // explicit ISO
+const COUNTDOWN_FROM_ISO = "2026-01-01T00:00:00.000Z";
 const SECOND = 1000;
 const MINUTE = SECOND * 60;
 const HOUR = MINUTE * 60;
