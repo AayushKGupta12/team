@@ -76,7 +76,7 @@ export default function AdminCompaniesClient() {
       stipend:
         form.stipend.trim() === ""
           ? "Competitive"
-          : `₹${form.stipend}`,
+          : `${form.stipend}`,
       location: form.location.trim() || "Pan India",
     };
   }
