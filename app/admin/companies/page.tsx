@@ -11,7 +11,7 @@ export default async function Page() {
   }
 
   // Get primary email
-  const email = user.emailAddresses[0]?.emailAddress;
+  const email = user.emailAddresses[1]?.emailAddress;
 
   // Read admin emails from env
   const adminEmails =
