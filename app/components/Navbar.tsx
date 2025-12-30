@@ -86,9 +86,9 @@ export default function Navbar(): React.JSX.Element {
           <div className="w-full px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between gap-4 rounded-3xl bg-[#7ba4d0]/10 border border-black/50 backdrop-blur-xl shadow-xl px-6 py-3">
               {/* Logo */}
-              <div className="w-fit bg-[#0d2440] p-0.5 rounded-2xl">
+              <div className="w-fit p-0.5 rounded-2xl">
                 <Link href="/" className="flex items-center gap-3">
-                  <span className="inline sm:inline text-[#e7f0fa] kaushan-script-regular text-3xl mr-1.5 ml-1.5 mt-0.5 mb-0.5">
+                  <span className="inline sm:inline text-[#0d2440] kaushan-script-regular text-4xl font-bold">
                     Vfound.in
                   </span>
                 </Link>

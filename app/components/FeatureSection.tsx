@@ -57,10 +57,8 @@ export default function FeatureSection() {
             Complete AI career toolkit for developers
           </h2>
 
-          <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-            A focused AI-powered career platform helping developers and IT
-            graduates prepare better resumes, generate cover letters, and
-            discover real job opportunities in India.
+          <p className="mt-2 text-xl text-gray-600 max-w-3xl mx-auto">
+            Developer Toolkit for IT grads to build resumes, cover letters, and find jobs in India.
           </p>
         </header>
 
