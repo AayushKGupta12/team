@@ -17,14 +17,15 @@ export default function Footer() {
     { label: "About us", href: "/about" },
     { label: "Careers", href: "/careers" },
     { label: "Contact", href: "/contact" },
+    { label: "Term of Use", href: "/term-of-use" },
     // { label: "Pricing", href: "/pricing" } Pricing ka route nai dalenge abhi, om namah shivay
   ];
 
-  const products = [
-    { label: "Launching New Products Soon :D", href: "#" }
+  // const products = [
+  //   { label: "Launching New Products", href: "#" }
     
-     // duplicated on purpose for easy access
-  ];
+  //     duplicated on purpose for easy access
+  // ];
 
   return (
     <footer className="bg-black text-white">
@@ -41,40 +42,12 @@ export default function Footer() {
             <p className="mt-4 text-sm text-white/80">
               Helping developers find jobs, build resumes with AI and follow clear technical roadmaps.
             </p>
-
-            <div className="mt-6 flex items-center gap-3">
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noreferrer"
-                className="text-white hover:text-[#7ba4d0] transition-colors"
-              >
-                <img
-                  src={`https://img.logo.dev/instagram.com?token=${process.env.LOGO_API_TOKEN}`}
-                  alt=""
-                  className="h-9 w-9 rounded-xl"
-                />
-              </a>
-              <a
-                href="https://t.me/EdstackUpdates"
-                target="_blank"
-                rel="noreferrer"
-                className="text-white hover:text-[#7ba4d0] transition-colors"
-              >
-                <img
-                  src={`https://img.logo.dev/telegram.org?token=${process.env.LOGO_API_TOKEN}`}
-                  alt=""
-                  className="h-9 w-9 rounded-xl"
-                />
-
-              </a>
-            </div>
           </div>
 
           {/* Links columns */}
           <div className="flex-1 flex gap-8 md:gap-12">
             <div>
-              <h4 className="text-sm font-medium mb-3">Services</h4>
+              <h4 className="text-md font-medium mb-3 mr-10">Services</h4>
               <ul className="space-y-2">
                 {services.map((s) => (
                   <li key={s.href}>
@@ -87,7 +60,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 className="text-sm font-medium mb-3">Company</h4>
+              <h4 className="text-md font-medium mb-3 mr-10">Company</h4>
               <ul className="space-y-2">
                 {company.map((c) => (
                   <li key={c.href}>
@@ -99,8 +72,8 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div>
-              <h4 className="text-sm font-medium mb-3">Products</h4>
+            {/* <div>
+              <h4 className="text-md font-medium mb-3 mr-10">Products</h4>
               <ul className="space-y-2">
                 {products.map((p) => (
                   <li key={p.href}>
@@ -110,7 +83,9 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
+
+
           </div>
 
           {/* Newsletter / CTA */}

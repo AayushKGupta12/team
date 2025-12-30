@@ -5,20 +5,27 @@ import AdminCompaniesClient from "./AdminCompaniesClient";
 export default async function Page() {
   const user = await currentUser();
 
-  // Not logged in → Clerk hosted sign-in
+  // Not logged in → redirect to homepage / sign-in
   if (!user) {
-    redirect("https://accounts.clerk.dev/sign-in");
+    redirect("https://vfound.in");
   }
 
-  // Get primary email
-  const email = user.emailAddresses[0]?.emailAddress;
+  // Extract primary email
+  const email = user.emailAddresses?.[0]?.emailAddress;
 
-  // Read admin emails from env
-  const adminEmails =
-    process.env.ADMIN_EMAILS?.split(",").map(e => e.trim()) || [];
+  // Fail-safe: no email found
+  if (!email) {
+    redirect("/");
+  }
 
-  const isAdmin = email && adminEmails.includes(email);
+  // Load admin emails from ENV
+  const adminEmails = (process.env.ADMIN_EMAILS || "")
+    .split(",")
+    .map(e => e.trim().toLowerCase())
+    .filter(Boolean);
 
+  // Check admin access
+  const isAdmin = adminEmails.includes(email.toLowerCase());
 
   if (!isAdmin) {
     redirect("/");

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "../../../lib/supabase-client";
+import Footer from "../../components/Footer";
 
 /* -------------------- TYPES -------------------- */
 
@@ -127,11 +128,13 @@ export default function AdminCompaniesClient() {
   /* -------------------- UI -------------------- */
 
   return (
+    <div>
+
     <div className="min-h-screen bg-gradient-to-br from-slate-100 via-slate-50 to-slate-200 p-6">
       <div className="max-w-6xl mx-auto space-y-8">
 
         {/* Header */}
-        <div className="flex items-center justify-between bg-white/80 backdrop-blur rounded-xl border border-slate-200 px-6 py-4 shadow-sm">
+        <div className="mt-25 flex items-center justify-between bg-white/80 backdrop-blur rounded-xl border border-slate-200 px-6 py-4 shadow-sm">
           <div>
             <h1 className="text-2xl font-semibold text-slate-800">
               Admin Dashboard
@@ -140,7 +143,10 @@ export default function AdminCompaniesClient() {
               Manage company listings and roles
             </p>
           </div>
-          <span className="text-green-600 font-semibold text-lg">
+          <div>
+            
+          </div>
+          <span className="text-green-600 font-semibold text-sm">
             Active
           </span>
         </div>
@@ -226,6 +232,8 @@ export default function AdminCompaniesClient() {
         </div>
       </div>
     </div>
+      <Footer/>
+    </div>
   );
 }
 
@@ -246,6 +254,6 @@ function getPlaceholder(key: string) {
     case "batch":
       return "2024 / 2025 / 2+ yrs";
     default:
-      return "";
+      return "Google";
   }
 }

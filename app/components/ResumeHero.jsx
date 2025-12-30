@@ -39,7 +39,7 @@ export default function ResumeHero() {
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-[#0b1724] leading-tight md:leading-none">
               <span className="block">Resume,</span>
-              <span className="text-[#2e5e99]">Perfected in Seconds</span>
+              <span className="text-[#2e5e99]">Evaluated in Seconds</span>
             </h1>
 
             <p className="mt-2 text-xl md:text-2xl lg:text-3xl text-gray-700 font-light max-w-3xl leading-relaxed">
