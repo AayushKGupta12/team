@@ -25,6 +25,12 @@ type FormState = {
 /* -------------------- CONSTANTS -------------------- */
 
 const LOCATION_OPTIONS = [
+  "Pan India",
+  "Ahmedabad",
+  "Bhubaneswar",
+  "Chennai",
+  "Delhi",
+  "Goa",
   "Bangalore",
   "Gurugram",
   "Hybrid",
