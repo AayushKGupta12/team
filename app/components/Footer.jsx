@@ -34,13 +34,13 @@ export default function Footer() {
           {/* Branding */}
           <div className="flex-1 min-w-[200px]">
             <Link href="https://vfound.in" className="flex items-center gap-3">
-                <span className="hidden sm:inline kaushan-script-regular text-4xl">
+                <span className="sm:inline kaushan-script-regular text-4xl">
                   Vfound.in
                 </span>
               </Link>
 
             <p className="mt-4 text-sm text-white/80">
-              Helping developers find jobs, build resumes with AI and follow clear technical roadmaps.
+              Helping developers find jobs, build Industry standard resumes & cover letter.
             </p>
           </div>
 
