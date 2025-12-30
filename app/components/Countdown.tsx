@@ -27,6 +27,17 @@ const containerClasses = [
 const valueClasses = ["block", "font-semibold", "text-white", "text-lg", "sm:text-xl", "md:text-2xl"].join(" ");
 const labelClasses = ["opacity-90", "text-xs", "sm:text-sm", "md:text-base"].join(" ");
 
+// ✅ ADD THESE TYPES
+interface CountdownItemProps {
+  unit: "Day" | "Hour" | "Minute" | "Second";
+  text: string;
+}
+
+interface TimerReturn {
+  ref: React.RefObject<HTMLSpanElement>;
+  time: number;
+}
+
 const Countdown = () => {
   return (
     <div className="w-full bg-[#4f46e5] py-4 flex items-center justify-center">
@@ -40,23 +51,20 @@ const Countdown = () => {
   );
 };
 
-const CountdownItem = ({ unit, text }) => {
+const CountdownItem = ({ unit, text }: CountdownItemProps) => {
   const { ref, time } = useTimer(unit);
 
   return (
     <div className="flex items-center space-x-1">
       <span ref={ref} className={valueClasses} aria-live="polite">
-        {time}
+        {time.toString().padStart(2, "0")}
       </span>
-
       <span className={labelClasses}>{text}</span>
     </div>
   );
 };
 
-export default Countdown;
-
-function computeUnitTime(unit, nowMs = Date.now(), targetIso = COUNTDOWN_FROM_ISO) {
+function computeUnitTime(unit: "Day" | "Hour" | "Minute" | "Second", nowMs = Date.now(), targetIso = COUNTDOWN_FROM_ISO): number {
   const end = new Date(targetIso).getTime();
   const distance = Math.max(0, end - nowMs);
 
@@ -67,17 +75,15 @@ function computeUnitTime(unit, nowMs = Date.now(), targetIso = COUNTDOWN_FROM_IS
   } else if (unit === "Minute") {
     return Math.floor((distance % HOUR) / MINUTE);
   } else {
-    // Second
     return Math.floor((distance % MINUTE) / SECOND);
   }
 }
 
-const useTimer = (unit) => {
+const useTimer = (unit: "Day" | "Hour" | "Minute" | "Second"): TimerReturn => {
   const [ref, animate] = useAnimate();
-  const intervalRef = useRef(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const timeRef = useRef(0);
 
-  // initialize state deterministically from current client time
   const [time, setTime] = useState(() => {
     const initial = computeUnitTime(unit);
     timeRef.current = initial;
@@ -85,7 +91,6 @@ const useTimer = (unit) => {
   });
 
   useEffect(() => {
-    // update immediately on mount in case initial was slightly stale
     const tickOnce = () => {
       const newTime = computeUnitTime(unit);
       if (newTime !== timeRef.current) {
@@ -96,7 +101,6 @@ const useTimer = (unit) => {
 
     tickOnce();
 
-    // interval to update every second (we compute specific unit inside)
     intervalRef.current = setInterval(() => {
       handleCountdown();
     }, 1000);
@@ -107,37 +111,30 @@ const useTimer = (unit) => {
         intervalRef.current = null;
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [unit]); // re-run if unit ever changes
+  }, [unit]);
 
   const handleCountdown = async () => {
     const newTime = computeUnitTime(unit);
 
     if (newTime !== timeRef.current) {
-      // animate out -> update -> animate in
       try {
-        // guard: sometimes ref.current may not be a DOM node yet
         if (ref && ref.current) {
-          // small exit animation
           await animate(ref.current, { y: ["0%", "-50%"], opacity: [1, 0] }, { duration: 0.25 });
         }
-      } catch (e) {
-        // ignore animation errors — continue update
-      }
+      } catch (e) {}
 
       timeRef.current = newTime;
       setTime(newTime);
 
       try {
         if (ref && ref.current) {
-          // enter animation
           await animate(ref.current, { y: ["50%", "0%"], opacity: [0, 1] }, { duration: 0.25 });
         }
-      } catch (e) {
-        // ignore animation errors
-      }
+      } catch (e) {}
     }
   };
 
   return { ref, time };
 };
+
+export default Countdown;
