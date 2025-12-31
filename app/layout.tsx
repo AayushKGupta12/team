@@ -3,6 +3,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Script from "next/script";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import CongratsPopup from "./components/CongratsPopUp";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -53,7 +54,6 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <head>
-          {/* Google Analytics */}
           <Script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-RFS8XFXTZ7"
@@ -70,7 +70,8 @@ export default function RootLayout({ children }) {
 
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <Navbar />
-          {children}
+            {children}
+            <CongratsPopup />
         </body>
       </html>
     </ClerkProvider>

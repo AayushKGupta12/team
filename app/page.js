@@ -6,6 +6,7 @@ import Features from './components/FeatureSection'
 import HeroCTA from './components/HeroCTA'
 import Countdown from './components/Countdown'
 import Testimonials from './components/test'
+import CongratsPopup from './components/CongratsPopUp'
 
 export const metadata = {
   title: "VFound – IT Jobs, AI Resume Analyzer & Cover Letter Maker",
@@ -36,6 +37,7 @@ const Page = () => {
       <Features />
       <Testimonials/>
       <FAQ />
+      <CongratsPopup />
       <HeroCTA />
       <Countdown />
       <Footer />

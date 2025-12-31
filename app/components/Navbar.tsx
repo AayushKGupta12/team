@@ -1,8 +1,3 @@
-// Updated mobile responsive sidebar version of Navbar.tsx
-// --- ONLY MOBILE VIEW CHANGED ---
-// Sidebar opens 2/3rd of the mobile screen
-// Desktop view remains exactly the same
-
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -14,6 +9,7 @@ import {
   UserButton,
   useUser,
 } from "@clerk/nextjs";
+import UsageProvider from "./UsageProvider";
 
 type NavItem = {
   label: string;
@@ -94,9 +90,8 @@ export default function Navbar(): React.JSX.Element {
                 </Link>
               </div>
 
-
               {/* Desktop Nav */}
-              <nav className="hidden font-semibold md:flex ml-auto mr-22 gap-8">
+              <nav className="hidden font-semibold md:flex ml-auto mr-10 gap-8">
                 {navItems.map((item) => {
                   if (item.hasDropdown && item.dropdown) {
                     return (
@@ -127,16 +122,15 @@ export default function Navbar(): React.JSX.Element {
                 })}
               </nav>
 
-              {/* CTA + Mobile */}
-              <div className="flex items-center gap-4">
-                <div className="hidden md:flex items-center gap-3">
+              {/* CTA + Auth + Usage */}
+              <div className="flex items-center gap-6">
+                <div className="hidden md:flex items-center gap-4">
                   <SignedOut>
                     <SignInButton>
                       <button className="border relative py-2 px-5 text-black text-base font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
                         Sign in
                       </button>
                     </SignInButton>
-
 
                     <SignUpButton>
                       <button className="border relative py-2 px-5 text-black text-base font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
@@ -146,8 +140,12 @@ export default function Navbar(): React.JSX.Element {
                   </SignedOut>
 
                   <SignedIn>
-                    <div className="scale-135 mt-1">
-                    <UserButton />
+                    {/* UsageProvider - Beautifully aligned next to UserButton */}
+                    <div className="flex items-center gap-3">
+                      <UsageProvider />
+                      <div className="-ml-3 -mb-3.5 scale-175 justify-center align-middle z-10">
+                        <UserButton />
+                      </div>
                     </div>
                   </SignedIn>
                 </div>
@@ -234,17 +232,14 @@ export default function Navbar(): React.JSX.Element {
           </SignedOut>
 
           <SignedIn>
-            <div className="mt-4 bg-[#96b8dc] rounded-xl shadow-md flex items-center justify-between px-6 py-4">
-            {/* Left side text */}
-            <span className="text-black font-semibold text-lg">
-              Edit profile
-            </span>
-
-            {/* Enlarged UserButton on the right */}
-            <div className="scale-140 py-1">
-              <UserButton />
+            <div className="scale-105">
+              <div className="mt-6 flex items-center justify-between">
+                <div className="scale-150 py-1 -mb-2 -mr-1">
+                  <UserButton />
+                </div>
+                  <UsageProvider />
+              </div>
             </div>
-          </div>
           </SignedIn>
         </div>
       </div>

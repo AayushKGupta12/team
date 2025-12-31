@@ -50,7 +50,7 @@ export default function FeatureSection() {
         }}
       />
 
-      <section className="mt-5 bg-gradient-to-b from-white to-[#f8fbff] py-18">
+      <section className="bg-gradient-to-b from-white to-[#f8fbff] py-18">
         {/* ===== SECTION HEADER ===== */}
         <header className="max-w-4xl mx-auto text-center mb-18 px-6">
           <h2 className="text-4xl lg:text-5xl font-light text-[#0d2440] tracking-tight leading-tight">

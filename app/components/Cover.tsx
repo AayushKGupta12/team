@@ -3,7 +3,10 @@ import { useState, useRef, useEffect } from 'react';
 import { Upload, FileText, Loader2, Download, Copy, Check } from 'lucide-react';
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { useAuth, useClerk } from "@clerk/nextjs";
+
+import { useClerk, useUser } from "@clerk/nextjs";
+import { consumeCredit } from "../../lib/consumeCredit";
+import { useUsageStatus } from "../../src/hooks/useUsageStatus";
 
 
 export default function CoverLetterGenerator() {
@@ -17,18 +20,21 @@ export default function CoverLetterGenerator() {
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
 
+  const { user, isSignedIn } = useUser();
+  const { fetchStatus } = useUsageStatus();
+
+
 
   // Clerk Auth
-  const { isSignedIn } = useAuth();
   const clerk = useClerk();
   const [pendingCoverLetter, setPendingCoverLetter] = useState(false);
 
   useEffect(() => {
   if (isSignedIn && pendingCoverLetter) {
     setPendingCoverLetter(false);
-    handleGenerateCoverLetter();
+    handlePaidCoverLetter();
   }
-  }, [isSignedIn, pendingCoverLetter]);
+}, [isSignedIn, pendingCoverLetter]);
 
 
 
@@ -243,6 +249,49 @@ export default function CoverLetterGenerator() {
 };
 
 
+async function runPaidFeature(
+  featureName: string,
+  runFeature: () => Promise<void>
+) {
+  if (!user) return;
+
+  // 1️⃣ consume credit FIRST
+  const usage = await consumeCredit(user.id, featureName);
+
+  // 2️⃣ block if limit reached
+  if (!usage.allowed) {
+    alert("You have used all free credits. Please upgrade.");
+    return;
+  }
+
+  // 3️⃣ run actual feature
+  await runFeature();
+
+  // 4️⃣ refresh banner (simple + safe)
+  await fetchStatus(); // refresh banner only
+}
+
+async function handlePaidCoverLetter() {
+  if (!user) return;
+
+  // 1️⃣ consume credit first
+  const usage = await consumeCredit(user.id, "cover_letter");
+
+  // 2️⃣ if limit reached → block
+  if (!usage.allowed) {
+    alert("You have used all free credits. Please upgrade to continue.");
+    return;
+  }
+
+  // 3️⃣ credit allowed → run existing logic
+  await handleGenerateCoverLetter();
+
+  // 4️⃣ refresh banner (simple + safe)
+  await fetchStatus(); // refresh banner only
+}
+
+
+
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-blue-100 via-white to-amber-100 p-4 sm:p-8 overflow-hidden">
       <div className="max-w-6xl mx-auto">
@@ -364,7 +413,7 @@ export default function CoverLetterGenerator() {
                     }
 
                     if (isSignedIn) {
-                      handleGenerateCoverLetter();
+                      handlePaidCoverLetter();
                     } else {
                       setPendingCoverLetter(true);
                       try {
@@ -386,6 +435,7 @@ export default function CoverLetterGenerator() {
                     "Build My Cover Letter Now"
                   )}
                 </button>
+
               </div>
             </div>
           </div>
