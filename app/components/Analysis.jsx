@@ -9,6 +9,11 @@ import {
   FileText,
 } from "lucide-react";
 import { useAuth, useClerk } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
+
+import { consumeCredit } from "../../lib/consumeCredit";
+
+
 
 function ConnectionTest() {
   /* =======================
@@ -27,6 +32,7 @@ function ConnectionTest() {
   const [analyzeResult, setAnalyzeResult] = useState(null);
   const [error, setError] = useState(null);
   const [showPlaceholder, setShowPlaceholder] = useState(false);
+  const { user } = useUser();
 
   const fileInputRef = useRef(null);
 
@@ -134,6 +140,24 @@ function ConnectionTest() {
     }
   };
 
+
+  const handlePaidAnalyze = async () => {
+    if (!user) return;
+
+    // 1️⃣ consume credit first
+    const usage = await consumeCredit(user.id, "resume_analysis");
+
+    // 2️⃣ block if limit reached
+    if (!usage.allowed) {
+      alert("You have used all free credits. Please upgrade to continue.");
+      return;
+    }
+
+    // 3️⃣ credit allowed → run existing logic
+    await testConnection();
+  };
+
+
   /* =======================
      JSX
   ======================= */
@@ -196,8 +220,8 @@ function ConnectionTest() {
             }
 
             if (isSignedIn) {
-              testConnection();
-            } else {
+              handlePaidAnalyze();
+            }else {
               setPendingAnalyze(true);
               try {
                 clerk.openSignIn();

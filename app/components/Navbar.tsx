@@ -99,7 +99,7 @@ export default function Navbar(): React.JSX.Element {
                         <button className="font-semibold text-[#0d2440] text-xl px-2 py-1">
                           {item.label}
                         </button>
-                        <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute left-1/2 -translate-x-1/2 mt-3 w-48 rounded-xl bg-[#7ba4d0]/10 border border-[#7ba4d0]/20 backdrop-blur-xl shadow-lg py-2 z-40 transition-all duration-200">
+                        <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute left-1/2 -translate-x-1/2 mt-3 w-48 rounded-xl bg-[#7ba4d0]/30 border border-[#7ba4d0]/20 backdrop-blur-xl shadow-lg py-2 z-40 transition-all duration-200">
                           {item.dropdown.map((d) => (
                             <Link key={d.href} href={d.href} className="block px-4 py-2 text-sm text-[#0d2440]">
                               {d.label}

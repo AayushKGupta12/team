@@ -523,7 +523,7 @@ async function handlePaidCoverLetter() {
                     <FileText className="w-20 h-20 mx-auto mb-6 opacity-40" />
                     <p className="text-xl font-medium text-gray-600">
                       {isGenerating ? 'Generating your cover letter...' : 'Your cover letter will appear here'}
-                      <p className="text-gray-500 mt-3">Fully editable after generation</p>
+                      <span className="text-gray-500 mt-3">Fully editable after generation</span>
                       {isGenerating && (
                         <div className="flex justify-center mb-6 mt-4">
                           <div className="w-7 h-7 border-4 border-[#0d2440] border-t-transparent rounded-full animate-spin"></div>

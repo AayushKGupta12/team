@@ -27,7 +27,7 @@ export default function BlogHero() {
         <div className="relative z-10 max-w-5xl mt-6">
           
           {/* Badge */}
-          <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 
+          <div className="inline-flex items-center gap-3 bg-[#ffe8b1] backdrop-blur-sm px-6 py-3 
           rounded-full shadow-lg border border-white/50 mb-8">
             <span className="w-3 h-3 bg-[#2e5e99] rounded-full animate-pulse"></span>
             <span className="text-sm font-semibold text-[#0d2440] uppercase tracking-wider">

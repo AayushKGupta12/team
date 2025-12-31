@@ -53,7 +53,7 @@ export default function Hero() {
 
           <p className="mt-8 text-xl md:text-2xl text-gray-700 font-light max-w-2xl">
             We don’t just show you jobs.<br />
-            <span className="font-semibold text-[#0d2440]">We build your entire tech career.</span>
+            <span className="font-semibold text-[#0d2440]">We build your entire <span className="bg-[#ffe8b1] px-2">tech career.</span></span>
           </p>
 
           {/* Premium Gradient Button */}
