@@ -81,7 +81,7 @@ export default function Testimonials() {
 
                   <div className="flex items-center mt-3">
                     <div className="ml-4">
-                      <p className="text-base font-bold text-gray-900 font-pj">Archana Gupta</p>
+                      <p className="text-base font-bold text-gray-900 font-pj">Riya Kumari</p>
                       <p className="mt-0.5 text-sm font-pj text-gray-600">Software Engineer @ Walmart</p>
                     </div>
                   </div>
@@ -144,7 +144,7 @@ export default function Testimonials() {
                   <div className="flex items-center mt-3">
                     
                     <div className="ml-4">
-                      <p className="text-base font-bold text-gray-900 font-pj">Aayush Kumar</p>
+                      <p className="text-base font-bold text-gray-900 font-pj">Sanu Gupta</p>
                       <p className="mt-0.5 text-sm font-pj text-gray-600">Sr. Data Scientist @ Databricks</p>
                     </div>
                   </div>

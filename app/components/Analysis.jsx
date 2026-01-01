@@ -13,6 +13,9 @@ import { useUser } from "@clerk/nextjs";
 
 import { consumeCredit } from "../../lib/consumeCredit";
 
+import CreditUsedToast from "./CreditUsedToast";
+
+
 
 
 function ConnectionTest() {
@@ -33,6 +36,8 @@ function ConnectionTest() {
   const [error, setError] = useState(null);
   const [showPlaceholder, setShowPlaceholder] = useState(false);
   const { user } = useUser();
+  const [showToast, setShowToast] = useState(false);
+
 
   const fileInputRef = useRef(null);
 
@@ -153,6 +158,8 @@ function ConnectionTest() {
       return;
     }
 
+    setShowToast(true);
+
     // 3️⃣ credit allowed → run existing logic
     await testConnection();
   };
@@ -245,6 +252,12 @@ function ConnectionTest() {
             </>
           )}
         </button>
+
+        <CreditUsedToast
+        show={showToast}
+        onClose={() => setShowToast(false)}
+        />
+
       </div>
 
 
