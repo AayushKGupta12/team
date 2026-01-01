@@ -2,6 +2,13 @@
 
 import { useState } from "react";
 import Script from "next/script";
+import Image from "next/image";
+import img1 from '../imgs/img1.png';
+import img2 from '../imgs/img2.png';
+import img3 from '../imgs/img3.png';
+import img4 from '../imgs/img4.png';
+import img5 from '../imgs/img5.png';
+import img6 from '../imgs/img6.png';
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -23,29 +30,56 @@ export default function FAQ() {
             mainEntity: [
               {
                 "@type": "Question",
-                name: "Is resume analysis free?",
+                name: "What Does this resume Scanner do ?",
                 acceptedAnswer: {
                   "@type": "Answer",
                   text:
-                    "Yes, Vfound provides free resume analysis with ATS checks, technical depth evaluation, and actionable improvement suggestions for IT graduates and freshers."
+                    "This resume scanner analyzes resumes to check how well they match a job or internship role. It scans skills, keywords, experience, and formatting, then highlights strengths, gaps, and areas for improvement—helping candidates optimize their resume to pass ATS filters and improve shortlisting chances."
                 }
               },
               {
                 "@type": "Question",
-                name: "Does Vfound provide IT jobs?",
+                name: "How is this Different from normal ATS Resume checker ?",
                 acceptedAnswer: {
                   "@type": "Answer",
                   text:
-                    "Yes, Vfound lists real IT job openings including off-campus roles, fresher jobs, and direct company application links."
+                    "Unlike a normal ATS checker that only scores keyword matches, this scanner gives contextual insights. It evaluates relevance of skills, role alignment, clarity, and impact of experience, and provides actionable suggestions—focusing on why your resume works or doesn’t, not just how many keywords you used."
                 }
               },
               {
                 "@type": "Question",
-                name: "Does Vfound use AI?",
+                name: "Is it a Fresher Friendly ?",
                 acceptedAnswer: {
                   "@type": "Answer",
                   text:
-                    "Yes, Vfound uses advanced AI and large language models to analyze resumes, detect skill gaps, and optimize content for modern hiring systems."
+                    "Yes—it's fresher-friendly. It's designed to work even if you don't have full-time experience. Just upload your projects, internships, certifications, and volunteering experience. It guides you to build a strong CV."
+                }
+              },
+              {
+                "@type": "Question",
+                name: "Why do thousand trust this Resume analyser ?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text:
+                    "Thousands trust this resume analyser because it goes beyond basic ATS scoring. It provides accurate, role-specific resume optimization suggestions, and fresher-friendly insights—taking real context into account, not just keywords."
+                }
+              },
+              {
+                "@type": "Question",
+                name: "Why a strong Resume Matters ?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text:
+                    "It clearly shows your skills, experience, and potential. Helps you pass ATS filters, and convinces recruiters you're worth shortlisting. In a competitive job market, a strong resume is essential."
+                }
+              },
+              {
+                "@type": "Question",
+                name: "What is job Recommendation ?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text:
+                    "Job recommendation is a feature that suggests relevant jobs by matching your skills with live openings. Instead of endlessly scrolling, it matches you with fresher-friendly listings, saving you time and increasing your chances of getting shortlisted."
                 }
               }
             ]
@@ -62,212 +96,81 @@ export default function FAQ() {
 
           <div className="space-y-6">
 
-            {/* ================= Resume Analysis ================= */}
+            {/* Question 1 */}
             <section>
               <FAQItem
                 index={0}
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
-                question="Is resume analysis free?"
-                answer={
-                  <>
-                    <p className="mb-3 text-gray-700">
-                      Yes, Vfound offers a completely free resume analysis
-                      feature designed specifically for IT students, recent
-                      graduates, and early career professionals. Unlike basic
-                      keyword scanners, our system deeply evaluates your resume
-                      against current hiring expectations.
-                    </p>
-                    <ul className="list-disc ml-6 space-y-1 text-gray-700">
-                      <li>Technical depth and skill relevance analysis</li>
-                      <li>ATS-compatibility and formatting checks</li>
-                      <li>Comparison with real market competition</li>
-                      <li>Clear and actionable improvement suggestions</li>
-                    </ul>
-                  </>
-                }
+                question="What Does this resume Scanner do ?"
+                answer="This resume scanner analyzes resumes to check how well they match a job or internship role. It scans skills, keywords, experience, and formatting, then highlights strengths, gaps, and areas for improvement—helping candidates optimize their resume to pass ATS filters and improve shortlisting chances."
+                imagePlaceholder={img1}
+                imagePosition="right"
               />
             </section>
 
-            {/* ================= Jobs & Career ================= */}
+            {/* Question 2 */}
             <section>
-
               <FAQItem
                 index={1}
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
-                question="Does Vfound provide IT jobs?"
-                answer={
-                  <>
-                    <p className="mb-3 text-gray-700">
-                      Yes, Vfound actively helps candidates discover real and
-                      relevant IT job opportunities through its dedicated jobs
-                      section. The focus is on fresher friendly and off campus
-                      hiring.
-                    </p>
-                    <ul className="list-disc ml-6 space-y-1 text-gray-700">
-                      <li>Live IT job openings from trusted sources</li>
-                      <li>Off campus and entry level roles</li>
-                      <li>Direct application links to company pages</li>
-                      <li>No recruitment agencies or middlemen involved</li>
-                    </ul>
-                  </>
-                }
+                question="How is this Different from normal ATS Resume checker ?"
+                answer="Unlike a normal ATS checker that only scores keyword matches, this scanner gives contextual insights. It evaluates relevance of skills, role alignment, clarity, and impact of experience, and provides actionable suggestions—focusing on why your resume works or doesn’t, not just how many keywords you used."
+                imagePlaceholder={img2}
+                imagePosition="left"
               />
             </section>
-
+            
+            {/* Question 3 */}
             <section>
-              <FAQItem
-                index={8}
-                openIndex={openIndex}
-                toggleFAQ={toggleFAQ}
-                question="Do recruiters directly hire from Vfound?"
-                answer={
-                  <>
-                    <p className="mb-3 text-gray-700">
-                      Vfound is not a recruitment agency. Instead, it acts as a discovery and
-                      preparation platform that connects users with real job opportunities.
-                    </p>
-                    <ul className="list-disc ml-6 space-y-1 text-gray-700">
-                      <li>Jobs link directly to company career pages</li>
-                      <li>No resume selling or third-party sharing</li>
-                      <li>Users apply independently</li>
-                      <li>Complete transparency in job applications</li>
-                    </ul>
-                  </>
-                }
-              />
-            </section>
-
-            <section>
-              <FAQItem
-                index={9}
-                openIndex={openIndex}
-                toggleFAQ={toggleFAQ}
-                question="Is my resume data safe on Vfound?"
-                answer={
-                  <>
-                    <p className="mb-3 text-gray-700">
-                      Yes, user data privacy and security are taken seriously on Vfound.
-                      Uploaded resumes are processed only to provide analysis and insights.
-                    </p>
-                    <ul className="list-disc ml-6 space-y-1 text-gray-700">
-                      <li>No public sharing</li>
-                      <li>Used only for analysis and improvement</li>
-                      <li>Handled using secure infrastructure</li>
-                    </ul>
-                  </>
-                }
-              />
-
-            </section>
-
-
-
-
-
-            {/* ================= Platform & Learning ================= */}
-            <section>
-              
               <FAQItem
                 index={2}
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
-                question="How often are roadmaps updated?"
-                answer={
-                  <>
-                    <p className="mb-3 text-gray-700">
-                      Our learning and career roadmaps are updated every month
-                      to reflect the fast changing technology industry and
-                      current hiring trends.
-                    </p>
-                    <ul className="list-disc ml-6 space-y-1 text-gray-700">
-                      <li>New tools and frameworks added regularly</li>
-                      <li>Skills aligned with real job requirements</li>
-                      <li>Optimized for freshers and early professionals</li>
-                      <li>Focus on long-term IT career growth</li>
-                    </ul>
-                  </>
-                }
+                question="Is it a Fresher Friendly ?"
+                answer="Yes—it's fresher-friendly. It's designed to work even if you don't have full-time experience. Just upload your projects, internships, certifications, and volunteering experience. It guides you to build a strong CV without requiring full-time work history. Instead of punishing them for limited experience, it guides freshers to build a more robust resume effectively instead of pressuring them for limited experience."
+                imagePlaceholder={img3}
+                imagePosition="right"
               />
             </section>
 
+            {/* Question 4 */}
             <section>
-              <FAQItem
-              index={5}
-              openIndex={openIndex}
-              toggleFAQ={toggleFAQ}
-              question="How is Vfound different from other platforms?"
-              answer={
-                <>
-                  <p className="mb-3 text-gray-700">
-                    Vfound is built specifically for recent IT graduates and early-career
-                    professionals, unlike generic job portals or resume tools. Every feature
-                    is designed with fresher-level hiring expectations and real-world
-                    industry needs in mind.
-                  </p>
-                  <ul className="list-disc ml-6 space-y-1 text-gray-700">
-                    <li>Resume analysis focused on technical depth, not just keywords</li>
-                    <li>Live and fresher-friendly IT job listings</li>
-                    <li>AI-powered insights tailored to specific job roles</li>
-                    <li>No unnecessary features meant for senior or irrelevant roles</li>
-                  </ul>
-                </>
-              }
-            />
-
-            </section>
-
-            <section>
-              <FAQItem
-              index={4}
-              openIndex={openIndex}
-              toggleFAQ={toggleFAQ}
-              question="Do you offer a free trial?"
-              answer={
-                <>
-                  <p className="mb-3 text-gray-700">
-                    Yes, Vfound offers a free trial that allows users to experience core
-                    platform features before committing to any paid plans. The free trial
-                    is designed to help you understand how our tools work and how they can
-                    improve your job readiness.
-                  </p>
-                  <ul className="list-disc ml-6 space-y-1 text-gray-700">
-                    <li>No credit card required to start</li>
-                    <li>Free resume analysis with actionable feedback</li>
-                    <li>Access to essential career insights</li>
-                    <li>Ideal for students and fresh graduates testing the platform</li>
-                  </ul>
-                </>
-              }
-            />
-            </section>
-
-
-            {/* ================= AI & Platform ================= */}
-            <section>
-
               <FAQItem
                 index={3}
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
-                question="Does Vfound use AI?"
-                answer={
-                  <>
-                    <p className="mb-3 text-gray-700">
-                      Yes, Vfound uses advanced AI and large language models to
-                      power its resume analysis and content optimization tools.
-                      The goal is to provide context aware and role specific
-                      insights.
-                    </p>
-                    <ul className="list-disc ml-6 space-y-1 text-gray-700">
-                      <li>Skill gap detection based on job roles</li>
-                      <li>Contextual resume evaluation</li>
-                      <li>Modern ATS-aligned recommendations</li>
-                      <li>Improved clarity and resume impact</li>
-                    </ul>
-                  </>
-                }
+                question="Why do thousand trust this Resume analyser ?"
+                answer="Thousands trust this resume analyser because it goes beyond basic ATS scoring. It provides accurate, role-specific resume optimization suggestions, and fresher-friendly insights—taking real context into account, not just keywords."
+                imagePlaceholder={img4}
+                imagePosition="left"
+              />
+            </section>
+
+            {/* Question 5 */}
+            <section>
+              <FAQItem
+                index={4}
+                openIndex={openIndex}
+                toggleFAQ={toggleFAQ}
+                question="Why a strong Resume Matters ?"
+                answer="It clearly shows your skills, experience, and potential. Helps you pass ATS filters, and convinces recruiters you're worth shortlisting. In a competitive job market, a strong resume is essential."
+                imagePlaceholder={img5}
+                imagePosition="right"
+              />
+            </section>
+
+            {/* Question 6 */}
+            <section>
+              <FAQItem
+                index={5}
+                openIndex={openIndex}
+                toggleFAQ={toggleFAQ}
+                question="What is job Recommendation ?"
+                answer="Job recommendation is a feature that suggests relevant jobs by matching your skills with live openings. Instead of endlessly scrolling, it matches you with fresher-friendly listings, saving you time and increasing your chances of getting shortlisted."
+                imagePlaceholder= {img6}
+                imagePosition="left"
               />
             </section>
 
@@ -286,24 +189,31 @@ function FAQItem({
   toggleFAQ,
   question,
   answer,
+  imagePlaceholder,
+  imagePosition = "right",
 }: {
   index: number;
   openIndex: number | null;
   toggleFAQ: (index: number) => void;
   question: string;
-  answer: React.ReactNode;
+  answer: string;
+  imagePlaceholder: string | any;
+  imagePosition?: "left" | "right";
 }) {
+  // Alternate glow colors
+  const glowColor = index % 2 === 0 ? "shadow-green-400/50" : "shadow-pink-400/50";
+  
   return (
-    <div className="border border-[#2E5E99]/70 rounded-xl shadow-sm hover:shadow-md transition-all">
+    <div className="border border-[#2E5E99]/70 rounded-xl shadow-sm hover:shadow-md transition-all bg-white">
       <button
         onClick={() => toggleFAQ(index)}
-        className="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none"
+        className="w-full flex justify-between items-center px-4 md:px-6 py-4 text-left focus:outline-none"
       >
-        <span className="text-lg font-semibold text-gray-700">
+        <span className="text-base md:text-lg font-semibold text-gray-700 pr-4">
           {question}
         </span>
         <svg
-          className={`h-6 w-6 text-gray-600 transition-transform duration-300 ${
+          className={`h-5 w-5 md:h-6 md:w-6 text-gray-600 transition-transform duration-300 shrink-0 ${
             openIndex === index ? "rotate-180" : ""
           }`}
           fill="none"
@@ -323,12 +233,71 @@ function FAQItem({
       <div
         className={`overflow-hidden transition-all duration-300 ${
           openIndex === index
-            ? "max-h-[500px] opacity-100"
+            ? "max-h-[800px] opacity-100"
             : "max-h-0 opacity-0"
         }`}
       >
-        <div className="px-6 pb-4">
-          {answer}
+        <div className="px-4 md:px-6 pb-4 md:pb-6">
+          <div className={`flex flex-col gap-4 md:gap-6 items-start md:items-center ${
+            imagePosition === "left" ? "md:flex-row-reverse" : "md:flex-row"
+          }`}>
+            {/* Text Content */}
+            <div className="flex-1 text-sm md:text-base text-gray-600 leading-relaxed">
+              {answer}
+            </div>
+            
+            {/* Image Placeholder */}
+            <div className="w-full md:w-64 lg:w-80 flex-shrink-0">
+              <div 
+                className={`relative w-full aspect-square md:aspect-[4/3] rounded-lg border-2 overflow-hidden transition-all ${
+                  index % 2 === 0 
+                    ? "border-green-300 shadow-lg shadow-green-300/60" 
+                    : "border-pink-300 shadow-lg shadow-pink-300/60"
+                }`}
+                style={{
+                  boxShadow: index % 2 === 0 
+                    ? "0 10px 25px -5px rgba(74, 222, 128, 0.4), 0 8px 10px -6px rgba(74, 222, 128, 0.3)"
+                    : "0 10px 25px -5px rgba(244, 114, 182, 0.4), 0 8px 10px -6px rgba(244, 114, 182, 0.3)"
+                }}
+              >
+                {typeof imagePlaceholder === 'string' ? (
+                  // Placeholder when no image
+                  <div className="w-full h-full bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center">
+                    <div className="text-center p-4">
+                      <svg
+                        className="mx-auto h-12 w-12 md:h-16 md:w-16 text-gray-400 mb-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                      </svg>
+                      <p className="text-xs md:text-sm text-gray-500 font-medium">
+                        Image Placeholder
+                      </p>
+                      <p className="text-xs text-gray-400 mt-1">
+                        {imagePlaceholder}
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  // Actual image
+                  <Image 
+                    src={imagePlaceholder} 
+                    alt={question}
+                    className="w-full h-full object-cover"
+                    width={500}
+                    height={400}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
