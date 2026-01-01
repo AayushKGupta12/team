@@ -72,17 +72,17 @@ export default function FAQ() {
                 answer={
                   <>
                     <p className="mb-3 text-gray-700">
-                      Yes, Vfound offers a completely free resume analysis
+                      <span className="bg-[#ffe8b1] px-2">Yes,</span> Vfound offers a <span className="bg-[#ffe8b1] px-2">completely free</span> resume analysis
                       feature designed specifically for IT students, recent
                       graduates, and early career professionals. Unlike basic
-                      keyword scanners, our system deeply evaluates your resume
+                      keyword scanners, our <span className="bg-[#ffe8b1] px-2">system deeply evaluates</span> your resume
                       against current hiring expectations.
                     </p>
                     <ul className="list-disc ml-6 space-y-1 text-gray-700">
-                      <li>Technical depth and skill relevance analysis</li>
-                      <li>ATS-compatibility and formatting checks</li>
-                      <li>Comparison with real market competition</li>
-                      <li>Clear and actionable improvement suggestions</li>
+                      <li><span className="bg-[#ffe8b1] px-2">Technical depth</span> and skill relevance analysis</li>
+                      <li><span className="bg-[#ffe8b1] px-2">ATS-compatibility</span> and formatting checks</li>
+                      <li>Comparison with real<span className="bg-[#ffe8b1] px-2">market competition</span></li>
+                      <li>Clear and actionable improvement <span className="bg-[#ffe8b1] px-2">suggestions</span></li>
                     </ul>
                   </>
                 }
@@ -100,16 +100,16 @@ export default function FAQ() {
                 answer={
                   <>
                     <p className="mb-3 text-gray-700">
-                      Yes, Vfound actively helps candidates discover real and
+                      <span className="bg-[#ffe8b1] px-2">Yes,</span> Vfound actively helps candidates discover real and
                       relevant IT job opportunities through its dedicated jobs
-                      section. The focus is on fresher friendly and off campus
+                      section. The focus is on <span className="bg-[#ffe8b1] px-2">fresher friendly</span> and off campus
                       hiring.
                     </p>
                     <ul className="list-disc ml-6 space-y-1 text-gray-700">
                       <li>Live IT job openings from trusted sources</li>
-                      <li>Off campus and entry level roles</li>
+                      <li>Off campus and <span className="bg-[#ffe8b1] px-2">entry level roles</span></li>
                       <li>Direct application links to company pages</li>
-                      <li>No recruitment agencies or middlemen involved</li>
+                      <li><span className="bg-[#ffe8b1] px-2">No recruitment agencies</span> and <span className="bg-[#ffe8b1] px-2">no middlemen involved</span></li>
                     </ul>
                   </>
                 }
@@ -126,12 +126,12 @@ export default function FAQ() {
                   <>
                     <p className="mb-3 text-gray-700">
                       Vfound is not a recruitment agency. Instead, it acts as a discovery and
-                      preparation platform that connects users with real job opportunities.
+                      <span className="bg-[#ffe8b1] px-2">preparation platform</span> that connects users with real job opportunities.
                     </p>
                     <ul className="list-disc ml-6 space-y-1 text-gray-700">
                       <li>Jobs link directly to company career pages</li>
                       <li>No resume selling or third-party sharing</li>
-                      <li>Users apply independently</li>
+                      <li>Users <span className="bg-[#ffe8b1] px-2">apply independently</span></li>
                       <li>Complete transparency in job applications</li>
                     </ul>
                   </>
@@ -148,13 +148,13 @@ export default function FAQ() {
                 answer={
                   <>
                     <p className="mb-3 text-gray-700">
-                      Yes, user data privacy and security are taken seriously on Vfound.
+                      <span className="bg-[#ffe8b1] px-2">Yes,</span> user data privacy and security are taken seriously on Vfound.
                       Uploaded resumes are processed only to provide analysis and insights.
                     </p>
                     <ul className="list-disc ml-6 space-y-1 text-gray-700">
                       <li>No public sharing</li>
                       <li>Used only for analysis and improvement</li>
-                      <li>Handled using secure infrastructure</li>
+                      <li>Handled using <span className="bg-[#ffe8b1] px-2">secure infrastructure</span></li>
                     </ul>
                   </>
                 }
@@ -177,15 +177,15 @@ export default function FAQ() {
                 answer={
                   <>
                     <p className="mb-3 text-gray-700">
-                      Our learning and career roadmaps are updated every month
+                      Our learning and career roadmaps are <span className="bg-[#ffe8b1] px-2">updated every month</span>
                       to reflect the fast changing technology industry and
-                      current hiring trends.
+                      current hiring <span className="bg-[#ffe8b1] px-2">trends.</span>
                     </p>
                     <ul className="list-disc ml-6 space-y-1 text-gray-700">
                       <li>New tools and frameworks added regularly</li>
                       <li>Skills aligned with real job requirements</li>
-                      <li>Optimized for freshers and early professionals</li>
-                      <li>Focus on long-term IT career growth</li>
+                      <li><span className="bg-[#ffe8b1] px-2">Optimized for freshers</span> and early professionals</li>
+                      <li>Focus on <span className="bg-[#ffe8b1] px-2">long-term IT career growth</span></li>
                     </ul>
                   </>
                 }
@@ -201,15 +201,15 @@ export default function FAQ() {
               answer={
                 <>
                   <p className="mb-3 text-gray-700">
-                    Vfound is built specifically for recent IT graduates and early-career
+                    Vfound is built specifically for <span className="bg-[#ffe8b1] px-2">recent IT graduates</span> and early-career
                     professionals, unlike generic job portals or resume tools. Every feature
-                    is designed with fresher-level hiring expectations and real-world
+                    is designed with <span className="bg-[#ffe8b1] px-2">fresher-level hiring expectations</span> and real-world
                     industry needs in mind.
                   </p>
                   <ul className="list-disc ml-6 space-y-1 text-gray-700">
-                    <li>Resume analysis focused on technical depth, not just keywords</li>
+                    <li>Resume analysis focused on <span className="bg-[#ffe8b1] px-2">technical depth,</span> not just keywords</li>
                     <li>Live and fresher-friendly IT job listings</li>
-                    <li>AI-powered insights tailored to specific job roles</li>
+                    <li>AI-powered <span className="bg-[#ffe8b1] px-2">insights tailored</span> to specific job roles</li>
                     <li>No unnecessary features meant for senior or irrelevant roles</li>
                   </ul>
                 </>
@@ -227,15 +227,15 @@ export default function FAQ() {
               answer={
                 <>
                   <p className="mb-3 text-gray-700">
-                    Yes, Vfound offers a free trial that allows users to experience core
+                    Yes, Vfound offers a <span className="bg-[#ffe8b1] px-2">free trial that</span> allows users to experience core
                     platform features before committing to any paid plans. The free trial
                     is designed to help you understand how our tools work and how they can
                     improve your job readiness.
                   </p>
                   <ul className="list-disc ml-6 space-y-1 text-gray-700">
-                    <li>No credit card required to start</li>
+                    <li><span className="bg-[#ffe8b1] px-2">No credit card</span> required to start</li>
                     <li>Free resume analysis with actionable feedback</li>
-                    <li>Access to essential career insights</li>
+                    <li>Access to <span className="bg-[#ffe8b1] px-2">essential career insights</span></li>
                     <li>Ideal for students and fresh graduates testing the platform</li>
                   </ul>
                 </>
@@ -256,15 +256,15 @@ export default function FAQ() {
                   <>
                     <p className="mb-3 text-gray-700">
                       Yes, Vfound uses advanced AI and large language models to
-                      power its resume analysis and content optimization tools.
+                      power its resume analysis and <span className="bg-[#ffe8b1] px-2">content optimization tools.</span>
                       The goal is to provide context aware and role specific
                       insights.
                     </p>
                     <ul className="list-disc ml-6 space-y-1 text-gray-700">
-                      <li>Skill gap detection based on job roles</li>
-                      <li>Contextual resume evaluation</li>
-                      <li>Modern ATS-aligned recommendations</li>
-                      <li>Improved clarity and resume impact</li>
+                      <li><span className="bg-[#ffe8b1] px-2">Skill gap detection</span> based on job roles</li>
+                      <li>Contextual <span className="bg-[#ffe8b1] px-2">resume evaluation</span></li>
+                      <li>Modern <span className="bg-[#ffe8b1] px-2">ATS-aligned recommendations</span></li>
+                      <li><span className="bg-[#ffe8b1] px-2">Improved clarity</span> and resume impact</li>
                     </ul>
                   </>
                 }

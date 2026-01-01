@@ -54,11 +54,11 @@ export default function FeatureSection() {
         {/* ===== SECTION HEADER ===== */}
         <header className="max-w-4xl mx-auto text-center mb-18 px-6">
           <h2 className="text-4xl lg:text-5xl font-light text-[#0d2440] tracking-tight leading-tight">
-            Complete AI career toolkit for developers
+            Complete <span className="bg-[#ffe8b1] px-2">career toolkit</span> for developers
           </h2>
 
           <p className="mt-2 text-xl text-gray-600 max-w-3xl mx-auto">
-            Developer Toolkit for IT grads to build resumes, cover letters, and find jobs in India.
+            For IT grads to build resumes, cover letters, and find jobs in India.
           </p>
         </header>
 

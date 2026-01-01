@@ -40,7 +40,7 @@ export default function Footer() {
               </Link>
 
             <p className="mt-4 text-sm text-white/80">
-              Helping developers find jobs, build Industry standard resumes & cover letter.
+              <span className="text-[#ffe8b1]">Helping developers</span> find jobs, build Industry standard resumes & cover letter.
             </p>
           </div>
 
