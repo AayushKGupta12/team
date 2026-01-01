@@ -21,7 +21,7 @@ export const metadata = {
     template: "%s | VFound",
   },
   description:
-    "VFound is an AI-powered Developer Builder that checks your resume on 32+ technical parameters, generates ATS-friendly cover letters, and lists Only verified IT jobs in India.",
+    "vfound is an AI-powered CareerTech SaaS(Software as a Service) helping undergraduates build ATS-ready resumes, generate job-specific cover letters, and discover real off-campus opportunities.",
   keywords: [
     "Developer Builder",
     "AI resume analyzer",
