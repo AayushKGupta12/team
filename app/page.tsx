@@ -7,6 +7,8 @@ import HeroCTA from './components/HeroCTA'
 import Countdown from './components/Countdown'
 import Testimonials from './components/test'
 import CongratsPopup from './components/CongratsPopUp'
+import Banner from './components/Banner'
+
 
 export const metadata = {
   title: "VFound – IT Jobs, AI Resume Analyzer & Cover Letter Maker",
@@ -32,6 +34,10 @@ const Page = () => {
 
   return (
     <div>
+      <Banner
+        isPositive={false}
+        message="Terms & Condition updated"
+      />
       <Navbar />
       <Hero />
       <Features />

@@ -73,7 +73,7 @@ const contributors: Contributor[] = [
     role: "Product Designer",
     avatar: "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/WhatsApp%20Image%202026-01-02%20at%208.50.30%20AM.jpeg",
     avatarPosition: "center 20%",
-    linkedin: "https://www.linkedin.com/in/rajat-raj-shah-9272b41b4",
+    linkedin: "https://www.linkedin.com/in/rajat-raj-shah",
     github: "https://github.com/Rajat101010",
     website: "https://www.rajatrajshah.com.np",
   },
