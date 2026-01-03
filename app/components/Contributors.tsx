@@ -28,7 +28,7 @@ const contributors: Contributor[] = [
     role: "UI/UX & Graphic Designer",
     avatar:
       "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/f3ec5818-be86-41fa-b20b-3b481bfb54aa.jpg",
-    avatarPosition: "center 20%",
+    avatarPosition: "center 60%",
     linkedin: "https://www.linkedin.com/in/debasmita-pahari-74104a378/",
     website:
       "https://drive.google.com/file/d/1qUlYLv05p_jJhAIf3nFlHDiz3ROjcDut/view",
@@ -41,11 +41,21 @@ const contributors: Contributor[] = [
     avatarPosition: "center 20%",
     github: "",
   },
+
+  {
+    name: "Adrija Chatterjee",
+    role: "React Developer",
+    avatar: "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/WhatsApp%20Image%202026-01-02%20at%2012.47.17%20PM.jpeg",
+    avatarPosition: "center 20%",
+    linkedin:"https://www.linkedin.com/in/adrija-chatterjee-054b13214",
+    github: "https://github.com/Adrija21264/",
+  },
+
   {
     name: "Aayush Gupta",
     role: "Software Engineering",
     avatar: "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/c75e76a8-3fd9-4f9c-95b1-29839a58e631.jpg",
-    avatarPosition: "center 20%",
+    avatarPosition: "center 80%",
     linkedin: "https://www.linkedin.com/in/aayush-kumar-gupta-2b7952219",
     website: "https://aayushkgupta12.netlify.app/",
   },
@@ -54,14 +64,14 @@ const contributors: Contributor[] = [
     role: "Content Writer",
     avatar:
       "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/986025fa-8b8f-450d-803b-de9c3a306c0d.jpg",
-    avatarPosition: "center 15%",
+    avatarPosition: "center 25%",
     linkedin: "https://www.linkedin.com/in/khushbu-kumari-068b18286",
     github: "https://github.com/Raykhushbu15",
   },
   {
     name: "Rajat Raj Shah",
     role: "Product Designer",
-    avatar: "",
+    avatar: "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/WhatsApp%20Image%202026-01-02%20at%208.50.30%20AM.jpeg",
     avatarPosition: "center 20%",
     linkedin: "https://www.linkedin.com/in/rajat-raj-shah-9272b41b4",
     github: "https://github.com/Rajat101010",

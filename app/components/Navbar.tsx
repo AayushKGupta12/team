@@ -38,6 +38,7 @@ const navItems: NavItem[] = [
     dropdown: [
       { label: "About us", href: "/about" },
       { label: "Careers", href: "/careers" },
+      { label: "Team", href: "/team"},
       { label: "Contact Us", href: "/contact" },
       { label: "Term of Use", href: "/term-of-use" },
     ],

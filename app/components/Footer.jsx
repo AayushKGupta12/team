@@ -17,7 +17,8 @@ export default function Footer() {
     { label: "About us", href: "/about" },
     { label: "Careers", href: "/careers" },
     { label: "Contact", href: "/contact" },
-    { label: "Term of Use", href: "/term-of-use" },
+    { label: "Our Contributors", href:"/team"},
+    { label: "Term of Use", href: "/term-of-use"},
     // { label: "Pricing", href: "/pricing" } Pricing ka route nai dalenge abhi, om namah shivay
   ];
 
