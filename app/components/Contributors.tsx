@@ -35,14 +35,6 @@ const contributors: Contributor[] = [
     github: "https://github.com/Debasmita1904",
   },
   {
-    name: "Shreya Sharma",
-    role: "Backend Engineer",
-    avatar: "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/c9c79721-2d6d-46bf-a8c5-6bf37406136c.jpg",
-    avatarPosition: "center 20%",
-    github: "",
-  },
-
-  {
     name: "Adrija Chatterjee",
     role: "React Developer",
     avatar: "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/WhatsApp%20Image%202026-01-02%20at%2012.47.17%20PM.jpeg",
