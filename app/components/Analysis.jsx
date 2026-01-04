@@ -176,7 +176,7 @@ function ConnectionTest() {
       <div className="w-full md:w-1/3 lg:w-1/4 rounded-xl border border-[#0d2440] bg-[#e7f0fa] p-4 sm:p-6 shadow-lg">
         <div className="text-left mb-6 flex items-center justify-center">
           <FileText className="w-8 h-8 text-[#0d2440]" />
-          <h1 className="text-2xl font-semibold text-gray-800 mx-3">
+          <h1 id="roles" className="text-2xl font-semibold text-gray-800 mx-3">
             Upload Resume
           </h1>
         </div>

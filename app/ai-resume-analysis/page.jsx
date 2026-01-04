@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import ATSResumeCheckerApp from '../components/Analysis'
 import ResumeFAQ from '../components/ResumeFAQ'
 import FAQ from '../components/FAQ2'
+import ResumeCTA from '../components/ResumeCTA'
 
 export const metadata = {
   title: "AI Resume Analyzer – Check ATS Resume Score | VFound",
@@ -24,6 +25,7 @@ const page = () => {
       <ATSResumeCheckerApp />
       <ResumeFAQ/>
       <FAQ/>
+      <ResumeCTA/>
       <Footer/>
       
     </div>
