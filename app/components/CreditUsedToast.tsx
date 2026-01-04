@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 type Props = {
@@ -8,17 +8,34 @@ type Props = {
   onClose?: () => void;
 };
 
-const AUTO_CLOSE_MS = 20000;
+const AUTO_CLOSE_MS = 4000;
 
 export default function CreditUsedToast({ show, onClose }: Props) {
+  const [progress, setProgress] = useState(100);
+
   useEffect(() => {
-    if (!show) return;
+    if (!show) {
+      setProgress(100);
+      return;
+    }
+
+    setProgress(100);
+
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        const newProgress = prev - (100 / (AUTO_CLOSE_MS / 100));
+        return newProgress <= 0 ? 0 : newProgress;
+      });
+    }, 100);
 
     const timer = setTimeout(() => {
       onClose?.();
     }, AUTO_CLOSE_MS);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timer);
+    };
   }, [show, onClose]);
 
   return (
@@ -27,25 +44,29 @@ export default function CreditUsedToast({ show, onClose }: Props) {
       <AnimatePresence>
         {show && (
           <motion.div
-            initial={{ y: -16, scale: 0.96, opacity: 0 }}
-            animate={{ y: 0, scale: 1, opacity: 1 }}
-            exit={{ x: "100%", opacity: 0 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="fixed z-50 hidden md:flex top-6 right-6"
+            initial={{ x: 400, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 400, opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="fixed z-50 hidden md:block top-6 right-8"
           >
-            <div className="
-              flex items-center
-              px-6 py-3
-              rounded-xl
-              backdrop-blur-xl
-              bg-amber-200/70
-              border border-amber-300/40
-              shadow-xl shadow-amber-900/10
-              text-amber-950
-              text-sm font-semibold tracking-wide
-            ">
-              <span className="text-black font-bold mr-2">-1</span>
-              <span className="text-black font-bold">Credit</span>
+            <div className="relative overflow-hidden bg-green-800 text-white font-medium">
+              {/* Main Content */}
+              <div className="px-5 py-3 flex items-center gap-4">
+                <span className="text-xl font-bold">-1</span>
+                <span className="text-lg">Credit Deducted</span>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="absolute bottom-0 left-0 h-1.5 bg-green-500 w-full origin-left">
+                <motion.div
+                  className="h-full bg-green-300"
+                  initial={{ scaleX: 1 }}
+                  animate={{ scaleX: progress / 100 }}
+                  transition={{ duration: 0.1, ease: "linear" }}
+                  style={{ transformOrigin: "left" }}
+                />
+              </div>
             </div>
           </motion.div>
         )}
@@ -55,29 +76,29 @@ export default function CreditUsedToast({ show, onClose }: Props) {
       <AnimatePresence>
         {show && (
           <motion.div
-            initial={{ y: -12, scale: 0.96, opacity: 0 }}
-            animate={{ y: 0, scale: 1, opacity: 1 }}
-            exit={{ x: "100%", opacity: 0 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="fixed z-50 md:hidden top-4 right-4"
+            initial={{ x: 300, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 300, opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="fixed z-50 md:hidden top-6 right-6"
           >
-            <div className="
-              flex items-center gap-3
-              px-5 py-3
-              rounded-xl
-              backdrop-blur-xl
-              bg-amber-200/20
-              border border-amber-300/40
-              shadow-lg shadow-amber-900/10
-              text-amber-950
-              text-xs font-semibold
-            ">
-              <span className="uppercase text-[10px] text-amber-700 tracking-widest">
-                Credit
-              </span>
-              <span className="opacity-90">
-                1 used
-              </span>
+            <div className="relative overflow-hidden bg-green-700 text-white font-medium text-sm shadow-xl">
+              {/* Main Content */}
+              <div className="px-6 py-4 flex items-center gap-3">
+                <span className="text-xl font-bold">-1</span>
+                <span>Credit Used</span>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="absolute bottom-0 left-0 h-1 bg-green-500 w-full origin-left">
+                <motion.div
+                  className="h-full bg-green-300"
+                  initial={{ scaleX: 1 }}
+                  animate={{ scaleX: progress / 100 }}
+                  transition={{ duration: 0.1, ease: "linear" }}
+                  style={{ transformOrigin: "left" }}
+                />
+              </div>
             </div>
           </motion.div>
         )}

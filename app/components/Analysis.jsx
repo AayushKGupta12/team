@@ -148,9 +148,11 @@ function ConnectionTest() {
 
   const handlePaidAnalyze = async () => {
     if (!user) return;
+    setShowToast(true);
 
     // 1️⃣ consume credit first
     const usage = await consumeCredit(user.id, "resume_analysis");
+    
 
     // 2️⃣ block if limit reached
     if (!usage.allowed) {
@@ -158,7 +160,7 @@ function ConnectionTest() {
       return;
     }
 
-    setShowToast(true);
+    
 
     // 3️⃣ credit allowed → run existing logic
     await testConnection();

@@ -85,7 +85,8 @@ const IntegrationSection: React.FC<IntegrationSectionProps> = ({
                   src={imageUrl}
                   alt={question}
                   loading="lazy"
-                  className="z-10 mx-auto max-w-full h-auto lg:h-90 lg:w-90"
+                  className="z-10 mx-auto max-w-full h-60 w-60 sm:h-60 sm:w-60 lg:h-90 lg:w-90"
+
                 />
               </div>
             ) : (
@@ -104,7 +105,7 @@ const IntegrationSection: React.FC<IntegrationSectionProps> = ({
 
 const QASection: React.FC = () => {
   return (
-    <div className="bg-gradient-to-b from-white to-gray-50 min-h-screen py-12">
+    <div className="bg-[#f8fbff] min-h-screen py-14">
       <div className="text-center mb-16 px-6">
         <h1
           className="text-4xl lg:text-5xl font-bold mb-4"
