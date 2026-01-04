@@ -2,13 +2,8 @@
 
 import { useState } from "react";
 import Script from "next/script";
-import Image from "next/image";
-import img1 from '../imgs/img1.png';
-import img2 from '../imgs/img2.png';
-import img3 from '../imgs/img3.png';
-import img4 from '../imgs/img4.png';
-import img5 from '../imgs/img5.png';
-import img6 from '../imgs/img6.png';
+import Image, { StaticImageData } from "next/image";
+
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -103,8 +98,16 @@ export default function FAQ() {
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
                 question="What Does this resume Scanner do ?"
-                answer="This resume scanner analyzes resumes to check how well they match a job or internship role. It scans skills, keywords, experience, and formatting, then highlights strengths, gaps, and areas for improvement—helping candidates optimize their resume to pass ATS filters and improve shortlisting chances."
-                imagePlaceholder={img1}
+                intro="It analyzes how recruiters and ATS systems read your resume in seconds.
+You get:"
+bullets={[
+  "Clear strengths and weaknesses",
+  "Skill relevance feedback",
+  "Project and experience evaluation",
+  "Resume structure and clarity insights",
+  "Designed for real hiring scenarios in India, not generic templates."
+]}
+                
                 imagePosition="right"
               />
             </section>
@@ -116,8 +119,16 @@ export default function FAQ() {
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
                 question="How is this Different from normal ATS Resume checker ?"
-                answer="Unlike a normal ATS checker that only scores keyword matches, this scanner gives contextual insights. It evaluates relevance of skills, role alignment, clarity, and impact of experience, and provides actionable suggestions—focusing on why your resume works or doesn’t, not just how many keywords you used."
-                imagePlaceholder={img2}
+                intro="Most tools only check keyword matching.
+This resume analyzer goes beyond ATS by evaluating:"
+                bullets={[
+                  "Skill relevance for specific job roles",
+                  "Project depth and real-world applicability",
+                  "Internships, academics, and hands-on experience",
+                  "Alignment with current Indian hiring trends"
+                ]}
+                end={["Result: A resume that works for both machines and recruiters."]}
+                
                 imagePosition="left"
               />
             </section>
@@ -128,9 +139,16 @@ export default function FAQ() {
                 index={2}
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
-                question="Is it a Fresher Friendly ?"
-                answer="Yes—it's fresher-friendly. It's designed to work even if you don't have full-time experience. Just upload your projects, internships, certifications, and volunteering experience. It guides you to build a strong CV without requiring full-time work history. Instead of punishing them for limited experience, it guides freshers to build a more robust resume effectively instead of pressuring them for limited experience."
-                imagePlaceholder={img3}
+                question="Who Is This Resume Analyzer For?"
+                intro="Ideal for:"
+                bullets={[
+                  "Students and fresh graduates",
+                  "Internship applicants",
+                  "Entry-level IT and software roles",
+                  "Early-career professionals",
+                  "Even without full-time experience, your projects, skills, and training are properly recognized."
+                ]}
+                
                 imagePosition="right"
               />
             </section>
@@ -141,9 +159,17 @@ export default function FAQ() {
                 index={3}
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
-                question="Why do thousand trust this Resume analyser ?"
-                answer="Thousands trust this resume analyser because it goes beyond basic ATS scoring. It provides accurate, role-specific resume optimization suggestions, and fresher-friendly insights—taking real context into account, not just keywords."
-                imagePlaceholder={img4}
+                question="Is It Fresher-Friendly?"
+                intro="Yes. Freshers are evaluated differently and fairly.
+The system understands:"
+                bullets={[
+                  "College and academic projects",
+                  "Internships and training programs",
+                  "Hackathons and certifications",
+                  "Practical tools and tech stacks",
+                  "Your strengths are highlighted, not ignored."
+                ]}
+                
                 imagePosition="left"
               />
             </section>
@@ -154,9 +180,16 @@ export default function FAQ() {
                 index={4}
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
-                question="Why a strong Resume Matters ?"
-                answer="It clearly shows your skills, experience, and potential. Helps you pass ATS filters, and convinces recruiters you're worth shortlisting. In a competitive job market, a strong resume is essential."
-                imagePlaceholder={img5}
+                question="What Insights Do You Get After Uploading?"
+                intro="In under 10 seconds, you receive:"
+                bullets={[
+                  "Resume strengths and weak points",
+                  "Skill gap analysis",
+                  "Project improvement suggestions",
+                  "Resume clarity and structure feedback",
+                  "Your resume remains secure and private and is never shared."
+                ]}
+                
                 imagePosition="right"
               />
             </section>
@@ -167,10 +200,35 @@ export default function FAQ() {
                 index={5}
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
-                question="What is job Recommendation ?"
-                answer="Job recommendation is a feature that suggests relevant jobs by matching your skills with live openings. Instead of endlessly scrolling, it matches you with fresher-friendly listings, saving you time and increasing your chances of getting shortlisted."
-                imagePlaceholder= {img6}
+                question="Why Do Thousands Trust This Resume Analyzer?"
+                intro="Trained on 60,000+ real Indian resumes. More than basic ATS keyword scanning, it is more about:-"
+                bullets={[
+                  "Optimized for students and freshers",
+                  "Updated with current industry hiring trends",
+                  "Simple, fast, and easy to use",
+                  "Over 7000 resumes scanned with a 4.4 user rating."
+                ]}
+                
                 imagePosition="left"
+              />
+            </section>
+
+            <section>
+              <FAQItem
+                index={6}
+                openIndex={openIndex}
+                toggleFAQ={toggleFAQ}
+                question="Why A Strong Resume Matters?"
+                intro="Recruiters spend only a few seconds on each resume.
+A well-structured, relevant resume:"
+                bullets={[
+                  "Increases interview calls",
+                  "Improves shortlist chances",
+                  "Helps you stand out in competitive hiring",
+                  "This platform helps you identify what is holding your resume back and how to fix it."
+                ]}
+                
+                imagePosition="right"
               />
             </section>
 
@@ -188,7 +246,9 @@ function FAQItem({
   openIndex,
   toggleFAQ,
   question,
-  answer,
+  intro,
+  bullets,
+  end,
   imagePlaceholder,
   imagePosition = "right",
 }: {
@@ -196,8 +256,10 @@ function FAQItem({
   openIndex: number | null;
   toggleFAQ: (index: number) => void;
   question: string;
-  answer: string;
-  imagePlaceholder: string | any;
+  intro: string;
+  bullets: string[];
+  end: string[];
+  imagePlaceholder?: string | StaticImageData;
   imagePosition?: "left" | "right";
 }) {
   // Alternate glow colors
@@ -233,7 +295,7 @@ function FAQItem({
       <div
         className={`overflow-hidden transition-all duration-300 ${
           openIndex === index
-            ? "max-h-[800px] opacity-100"
+            ? "max-h-200px opacity-100"
             : "max-h-0 opacity-0"
         }`}
       >
@@ -243,7 +305,12 @@ function FAQItem({
           }`}>
             {/* Text Content */}
             <div className="flex-1 text-sm md:text-base text-gray-600 leading-relaxed">
-              {answer}
+              <p className="mb-4">{intro}</p>
+              <ul className="space-y-2 list-disc list-inside">
+                {bullets.map((bullet, idx) => (
+                  <li key={idx}>{bullet}</li>
+                ))}
+              </ul>
             </div>
             
             {/* Image Placeholder */}
@@ -260,7 +327,7 @@ function FAQItem({
                     : "0 10px 25px -5px rgba(244, 114, 182, 0.4), 0 8px 10px -6px rgba(244, 114, 182, 0.3)"
                 }}
               >
-                {typeof imagePlaceholder === 'string' ? (
+                {!imagePlaceholder || typeof imagePlaceholder === 'string' ? (
                   // Placeholder when no image
                   <div className="w-full h-full bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center">
                     <div className="text-center p-4">
@@ -288,7 +355,7 @@ function FAQItem({
                 ) : (
                   // Actual image
                   <Image 
-                    src={imagePlaceholder} 
+                    src={imagePlaceholder as any} 
                     alt={question}
                     className="w-full h-full object-cover"
                     width={500}
