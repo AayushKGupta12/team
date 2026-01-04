@@ -98,15 +98,14 @@ export default function FAQ() {
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
                 question="What Does this resume Scanner do ?"
-                intro="It analyzes how recruiters and ATS systems read your resume in seconds.
-You get:"
-bullets={[
-  "Clear strengths and weaknesses",
-  "Skill relevance feedback",
-  "Project and experience evaluation",
-  "Resume structure and clarity insights",
-  "Designed for real hiring scenarios in India, not generic templates."
-]}
+                intro="It analyzes how recruiters and ATS systems read your resume in seconds. You get:"
+                bullets={[
+                  "Clear strengths and weaknesses",
+                  "Skill relevance feedback",
+                  "Project and experience evaluation",
+                  "Resume structure and clarity insights",
+                  "Designed for real hiring scenarios in India, not generic templates."
+                ]}
                 
                 imagePosition="right"
               />
@@ -119,8 +118,7 @@ bullets={[
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
                 question="How is this Different from normal ATS Resume checker ?"
-                intro="Most tools only check keyword matching.
-This resume analyzer goes beyond ATS by evaluating:"
+                intro="Most tools only check keyword matching. This resume analyzer goes beyond ATS by evaluating:"
                 bullets={[
                   "Skill relevance for specific job roles",
                   "Project depth and real-world applicability",
@@ -160,8 +158,7 @@ This resume analyzer goes beyond ATS by evaluating:"
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
                 question="Is It Fresher-Friendly?"
-                intro="Yes. Freshers are evaluated differently and fairly.
-The system understands:"
+                intro="Yes. Freshers are evaluated differently and fairly. The system understands:"
                 bullets={[
                   "College and academic projects",
                   "Internships and training programs",
@@ -219,8 +216,7 @@ The system understands:"
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
                 question="Why A Strong Resume Matters?"
-                intro="Recruiters spend only a few seconds on each resume.
-A well-structured, relevant resume:"
+                intro="Recruiters spend only a few seconds on each resume. A well-structured, relevant resume:"
                 bullets={[
                   "Increases interview calls",
                   "Improves shortlist chances",
@@ -258,12 +254,10 @@ function FAQItem({
   question: string;
   intro: string;
   bullets: string[];
-  end: string[];
+  end?: string[];
   imagePlaceholder?: string | StaticImageData;
   imagePosition?: "left" | "right";
 }) {
-  // Alternate glow colors
-  const glowColor = index % 2 === 0 ? "shadow-green-400/50" : "shadow-pink-400/50";
   
   return (
     <div className="border border-[#2E5E99]/70 rounded-xl shadow-sm hover:shadow-md transition-all bg-white">
@@ -295,7 +289,7 @@ function FAQItem({
       <div
         className={`overflow-hidden transition-all duration-300 ${
           openIndex === index
-            ? "max-h-200px opacity-100"
+            ? "max-h-200 opacity-100"
             : "max-h-0 opacity-0"
         }`}
       >
@@ -311,12 +305,15 @@ function FAQItem({
                   <li key={idx}>{bullet}</li>
                 ))}
               </ul>
+              {end && end.length > 0 && (
+                <p className="mt-4">{end.join(' ')}</p>
+              )}
             </div>
             
             {/* Image Placeholder */}
-            <div className="w-full md:w-64 lg:w-80 flex-shrink-0">
+            <div className="w-full md:w-64 lg:w-80 shrink-0">
               <div 
-                className={`relative w-full aspect-square md:aspect-[4/3] rounded-lg border-2 overflow-hidden transition-all ${
+                className={`relative w-full aspect-square md:aspect-4/3 rounded-lg border-2 overflow-hidden transition-all ${
                   index % 2 === 0 
                     ? "border-green-300 shadow-lg shadow-green-300/60" 
                     : "border-pink-300 shadow-lg shadow-pink-300/60"
@@ -329,7 +326,7 @@ function FAQItem({
               >
                 {!imagePlaceholder || typeof imagePlaceholder === 'string' ? (
                   // Placeholder when no image
-                  <div className="w-full h-full bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center">
+                  <div className="w-full h-full bg-linear-to-br from-blue-50 to-purple-50 flex items-center justify-center">
                     <div className="text-center p-4">
                       <svg
                         className="mx-auto h-12 w-12 md:h-16 md:w-16 text-gray-400 mb-2"
@@ -355,7 +352,7 @@ function FAQItem({
                 ) : (
                   // Actual image
                   <Image 
-                    src={imagePlaceholder as any} 
+                    src={imagePlaceholder as StaticImageData} 
                     alt={question}
                     className="w-full h-full object-cover"
                     width={500}
