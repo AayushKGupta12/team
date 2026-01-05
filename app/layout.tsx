@@ -46,6 +46,10 @@ export const metadata = {
     siteName: "VFound",
     type: "website",
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 

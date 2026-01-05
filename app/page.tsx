@@ -14,7 +14,12 @@ export const metadata = {
   title: "VFound – IT Jobs, AI Resume Analyzer & Cover Letter Maker",
   description:
     "Find off-campus IT jobs, analyze your resume with AI, and generate ATS-friendly cover letters. Built for freshers and professionals.",
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
+
 
 
 const Page = () => {
