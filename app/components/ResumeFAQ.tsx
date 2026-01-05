@@ -15,13 +15,6 @@ const IntegrationSection: React.FC<IntegrationSectionProps> = ({
   imageUrl,
   reverse = false,
 }) => {
-  const gradients = [
-    'from-[#ff5a57] via-[#e02f75] to-[#6700a3]',
-    'from-[#050c38] via-[#e02f75] to-[#ff5a57]',
-    'from-[#e02f75] via-[#ff5a57] to-[#6700a3]',
-  ];
-
-  const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
 
   return (
     <section className="w-full py-8 px-5">
@@ -76,9 +69,6 @@ const IntegrationSection: React.FC<IntegrationSectionProps> = ({
 
           {/* Image */}
           <div className="flex-1 w-full relative">
-            <div
-              className={`absolute inset-0 bg-gradient-to-br ${randomGradient} rounded-full blur-2xl opacity-55 scale-90`}
-            />
             {imageUrl ? (
               <div className="relative">
                 <img
@@ -105,7 +95,7 @@ const IntegrationSection: React.FC<IntegrationSectionProps> = ({
 
 const QASection: React.FC = () => {
   return (
-    <div className="bg-[#f8fbff] min-h-screen py-14">
+    <div className="bg-[#e7f0fa]/50 min-h-screen py-14">
       <div className="text-center mb-16 px-6">
         <h1
           className="text-4xl lg:text-5xl font-bold mb-4"
