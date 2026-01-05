@@ -39,14 +39,17 @@ const LOCATION_OPTIONS = [
   "Mysore",
   "Other",
   "Pune",
+  "Other's",
   "Remote",
 ];
 
 const ROLE_OPTIONS = [
   "AI Engineer",
+  "Automation Engineer",
   "Backend Developer",
   "Blockchain Developer",
   "Business Analyst",
+  "Business Intelligence Analyst",
   "Cloud Engineer",
   "Content Strategist",
   "Cybersecurity Analyst",
@@ -60,9 +63,14 @@ const ROLE_OPTIONS = [
   "Frontend Developer",
   "Full Stack Developer",
   "HR Tech Specialist",
+  "Infrastructure Engineer",
+  "Intern",
   "IT Tech Executive",
+  "IT Technician",
   "Machine Learning Engineer",
   "Mobile Developer",
+  "Network Engineer",
+  "Penetration Tester",
   "Product Designer",
   "Product Manager",
   "Quality Analyst",
@@ -74,6 +82,7 @@ const ROLE_OPTIONS = [
   "Technical Support Engineer",
   "Technical Writer",
   "UI/UX Designer",
+  "other's"
 ];
 
 const BATCH_OPTIONS = [
