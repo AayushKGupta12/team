@@ -70,6 +70,8 @@ export default function RootLayout({ children }) {
               gtag('config', 'G-RFS8XFXTZ7');
             `}
           </Script>
+
+          <script src="https://analytics.ahrefs.com/analytics.js" data-key="+DiGaE+ToWRAp0NGrZo2Ng" async></script>
         </head>
 
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
