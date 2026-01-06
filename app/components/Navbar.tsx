@@ -41,6 +41,7 @@ const navItems: NavItem[] = [
       { label: "Team", href: "/team"},
       { label: "Contact Us", href: "/contact" },
       { label: "Term of Use", href: "/term-of-use" },
+      { label: "Disclaimer", href:"/term-of-use#disclaimer"}
     ],
   },
   // { label: "Pricing", href: "/pricing" }, //Pricing ka route nai dalenge abhi, om namah shivay

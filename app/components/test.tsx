@@ -45,9 +45,9 @@ export default function Testimonials() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-center"
           >
-            <h2 className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl xl:text-5xl font-pj">
+            <h1 className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl xl:text-5xl font-pj">
               Our Happy Clients
-            </h2>
+            </h1>
           </motion.div>
 
           <div className="relative mt-10 md:mt-24 md:order-2">
@@ -91,7 +91,7 @@ export default function Testimonials() {
 
                     <blockquote className="mt-8">
                       <p className="text-lg leading-relaxed text-gray-900 font-pj">
-                        "Everything was made clear by the resume analysis, which highlighted my gaps, highlighted my technical strengths, and indicated which jobs I would be most suited for."</p>
+                        "Everything was made clear by Advance resume analysis, which highlighted my gaps, highlighted my technical weekness and evaluated my experience and indicated which jobs I would be most suited for."</p>
                     </blockquote>
 
                     <hr className="mt-3" />
@@ -159,7 +159,7 @@ export default function Testimonials() {
 
                     <blockquote className="mt-8">
                       <p className="text-lg leading-relaxed text-gray-900 font-pj">
-                        "I was astounded by how simple it was to write a polished cover letter. The entire process was quick and easy thanks to the two step builder."</p>
+                        "I was astounded by how simple it was to write a polished cover letter. The entire process was quick and easy thanks to the two step builder and recommened job profiles."</p>
                     </blockquote>
                   </div>
 

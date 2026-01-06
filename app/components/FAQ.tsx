@@ -57,7 +57,7 @@ export default function FAQ() {
         <div className="max-w-5xl mx-auto px-6">
 
           <h1 className="text-6xl font-bold text-center mb-10 text-gray-900 kaushan-script-regular">
-            Want to know more ?
+            Frequently asked Question 
           </h1>
 
           <div className="space-y-6">

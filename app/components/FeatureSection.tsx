@@ -5,20 +5,15 @@ import Image from "next/image";
 import Script from "next/script";
 
 const features = [
-  {
-    title: "Work in India’s Top IT Companies",
-    description:
-      "Discover real IT job opportunities across software engineering, data science, artificial intelligence, cloud computing, and cybersecurity. Job listings are updated regularly and focused on freshers and early-career developers in India.",
-    image:
-      "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/Gemini_Generated_Image_52dpmm52dpmm52dp.png",
-  },
+
   {
     title: "Improve Your Resume Performance",
     description:
-      "Analyze your resume using AI-driven evaluation covering technical depth, ATS compatibility, role relevance, and industry benchmarks. The system evaluates your resume using more than 30 structured parameters used in real hiring processes.",
+      "Analyze your resume using AI-driven evaluation covering technical depth, ATS compatibility, role relevance, and industry benchmarks. The system evaluates your resume using more than 32 structured parameters used in real hiring processes.",
     image:
-      "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/Screenshot%202025-12-11%20133854.png",
+      "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/Gemini_Generated_Image_52dpmm52dpmm52dp.png",
   },
+
   {
     title: "Generate Professional Cover Letters",
     description:
@@ -26,6 +21,24 @@ const features = [
     image:
       "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/Screenshot%202025-12-11%20134243.png",
   },
+
+  // {
+  //   title: "Follow authentic Roadmaps",
+  //   description:
+  //     "Learner can follow our authentic roamaps crafted by Indusrty exterp. Whether u need to upskill or u need to learn completley new technology from scratch. Our roadmaps is crafted for you",
+  //   image:
+  //     "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/Screenshot%202025-12-11%20134243.png",
+  // },
+
+  {
+    title: "Work in India’s Top IT Companies",
+    description:
+      "Discover real IT job opportunities across software engineering, data science, artificial intelligence, cloud computing, and cybersecurity. Job listings are updated regularly and focused on freshers and early-career developers in India.",
+    image:
+      "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/Screenshot%202025-12-11%20133854.png",
+      
+  },
+  
 ];
 
 export default function FeatureSection() {
@@ -53,12 +66,12 @@ export default function FeatureSection() {
       <section className="bg-gradient-to-b from-white to-[#f8fbff] py-18">
         {/* ===== SECTION HEADER ===== */}
         <header className="max-w-4xl mx-auto text-center mb-18 px-6">
-          <h2 className="text-4xl lg:text-5xl font-light text-[#0d2440] tracking-tight leading-tight">
+          <h1 className="text-4xl lg:text-5xl font-light text-[#0d2440] tracking-tight leading-tight">
             Complete <span className="bg-[#ffe8b1] px-2">career toolkit</span> for developers
-          </h2>
+          </h1>
 
           <p className="mt-2 text-xl text-gray-600 max-w-3xl mx-auto">
-            For IT grads to build resumes, cover letters, and find jobs in India.
+            For IT grads to build resumes, cover letters and to follow Authentic Roadmap.
           </p>
         </header>
 

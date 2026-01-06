@@ -16,22 +16,21 @@ export default function HeroCTA() {
 
       <div className="relative z-10 text-center text-white max-w-5xl mx-auto">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-          Ready to Xplore?
+          Ready to explore?
         </h1>
 
         <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-light max-w-4xl mx-auto leading-relaxed mb-10 opacity-95">
-          Trusted by hundreds of companies hiring fresh talent faster with{' '}
-          <span className="font-bold text-white">Vfound.in</span>.
+          Trusted by Thousands of developers by all over India
           
           <div className="flex flex-wrap justify-center gap-3 sm:gap-5 mt-8 mb-6">
             <span className="px-5 py-3 bg-[#050c38]/90 backdrop-blur-sm rounded-full text-sm sm:text-base font-medium border border-white/20">
-              1200+ Job Listings
+              7000+ Resume Eveluated
             </span>
             <span className="px-5 py-3 bg-[#050c38]/90 backdrop-blur-sm rounded-full text-sm sm:text-base font-medium border border-white/20">
-              2800+ Companies
+              6000+ CV Generated
             </span>
             <span className="px-5 py-3 bg-[#050c38]/90 backdrop-blur-sm rounded-full text-sm sm:text-base font-medium border border-white/20">
-              1000+ Developers
+              580+ Listed Co.
             </span>
           </div>
         </div>

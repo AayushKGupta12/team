@@ -532,7 +532,7 @@ const page = () => {
 
 
       <section className="space-y-5">
-        <h1 className="text-2xl font-medium">
+        <h1 id="disclaimer" className="text-2xl font-medium">
           Disclaimer
         </h1>
 
