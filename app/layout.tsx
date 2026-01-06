@@ -71,8 +71,6 @@ export default function RootLayout({ children }) {
             `}
           </Script>
 
-          <script src="https://analytics.ahrefs.com/analytics.js" data-key="+DiGaE+ToWRAp0NGrZo2Ng" async></script>
-          <meta name="ahrefs-site-verification" content="c1ddc9dc0a48321a07985b7175ab8e5b094bdc523559a43d95ca63c2f4392f49"></meta>
         </head>
 
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
