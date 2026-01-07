@@ -90,7 +90,7 @@ export default function FeatureSection() {
             >
               {/* ===== IMAGE ===== */}
               <figure className="relative w-full lg:w-1/3">
-                <div className="relative aspect-[5/4] rounded-3xl overflow-hidden shadow-2xl ring-1 ring-gray-100/50">
+                <div className="relative aspect-[5/4] rounded-md overflow-hidden shadow-xl">
                   <Image
                     src={feature.image}
                     alt={`${feature.title} – Vfound AI career platform`}

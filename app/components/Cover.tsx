@@ -293,10 +293,10 @@ async function handlePaidCoverLetter() {
 
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-blue-100 via-white to-amber-100 p-4 sm:p-8 overflow-hidden">
+    <div className="relative min-h-screen bg-gradient-to-br from-blue-200 via-white to-amber-200 p-4 sm:p-8 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-6">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+          <h1 id="1" className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
             Professional CV, Built in Seconds
           </h1>
           <p className="mt-2 text-xl text-gray-600 max-w-3xl mx-auto">

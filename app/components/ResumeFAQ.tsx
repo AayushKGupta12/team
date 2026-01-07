@@ -95,7 +95,7 @@ const IntegrationSection: React.FC<IntegrationSectionProps> = ({
 
 const QASection: React.FC = () => {
   return (
-    <div className="bg-[#e7f0fa]/50 min-h-screen py-14">
+    <div className="bg-[#ecf2f8] min-h-screen py-14">
       <div className="text-center mb-16 px-6">
         <h1
           className="text-4xl lg:text-5xl font-bold mb-4"
