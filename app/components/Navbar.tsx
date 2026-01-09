@@ -101,13 +101,13 @@ export default function Navbar(): React.JSX.Element {
   return (
     <>
       {/* ================= DESKTOP TOP NAV (UNCHANGED) ================= */}
-      <header className="fixed inset-x-0 top-2 z-40 flex justify-center pointer-events-none">
+      <header className="fixed inset-x-0 top-2 z-40 flex justify-end pointer-events-none">
         <div
           className={`w-full pointer-events-auto transition-transform duration-300 ${
             visible ? "translate-y-0" : "-translate-y-32"
           }`}
         >
-          <div className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl ml-auto px-4 sm:px-6 lg:px-1">
             <div className="flex items-center justify-between gap-4 rounded-2xl bg-[#7ba4d0]/10 border border-black/50 backdrop-blur-xl shadow-xl px-6 py-3">
               <Link
                 href="/"
@@ -123,7 +123,7 @@ export default function Navbar(): React.JSX.Element {
                     href={item.href}
                     className="text-xl text-[#0d2440]"
                   >
-                    {item.label}
+                    {/* {item.label} */}
                   </Link>
                 ))}
               </nav>
