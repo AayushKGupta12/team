@@ -1,7 +1,5 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
 import ResumeHero from '../components/ResumeHero'
-import Footer from '../components/Footer'
 import ATSResumeCheckerApp from '../components/Analysis'
 import ResumeFAQ from '../components/ResumeFAQ'
 import FAQ from '../components/FAQ2'
@@ -20,13 +18,11 @@ const page = () => {
   return (
     
     <div>
-      <Navbar />
       <ResumeHero />
       <ATSResumeCheckerApp />
       <ResumeFAQ/>
       <FAQ/>
       <ResumeCTA/>
-      <Footer/>
       
     </div>
   )

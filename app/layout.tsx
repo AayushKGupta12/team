@@ -1,9 +1,15 @@
+"use client";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import Script from "next/script";
+import { useEffect, useState } from "react";
+
 import "./globals.css";
-import Navbar from "./components/Navbar";
+import DesktopSidebar from "./components/DesktopSidebar";
 import CongratsPopup from "./components/CongratsPopUp";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,49 +21,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: {
-    default: "VFound – AI Resume Analyzer & IT Jobs in India",
-    template: "%s | VFound",
-  },
-  description:
-    "vfound is an AI-powered CareerTech SaaS(Software as a Service) helping undergraduates build ATS-ready resumes, generate job-specific cover letters, and discover real off-campus opportunities.",
-  keywords: [
-    "Developer Builder",
-    "AI resume analyzer",
-    "resume ATS checker",
-    "IT jobs India",
-    "software jobs India",
-    "cover letter generator",
-    "resume analysis for developers",
-    "ATS score for my resume",
-    "How to make resume",
-    "How to make cover letter",
-  ],
-  metadataBase: new URL("https://vfound.in"),
-  alternates: {
-    canonical: "https://vfound.in",
-  },
-  openGraph: {
-    title: "VFound - Smart Resume Analyzer & IT Jobs Platform",
-    description:
-      "Analyze your resume, generate ATS-optimized cover letters, and apply to verified IT jobs in India.",
-    url: "https://vfound.in",
-    siteName: "VFound",
-    type: "website",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [collapsed, setCollapsed] = useState(true);
 
+  // ✅ Desktop open by default, mobile collapsed
+  useEffect(() => {
+    if (window.innerWidth >= 1024) {
+      setCollapsed(false);
+    }
+  }, []);
 
-export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
         <head>
+          {/* Google Analytics */}
           <Script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-RFS8XFXTZ7"
@@ -70,13 +52,33 @@ export default function RootLayout({ children }) {
               gtag('config', 'G-RFS8XFXTZ7');
             `}
           </Script>
-
         </head>
 
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <Navbar />
-            {children}
-            <CongratsPopup />
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
+        >
+          <div className="relative min-h-screen w-full">
+            {/* SIDEBAR (fixed) */}
+            <DesktopSidebar
+              collapsed={collapsed}
+              setCollapsed={setCollapsed}
+            />
+
+            {/* MAIN CONTENT */}
+            <main
+              className={`
+                min-h-screen w-full
+                transition-all duration-300 ease-in-out
+                pl-0
+                ${collapsed ? "lg:pl-20" : "lg:pl-64"}
+              `}
+            >
+              <Navbar />
+              {children}
+              <CongratsPopup />
+              <Footer />
+            </main>
+          </div>
         </body>
       </html>
     </ClerkProvider>

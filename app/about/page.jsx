@@ -6,9 +6,7 @@ import AboutHero from '../components/AboutHero'
 const page = () => {
   return (
     <div>
-      <Navbar />
       <AboutHero />
-      <Footer />
     </div>
   )
 }

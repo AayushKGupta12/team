@@ -1,11 +1,7 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-
 const page = () => {
   return (
   <div className="bg-white text-gray-900">
-    <Navbar />
 
     <main className="max-w-5xl mx-auto px-6 py-16 space-y-12">
 
@@ -568,8 +564,6 @@ const page = () => {
       </section>
 
     </main>
-
-    <Footer />
   </div>
 );
 

@@ -1,5 +1,3 @@
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import CoverHero from '../components/CoverHero'
 import Cover from '../components/Cover'
 import CoverFeatures from '../components/CoverFeatures'
@@ -16,12 +14,10 @@ export const metadata = {
 const page = () => {
   return (
     <div>
-        <Navbar />
         <CoverHero />
         <Cover/>
         <CoverFeatures/>
         <FAQ3/>
-        <Footer/>
       
     </div>
   )

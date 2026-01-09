@@ -1,7 +1,6 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import BlogHero from '../components/BlogHero'
-import Footer from '../components/Footer'
 import Blogs from '../components/Blogs' 
 
 export const metadata = {
@@ -17,7 +16,6 @@ const page = () => {
         <Navbar />
         <BlogHero />
         <Blogs /> 
-        <Footer />
     </div>
   )
 }

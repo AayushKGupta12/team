@@ -1,5 +1,4 @@
 import FAQ from './components/FAQ'
-import Footer from './components/Footer'
 import Hero from './components/Hero'
 import Navbar from './components/Navbar'
 import Features from './components/FeatureSection'
@@ -39,6 +38,7 @@ const Page = () => {
 
   return (
     <div>
+
       <Banner
         isPositive={false}
         message="Terms & Condition updated"
@@ -51,7 +51,6 @@ const Page = () => {
       <CongratsPopup />
       <HeroCTA />
       <Countdown />
-      <Footer />
     </div>
   )
 }
