@@ -46,12 +46,12 @@ export default function DesktopSidebar({
       <aside
         className={`
             fixed left-0 top-0 z-50
-            h-screen bg-white border-r
+            h-screen bg-[#2e5e99] border-r
             transition-all duration-300 ease-in-out
             overflow-hidden
             ${collapsed
             ? "w-20 -translate-x-full lg:translate-x-0"
-            : "w-64 translate-x-0"}
+            : "w-54 translate-x-0 bg-[#e7f0fa]"}
         `}
         >
 
@@ -96,19 +96,20 @@ export default function DesktopSidebar({
         {/* TAGLINE */}
         {!collapsed && (
           
-          <div className="ml-6 mt-4 px-4">
+          <div className="mt-4 px-3">
             <Link href="/">
               <span className="block text-5xl font-bold kaushan-script-regular text-[#0d2440]">
                 Vfound.in
               </span>
             </Link>
-            <p className="mt-2 ml-3 text-sm text-gray-500">
+            <p className="mt-2 ml-3 text-sm text-gray-800">
               Your AI Developer Builder
             </p>
+            <hr className="mt-3 text-gray-300"/>
           </div>
         )}
 
-        <hr className="mt-3 bg-gray-800"/>
+        
 
 
         {/* SERVICES */}
@@ -138,11 +139,11 @@ export default function DesktopSidebar({
         </div>
 
         {/* BOTTOM */}
-        <div className="absolute bottom-0 left-0 w-full border-t bg-white p-3">
+        <div className="absolute bottom-0 w-full bg-[#ffd77a]/70 rounded-t-3xl p-3">
           <SignedIn>
             <div className="flex items-center justify-between">
               {!collapsed && <UsageProvider />}
-              <div className="flex justify-center items-center p-2 ring-2 rounded-full bg-white shadow-sm transform scale-110">
+              <div className="flex items-center justify-center scale-150">
                 <UserButton />
               </div>
             </div>
@@ -150,9 +151,9 @@ export default function DesktopSidebar({
 
           <SignedOut>
             {!collapsed && (
-              <div className="flex gap-2 mt-2">
+              <div className="flex gap-2">
                 <SignInButton>
-                  <div className="mt-10 flex gap-6">
+                  <div className="mt-2 flex gap-6">
                     <a
                         href="#roles"
                         className="border relative h-8 py-0.5 p-5 text-black text-xl font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
@@ -162,7 +163,7 @@ export default function DesktopSidebar({
                 </SignInButton>
 
                 <SignUpButton>
-                  <div className="mt-10 flex gap-6">
+                  <div className="mt-2 flex gap-6">
                     <a
                         href="#roles"
                         className="border relative h-8 py-0.5 p-5 text-black text-xl font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
@@ -195,9 +196,12 @@ function NavItem({
   return (
     <Link
       href={href}
-      className="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-[#e7f0fa] text-[#0d2440]"
+      className="flex items-center gap-3 px-4 py-2 rounded-xs 
+            hover:bg-[#7ba4d0] hover:scale-108
+            text-[#0d2440] transform 
+            transition duration-100 ease-in-out"
     >
-      <Icon size={25} />
+      <Icon size={25} classname />
       {!collapsed && <span className="text-sm font-medium">{label}</span>}
     </Link>
   );

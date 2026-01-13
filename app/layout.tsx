@@ -10,6 +10,7 @@ import DesktopSidebar from "./components/DesktopSidebar";
 import CongratsPopup from "./components/CongratsPopUp";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import PageTransition from "./components/PageTransition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -70,11 +71,14 @@ export default function RootLayout({
                 min-h-screen w-full
                 transition-all duration-300 ease-in-out
                 pl-0
-                ${collapsed ? "lg:pl-20" : "lg:pl-64"}
+                ${collapsed ? "lg:pl-20" : "lg:pl-54"}
               `}
             >
               <Navbar />
-              {children}
+              <PageTransition>
+                {children}
+              </PageTransition>
+              
               <CongratsPopup />
               <Footer />
             </main>

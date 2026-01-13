@@ -107,8 +107,8 @@ export default function Navbar(): React.JSX.Element {
             visible ? "translate-y-0" : "-translate-y-32"
           }`}
         >
-          <div className="max-w-5xl ml-auto px-4 sm:px-6 lg:px-1">
-            <div className="flex items-center justify-between gap-4 rounded-2xl bg-[#7ba4d0]/10 border border-black/50 backdrop-blur-xl shadow-xl px-6 py-3">
+          <div className="max-w-103 ml-auto px-4 sm:px-6 lg:px-1">
+            <div className="flex items-center justify-between gap-4 rounded-2xl bg-[#7ba4d0]/10 border border-black/50 backdrop-blur-xl shadow-xl pr-6 py-3">
               <Link
                 href="/"
                 className="text-[#0d2440] kaushan-script-regular text-4xl font-bold sm:ml-6"
@@ -152,7 +152,7 @@ export default function Navbar(): React.JSX.Element {
 
                 <SignedIn>
                   <SignedIn>
-                    <div className="flex items-center gap-3 rounded-full border border-gray-200 bg-[#ffd77a]/80 px-4 pr-1 py-2 shadow-md backdrop-blur-md">
+                    <div className="flex items-center gap-3 rounded-full border border-white bg-[#ffd77a]/80 px-4 pr-1 py-2 shadow-md backdrop-blur-md">
                       
                       {/* Welcome Text */}
                         <span className="font-semibold text-gray-900">
@@ -266,8 +266,9 @@ export default function Navbar(): React.JSX.Element {
           className={`fixed right-0 inset-y-0 w-[3/4]
             bg-white shadow-2xl transform transition-transform duration-300
             ${open ? "translate-x-0" : "translate-x-full"}
-            p-6 overflow-y-auto`}
-        >
+            p-6 overflow-y-auto`} >
+
+              
           <button
             onClick={() => setOpen(false)}
             className="mb-6 h-9 w-9 rounded bg-[#0d2440] text-white font-bold"

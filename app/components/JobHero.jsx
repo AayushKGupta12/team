@@ -24,7 +24,7 @@ export default function ITJobsHero() {
         </div>
 
         {/* Main Content */}
-        <div className="relative z-10 max-w-4xl text-center md:text-left mt-4 md:mt-0">
+        <div className="relative max-w-4xl text-center md:text-left md:mt-0">
           {/* Badge */}
           <div className="inline-flex items-center gap-3 bg-red-100 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-red-500 mb-9 mt-5">
             <span className="w-3 h-3 bg-[#ff0000] rounded-full animate-pulse"></span>
