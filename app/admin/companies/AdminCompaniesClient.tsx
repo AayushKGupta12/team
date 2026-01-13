@@ -46,6 +46,7 @@ const LOCATION_OPTIONS = [
 const ROLE_OPTIONS = [
   "AI Engineer",
   "Automation Engineer",
+  "Analyst",
   "Backend Developer",
   "Blockchain Developer",
   "Business Analyst",
@@ -74,6 +75,7 @@ const ROLE_OPTIONS = [
   "Product Designer",
   "Product Manager",
   "Quality Analyst",
+  "React Devloper",
   "Sales Engineer",
   "SEO Specialist",
   "Software Developer",
@@ -81,6 +83,7 @@ const ROLE_OPTIONS = [
   "Systems Administrator",
   "Technical Support Engineer",
   "Technical Writer",
+  "Testing Engineer",
   "UI/UX Designer",
   "other's"
 ];
@@ -368,8 +371,6 @@ export default function AdminCompaniesClient() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }
