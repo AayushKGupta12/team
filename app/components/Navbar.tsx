@@ -107,7 +107,7 @@ export default function Navbar(): React.JSX.Element {
             visible ? "translate-y-0" : "-translate-y-32"
           }`}
         >
-          <div className="max-w-103 ml-auto px-4 sm:px-6 lg:px-1">
+          <div className="max-w-110 ml-auto px-4 sm:px-6 lg:px-1">
             <div className="flex items-center justify-between gap-4 rounded-2xl bg-[#7ba4d0]/10 border border-black/50 backdrop-blur-xl shadow-xl pr-6 py-3">
               <Link
                 href="/"

@@ -7,6 +7,7 @@ import Countdown from './components/Countdown'
 import Testimonials from './components/test'
 import CongratsPopup from './components/CongratsPopUp'
 import Banner from './components/Banner'
+import ToolsExplorer from './components/ToolsExplorer'
 
 
 export const metadata = {
@@ -41,10 +42,11 @@ const Page = () => {
 
       <Banner
         isPositive={false}
-        message="Terms & Condition updated"
+        message="16 New Job's Added !"
       />
       <Navbar />
       <Hero />
+      <ToolsExplorer/>
       <Features />
       <Testimonials/>
       <FAQ />
