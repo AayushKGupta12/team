@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Search, FileText } from 'lucide-react';
+import { Search, FileText, PenLine } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -26,7 +26,7 @@ export default function ToolsExplorer() {
   }, []);
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 max-w-6xl mx-auto px-3 py-6">
+    <div className="flex flex-col lg:flex-row gap-6 max-w-7xl mx-auto px-3 py-6">
 
       {/* Resume Analysis */}
       <a
@@ -40,7 +40,7 @@ export default function ToolsExplorer() {
 
         <div className="relative z-10">
           <h2 className="text-3xl font-semibold mb-4">
-            Advance Resume Analysis
+            Advanced Resume Analysis
           </h2>
           <p className="text-base opacity-90 max-w-md">
             AI-powered resume analysis with actionable insights to improve shortlisting success.
@@ -48,13 +48,40 @@ export default function ToolsExplorer() {
         </div>
 
         <div className="mt-10 sm:absolute sm:bottom-8 sm:left-12 sm:right-12 border-t border-white/20 pt-4">
-        <div className="flex justify-between text-sm text-white/80">
+          <div className="flex justify-between text-sm text-white/80">
             <span>ATS Score</span>
             <span>Skill Gap Analysis</span>
             <span>Role Match Insights</span>
+          </div>
         </div>
+      </a>
+
+      {/* Cover Letter Generator */}
+      <a
+        href="/cover-letter-generator"
+        className="relative flex-1 bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] rounded-md p-8 text-white shadow-lg overflow-hidden"
+      >
+        {/* Background Icon */}
+        <PenLine
+          className="absolute right-6 bottom-22 w-50 h-50 text-white opacity-10"
+        />
+
+        <div className="relative z-10">
+          <h2 className="text-3xl font-semibold mb-4">
+            AI Cover Letter Generator
+          </h2>
+          <p className="text-base opacity-90 max-w-md">
+            Generate personalized, role-specific cover letters in seconds optimized for recruiters.
+          </p>
         </div>
 
+        <div className="mt-10 sm:absolute sm:bottom-8 sm:left-12 sm:right-12 border-t border-white/20 pt-4">
+          <div className="flex justify-between text-sm text-white/80">
+            <span>Job-Based</span>
+            <span>Recruiter Tone</span>
+            <span>Instant Export</span>
+          </div>
+        </div>
       </a>
 
       {/* IT Jobs Explorer */}
