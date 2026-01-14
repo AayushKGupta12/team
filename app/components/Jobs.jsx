@@ -72,16 +72,20 @@ function Jobs() {
     }
   };
 
-  const parseStipend = (s) => {
-    if (!s) return 0;
-    const str = String(s).toLowerCase();
-    const match = str.match(/([\d.]+)\s*lpa/) || str.match(/([\d.]+)\s*k/) || str.match(/([\d.]+)/);
-    if (!match) return 0;
-    let num = parseFloat(match[1]);
-    if (str.includes("k") && !str.includes("lpa") && num < 1000) num *= 1000;
-    if (str.includes("lpa")) num *= 100000;
-    return Math.round(num);
-  };
+  
+
+  
+
+  // const parseStipend = (s) => {
+  //   if (!s) return 0;
+  //   const str = String(s).toLowerCase();
+  //   const match = str.match(/([\d.]+)\s*lpa/) || str.match(/([\d.]+)\s*k/) || str.match(/([\d.]+)/);
+  //   if (!match) return 0;
+  //   let num = parseFloat(match[1]);
+  //   if (str.includes("k") && !str.includes("lpa") && num < 1000) num *= 1000;
+  //   if (str.includes("lpa")) num *= 100000;
+  //   return Math.round(num);
+  // };
 
   const getWhatsappLink = (job) => {
   const msg = `*Exciting Off-Campus Opportunity!*
@@ -239,6 +243,16 @@ function Jobs() {
       </div>
     );
   }
+
+  const toggleSet = (setState, value) => {
+  setState((prev) => {
+    const next = new Set(prev);
+    if (next.has(value)) next.delete(value);
+    else next.add(value);
+    return next;
+  });
+};
+
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
@@ -482,7 +496,7 @@ function JobCard({ job, getWhatsappLink, onApply }) {
       <div className="p-5">
         <div className="flex items-center gap-4 mb-4">
           <img
-            className="w-14 h-14 rounded-lg object-cover ring-3 ring-gray-200"
+            className="w-14 h-14 rounded-lg object-cover"
             src={job.Logo?.trim() ? job.Logo : `https://via.placeholder.com/56x56/4F46E5/ffffff?text=${job.company[0]}`}
             alt={job.company}
             onError={(e) => (e.target.src = `https://via.placeholder.com/56x56/4F46E5/ffffff?text=${job.company[0]}`)}
@@ -515,8 +529,10 @@ function JobCard({ job, getWhatsappLink, onApply }) {
           </div>
 
           <div className="font-semibold text-green-600 text-xl">
-            ₹{job.Stipend || "Competitive"} LPA
+            {formatSalary(job.Stipend)}
           </div>
+
+          
         </div>
 
         <div className="flex gap-3">
@@ -542,3 +558,47 @@ function JobCard({ job, getWhatsappLink, onApply }) {
 }
 
 export default Jobs;
+
+
+// ================= SALARY UTILS =================
+
+// Convert any stipend to annual number (for filtering)
+const parseStipend = (raw) => {
+  if (!raw) return 0;
+
+  const str = String(raw).toLowerCase();
+
+  // Competitive or text
+  if (str.includes("competitive")) return 0;
+
+  const amount = Number(str.replace(/[^\d.]/g, ""));
+  if (!amount || isNaN(amount)) return 0;
+
+  // Internship → convert monthly to annual
+  if (amount < 250000) {
+    return amount * 12;
+  }
+
+  return amount;
+};
+
+// Format salary for UI
+const formatSalary = (raw) => {
+  if (!raw) return "Competitive";
+
+  const str = String(raw).toLowerCase();
+
+  if (str.includes("competitive")) return "Competitive";
+
+  const amount = Number(str.replace(/[^\d.]/g, ""));
+  if (!amount || isNaN(amount)) return "Competitive";
+
+  // Internship (Monthly)
+  if (amount < 250000) {
+    return `${amount} LPM`;
+  }
+
+  // Full-time (Annual)
+  const lpa = amount / 100000;
+  return `${Number.isInteger(lpa) ? lpa : lpa.toFixed(1)} LPA`;
+};

@@ -10,12 +10,12 @@ export default function ToolsExplorer() {
   const router = useRouter();
 
   const companies = [
-    { name: 'Google', color: 'from-[#2A7B9B] to-[#57C785]' },
-    { name: 'Microsoft', color: 'from-[#22C1C3] to-[#D8BC46]' },
-    { name: 'Netflix', color: 'from-[#2A7B9B] to-[#57C785]' },
-    { name: 'Walmart', color: 'from-[#22C1C3] to-[#D8BC46]' },
-    { name: 'Zoho', color: 'from-[#2A7B9B] to-[#57C785]' },
-    { name: 'TCS', color: 'from-[#22C1C3] to-[#D8BC46]' },
+    { name: 'Google', color: 'from-[#ff5a57] via-[#e02f75] to-[#6700a3]' },
+    { name: 'Microsoft', color: 'from-[#6700a3] via-[#e02f75] to-[#ff5a57]' },
+    { name: 'Netflix', color: 'from-[#e02f75] via-[#ff5a57]  to-[#6700a3]' },
+    { name: 'Walmart', color: 'from-[#6700a3] via-[#e02f75] to-[#ff5a57]' },
+    { name: 'Zoho', color: 'from-[#ff5a57] via-[#e02f75] to-[#6700a3]' },
+    { name: 'TCS', color: 'from-[#e02f75] via-[#ff5a57]  to-[#6700a3]' },
   ];
 
   useEffect(() => {
