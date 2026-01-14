@@ -595,7 +595,7 @@ const formatSalary = (raw) => {
 
   // Internship (Monthly)
   if (amount < 250000) {
-    return `${amount} LPM`;
+    return `${amount} per month`;
   }
 
   // Full-time (Annual)
