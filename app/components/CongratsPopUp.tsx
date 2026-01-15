@@ -37,7 +37,7 @@ export default function CongratsPopup() {
       {/* Message */}
       <div className="text-center">
         <p className="text-lg text-gray-700 leading-relaxed">
-          You’ve successfully received <span className="font-semibold text-green-600">300 Free Coins</span>
+          You’ve successfully received <span className="font-semibold text-green-600">500 Free Coins</span>
         </p>
         <p className="mt-1 text-sm text-gray-500">
           Use them to access premium features.
