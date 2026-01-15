@@ -7,6 +7,7 @@ export default function Footer() {
   const logoUrl = "/mnt/data/38d2223f-ef6a-42e3-98db-181046034e36.png";
 
   const services = [
+    { label: "KIIT PYQ's", href: "/kiit" },
     { label: "IT Jobs", href: "/it-jobs" },
     { label: "Analysis", href: "/ai-resume-analysis" },
     { label: "Blogs", href: "/blog" },

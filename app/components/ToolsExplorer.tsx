@@ -30,7 +30,7 @@ export default function ToolsExplorer() {
 
       {/* Resume Analysis */}
       <a
-        href="/ai-resume-analysis"
+        href="/kiit"
         className="relative flex-1 bg-gradient-to-br from-[#E02F75] to-[#6700A3] rounded-md p-8 text-white shadow-lg overflow-hidden"
       >
         {/* Background Icon */}
@@ -40,18 +40,19 @@ export default function ToolsExplorer() {
 
         <div className="relative z-10">
           <h2 className="text-3xl font-semibold mb-4">
-            Advanced Resume Analysis
+            {/* Advanced Resume Analysis */}
+            KIIT PYQ's for Mid Semester 2 Feb 2026
           </h2>
           <p className="text-base opacity-90 max-w-md">
-            AI-powered resume analysis with actionable insights to improve shortlisting success.
+            Unlimited view of KIIT Papers
           </p>
         </div>
 
         <div className="mt-10 sm:absolute sm:bottom-8 sm:left-12 sm:right-12 border-t border-white/20 pt-4">
           <div className="flex justify-between text-sm text-white/80">
-            <span>ATS Score</span>
-            <span>Skill Gap Analysis</span>
-            <span>Role Match Insights</span>
+            <span>4 & 6 Semester</span>
+            <span>Roadmaps</span>
+            <span>Guides</span>
           </div>
         </div>
       </a>

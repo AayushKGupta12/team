@@ -59,7 +59,7 @@ export default function Hero() {
           {/* Premium Gradient Button */}
           <div className="mt-12">
             <a
-              href="/it-jobs"
+              href="/kiit"
               className="group relative inline-flex items-center gap-4 overflow-hidden rounded-full bg-[#0d2440] px-10 py-5 text-xl font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
             >
               {/* Outer glow */}
@@ -68,7 +68,7 @@ export default function Hero() {
               </span>
 
               <span className="relative flex items-center gap-4">
-                Explore Jobs
+                Explore PYQ's
                 <svg className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>

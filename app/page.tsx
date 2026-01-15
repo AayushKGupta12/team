@@ -41,8 +41,8 @@ const Page = () => {
     <div>
 
       <Banner
-        isPositive={false}
-        message="16 New Job's Added !"
+        isPositive={true}
+        message="KIIT PYQ's are added for 4 & 6th semester Mid semester exam (2 Feb 2026)"
       />
       <Navbar />
       <Hero />

@@ -42,6 +42,7 @@ const navItems: NavItem[] = [
     href: "#",
     hasDropdown: true,
     dropdown: [
+      { label: "KIIT PYQ", href: "/kiit" },
       { label: "Advance Analysis", href: "/ai-resume-analysis" },
       { label: "Cover Letter", href: "/cover-letter" },
       { label: "IT Jobs", href: "/it-jobs" },
