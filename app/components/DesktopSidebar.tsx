@@ -17,6 +17,7 @@ import {
   Phone,
   Info,
   Menu,
+  Book,
   ChevronLeft, ChevronRight
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -121,7 +122,9 @@ export default function DesktopSidebar({
           <NavItem icon={Sparkles} label="Advance Analysis" href="/ai-resume-analysis" collapsed={collapsed}/>
           <NavItem icon={FileText} label="Cover Letter" href="/cover-letter" collapsed={collapsed} />
           <NavItem icon={Briefcase} label="IT Jobs" href="/it-jobs" collapsed={collapsed} />
+          <NavItem icon={Book} label="Read" href="/read" collapsed={collapsed} />
           <NavItem icon={Menu} label="Blogs" href="/blog" collapsed={collapsed} />
+          
 
         </div>
 
