@@ -1,0 +1,453 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import { useAuth, useClerk, useUser } from "@clerk/nextjs";
+import { consumeCredit } from "../../lib/consumeCredit";
+
+import CreditUsedToast from "./CreditUsedToast";
+
+type SemesterType = "4th" | "6th";
+
+const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
+  "4th": {
+  PS: {
+    "2022": "https://drive.google.com/file/d/FILE_PS_2022/preview",
+  },
+
+  DBMS: {
+    "2024": "https://drive.google.com/file/d/193MDOPP2YpvapBMOLy5NXy-KFJnbDfzj/preview",
+    "2020": "https://drive.google.com/file/d/1KnGbUcH5rAlFx0IMdnAZer6Ol4wCXU2e/preview",
+    "2023": "https://drive.google.com/file/d/1UNPGoxfS6iN8aHItFPrzxaI12u_EimQd/preview",
+  },
+
+  OS: {
+    "2024": "https://drive.google.com/file/d/1K3S-TlGvdLwsrGp03C2vX3nLNw7B-DsE/preview",
+    "2020": "https://drive.google.com/file/d/10NWOVV40KR6NwY6OiT2U-sKaXKed12lh/preview",
+    "2023": "https://drive.google.com/file/d/10YdcyGp0LCr42QzipLcKRYpT525z1_V5/preview",
+  },
+
+  ITC: {
+    "2024": "",
+    "2020": "",
+    "2023": "",
+  },
+
+  COA: {
+    "2024": "https://drive.google.com/file/d/15sAFe-xNRWHK2bqAXiboANhTb3PnA3l9/preview",
+    "2020": "https://drive.google.com/file/d/1yhY4gI9SBxu93lTMCwdxRhC4zduEe89d/preview",
+    "2023": "https://drive.google.com/file/d/1_nMz2Rn7aCUl5yHP24JIWfIj0D9ITAxm/preview",
+  },
+
+  AFL: {
+    "2024": "",
+    "2020": "",
+    "2023": "",
+  },
+
+  CE: {
+    "2024": "",
+    "2020": "",
+    "2023": "",
+  },
+
+  STW: {
+    "2024": "",
+    "2020": "",
+    "2023": "",
+  },
+
+  DM: {
+    "2024": "https://drive.google.com/file/d/12hbGwFjCWtmAmb_zqkPeZD4ISDwuT-Ce/preview",
+    "2020": "https://drive.google.com/file/d/1idtMqZbT0z8SrRvT_QbvGrEYwt1iPQA-/preview",
+    "2023": "https://drive.google.com/file/d/1E4WOM7U6wbzvaz5gljena2ihVoDSHHTG/preview",
+  },
+
+  OB: {
+    "2024": "",
+    "2020": "",
+    "2023": "https://drive.google.com/file/d/1433LzKga7FKn8BNlzj2z4E2IJ4X2NKfU/preview",
+  },
+
+  Eco: {
+    "2024": "https://drive.google.com/file/d/1UGUUBMeqP7WRhbHj4VeqdJt9I9XOPEbn/preview",
+    "2020": "",
+    "2023": "https://drive.google.com/file/d/1YEg2frwIhEmo5-Lyz55Hf35DsOCqtdvf/preview",
+  },
+
+  OOPs: {
+    "2024": "https://drive.google.com/file/d/190Ul0ha0j-iy0_p6CTOJ7Wy30XLSRrJp/preview",
+    "2020": "",
+    "2023": "",
+  },
+},
+
+  "6th": {
+  ML: {
+    "2024": "https://drive.google.com/file/d/125qAq9tEcy6XhqGQVpFKNNBGQlbZmCBO/preview",
+    "2023": "https://drive.google.com/file/d/1M7zPAfhPHWiee4Mq_wUmw8VKiTchF2SM/preview",
+    "2022": "https://drive.google.com/file/d/1XSFzunCyG70Mw2KJUM2YjjlCnsOD-YD1/preview",
+  },
+
+  AI: {
+    "2024": "https://drive.google.com/file/d/1c6TI9Jip6LPT2lLCMkO9mBK8KGkWrANY/preview",
+    "2023": "https://drive.google.com/file/d/1sOIGNY473EmzFxtzTq_BpK0iaVhtOViy/preview",
+    "2022": "https://drive.google.com/file/d/1QOGvMEsZaNNez_tef7MYbvsPRsARfTWr/preview",
+  },
+
+  UHV: {
+    "2024": "https://drive.google.com/file/d/1RlrpGjoT7xFLkKYJ8-BzbCKvLPH7q7QV/preview",
+    "2023": "",
+    "2020": "",
+  },
+
+  CC: {
+    "2024": "https://drive.google.com/file/d/1RcIriSSNIPfUhvqlXdjYm0QYQHjNlMGA/preview",
+    "2023": "https://drive.google.com/file/d/1-uLxf6v5l_R55hxt3bXfFR_oayFACa2N/preview",
+    "2020": "",
+  },
+
+  CV: {
+    "2024": "",
+    "2023": "",
+    "2020": "",
+  },
+
+  SPM: {
+    "2024": "https://drive.google.com/file/d/1w_Zf9BDNldGqKgYZU4AHa3UGSf_EqJrd/preview",
+    "2023": "https://drive.google.com/file/d/195w7DW2msLvga6kT0R-ruttaFcB3pS5i/preview",
+    "2019": "https://drive.google.com/file/d/1UE0qGWnJK8ihAw-zEVhQu8DyZw2EmPrW/preview",
+  },
+
+  NLP: {
+    "2024": "https://drive.google.com/file/d/1UE0qGWnJK8ihAw-zEVhQu8DyZw2EmPrW/preview",
+    "2023": "https://drive.google.com/file/d/1aXBD1m1T123s392OpwuSH9ewmaSLg5gS/preview",
+    "2022": "https://drive.google.com/file/d/10KUEMxzBHJNoO-YZgVYgGD88rcIPDMeb/preview",
+  },
+
+  DSA: {
+    "2024": "",
+    "2023": "",
+    "2020": "",
+  },
+},
+};
+
+export default function PYQSection() {
+  const [semester, setSemester] = useState<SemesterType>("4th");
+  const [subject, setSubject] = useState("PS");
+  const [year, setYear] = useState("2022");
+  const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+
+  const { isSignedIn } = useAuth();
+  const { user } = useUser();
+  const clerk = useClerk();
+
+  const [pendingView, setPendingView] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const lastPaidDocRef = useRef<string | null>(null);
+
+  const subjects = Object.keys(PYQ_MAP[semester]);
+  const years = Object.keys(PYQ_MAP[semester][subject]);
+
+  const openPdf = () => {
+  const url = PYQ_MAP[semester][subject][year];
+
+  if (!url) {
+    alert("Paper not available yet");
+    return false;
+  }
+
+  setPdfUrl(url);
+  return true;
+};
+
+
+  const whatsappShare = () => {
+    const text = encodeURIComponent(
+      `Hey! I found the KIIT ${subject} (${year}) Previous Year Questions here:`
+    );
+    window.open(
+      `https://wa.me/?text=${text}%20https://vfound.in/kiit`,
+      "_blank"
+    );
+  };
+
+  const currentDocKey = `${semester}|${subject}|${year}`;
+
+
+  const handleViewDocument = async () => {
+  // 🔒 First check availability (NO AUTH, NO CREDIT)
+  const isAvailable = !!PYQ_MAP[semester][subject][year];
+
+  if (!isAvailable) {
+    alert("Paper not available yet");
+    return;
+  }
+
+  if (!isSignedIn) {
+    setPendingView(true);
+    clerk.openSignIn();
+    return;
+  }
+
+  if (!user) return;
+
+  // ✅ If already paid for this document, just open it
+  if (lastPaidDocRef.current === currentDocKey) {
+    openPdf();
+    return;
+  }
+
+  setShowToast(true);
+
+  const usage = await consumeCredit(user.id, "pyq_view");
+
+  if (!usage.allowed) {
+    alert("You have reached your PYQ viewing limit. Please upgrade.");
+    return;
+  }
+
+  // ✅ Mark this document as paid
+  lastPaidDocRef.current = currentDocKey;
+
+  openPdf();
+};
+
+
+
+  useEffect(() => {
+    if (isSignedIn && pendingView) {
+      setPendingView(false);
+      handleViewDocument();
+    }
+  }, [isSignedIn, pendingView]);
+
+  return (
+    <div className="min-h-screen bg-slate-50/50 py-12 px-4 sm:px-6 lg:px-8">
+      <section className="max-w-6xl mx-auto">
+        
+        {/* --- DESKTOP OPTIMIZED HEADER --- */}
+        <div className="mb-12 text-center lg:text-left">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
+  Academic Archive <br /> <br />{" "}
+  <span className="inline-flex items-center gap-2 text-green-500 text-base sm:text-5xl font-semibold">
+    <span>🎓</span> Only for KIIT Students
+  </span>
+</h1>
+
+          <p className="text-slate-600 text-base sm:text-lg max-w-3xl leading-relaxed">
+            Boost your exam preparation with our organized collection of KIIT Previous Year Questions. 
+            Select your semester and subject to access the archive.
+          </p>
+        </div>
+
+        {/* --- SELECTION PANEL --- */}
+        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-10 mb-10">
+          
+          {/* Step 1: Semester */}
+          <div className="mb-10">
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-indigo-500 mb-5">01. Select Semester</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {(["4th", "6th"] as SemesterType[]).map((sem) => (
+                <button
+                  key={sem}
+                  onClick={() => {
+                    setSemester(sem);
+                    const firstSub = Object.keys(PYQ_MAP[sem])[0];
+                    setSubject(firstSub);
+                    setYear(Object.keys(PYQ_MAP[sem][firstSub])[0]);
+                  }}
+                  className={`p-6 rounded-2xl border-2 text-left transition-all duration-200
+                    ${semester === sem 
+                      ? "bg-indigo-50/40 border-indigo-500 shadow-md" 
+                      : "bg-white border-slate-100 hover:border-slate-200"}`}
+                >
+                  <span className={`text-xs font-bold ${semester === sem ? "text-indigo-600" : "text-slate-400"}`}>Current Selection</span>
+                  <p className={`text-2xl font-bold ${semester === sem ? "text-indigo-900" : "text-slate-700"}`}>{sem} Semester</p>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Step 2: Subjects */}
+          <div className="mb-10">
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-indigo-500 mb-5">02. Choose Subject</h2>
+            <div className="flex flex-wrap gap-2 sm:gap-3">
+              {subjects.map((sub) => (
+                <button
+                  key={sub}
+                  onClick={() => {
+                    setSubject(sub);
+                    setYear(Object.keys(PYQ_MAP[semester][sub])[0]);
+                  }}
+                  className={`px-5 py-2.5 rounded-xl border text-sm font-semibold transition-all
+                    ${subject === sub
+                      ? "bg-slate-900 text-white border-slate-900"
+                      : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"}`}
+                >
+                  {sub}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Step 3: Year & Final Actions */}
+          <div className="pt-8 border-t border-slate-100 flex flex-col lg:flex-row gap-6 items-center justify-between">
+            <div className="w-full lg:w-auto">
+              <p className="text-xs font-bold text-slate-400 uppercase mb-3 text-center lg:text-left">Available Years</p>
+              <div className="flex justify-center lg:justify-start gap-2">
+                {years.map((y) => (
+                  <button
+                    key={y}
+                    onClick={() => setYear(y)}
+                    className={`px-6 py-2 rounded-full text-sm font-bold border transition-all
+                      ${year === y
+                        ? "bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-100"
+                        : "bg-white text-slate-500 border-slate-200"}`}
+                  >
+                    {y}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+              {/* View Document button */}
+      <button
+        onClick={handleViewDocument}
+        className="w-full sm:w-auto px-10 py-4 rounded-2xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-all hover:shadow-xl hover:shadow-indigo-100 active:scale-[0.98]"
+      >
+        View Document
+      </button>
+
+      <CreditUsedToast
+        show={showToast}
+        onClose={() => setShowToast(false)}
+      />
+          </div>
+        </div>
+        </div>
+
+        {/* --- ROADMAP & TOPICS --- */}
+<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+  
+  <div className="bg-white border border-slate-200 p-8 rounded-[2rem]">
+    <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+      <span className="text-xl">📚</span> High Weightage Topics
+    </h3>
+    <ul className="space-y-4">
+
+      <li className="flex gap-3 text-slate-600 text-sm">
+        <span className="text-indigo-400 font-black">01.</span>
+        Focus on the last 3 years of theory questions as they often repeat.
+      </li>
+
+      <li className="flex gap-3 text-slate-600 text-sm">
+        <span className="text-indigo-400 font-black">02.</span>
+        Practice numerical patterns from 2022 and 2023 papers.
+      </li>
+
+      <li className="flex gap-3 text-slate-600 text-sm">
+        <span className="text-indigo-400 font-black">03.</span>
+        Identify topics that appear in consecutive years and prioritize them first.
+      </li>
+
+      <li className="flex gap-3 text-slate-600 text-sm">
+        <span className="text-indigo-400 font-black">04.</span>
+        Prepare short-note questions thoroughly as they are frequently asked.
+      </li>
+
+      <li className="flex gap-3 text-slate-600 text-sm">
+        <span className="text-indigo-400 font-black">05.</span>
+        Focus on diagram-based questions to secure partial marks even with incomplete answers.
+      </li>
+
+      <li className="flex gap-3 text-slate-600 text-sm">
+        <span className="text-indigo-400 font-black">06.</span>
+        Observe repeated keywords and phrasing used by examiners to structure answers better.
+      </li>
+    </ul>
+  </div>
+
+  <div className="bg-indigo-900 text-white p-8 rounded-[2rem] shadow-xl">
+    <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+      <span>🚀</span> Preparation Roadmap
+    </h3>
+
+    <div className="space-y-6">
+      
+      <div className="border-l-2 border-indigo-400/30 pl-5 relative">
+        <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-indigo-400" />
+        <p className="font-bold text-sm mb-1">Phase 1: Concepts</p>
+        <p className="text-xs text-indigo-200">
+          Go through class notes and YouTube summaries to build conceptual clarity.
+        </p>
+      </div>
+
+      <div className="border-l-2 border-indigo-400/30 pl-5 relative">
+        <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-indigo-400" />
+        <p className="font-bold text-sm mb-1">Phase 2: PYQ Drill</p>
+        <p className="text-xs text-indigo-200">
+          Solve at least 2 full papers under a strict 1.5 hour exam-like timer.
+        </p>
+      </div>
+
+      <div className="border-l-2 border-indigo-400/30 pl-5 relative">
+        <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-indigo-400" />
+        <p className="font-bold text-sm mb-1">Phase 3: Pattern Recognition</p>
+        <p className="text-xs text-indigo-200">
+          Analyze repeated questions, important units, and mark distribution across years.
+        </p>
+      </div>
+
+      <div className="border-l-2 border-indigo-400/30 pl-5 relative">
+        <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-indigo-400" />
+        <p className="font-bold text-sm mb-1">Phase 4: Final Revision</p>
+        <p className="text-xs text-indigo-200">
+          Revise only high-weightage topics, formulas, definitions, and diagrams in the last 48 hours.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+      </section>
+
+      {/* --- MODAL --- */}
+      {pdfUrl && (
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-0 sm:p-6">
+          <div className="bg-white w-full max-w-5xl h-full sm:h-[90vh] sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200">
+            <div className="p-4 border-b flex justify-between items-center bg-white">
+              <span className="font-bold text-slate-700 text-sm sm:text-base">
+                {subject} • {semester} Sem • {year}
+              </span>
+              <button
+                onClick={() => setPdfUrl(null)}
+                className="p-2 hover:bg-slate-300 rounded-full transition-colors text-gray-800 font-extrabold ring-1"
+              >
+                ✕
+              </button>
+            </div>
+
+            <iframe
+              src={pdfUrl}
+              className="flex-1 w-full bg-slate-50"
+              title="PDF Preview"
+            />
+
+            <div className="p-4 bg-slate-50 border-t flex justify-end">
+              <button
+                onClick={whatsappShare}
+                className="flex items-center gap-2 px-6 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-emerald-100"
+              >
+                Send to WhatsApp
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
