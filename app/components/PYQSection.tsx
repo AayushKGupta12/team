@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useAuth, useClerk, useUser } from "@clerk/nextjs";
 import { consumeCredit } from "../../lib/consumeCredit";
+import { motion } from "framer-motion";
+
 
 import CreditUsedToast from "./CreditUsedToast";
 
@@ -131,6 +133,34 @@ const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
   },
 },
 };
+
+const RESOURCE_MAP = [
+  {
+    subject: "DBMS",
+    playlist: "https://youtube.com/playlist?list=PLxCzCOWd7aiFAN6I8CuViBuCdJgiOkT2Y&si=Z9CqHAQsF66cq6se",
+  },
+  {
+    subject: "Operating Systems",
+    playlist: "https://youtube.com/playlist?list=PLxCzCOWd7aiGz9donHRrE9I3Mwn6XdP8p&si=AFS1cvpXhpB-WvCx",
+  },
+  {
+    subject: "Discrete Mathematics",
+    playlist: "https://youtube.com/playlist?list=PLxCzCOWd7aiH2wwES9vPWsEL6ipTaUSl3&si=FIxqu12-A8H-rOmR",
+  },
+  {
+    subject: "Computer Organization & Architecture",
+    playlist: "https://youtube.com/playlist?list=PLdaj4mrS1BKBKic8N5CcipttgvfHiX_vg&si=9k4mq9Iil8xTpqMI",
+  },
+  {
+    subject: "Object Oriented Programming",
+    playlist: "https://youtube.com/playlist?list=PL9gnSGHSqcno1G3XjUbwzXHL8_EttOuKk&si=SmfruGUHnyCtLvRd",
+  },
+  {
+    subject: "Information and Theory Coding",
+    playlist: "https://youtube.com/playlist?list=PLV8vIYTIdSnaigcBvSa_S1NVdHhJHz9a4&si=OdCCbMBb_Ro2u5Kg",
+  },
+];
+
 
 export default function PYQSection() {
   const [semester, setSemester] = useState<SemesterType>("4th");
@@ -410,6 +440,62 @@ export default function PYQSection() {
 
     </div>
   </div>
+</div>
+
+<hr className="mt-10 bg-gray-400 h-0.5"/>
+
+{/* --- RESOURCE RECOMMENDATIONS --- */}
+<div className="mt-20">
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }}
+    className="mb-10"
+  >
+    <h2 className="text-3xl font-bold text-slate-900 mb-3">
+      📌 Recommended Learning Resources
+    </h2>
+    <p className="text-slate-600 max-w-3xl">
+      Hand-picked YouTube playlists to strengthen core concepts and improve exam-oriented understanding for KIIT curriculum.
+    </p>
+  </motion.div>
+
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {RESOURCE_MAP.map((res, idx) => (
+      <motion.a
+        key={res.subject}
+        href={res.playlist}
+        target="_blank"
+        rel="noopener noreferrer"
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, delay: idx * 0.05 }}
+        className="bg-red-100 border border-red-300 rounded-2xl p-6 hover:shadow-lg transition-all"
+      >
+        <h3 className="text-lg font-bold text-slate-800 mb-2">
+          {res.subject}
+        </h3>
+        <p className="text-base text-slate-600 mb-4">
+          Tumhare seniors bhi in playlist se he padhe the 
+        </p>
+        <span className="text-indigo-600 text-sm font-bold">
+          Watch Playlist →
+        </span>
+      </motion.a>
+    ))}
+  </div>
+
+  <motion.p
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    viewport={{ once: true }}
+    transition={{ delay: 0.3 }}
+    className="mt-10 text-3xl text-slate-500 italic"
+  >
+    📘 Best KIIT PPTs and official lecture slides will be added soon.
+  </motion.p>
 </div>
 
 
