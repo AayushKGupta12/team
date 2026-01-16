@@ -59,7 +59,7 @@ export default function ToolsExplorer() {
 
       {/* Cover Letter Generator */}
       <a
-        href="/cover-letter-generator"
+        href="/cover-letter"
         className="relative flex-1 bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] rounded-md p-8 text-white shadow-lg overflow-hidden"
       >
         {/* Background Icon */}
