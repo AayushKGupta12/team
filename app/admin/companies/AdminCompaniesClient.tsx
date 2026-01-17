@@ -45,48 +45,83 @@ const LOCATION_OPTIONS = [
 
 const ROLE_OPTIONS = [
   "AI Engineer",
-  "Automation Engineer",
   "Analyst",
+  "Application Developer",
+  "AR/VR Developer",
+  "Automation Engineer",
+
   "Backend Developer",
   "Blockchain Developer",
   "Business Analyst",
   "Business Intelligence Analyst",
+
   "Cloud Engineer",
   "Content Strategist",
+  "Consultant",
   "Cybersecurity Analyst",
+
   "Data Analyst",
   "Data Engineer",
-  "Data Scientist",
+  "Data Scientist 1",
+  "Data Scientist 2",
+  "Data Scientist 3",
   "Database Administrator",
   "DevOps Engineer",
   "Digital Marketing Analyst",
+
   "Embedded Systems Engineer",
+
   "Frontend Developer",
   "Full Stack Developer",
+
   "HR Tech Specialist",
+
   "Infrastructure Engineer",
   "Intern",
   "IT Tech Executive",
   "IT Technician",
+
   "Machine Learning Engineer",
   "Mobile Developer",
+  "MERN",
+  "MEAN",
+
   "Network Engineer",
+
   "Penetration Tester",
+  "Platform Engineer",
   "Product Designer",
   "Product Manager",
+
   "Quality Analyst",
+
   "React Devloper",
+  "Release Engineer",
+
   "Sales Engineer",
   "SEO Specialist",
+  "Site Reliability Engineer",
   "Software Developer",
+  "Software Development Engineer 1",
+  "Software Development Engineer 2",
+  "Software Development Engineer 3",
+  "Software Development Engineer 4",
   "Software Engineer",
+  "Solutions Architect",
   "Systems Administrator",
+
+  "Tech Consultant",
   "Technical Support Engineer",
   "Technical Writer",
   "Testing Engineer",
+
   "UI/UX Designer",
-  "other's"
+
+  "Web Developer",
+
+  "other's",
 ];
+
 
 const BATCH_OPTIONS = [
   "2029 Batch",

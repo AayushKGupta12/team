@@ -13,8 +13,11 @@ type SemesterType = "4th" | "6th";
 const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
   "4th": {
   PS: {
-    "2022": "https://drive.google.com/file/d/FILE_PS_2022/preview",
-  },
+  "2024": "https://drive.google.com/file/d/1lrbRawuiEu3om4buNmPp45Iy9Qv5eq_a/preview",
+  "2023": "https://drive.google.com/file/d/1i9Rnu6MhkKVAnVpe5E0js0hRy4jjK3xz/preview",
+  "2022": "https://drive.google.com/file/d/1zOyBmdLGhrUMLkWHsWfdOgiC5F3Ya8__/preview",
+},
+
 
   DBMS: {
     "2024": "https://drive.google.com/file/d/193MDOPP2YpvapBMOLy5NXy-KFJnbDfzj/preview",
@@ -28,11 +31,11 @@ const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
     "2023": "https://drive.google.com/file/d/10YdcyGp0LCr42QzipLcKRYpT525z1_V5/preview",
   },
 
-  ITC: {
-    "2024": "",
-    "2020": "",
-    "2023": "",
-  },
+  // ITC: {
+  //   "2024": "",
+  //   "2020": "",
+  //   "2023": "",
+  // },
 
   COA: {
     "2024": "https://drive.google.com/file/d/15sAFe-xNRWHK2bqAXiboANhTb3PnA3l9/preview",
@@ -40,23 +43,23 @@ const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
     "2023": "https://drive.google.com/file/d/1_nMz2Rn7aCUl5yHP24JIWfIj0D9ITAxm/preview",
   },
 
-  AFL: {
-    "2024": "",
-    "2020": "",
-    "2023": "",
-  },
+  // AFL: {
+  //   "2024": "",
+  //   "2020": "",
+  //   "2023": "",
+  // },
 
-  CE: {
-    "2024": "",
-    "2020": "",
-    "2023": "",
-  },
+  // CE: {
+  //   "2024": "",
+  //   "2020": "",
+  //   "2023": "",
+  // },
 
-  STW: {
-    "2024": "",
-    "2020": "",
-    "2023": "",
-  },
+  // STW: {
+  //   "2024": "",
+  //   "2020": "",
+  //   "2023": "",
+  // },
 
   DM: {
     "2024": "https://drive.google.com/file/d/12hbGwFjCWtmAmb_zqkPeZD4ISDwuT-Ce/preview",
@@ -65,22 +68,22 @@ const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
   },
 
   OB: {
-    "2024": "",
-    "2020": "",
+    // "2024": "",
+    // "2020": "",
     "2023": "https://drive.google.com/file/d/1433LzKga7FKn8BNlzj2z4E2IJ4X2NKfU/preview",
   },
 
   Eco: {
     "2024": "https://drive.google.com/file/d/1UGUUBMeqP7WRhbHj4VeqdJt9I9XOPEbn/preview",
-    "2020": "",
+    // "2020": "",
     "2023": "https://drive.google.com/file/d/1YEg2frwIhEmo5-Lyz55Hf35DsOCqtdvf/preview",
   },
 
   OOPs: {
-    "2024": "https://drive.google.com/file/d/190Ul0ha0j-iy0_p6CTOJ7Wy30XLSRrJp/preview",
-    "2020": "",
-    "2023": "",
-  },
+  "2024": "https://drive.google.com/file/d/190Ul0ha0j-iy0_p6CTOJ7Wy30XLSRrJp/preview",
+  "2023": "https://drive.google.com/file/d/1BTXowy65AXJHjE_2wq-OtxzIA9D8EEH3/preview",
+  "2022": "https://drive.google.com/file/d/1moXngXeXafkuYlOZTwLeH_N1ToFrw1DK/preview",
+},
 },
 
   "6th": {
@@ -98,21 +101,18 @@ const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
 
   UHV: {
     "2024": "https://drive.google.com/file/d/1RlrpGjoT7xFLkKYJ8-BzbCKvLPH7q7QV/preview",
-    "2023": "",
-    "2020": "",
   },
 
   CC: {
     "2024": "https://drive.google.com/file/d/1RcIriSSNIPfUhvqlXdjYm0QYQHjNlMGA/preview",
     "2023": "https://drive.google.com/file/d/1-uLxf6v5l_R55hxt3bXfFR_oayFACa2N/preview",
-    "2020": "",
   },
 
-  CV: {
-    "2024": "",
-    "2023": "",
-    "2020": "",
-  },
+  // CV: {
+  //   "2024": "",
+  //   "2023": "",
+  //   "2020": "",
+  // },
 
   SPM: {
     "2024": "https://drive.google.com/file/d/1w_Zf9BDNldGqKgYZU4AHa3UGSf_EqJrd/preview",
@@ -126,11 +126,11 @@ const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
     "2022": "https://drive.google.com/file/d/10KUEMxzBHJNoO-YZgVYgGD88rcIPDMeb/preview",
   },
 
-  DSA: {
-    "2024": "",
-    "2023": "",
-    "2020": "",
-  },
+  // DSA: {
+  //   "2024": "",
+  //   "2023": "",
+  //   "2020": "",
+  // },
 },
 };
 
