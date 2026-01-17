@@ -4,34 +4,36 @@ export default function HeroAndAbout() {
   return (
     <>
       {/* HERO SECTION – Clean, Bold, Human */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#e7f0fa] via-white to-[#d0e2f7] py-24 md:py-32 lg:py-40 px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#e7f0fa] via-white to-[#ffd77a]/50 py-24 md:py-32 lg:py-40 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
 
-          {/* Floating "About" – Visible ONLY on large screens (lg+), positioned to the right */}
-          <div className="hidden lg:block absolute inset-0 pointer-events-none overflow-hidden">
-            <div 
-              className="absolute right-0 top-3/4 -translate-y-1/2 
-                        text-[19vw] leading-none font-black 
-                        text-[#7ba4d0]/12 tracking-tighter 
-                          select-none mr-2"
-              style={{ letterSpacing: '-0.05em' }}
-            >
-              About
-            </div>
-          </div>
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, #cbd5e1 1px, transparent 1px),
+                linear-gradient(to bottom, #cbd5e1 1px, transparent 1px)
+              `,
+              backgroundSize: '50px 50px',
+              backgroundPosition: 'center top',
+              maskImage: `radial-gradient(ellipse 110% 85% at 50% 0%, black 40%, transparent 90%)`,
+              WebkitMaskImage: `radial-gradient(ellipse 110% 85% at 50% 0%, black 40%, transparent 90%)`,
+              opacity: 0.45,
+            }}
+          />
 
           {/* Main Hero Content – Left-aligned, Punchy */}
           <div className="relative z-10 max-w-4xl mt-8">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-[#0b1724] leading-tight md:leading-none">
-              <span className="block">India’s Largest</span>
+              <span className="block">About :</span>
               <span className="text-[#2e5e99]">Developer</span>
               <span className="block text-[#2e5e99]">Builder</span>
             </h1>
 
-            <p className="mt-8 text-xl md:text-2xl text-gray-700 max-w-2xl leading-relaxed">
+            {/* <p className="mt-8 text-xl md:text-2xl text-gray-700 max-w-2xl leading-relaxed">
               We don’t just help developers find jobs.<br />
               <span className="font-semibold text-[#0d2440]">We help them become unstoppable.</span>
-            </p>
+            </p> */}
 
             <div className="mt-10 flex gap-6">
               <a

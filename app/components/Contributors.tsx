@@ -69,7 +69,7 @@ export default function Contributors() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-20">
-          <h2 className="text-5xl md:text-6xl font-bold text-[#0d2440] mb-6">
+          <h2 id="team" className="text-5xl md:text-6xl font-bold text-[#0d2440] mb-6">
             Meet Our Developers
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -169,6 +169,32 @@ export default function Contributors() {
           </p>
         </div>
       </div>
+
+
+      {/* Apply Now – Stunning CTA */}
+<div className="text-center py-25 bg-gradient-to-r from-[#ff5a57] to-[#e02f75] mt-8 rounded-3xl border border-amber-300 shadow-xl">
+
+  {/* Heading */}
+  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+    🚀 Think you’d be a great fit?
+  </h2>
+  <p className="text-lg md:text-xl text-gray-100 max-w-2xl mx-auto mb-10">
+    Join our team that values curiosity, craftsmanship, and care. Your journey starts here.
+  </p>
+
+  {/* Centered Apply Button – preserved look */}
+  <div className="mt-10 flex justify-center">
+    <a
+      href="https://docs.google.com/forms/d/e/1FAIpQLScUZ5y_RpNN9FXlm5U5ZtGaZuAmOeb_PDwldEUrMG6RO-lRXA/viewform?usp=publish-editor"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="border relative h-10 px-8 py-1 text-black text-2xl font-bold overflow-hidden bg-white rounded-3xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0"
+    >
+      Apply Now
+    </a>
+  </div>
+  </div>
+          
     </section>
   );
 }

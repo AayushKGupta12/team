@@ -4,41 +4,42 @@ export default function CareersPage() {
   return (
     <>
       {/* HERO – "We Are Hiring" */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#e7f0fa] via-white to-[#d0e2f7] py-28 md:py-36 lg:py-44 px-6 lg:px-8">
+      {/* HERO SECTION – Clean, Bold, Human */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#e7f0fa] via-white to-[#ffd77a]/50 py-24 md:py-32 lg:py-40 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
 
-          {/* Floating "Join" text – visible only on large screens, right side */}
-          <div className="hidden lg:block absolute inset-0 pointer-events-none overflow-hidden">
-            <div 
-              className="absolute right-0 top-3/4 -translate-y-1/2 
-                        text-[19vw] leading-none font-black 
-                        text-[#7ba4d0]/12 tracking-tighter 
-                          select-none mr-3"
-              style={{ letterSpacing: '-0.06em' }}
-            >
-              Join
-            </div>
-          </div>
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, #cbd5e1 1px, transparent 1px),
+                linear-gradient(to bottom, #cbd5e1 1px, transparent 1px)
+              `,
+              backgroundSize: '50px 50px',
+              backgroundPosition: 'center top',
+              maskImage: `radial-gradient(ellipse 110% 85% at 50% 0%, black 40%, transparent 90%)`,
+              WebkitMaskImage: `radial-gradient(ellipse 110% 85% at 50% 0%, black 40%, transparent 90%)`,
+              opacity: 0.45,
+            }}
+          />
 
-          {/* Main Hero Content */}
+          {/* Main Hero Content – Left-aligned, Punchy */}
           <div className="relative z-10 max-w-4xl mt-8">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-[#0b1724] leading-tight md:leading-none">
-              <span className="block">We’re Hiring</span>
-              <span className="text-[#2e5e99]">Builders</span>
+              <span className="block">We’re Hiring :</span>
+              <span className="text-[#2e5e99]">Developer</span>
             </h1>
 
             <p className="mt-8 text-xl md:text-2xl text-gray-700 max-w-2xl leading-relaxed">
-              Not just coders. Not just designers.<br />
-              <span className="font-semibold text-[#0d2440]">
-                People who want to shape the future of how India builds software.
-              </span>
+             Not just coders. Not just designers.
+              <span className="font-semibold text-[#0d2440]">People who want to shape the future of how India builds software.</span>
             </p>
 
             <div className="mt-10 flex gap-6">
               <a
-                href="#roles"
+                href="#about"
                 className="border relative h-14 py-2 p-15 text-black text-3xl font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
-                Check us
+                About us
               </a>
             </div>
           </div>
@@ -104,33 +105,29 @@ export default function CareersPage() {
             ))}
           </div>
 
-          {/* Apply Now – Stunning Button */}
-          <div className="text-center py-16">
-            <p className="text-2xl md:text-3xl font-bold text-[#0d2440] mb-8">
-              Think you’d be a great fit?
-            </p>
+          {/* Apply Now – Stunning CTA */}
+<div className="text-center py-25 bg-gradient-to-r from-[#ff5a57] to-[#e02f75] mt-8 rounded-3xl border border-amber-300 shadow-xl">
 
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLScUZ5y_RpNN9FXlm5U5ZtGaZuAmOeb_PDwldEUrMG6RO-lRXA/viewform?usp=publish-editor"
-              target="_blank"
-              rel="noopener noreferrer"
-              
-              className="relative inline-block px-8 py-3 text-black text-2xl font-bold 
-                        bg-white border rounded-3xl shadow-md overflow-hidden
-                        transition-transform duration-200 ease-in-out
-                        hover:scale-105 hover:text-white hover:shadow-lg active:scale-95
-                        before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full
-                        before:bg-gradient-to-r before:from-blue-700 before:to-blue-400
-                        before:transition-all before:duration-500 before:ease-in-out
-                        before:rounded-3xl hover:before:left-0">
-                          Apply
-                        </a>
-            
-                
-            <p className="mt-6 text-lg text-gray-600">
-              We reply to <strong>every</strong> application usually within 48 hours
-            </p>
-          </div>
+  {/* Heading */}
+  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+    🚀 Think you’d be a great fit?
+  </h2>
+  <p className="text-lg md:text-xl text-gray-100 max-w-2xl mx-auto mb-10">
+    Join our team that values curiosity, craftsmanship, and care. Your journey starts here.
+  </p>
+
+  {/* Centered Apply Button – preserved look */}
+  <div className="mt-10 flex justify-center">
+    <a
+      href="https://docs.google.com/forms/d/e/1FAIpQLScUZ5y_RpNN9FXlm5U5ZtGaZuAmOeb_PDwldEUrMG6RO-lRXA/viewform?usp=publish-editor"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="border relative h-10 px-8 py-1 text-black text-2xl font-bold overflow-hidden bg-white rounded-3xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0"
+    >
+      Apply Now
+    </a>
+  </div>
+  </div>
 
         </div>
       </section>
