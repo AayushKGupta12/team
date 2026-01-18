@@ -487,15 +487,15 @@ export default function PYQSection() {
     ))}
   </div>
 
-  <motion.p
+  {/* <motion.p
     initial={{ opacity: 0 }}
     whileInView={{ opacity: 1 }}
     viewport={{ once: true }}
     transition={{ delay: 0.3 }}
     className="mt-10 text-3xl text-slate-500 italic"
   >
-    📘 Best KIIT PPTs and official lecture slides will be added soon.
-  </motion.p>
+    Explore our tool's, Build specially for Young Developers
+  </motion.p> */}
 </div>
 
 
