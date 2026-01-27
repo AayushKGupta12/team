@@ -12,7 +12,7 @@ export const metadata = {
 const page = () => {
   return (
     <div>
-        <JobHero />
+        {/* <JobHero /> */}
         <Jobs/>
     </div>
   )

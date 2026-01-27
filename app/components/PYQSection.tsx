@@ -31,11 +31,11 @@ const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
     "2023": "https://drive.google.com/file/d/10YdcyGp0LCr42QzipLcKRYpT525z1_V5/preview",
   },
 
-  // ITC: {
-  //   "2024": "",
-  //   "2020": "",
-  //   "2023": "",
-  // },
+  ITC: {
+    "2025": "https://drive.google.com/file/d/10KT32zcnoTSH0UX--4MHgODO6fOteGiM/preview",
+    "2024": "https://drive.google.com/file/d/1HUGbEKPCAVppej-QoXvQMq0C2kYb5JqL/preview",
+    "2023": "https://drive.google.com/file/d/1x-JfsR1pQu5B_jOgN7RQQ92wZ-Z5Srs5/preview",
+  },
 
   COA: {
     "2024": "https://drive.google.com/file/d/15sAFe-xNRWHK2bqAXiboANhTb3PnA3l9/preview",
