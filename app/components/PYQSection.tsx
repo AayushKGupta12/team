@@ -19,25 +19,26 @@ const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
 },
 
 
-  DBMS: {
+  Database_Management_System: {
+    "2025": "https://drive.google.com/file/d/11b1-RgvTgHqXGbySlncvWaTZ1DsNjIfA/preview",
     "2024": "https://drive.google.com/file/d/193MDOPP2YpvapBMOLy5NXy-KFJnbDfzj/preview",
     "2020": "https://drive.google.com/file/d/1KnGbUcH5rAlFx0IMdnAZer6Ol4wCXU2e/preview",
     "2023": "https://drive.google.com/file/d/1UNPGoxfS6iN8aHItFPrzxaI12u_EimQd/preview",
   },
 
-  OS: {
+  Operating_System: {
     "2024": "https://drive.google.com/file/d/1K3S-TlGvdLwsrGp03C2vX3nLNw7B-DsE/preview",
     "2020": "https://drive.google.com/file/d/10NWOVV40KR6NwY6OiT2U-sKaXKed12lh/preview",
     "2023": "https://drive.google.com/file/d/10YdcyGp0LCr42QzipLcKRYpT525z1_V5/preview",
   },
 
-  ITC: {
+  Information_Theory_Coding: {
     "2025": "https://drive.google.com/file/d/10KT32zcnoTSH0UX--4MHgODO6fOteGiM/preview",
     "2024": "https://drive.google.com/file/d/1HUGbEKPCAVppej-QoXvQMq0C2kYb5JqL/preview",
     "2023": "https://drive.google.com/file/d/1x-JfsR1pQu5B_jOgN7RQQ92wZ-Z5Srs5/preview",
   },
 
-  COA: {
+  Computer_Organization_Architecture: {
     "2024": "https://drive.google.com/file/d/15sAFe-xNRWHK2bqAXiboANhTb3PnA3l9/preview",
     "2020": "https://drive.google.com/file/d/1yhY4gI9SBxu93lTMCwdxRhC4zduEe89d/preview",
     "2023": "https://drive.google.com/file/d/1_nMz2Rn7aCUl5yHP24JIWfIj0D9ITAxm/preview",
@@ -61,25 +62,32 @@ const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
   //   "2023": "",
   // },
 
-  DM: {
+  Descrete_Mathematics: {
     "2024": "https://drive.google.com/file/d/12hbGwFjCWtmAmb_zqkPeZD4ISDwuT-Ce/preview",
     "2020": "https://drive.google.com/file/d/1idtMqZbT0z8SrRvT_QbvGrEYwt1iPQA-/preview",
     "2023": "https://drive.google.com/file/d/1E4WOM7U6wbzvaz5gljena2ihVoDSHHTG/preview",
   },
 
-  OB: {
+  Organizational_Behaviour: {
     // "2024": "",
     // "2020": "",
     "2023": "https://drive.google.com/file/d/1433LzKga7FKn8BNlzj2z4E2IJ4X2NKfU/preview",
   },
 
-  Eco: {
+  Economics_of_Development: {
     "2024": "https://drive.google.com/file/d/1UGUUBMeqP7WRhbHj4VeqdJt9I9XOPEbn/preview",
     // "2020": "",
     "2023": "https://drive.google.com/file/d/1YEg2frwIhEmo5-Lyz55Hf35DsOCqtdvf/preview",
   },
 
-  OOPs: {
+  Engineering_Economics:{
+    "2024A" :"https://drive.google.com/file/d/1gYt8XNGcv3mhnBL8_iLbfG7bdu6i1jfu/preview",
+    "2024B" : "https://drive.google.com/file/d/1mEuAeD8TQbFrpAq7iADnN0zxLqrwHcEt/preview",
+    "2025A": "https://drive.google.com/file/d/1FkkcQaJwpay1871qYQkT4_xQ8vfPpZkk/preview",
+    "2025B" : "https://drive.google.com/file/d/1eFMjBTXcTMV3Jk05gLpcfGZx14BNvLKg/preview",
+  },
+
+  Object_Oriented_Programming_Java: {
   "2024": "https://drive.google.com/file/d/190Ul0ha0j-iy0_p6CTOJ7Wy30XLSRrJp/preview",
   "2023": "https://drive.google.com/file/d/1BTXowy65AXJHjE_2wq-OtxzIA9D8EEH3/preview",
   "2022": "https://drive.google.com/file/d/1moXngXeXafkuYlOZTwLeH_N1ToFrw1DK/preview",
@@ -87,23 +95,23 @@ const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
 },
 
   "6th": {
-  ML: {
+  Machine_Learning: {
     "2024": "https://drive.google.com/file/d/125qAq9tEcy6XhqGQVpFKNNBGQlbZmCBO/preview",
     "2023": "https://drive.google.com/file/d/1M7zPAfhPHWiee4Mq_wUmw8VKiTchF2SM/preview",
     "2022": "https://drive.google.com/file/d/1XSFzunCyG70Mw2KJUM2YjjlCnsOD-YD1/preview",
   },
 
-  AI: {
+  Artificial_Intelligence: {
     "2024": "https://drive.google.com/file/d/1c6TI9Jip6LPT2lLCMkO9mBK8KGkWrANY/preview",
     "2023": "https://drive.google.com/file/d/1sOIGNY473EmzFxtzTq_BpK0iaVhtOViy/preview",
     "2022": "https://drive.google.com/file/d/1QOGvMEsZaNNez_tef7MYbvsPRsARfTWr/preview",
   },
 
-  UHV: {
+  Universal_Human_Values: {
     "2024": "https://drive.google.com/file/d/1RlrpGjoT7xFLkKYJ8-BzbCKvLPH7q7QV/preview",
   },
 
-  CC: {
+  Cloud_Computing: {
     "2024": "https://drive.google.com/file/d/1RcIriSSNIPfUhvqlXdjYm0QYQHjNlMGA/preview",
     "2023": "https://drive.google.com/file/d/1-uLxf6v5l_R55hxt3bXfFR_oayFACa2N/preview",
   },
@@ -114,23 +122,36 @@ const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
   //   "2020": "",
   // },
 
-  SPM: {
+  Software_Project_Management: {
     "2024": "https://drive.google.com/file/d/1w_Zf9BDNldGqKgYZU4AHa3UGSf_EqJrd/preview",
     "2023": "https://drive.google.com/file/d/195w7DW2msLvga6kT0R-ruttaFcB3pS5i/preview",
     "2019": "https://drive.google.com/file/d/1UE0qGWnJK8ihAw-zEVhQu8DyZw2EmPrW/preview",
   },
 
-  NLP: {
+  Natural_Language_Processing: {
     "2024": "https://drive.google.com/file/d/1UE0qGWnJK8ihAw-zEVhQu8DyZw2EmPrW/preview",
     "2023": "https://drive.google.com/file/d/1aXBD1m1T123s392OpwuSH9ewmaSLg5gS/preview",
     "2022": "https://drive.google.com/file/d/10KUEMxzBHJNoO-YZgVYgGD88rcIPDMeb/preview",
   },
 
-  // DSA: {
-  //   "2024": "",
-  //   "2023": "",
-  //   "2020": "",
-  // },
+  Microprocessor: {
+    "2015": "https://drive.google.com/file/d/1raOCIDqdwJPt27sRUy9FJmJ1oNzxMh87/preview",
+    "2020": "https://drive.google.com/file/d/1-v-mMHVYcuNfNQU8IECa2fWDWrqjC8eC/preview",
+    "2022": "https://drive.google.com/file/d/1dtC4-sULz1B3Iq9OGtesfsged_MLIrKh/preview",
+  },
+
+  Data_Mining: {
+    "2025":"https://drive.google.com/file/d/1WzoFBG490BJisZsDwj4rkjwjw8ci_M6u/preview",
+    "2024":"https://drive.google.com/file/d/1sChA6jKadcSe1B0uJr3G4EnRtBilUqBO/preview",
+    "2024B":"https://drive.google.com/file/d/18hF-R273Ej-BLrWxqeDhAoHJpTyrv7Ot/preview",
+  },
+
+  Compiler: {
+    "2024":"https://drive.google.com/file/d/1VSkajJTnsWPlde42p4wRFSoEN6jJ1gLr/preview",
+    "2025":"https://drive.google.com/file/d/1qjjodDLfTCSt_HKjOkemz7KlHkUUzQmq/preview",
+    "2024B": "https://drive.google.com/file/d/1jVt1aLLSMTElj3Rwrv827WmRAzNIkg7a/preview",
+    "2023" : "https://drive.google.com/file/d/1a8iWRTygXChySGfGKzbPKQaR7Ih_2XW3/preview",
+  },
 },
 };
 
@@ -355,90 +376,6 @@ export default function PYQSection() {
         onClose={() => setShowToast(false)}
       />
           </div>
-        </div>
-        </div>
-
-        {/* --- ROADMAP & TOPICS --- */}
-<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-  
-  <div className="bg-white border border-slate-200 p-8 rounded-[2rem]">
-    <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
-      <span className="text-xl">📚</span> High Weightage Topics
-    </h3>
-    <ul className="space-y-4">
-
-      <li className="flex gap-3 text-slate-600 text-sm">
-        <span className="text-indigo-400 font-black">01.</span>
-        Focus on the last 3 years of theory questions as they often repeat.
-      </li>
-
-      <li className="flex gap-3 text-slate-600 text-sm">
-        <span className="text-indigo-400 font-black">02.</span>
-        Practice numerical patterns from 2022 and 2023 papers.
-      </li>
-
-      <li className="flex gap-3 text-slate-600 text-sm">
-        <span className="text-indigo-400 font-black">03.</span>
-        Identify topics that appear in consecutive years and prioritize them first.
-      </li>
-
-      <li className="flex gap-3 text-slate-600 text-sm">
-        <span className="text-indigo-400 font-black">04.</span>
-        Prepare short-note questions thoroughly as they are frequently asked.
-      </li>
-
-      <li className="flex gap-3 text-slate-600 text-sm">
-        <span className="text-indigo-400 font-black">05.</span>
-        Focus on diagram-based questions to secure partial marks even with incomplete answers.
-      </li>
-
-      <li className="flex gap-3 text-slate-600 text-sm">
-        <span className="text-indigo-400 font-black">06.</span>
-        Observe repeated keywords and phrasing used by examiners to structure answers better.
-      </li>
-    </ul>
-  </div>
-
-  <div className="bg-indigo-900 text-white p-8 rounded-[2rem] shadow-xl">
-    <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-      <span>🚀</span> Preparation Roadmap
-    </h3>
-
-    <div className="space-y-6">
-      
-      <div className="border-l-2 border-indigo-400/30 pl-5 relative">
-        <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-indigo-400" />
-        <p className="font-bold text-sm mb-1">Phase 1: Concepts</p>
-        <p className="text-xs text-indigo-200">
-          Go through class notes and YouTube summaries to build conceptual clarity.
-        </p>
-      </div>
-
-      <div className="border-l-2 border-indigo-400/30 pl-5 relative">
-        <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-indigo-400" />
-        <p className="font-bold text-sm mb-1">Phase 2: PYQ Drill</p>
-        <p className="text-xs text-indigo-200">
-          Solve at least 2 full papers under a strict 1.5 hour exam-like timer.
-        </p>
-      </div>
-
-      <div className="border-l-2 border-indigo-400/30 pl-5 relative">
-        <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-indigo-400" />
-        <p className="font-bold text-sm mb-1">Phase 3: Pattern Recognition</p>
-        <p className="text-xs text-indigo-200">
-          Analyze repeated questions, important units, and mark distribution across years.
-        </p>
-      </div>
-
-      <div className="border-l-2 border-indigo-400/30 pl-5 relative">
-        <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-indigo-400" />
-        <p className="font-bold text-sm mb-1">Phase 4: Final Revision</p>
-        <p className="text-xs text-indigo-200">
-          Revise only high-weightage topics, formulas, definitions, and diagrams in the last 48 hours.
-        </p>
-      </div>
-
-    </div>
   </div>
 </div>
 
