@@ -10,6 +10,7 @@ import Banner from './components/Banner'
 import ToolsExplorer from './components/ToolsExplorer'
 
 
+
 export const metadata = {
   title: "VFound – IT Jobs, AI Resume Analyzer & Cover Letter Maker",
   description:
@@ -42,7 +43,7 @@ const Page = () => {
 
       <Banner
         isPositive={true}
-        message="KIIT PYQ's are added for 4 & 6th semester Mid semester exam (2 Feb 2026)"
+        message="Best of Luck your Mid Semester Exams!"
       />
       <Navbar />
       <Hero />

@@ -1,227 +1,200 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
 
-/* ------------------ Typed Framer Motion Variants ------------------ */
+const stats = [
+  { label: "Resume Analysed", value: 740, color: "bg-amber-400" },
+  { label: "Jobs Applied", value: 3600, color: "bg-green-400" },
+  { label: "Resumes Shortlisted", value: 3276, color: "bg-blue-400" },
+  { label: "Interview Calls", value: 2293, color: "bg-purple-400" },
+];
 
-const containerVariants: Variants = {
-  hidden: {
-    opacity: 0,
+const testimonials = [
+  {
+    quote:
+      "The advanced resume analysis didn’t just rewrite my CV. It evaluated my technical depth, ATS score, and mapped me to the exact roles I should target.",
+    name: "Riya Kumari",
+    role: "Software Engineer",
+    company: "Walmart",
   },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.30,
-    },
+  {
+    quote:
+      "The application process felt purpose built for job seekers. Only role relevant insights and verified opportunities tailored to my profile.",
+    name: "Sanu Gupta",
+    role: "Sr Data Scientist",
+    company: "Databricks",
   },
-};
+  {
+    quote:
+      "The two step cover letter builder used my resume data and the job description together. It understood hiring logic.",
+    name: "Shambhavi Kiran",
+    role: "Product Manager",
+    company: "Google",
+  },
+  {
+    quote:
+      "Within minutes, I knew where my resume was weak and which jobs I realistically matched.",
+    name: "Arjun Mehta",
+    role: "Full Stack Developer",
+    company: "TCS",
+  },
+  {
+    quote:
+      "Resume scoring gave precise, actionable feedback based on real hiring parameters.",
+    name: "Sneha Roy",
+    role: "SDE Intern",
+    company: "Microsoft",
+  },
+  {
+    quote:
+      "Only verified job listings matched to my resume. No fake posts, just accurate opportunities.",
+    name: "Karan Singh",
+    role: "Cloud Engineer",
+    company: "AWS",
+  },
+];
 
-const cardVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-};
+const images = [
+  "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+  "https://images.unsplash.com/photo-1492724441997-5dc865305da7",
+  "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+  "https://images.unsplash.com/photo-1553877522-43269d4ea984",
+  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
+  "https://images.unsplash.com/photo-1487014679447-9f8336841d58",
+];
 
 export default function Testimonials() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [showLeft, setShowLeft] = useState(false);
+  const [showRight, setShowRight] = useState(true);
+
+  const checkScroll = () => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+    setShowLeft(scrollLeft > 10);
+    setShowRight(scrollLeft + clientWidth < scrollWidth - 10);
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    checkScroll();
+    el.addEventListener("scroll", checkScroll);
+    return () => el.removeEventListener("scroll", checkScroll);
+  }, []);
+
+  const scroll = (dir: "left" | "right") => {
+    scrollRef.current?.scrollBy({
+      left: dir === "left" ? -420 : 420,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <section className="py-12 bg-[#e7f0fa] sm:py-16 lg:py-20">
-      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center">
+    <section className="py-28 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
 
-          {/* Heading */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-center"
-          >
-            <h1 className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl xl:text-5xl font-pj">
-              Our Happy Clients
-            </h1>
-          </motion.div>
+        <h2 className="text-center text-5xl font-light text-[#0d2440] mb-10">
+          What Our Community Says
+        </h2>
 
-          <div className="relative mt-10 md:mt-24 md:order-2">
-            <div className="absolute -inset-x-1 inset-y-16 md:-inset-x-2 md:-inset-y-6">
-              <div
-                className="w-full h-full max-w-5xl mx-auto rounded-3xl opacity-30 blur-lg filter"
-                style={{
-                  background:
-                    "linear-gradient(90deg, #44ff9a -0.55%, #44b0ff 22.86%, #8b44ff 48.36%, #ff6644 73.33%, #ebff70 99.34%)",
-                }}
-              />
-            </div>
-
-            {/* Cards */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="relative grid max-w-lg grid-cols-1 gap-6 mx-auto md:max-w-none lg:gap-10 md:grid-cols-3"
+        <div className="relative">
+          {showLeft && (
+            <button
+              onClick={() => scroll("left")}
+              className="absolute left-1 top-8/9 -translate-y-1/2 z-20 bg-amber-200 backdrop-blur-md p-2 rounded-full shadow"
             >
-              {/* Card 1 */}
-              <motion.div
-                variants={cardVariants}
-                className="flex flex-col overflow-hidden shadow-xl rounded-xl"
-              >
-                <div className="flex flex-col justify-between flex-1 p-6 bg-white lg:py-8 lg:px-7">
-                  <div className="flex-1">
-                    <div className="flex items-center">
-                      {[...Array(5)].map((_, i) => (
-                        <svg
-                          key={i}
-                          className="w-5 h-5 text-[#FDB241]"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      ))}
+              <ChevronLeft />
+            </button>
+          )}
+
+          {showRight && (
+            <button
+              onClick={() => scroll("right")}
+              className="absolute right-1 top-8/9 -translate-y-1/2 z-20 bg-amber-200 backdrop-blur-md p-2 rounded-full shadow"
+            >
+              <ChevronRight />
+            </button>
+          )}
+
+          <div
+            ref={scrollRef}
+            className="flex gap-8 py-10 px-5 overflow-x-auto no-scrollbar scroll-smooth pb-20"
+          >
+            {testimonials.map((t, i) => {
+              const isMiddle = i === Math.floor(testimonials.length / 2);
+
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 60 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.08, delay: 0 }}
+                  whileHover={{ scale: 1.02 }}
+                  className="relative flex-shrink-0 w-[350px] h-[350px] snap-center rounded-md overflow-hidden cursor-pointer transition-all duration-100">
+                  {/* Image */}
+                  <div
+                    className="absolute inset-0 bg-cover bg-center 
+                              grayscale-25
+                              group-hover:scale-105
+                              transition-all duration-100 ease-out"
+                    style={{ backgroundImage: `url(${images[i]})` }}
+                  />
+
+                  <div className="absolute inset-0 bg-black/70" />
+
+                  {/* Content */}
+                  <div className="relative z-10 h-full p-8 flex flex-col justify-between text-white">
+                    {/* Company */}
+                    <div className="text-sm tracking font-extrabold uppercase text-amber-400">
+                      {t.company}
                     </div>
 
-                    <blockquote className="mt-8">
-                      <p className="text-lg leading-relaxed text-gray-900 font-pj">
-                        "Everything was made clear by Advance resume analysis, which highlighted my gaps, highlighted my technical weekness and evaluated my experience and indicated which jobs I would be most suited for."</p>
-                    </blockquote>
-
-                    <hr className="mt-3" />
-                  </div>
-
-                  <div className="mt-3">
-                    <p className="text-base font-bold text-gray-900 font-pj">
-                      Riya Kumari
+                    {/* Quote */}
+                    <p className="text-lg leading-relaxed font-light">
+                      {t.quote}
                     </p>
-                    <p className="text-sm text-gray-600 font-pj">
-                      Software Engineer @ Walmart
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
 
-              {/* Card 2 */}
-              <motion.div
-                variants={cardVariants}
-                className="flex flex-col overflow-hidden shadow-xl rounded-xl"
-              >
-                <div className="flex flex-col justify-between flex-1 p-6 bg-white lg:py-8 lg:px-7">
-                  <div className="flex-1">
-                    <div className="flex items-center">
-                      {[...Array(5)].map((_, i) => (
-                        <svg key={i} className="w-5 h-5 text-[#FDB241]" viewBox="0 0 20 20" fill="currentColor">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      ))}
+                    {/* Name & Role */}
+                    <div className="border-t border-white/40 pt-4 flex justify-between text-sm">
+                      <span className="font-semibold">{t.name}</span>
+                      <span className="">{t.role}</span>
                     </div>
-
-                    <blockquote className="mt-8">
-                      <p className="text-lg leading-relaxed text-gray-900 font-pj">
-                        "To be honest, it was the simplest IT job application process I've ever encountered. Just me, my resume, and the business, no additional steps or third party platforms."</p>
-                    </blockquote>
                   </div>
-
-                  <hr className="mt-3" />
-
-                  <div className="mt-3">
-                    <p className="text-base font-bold text-gray-900 font-pj">
-                      Sanu Gupta
-                    </p>
-                    <p className="text-sm text-gray-600 font-pj">
-                      Sr. Data Scientist @ Databricks
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Card 3 */}
-              <motion.div
-                variants={cardVariants}
-                className="flex flex-col overflow-hidden shadow-xl rounded-xl"
-              >
-                <div className="flex flex-col justify-between flex-1 p-6 bg-white lg:py-8 lg:px-7">
-                  <div className="flex-1">
-                    <div className="flex items-center">
-                      {[...Array(5)].map((_, i) => (
-                        <svg key={i} className="w-5 h-5 text-[#FDB241]" viewBox="0 0 20 20" fill="currentColor">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      ))}
-                    </div>
-
-                    <blockquote className="mt-8">
-                      <p className="text-lg leading-relaxed text-gray-900 font-pj">
-                        "I was astounded by how simple it was to write a polished cover letter. The entire process was quick and easy thanks to the two step builder and recommened job profiles."</p>
-                    </blockquote>
-                  </div>
-
-                  <hr className="mt-3" />
-
-                  <div className="mt-3">
-                    <p className="text-base font-bold text-gray-900 font-pj">
-                      Shambhavi Kiran
-                    </p>
-                    <p className="text-sm text-gray-600 font-pj">
-                      Product Manager @ Google
-                    </p>
-                  </div>
-                </div>
-
-                      
-
-
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="flex justify-center md:col-span-3"
-              >
-                <div className="inline-flex items-center gap-3 rounded-full bg-white px-4 py-2 border border-slate-200 shadow-sm">
-                  {/* Stars */}
-                  <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <svg
-                        key={i}
-                        className={`h-4 w-4 ${
-                          i < 4 ? "text-yellow-500" : "text-yellow-300"
-                        }`}
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-
-                  {/* Text */}
-                  <p className="text-sm font-medium text-slate-700">
-                    <span className="font-semibold text-slate-900">4.7</span> / 5
-                    <span className="mx-1 text-slate-400">•</span>
-                    Based on <span className="font-semibold">7,900+</span> ratings
-                  </p>
-                </div>
-              </motion.div>
-              
-
-            </motion.div>
-            
+                </motion.div>
+              );
+            })}
           </div>
           
         </div>
-        
       </div>
-      
+      {/* ANALYTICS CTA SECTION */}
+        <div className="mt-5 bg-[#0d2440] py-20 px-10">
+          <div className="text-center mb-10">
+            <h3 className="text-4xl font-semibold text-white">
+              Community of 18000+ IT Graduates
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className={`${stat.color} p-6 text-center`}
+              >
+                <div className="text-6xl text-[#0d2440] font-light">
+                  {stat.value}+
+                </div>
+                <p className="mt-4 text-xl font-medium text-gray-900">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
     </section>
   );
 }
