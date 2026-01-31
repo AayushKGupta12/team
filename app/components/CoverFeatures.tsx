@@ -112,7 +112,7 @@ const features = [
         }}
       />
 
-      <section className=" bg-[#e5eefc] py-18">
+      <section className=" bg-[#e5eefc]/30 py-18">
         {/* ===== SECTION HEADER ===== */}
         <header className="max-w-4xl mx-auto text-center mb-18 px-6">
           <h1 className="text-4xl lg:text-5xl font-light text-[#0d2440] tracking-tight leading-tight">
