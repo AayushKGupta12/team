@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { useAuth, useClerk, useUser } from "@clerk/nextjs";
-import { consumeCredit } from "../../lib/consumeCredit";
+// import { useAuth, useClerk, useUser } from "@clerk/nextjs";
+// import { consumeCredit } from "../../lib/consumeCredit";
 import { motion } from "framer-motion";
 
 
@@ -189,9 +189,9 @@ export default function PYQSection() {
   const [year, setYear] = useState("2022");
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
 
-  const { isSignedIn } = useAuth();
-  const { user } = useUser();
-  const clerk = useClerk();
+  // const { isSignedIn } = useAuth();
+  // const { user } = useUser();
+  // const clerk = useClerk();
 
   const [pendingView, setPendingView] = useState(false);
   const [showToast, setShowToast] = useState(false);
@@ -235,13 +235,13 @@ export default function PYQSection() {
     return;
   }
 
-  if (!isSignedIn) {
-    setPendingView(true);
-    clerk.openSignIn();
-    return;
-  }
+  // if (!isSignedIn) {
+  //   setPendingView(true);
+  //   clerk.openSignIn();
+  //   return;
+  // }
 
-  if (!user) return;
+  // if (!user) return;
 
   // ✅ If already paid for this document, just open it
   if (lastPaidDocRef.current === currentDocKey) {
@@ -251,12 +251,12 @@ export default function PYQSection() {
 
   setShowToast(true);
 
-  const usage = await consumeCredit(user.id, "pyq_view");
+  // const usage = await consumeCredit(user.id, "pyq_view");
 
-  if (!usage.allowed) {
-    alert("You have reached your PYQ viewing limit. Please upgrade.");
-    return;
-  }
+  // if (!usage.allowed) {
+  //   alert("You have reached your PYQ viewing limit. Please upgrade.");
+  //   return;
+  // }
 
   // ✅ Mark this document as paid
   lastPaidDocRef.current = currentDocKey;
@@ -266,12 +266,12 @@ export default function PYQSection() {
 
 
 
-  useEffect(() => {
-    if (isSignedIn && pendingView) {
-      setPendingView(false);
-      handleViewDocument();
-    }
-  }, [isSignedIn, pendingView]);
+  // useEffect(() => {
+  //   if (isSignedIn && pendingView) {
+  //     setPendingView(false);
+  //     handleViewDocument();
+  //   }
+  // }, [isSignedIn, pendingView]);
 
   return (
     <div className="min-h-screen bg-slate-50/50 py-12 px-4 sm:px-6 lg:px-8">
@@ -371,10 +371,10 @@ export default function PYQSection() {
         View Document
       </button>
 
-      <CreditUsedToast
+      {/* <CreditUsedToast
         show={showToast}
         onClose={() => setShowToast(false)}
-      />
+      /> */}
           </div>
   </div>
 </div>
