@@ -8,6 +8,7 @@ import Testimonials from './components/test'
 import CongratsPopup from './components/CongratsPopUp'
 import Banner from './components/Banner'
 import ToolsExplorer from './components/ToolsExplorer'
+// import GuidedPath from './components/GuidedPath'
 
 
 
@@ -49,6 +50,7 @@ const Page = () => {
       <Hero />
       <ToolsExplorer/>
       <Features />
+      {/* <GuidedPath/> */}
       <Testimonials/>
       <FAQ />
       <CongratsPopup />

@@ -56,7 +56,7 @@ const navItems: NavItem[] = [
     dropdown: [
       { label: "About us", href: "/about" },
       { label: "Careers", href: "/careers" },
-      { label: "Team", href: "/team" },
+      // { label: "Team", href: "/team" },
       { label: "Contact Us", href: "/contact" },
     ],
   },
@@ -223,11 +223,11 @@ export default function Navbar(): React.JSX.Element {
         active={pathname === "/blog"}
       />
 
-      <IconLink
+      {/* <IconLink
         href="/team"
         icon={<Users size={15} />}
         active={pathname === "/team"}
-      />
+      /> */}
 
       <IconLink
         href="/contact"

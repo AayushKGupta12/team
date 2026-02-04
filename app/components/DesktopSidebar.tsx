@@ -136,7 +136,7 @@ export default function DesktopSidebar({
           )}
 
           <NavItem icon={Info} label="About Us" href="/about" collapsed={collapsed} />
-          <NavItem icon={Users} label="Team" href="/team" collapsed={collapsed} />
+          {/* <NavItem icon={Users} label="Team" href="/team" collapsed={collapsed} /> */}
           <NavItem icon={Phone} label="Contact" href="/contact" collapsed={collapsed} />
           <NavItem icon={Building2} label="Careers" href="/careers" collapsed={collapsed} />
 
