@@ -139,7 +139,6 @@ export default function Navbar(): React.JSX.Element {
 
               <div className="hidden md:flex items-center gap-2">
                 <SignedOut>
-                  <SignInButton>
                     <div className="flex gap-2">
                     <a
                         href="/sign-in"
@@ -147,8 +146,7 @@ export default function Navbar(): React.JSX.Element {
                         Sign in
                     </a>
                     </div>
-                  </SignInButton>
-                  <SignUpButton>
+
                     <div className="flex gap-2">
                     <a
                         href="/sign-up"
@@ -156,7 +154,6 @@ export default function Navbar(): React.JSX.Element {
                         Sign up
                     </a>
                     </div>
-                  </SignUpButton>
                 </SignedOut>
 
                 <SignedIn>

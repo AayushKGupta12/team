@@ -1,12 +1,6 @@
 "use client";
 
 import {
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-  useUser,
   SignIn ,
 } from "@clerk/nextjs";
 
@@ -32,7 +26,7 @@ export default function SignInPage() {
   }, []);
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-[#e7f0fa]">
+    <div className="relative flex min-h-screen flex-col bg-[#f4f9ff]">
       {/* ================= MAIN ================= */}
       <div className="grid flex-1 grid-cols-1 lg:grid-cols-2">
         
@@ -78,7 +72,7 @@ export default function SignInPage() {
 
 
         {/* RIGHT – Sign In */}
-        <div className="flex items-center justify-center px-6 py-12 lg:py-0 bg-[#e7f0fa]">
+        <div className="flex items-center justify-center px-6 py-12 lg:py-0 bg-[#f4f9ff]">
           <div className="w-full max-w-md space-y-8">
 
             {/* Small heading */}
@@ -111,7 +105,7 @@ export default function SignInPage() {
       </div>
 
       {/* ================= TESTIMONIALS ================= */}
-      <section className="py-16 px-6 bg-[#e7f0fa]">
+      <section className="py-16 px-6 bg-[#f4f9ff]">
         <div className="mx-auto max-w-6xl">
           <h3 className="text-center text-2xl font-bold text-gray-800 mb-12 tracking-wide">
             What our users say

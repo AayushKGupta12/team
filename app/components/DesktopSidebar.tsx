@@ -157,23 +157,22 @@ export default function DesktopSidebar({
           <SignedOut>
             {!collapsed && (
               <div className="flex gap-2">
-                <SignInButton>
                   <div className="mt-2 flex gap-6">
                     <a
+                        href="/sign-in"
                         className="border relative h-8 py-0.5 px-2.5 text-black text-xl font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
                         Sign in
                     </a>
                     </div>
-                </SignInButton>
 
-                <SignUpButton>
+
                   <div className="mt-2 flex gap-6">
                     <a
+                        href="/sign-up"
                         className="border relative h-8 py-0.5 p-2.5 text-black text-xl font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
                         Sign up
                     </a>
                     </div>
-                </SignUpButton>
               </div>
             )}
           </SignedOut>
