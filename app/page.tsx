@@ -13,7 +13,7 @@ import ToolsExplorer from './components/ToolsExplorer'
 
 
 export const metadata = {
-  title: "VFound – IT Jobs, AI Resume Analyzer & Cover Letter Maker",
+  title: "VFound | Career Intelligence",
   description:
     "Find off-campus IT jobs, analyze your resume with AI, and generate ATS-friendly cover letters. Built for freshers and professionals.",
   robots: {
@@ -43,8 +43,8 @@ const Page = () => {
     <div>
 
       <Banner
-        isPositive={true}
-        message="Best of Luck your Mid Semester Exams!"
+        isPositive={false}
+        message="Happy valentine's week! Find your perfect job match with VFound."
       />
       <Navbar />
       <Hero />
