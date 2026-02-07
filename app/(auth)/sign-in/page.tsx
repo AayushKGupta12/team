@@ -1,6 +1,15 @@
 "use client";
 
-import { SignIn } from "@clerk/nextjs";
+import {
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+  useUser,
+  SignIn ,
+} from "@clerk/nextjs";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -81,7 +90,7 @@ export default function SignInPage() {
 
             {/* Clerk */}
             <div className="flex justify-center">
-              <SignIn />
+              <SignIn routing="hash"/>
             </div>
 
             {/* Back link */}
