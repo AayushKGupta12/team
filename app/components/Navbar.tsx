@@ -12,6 +12,7 @@ import {
   useUser,
 } from "@clerk/nextjs";
 
+
 import {
   Sparkles,
   Briefcase,
@@ -27,6 +28,8 @@ import {
 import UsageProvider from "./UsageProvider";
 
 /* ---------------- DATA ---------------- */
+
+
 
 type NavItem = {
   label: string;
@@ -98,6 +101,11 @@ export default function Navbar(): React.JSX.Element {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Hide navbar on auth pages
+  if (pathname == "/sign-in" || pathname == "/sign-up") {
+    return null;
+  }
 
   return (
     <>

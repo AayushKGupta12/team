@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import UsageProvider from "./UsageProvider";
-
+import { usePathname } from "next/navigation";
 
 export default function DesktopSidebar({
   collapsed,
@@ -31,6 +31,7 @@ export default function DesktopSidebar({
   collapsed: boolean;
   setCollapsed: (v: boolean) => void;
 }) {
+
   return (
     <>
       {/* Mobile Overlay */}

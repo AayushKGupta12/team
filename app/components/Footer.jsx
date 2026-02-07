@@ -1,6 +1,7 @@
 'use client';
 import Link from "next/link";
 import React from "react";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -22,6 +23,12 @@ export default function Footer() {
     { label: "Terms of Use", href: "/term-of-use" },
     { label: "Disclaimer", href: "/term-of-use#disclaimer" },
   ];
+
+   // Hide navbar on auth pages
+  const pathname = usePathname();
+  if (pathname == "/sign-in" || pathname == "/sign-up") {
+    return null;
+  }
 
   return (
     <footer className="bg-black text-white overflow-hidden">
