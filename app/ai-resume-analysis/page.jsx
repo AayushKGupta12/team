@@ -1,31 +1,34 @@
-import React from 'react'
-import ResumeHero from '../components/ResumeHero'
-import ATSResumeCheckerApp from '../components/Analysis'
-import ResumeFAQ from '../components/ResumeFAQ'
-import FAQ from '../components/FAQ2'
-import ResumeCTA from '../components/ResumeCTA'
+import ResumeHero from "../components/ResumeHero";
+import ATSResumeCheckerApp from "../components/Analysis";
+import CareerHealthDashboard from "../components/CareerHealthDashboard";
+import ResumeFAQ from "../components/ResumeFAQ";
+import FAQ from "../components/FAQ2";
+import ResumeCTA from "../components/ResumeCTA";
+import { auth } from "@clerk/nextjs/server";
 
-export const metadata = {
-  title: "AI Resume Analyzer – Check ATS Resume Score | VFound",
-  description:
-    "Analyze your resume with AI. Get ATS score, technical skills review, experience analysis, and IT job recommendations.",
-};
+export default async function Page() {
+  const { userId } = await auth(); // 👈 Add await for Next.js 15+
 
+  console.log("🔥 Page rendered with userId:", userId);
 
-
-const page = () => {
-  
   return (
-    
     <div>
       <ResumeHero />
       <ATSResumeCheckerApp />
-      <ResumeFAQ/>
-      <FAQ/>
-      <ResumeCTA/>
-      
-    </div>
-  )
-}
 
-export default page
+      {userId ? (
+        <div className="mt-12 px-4 max-w-7xl mx-auto">
+          <CareerHealthDashboard clerkUserId={userId} />
+        </div>
+      ) : (
+        <div className="text-center py-8 text-gray-500">
+          Please sign in to view your career health dashboard
+        </div>
+      )}
+
+      <ResumeFAQ />
+      <FAQ />
+      <ResumeCTA />
+    </div>
+  );
+}
