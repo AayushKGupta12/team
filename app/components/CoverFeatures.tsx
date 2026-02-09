@@ -1,4 +1,3 @@
-// components/CoverLetterHero.tsx
 'use client';
 
 import { Upload, FileText, Briefcase, Sparkles, Check, Zap, Shield } from 'lucide-react';

@@ -6,8 +6,21 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
+        // Optional: disallow admin/private pages
+        // disallow: ["/admin", "/api", "/private"],
+      },
+      // Specific rules for Google bot
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+      },
+      // Specific rules for Bing bot
+      {
+        userAgent: "Bingbot",
+        allow: "/",
       },
     ],
-    sitemap: "https://vfound.in/sitemap.xml",
+    // FIXED: Use www.vfound.in instead of vfound.in
+    sitemap: "https://www.vfound.in/sitemap.xml",
   };
 }
