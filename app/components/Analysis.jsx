@@ -253,7 +253,7 @@ function ConnectionTest() {
                 <div className="p-2.5 bg-gradient-to-br from-violet-100 to-purple-100 rounded-xl">
                   <Upload className="w-6 h-6 text-violet-600" />
                 </div>
-                <h2 className="text-2xl font-bold text-slate-800">
+                <h2 id="id1" className="text-2xl font-bold text-slate-800">
                   Upload Resume
                 </h2>
               </div>

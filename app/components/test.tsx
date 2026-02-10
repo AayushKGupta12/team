@@ -96,104 +96,115 @@ export default function Testimonials() {
     <section className="py-28 bg-white">
       <div className="max-w-7xl mx-auto px-6">
 
-        <h2 className="text-center text-5xl font-light text-[#0d2440] mb-10">
-          What Our Community Says
-        </h2>
+  <h2 className="text-center text-4xl sm:text-5xl font-semibold text-[#0d2440] mb-12">
+    What Our Community Says
+  </h2>
 
-        <div className="relative">
-          {showLeft && (
-            <button
-              onClick={() => scroll("left")}
-              className="absolute left-1 top-8/9 -translate-y-1/2 z-20 bg-amber-200 backdrop-blur-md p-2 rounded-full shadow"
-            >
-              <ChevronLeft />
-            </button>
-          )}
+  <div className="relative">
+    {showLeft && (
+      <button
+        onClick={() => scroll("left")}
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 
+                   bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg border border-gray-200/70 
+                   hover:bg-white transition-colors duration-200"
+        aria-label="Scroll testimonials left"
+      >
+        <ChevronLeft className="h-6 w-6 text-gray-700" />
+      </button>
+    )}
 
-          {showRight && (
-            <button
-              onClick={() => scroll("right")}
-              className="absolute right-1 top-8/9 -translate-y-1/2 z-20 bg-amber-200 backdrop-blur-md p-2 rounded-full shadow"
-            >
-              <ChevronRight />
-            </button>
-          )}
+    {showRight && (
+      <button
+        onClick={() => scroll("right")}
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 
+                   bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg border border-gray-200/70 
+                   hover:bg-white transition-colors duration-200"
+        aria-label="Scroll testimonials right"
+      >
+        <ChevronRight className="h-6 w-6 text-gray-700" />
+      </button>
+    )}
 
+    <div
+      ref={scrollRef}
+      className="flex gap-6 sm:gap-8 py-10 px-4 sm:px-5 overflow-x-auto no-scrollbar scroll-smooth pb-16 sm:pb-20 snap-x snap-mandatory"
+    >
+      {testimonials.map((t, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: i * 0.08 }}
+          whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+          className="relative flex-shrink-0 w-[340px] sm:w-[360px] h-[360px] sm:h-[380px] 
+                     snap-center rounded-xl overflow-hidden shadow-md hover:shadow-xl 
+                     transition-shadow duration-300"
+        >
+          {/* Image */}
           <div
-            ref={scrollRef}
-            className="flex gap-8 py-10 px-5 overflow-x-auto no-scrollbar scroll-smooth pb-20"
-          >
-            {testimonials.map((t, i) => {
-              const isMiddle = i === Math.floor(testimonials.length / 2);
+            className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-700"
+            style={{ backgroundImage: `url(${images[i]})` }}
+          />
 
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 60 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.08, delay: 0 }}
-                  whileHover={{ scale: 1.02 }}
-                  className="relative flex-shrink-0 w-[350px] h-[350px] snap-center rounded-md overflow-hidden cursor-pointer transition-all duration-100">
-                  {/* Image */}
-                  <div
-                    className="absolute inset-0 bg-cover bg-center 
-                              grayscale-25
-                              group-hover:scale-105
-                              transition-all duration-100 ease-out"
-                    style={{ backgroundImage: `url(${images[i]})` }}
-                  />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/10" />
 
-                  <div className="absolute inset-0 bg-black/70" />
+          {/* Content */}
+          <div className="relative z-10 h-full p-7 sm:p-8 flex flex-col justify-between text-white">
+            {/* Company */}
+            <div className="text-xs sm:text-sm font-bold uppercase tracking-wide text-amber-300">
+              {t.company}
+            </div>
 
-                  {/* Content */}
-                  <div className="relative z-10 h-full p-8 flex flex-col justify-between text-white">
-                    {/* Company */}
-                    <div className="text-sm tracking font-extrabold uppercase text-amber-400">
-                      {t.company}
-                    </div>
+            {/* Quote */}
+            <p className="text-base sm:text-lg leading-relaxed font-light mt-4 line-clamp-6">
+              {t.quote}
+            </p>
 
-                    {/* Quote */}
-                    <p className="text-lg leading-relaxed font-light">
-                      {t.quote}
-                    </p>
-
-                    {/* Name & Role */}
-                    <div className="border-t border-white/40 pt-4 flex justify-between text-sm">
-                      <span className="font-semibold">{t.name}</span>
-                      <span className="">{t.role}</span>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+            {/* Name & Role */}
+            <div className="border-t border-white/30 pt-4 mt-auto flex flex-col sm:flex-row sm:justify-between sm:items-end gap-2 text-sm">
+              <span className="font-semibold">{t.name}</span>
+              <span className="opacity-90">{t.role}</span>
+            </div>
           </div>
-          
-        </div>
-      </div>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</div>
       {/* ANALYTICS CTA SECTION */}
-        <div className="mt-5 bg-[#0d2440] py-20 px-10">
-          <div className="text-center mb-10">
-            <h3 className="text-4xl font-semibold text-white">
-              Community of 18000+ IT Graduates
-            </h3>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat) => (
-              <div
-                key={stat.label}
-                className={`${stat.color} p-6 text-center`}
-              >
-                <div className="text-6xl text-[#0d2440] font-light">
-                  {stat.value}+
-                </div>
-                <p className="mt-4 text-xl font-medium text-gray-900">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
+<div className="mt-5 bg-[#0d2440] py-16 sm:py-20 px-6 lg:px-8">
+  <div className="text-center mb-12 sm:mb-16">
+    <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-300">
+      Trusted by 18,000+ IT professionals
+    </h3>
+    <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
+      Join thousands building better careers through our community
+    </p>
+  </div>
+
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto">
+    {stats.map((stat) => (
+      <div
+        key={stat.label}
+        className={`
+          bg-white rounded-md p-8 text-center
+          border border-gray-200 shadow-sm
+          hover:shadow-md hover:border-gray-300
+          transition-all duration-200
+        `}
+      >
+        <div className="text-5xl sm:text-6xl font-bold tracking-tight text-[#0d2440]">
+          {/* Replace this with your CountUpNumber component or logic */}
+          {stat.value}+
         </div>
+        <p className="mt-3 text-lg font-medium text-[#0d2440]">
+          {stat.label}
+        </p>
+      </div>
+    ))}
+  </div>
+</div>
 
     </section>
   );

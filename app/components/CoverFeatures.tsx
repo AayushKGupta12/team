@@ -83,13 +83,6 @@ const benefits = [
             transition={{ duration: 0.6 }}
             className="text-center mb-16 md:mb-20"
           >
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-5 py-2 rounded-full border border-violet-200/60 shadow-sm mb-6">
-              <Sparkles className="w-4 h-4 text-violet-600" />
-              <span className="text-sm font-semibold text-violet-700">
-                Professional Cover Letter Generator
-              </span>
-            </div>
 
             {/* Main Heading - SEO Optimized H1 */}
             <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold text-slate-800 leading-tight mb-1">

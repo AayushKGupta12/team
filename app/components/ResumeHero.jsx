@@ -51,7 +51,7 @@ export default function ResumeHero() {
             {/* Trust + Stats */}
             <div className="mt-5 grid grid-cols-2 md:grid-cols-3 gap-4 text-left">
               <div className="flex flex-col items-center md:items-start">
-                <div className="text-3xl sm:text-5xl font-bold text-[#0d2440]">7000+</div>
+                <div className="text-3xl sm:text-5xl font-bold text-[#0d2440]">740+</div>
                 <p className="mt-1 text-sm sm:text-lg text-gray-600">Resumes Scanned</p>
               </div>
 

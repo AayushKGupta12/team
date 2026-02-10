@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { User} from "lucide-react";
 
 interface Testimonial {
   quote: string;
@@ -15,7 +16,7 @@ const testimonials: Testimonial[] = [
       "  vfound identified gaps in my stack, ranked my experience with AI parsing, and recommended roles where my percentile score was highest. The technical evaluation made my strengths obvious to recruiters.",
     author: "Kunal Sahu",
     title: "SOLUTIONS ENGINEER",
-    avatar: "https://avatar.iran.liara.run/public/14"
+    avatar: "User"
   }
 ];
 
@@ -53,18 +54,11 @@ export default function ResumeCTA() {
           <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-10 text-gray-700">
             {/* Avatar */}
             <div className="flex justify-center -mt-16 mb-6">
-              <div className="w-24 h-24 rounded-full border-4 border-[#6700a3] shadow-lg overflow-hidden bg-gray-200">
-                <img
-                  src={current.avatar}
-                  alt={current.author}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src =
-                      "https://via.placeholder.com/96?text=User";
-                  }}
-                />
+              <div className="w-24 h-24 rounded-full border-4 border-[#6700a3] shadow-lg bg-yellow-100 flex items-center justify-center">
+                <User className="w-20 h-20 text-gray-600 scale-100" />
               </div>
             </div>
+
 
             {/* Quote */}
             <blockquote className="text-lg lg:text-xl italic text-center mb-8 leading-relaxed">
@@ -110,7 +104,7 @@ export default function ResumeCTA() {
 
           <div className="mt-10 flex gap-6">
               <a
-                href="#roles"
+                href="/ai-resume-analysis#id1"
                 className="border relative h-14 py-2 px-12 text-black text-3xl font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-[#6700a3] before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
                 Analyse <span className="">Resume</span>
               </a>

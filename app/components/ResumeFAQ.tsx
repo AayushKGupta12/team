@@ -222,19 +222,6 @@ const QASection: React.FC = () => {
         className="text-center mb-20 px-6"
       >
         <div className="max-w-4xl mx-auto space-y-6">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-5 py-2 rounded-full border border-violet-200/60 shadow-sm"
-          >
-            <Sparkles className="w-4 h-4 text-violet-600" />
-            <span className="text-sm font-semibold text-violet-700">
-              Professional Resume Analysis Platform
-            </span>
-          </motion.div>
 
           {/* Main Heading */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-800 leading-tight">

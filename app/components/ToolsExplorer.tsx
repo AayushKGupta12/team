@@ -41,18 +41,18 @@ export default function ToolsExplorer() {
         <div className="relative z-10">
           <h2 className="text-3xl font-semibold mb-4">
             {/* Advanced Resume Analysis */}
-            KIIT PYQ's for Mid Semester 2 Feb 2026
+            Check your career health
           </h2>
           <p className="text-base opacity-90 max-w-md">
-            Unlimited view of KIIT Papers
+            Get indepth insights on your career growth, market position and quality score.
           </p>
         </div>
 
         <div className="mt-10 sm:absolute sm:bottom-8 sm:left-12 sm:right-12 border-t border-white/20 pt-4">
           <div className="flex justify-between text-sm text-white/80">
-            <span>4 & 6 Semester</span>
-            <span>Roadmaps</span>
-            <span>Guides</span>
+            <span>ATS Score</span>
+            <span>Career Health</span>
+            <span>Dashboard</span>
           </div>
         </div>
       </a>
@@ -69,7 +69,7 @@ export default function ToolsExplorer() {
 
         <div className="relative z-10">
           <h2 className="text-3xl font-semibold mb-4">
-            AI Cover Letter Generator
+            Intelligent Cover Letter
           </h2>
           <p className="text-base opacity-90 max-w-md">
             Generate personalized, role-specific cover letters in seconds optimized for recruiters.
@@ -88,7 +88,7 @@ export default function ToolsExplorer() {
       {/* IT Jobs Explorer */}
       <div className="flex-1 bg-gradient-to-br from-[#E02F75] to-[#6700A3] rounded-md p-8 text-white shadow-lg">
         <h2 className="text-3xl font-semibold mb-4">
-          IT Jobs Explorer
+          Live IT Jobs
         </h2>
         <p className="text-base opacity-90 mb-8 max-w-md">
           Discover relevant IT opportunities tailored to your profile and experience.
