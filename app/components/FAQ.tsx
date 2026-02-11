@@ -45,7 +45,7 @@ export default function FAQ() {
                 acceptedAnswer: {
                   "@type": "Answer",
                   text:
-                    "Yes, Vfound uses advanced AI and large language models to analyze resumes, detect skill gaps, and optimize content for modern hiring systems."
+                    "Yes, Vfound uses advanced AI and Algorithm's to analyze resumes, detect skill gaps, and optimize content for modern hiring systems."
                 }
               }
             ]
@@ -121,18 +121,18 @@ export default function FAQ() {
                 index={8}
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
-                question="Do recruiters directly hire from Vfound?"
+                question="Who are we ?"
                 answer={
                   <>
                     <p className="mb-3 text-gray-700">
-                      Vfound is not a recruitment agency. Instead, it acts as a discovery and
-                      <span className="bg-[#ffe8b1] px-2">preparation platform</span> that connects users with real job opportunities.
+                      Vfound is a developer builder tooklit where early professional come to get career insights and improve their job readiness.
+                      <span className="bg-[#ffe8b1] px-2">career intelligence platform</span> that connects users with real world scenarios and opportunities.
                     </p>
                     <ul className="list-disc ml-6 space-y-1 text-gray-700">
-                      <li>Jobs link directly to company career pages</li>
-                      <li>No resume selling or third-party sharing</li>
-                      <li>Users <span className="bg-[#ffe8b1] px-2">apply independently</span></li>
-                      <li>Complete transparency in job applications</li>
+                      <li>Resume in-depth insights and analysis</li>
+                      <li>AI-powered career roadmap guidance</li>
+                      <li>live <span className="bg-[#ffe8b1] px-2">english speaking</span> practice sessions</li>
+                      <li>Live and personalized mocks tech-interview</li>
                     </ul>
                   </>
                 }

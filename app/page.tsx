@@ -13,7 +13,7 @@ import ToolsExplorer from './components/ToolsExplorer'
 // FIXED: Complete metadata with OpenGraph and Twitter cards
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.vfound.in'),
-  title: 'VFound - AI Resume Analysis, ATS Checker & Cover Letter Generator for IT Jobs',
+  title: 'VFound | Career Intelligence',
   description:
     'VFound helps IT professionals and freshers find jobs with AI-powered resume analysis, ATS checker, cover letter generator, and curated IT job listings. Get hired faster with our career intelligence platform.',
   keywords: [

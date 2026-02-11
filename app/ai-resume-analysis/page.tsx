@@ -13,7 +13,7 @@ import ResumeCTA from "../components/ResumeCTA";
 // ✅ SEO METADATA - Fully optimized for ranking
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.vfound.in'),
-  title: 'AI Resume Analysis & ATS Checker - Free Resume Score | VFound',
+  title: 'Resume Insights | VFound',
   description:
     'Get instant AI-powered resume analysis with ATS compatibility score. Check your resume against 32+ hiring parameters used by recruiters. Free resume checker for IT professionals and freshers in India.',
   keywords: [

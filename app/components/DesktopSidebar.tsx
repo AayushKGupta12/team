@@ -3,8 +3,6 @@ import Link from "next/link";
 import {
   SignedIn,
   SignedOut,
-  SignInButton,
-  SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
 
@@ -13,7 +11,6 @@ import {
   Briefcase,
   FileText,
   Building2,
-  Users,
   Phone,
   Info,
   Menu,
@@ -111,21 +108,18 @@ export default function DesktopSidebar({
           </div>
         )}
 
-        
-
-
         {/* SERVICES */}
         <div className="mt-6 px-2">
           {!collapsed && (
             <p className="text-xs text-[#0d2440] px-3 mb-2">SERVICES</p>
           )}
 
-          <NavItem icon={Pen} label="KIIT Study Material" href="/kiit" collapsed={collapsed} />
           <NavItem icon={Sparkles} label="Advance Analysis" href="/ai-resume-analysis" collapsed={collapsed}/>
           <NavItem icon={FileText} label="Cover Letter" href="/cover-letter" collapsed={collapsed} />
           <NavItem icon={Briefcase} label="IT Jobs" href="/it-jobs" collapsed={collapsed} />
           <NavItem icon={Book} label="Read" href="/read" collapsed={collapsed} />
           <NavItem icon={Menu} label="Blogs" href="/blog" collapsed={collapsed} />
+          <NavItem icon={Pen} label="KIIT Study Material" href="/kiit" collapsed={collapsed} />
           
 
         </div>
