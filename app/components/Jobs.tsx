@@ -332,7 +332,6 @@ const handleApply = async (e, job) => {
             link="#"
             cta="Coming Soon"
             cta2="Almost Ready"
-            comingSoon
           />
         </div>
 
@@ -505,7 +504,7 @@ const handleApply = async (e, job) => {
   );
 }
 
-function FeatureCard({ title, desc, link, cta, cta2, comingSoon }) {
+function FeatureCard({ title, desc, link, cta, cta2 }) {
   return (
     <div className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-lg border border-gray-100 transition-all">
       <div className="absolute -top-12 -right-12 h-40 w-40 rounded-full bg-[#7ba4d0]/70 blur-3xl"></div>
@@ -517,23 +516,16 @@ function FeatureCard({ title, desc, link, cta, cta2, comingSoon }) {
 
       <a
         href={link}
-        className={`mt-8 inline-flex items-center gap-3 rounded-full px-7 py-3.5 font-medium transition-all ${
-          comingSoon
-            ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-            : "bg-[#0d2440] text-white hover:bg-[#1e3a5f] hover:shadow-xl hover:-translate-y-0.5"
-        }`}
-      >
+        className="mt-8 inline-flex items-center gap-3 rounded-full px-7 py-3.5 font-medium transition-all bg-[#0d2440] text-amber-50" >
         <span className="relative overflow-hidden">
           <span className="block transition-transform duration-300 group-hover:-translate-y-full">{cta}</span>
           <span className="absolute inset-0 translate-y-full transition-transform duration-300 group-hover:translate-y-0">
             {cta2}
           </span>
         </span>
-        {!comingSoon && (
           <svg className="w-5 h-5 transition-all group-hover:translate-x-1 group-hover:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
-        )}
       </a>
     </div>
   );
@@ -548,7 +540,10 @@ function JobCard({ job, getWhatsappLink, onApply }) {
             className="w-14 h-14 rounded-lg object-cover"
             src={job.Logo?.trim() ? job.Logo : `https://via.placeholder.com/56x56/4F46E5/ffffff?text=${job.company[0]}`}
             alt={job.company}
-            onError={(e) => (e.target.src = `https://via.placeholder.com/56x56/4F46E5/ffffff?text=${job.company[0]}`)}
+            onError={(e) => {
+              const target = e.currentTarget as HTMLImageElement;
+              target.src = `https://via.placeholder.com/56x56/4F46E5/ffffff?text=${job.company[0]}`;
+            }}
           />
           <div>
             <h3 className="font-bold text-gray-900">{job.company}</h3>
