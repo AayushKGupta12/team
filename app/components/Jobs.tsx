@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
-import { useAuth, useClerk } from "@clerk/nextjs";
+import { useAuth, useClerk, useUser } from "@clerk/nextjs";
+import { consumeCredit } from "../../lib/consumeCredit"; // ✅ ENABLE THIS
+import CreditUsedToast from "./CreditUsedToast";
+
+
+
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL;
 
@@ -16,6 +21,9 @@ function Jobs() {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
+
+  const { user } = useUser();
+  const [showToast, setShowToast] = useState(false);
 
   // New dynamic filters
   const [selectedDomains, setSelectedDomains] = useState(new Set());
@@ -37,11 +45,26 @@ function Jobs() {
 
   // When user signs in and there was a pending apply link, open it
   useEffect(() => {
-    if (isSignedIn && pendingApplyLink) {
+  const continueAfterLogin = async () => {
+    if (isSignedIn && pendingApplyLink && user) {
+      setShowToast(true);
+
+      const usage = await consumeCredit(user.id, "job_apply");
+
+      if (!usage.allowed) {
+        alert("You have reached your job application limit. Please upgrade.");
+        setPendingApplyLink(null);
+        return;
+      }
+
       window.open(pendingApplyLink, "_blank", "noopener,noreferrer");
       setPendingApplyLink(null);
     }
-  }, [isSignedIn, pendingApplyLink]);
+  };
+
+  continueAfterLogin();
+}, [isSignedIn, pendingApplyLink, user]);
+
 
   const fetchAll = async () => {
     try {
@@ -203,27 +226,47 @@ function Jobs() {
     setSelectedStipendRange("");
   };
 
-  // New: handle apply flow
-  const handleApply = (e, job) => {
-    e.preventDefault();
-    const link = job.Link;
-    if (!link) return;
+// ✅ Proper Credit + Clerk Apply Flow
+const handleApply = async (e, job) => {
+  e.preventDefault();
+  const link = job.Link;
+  if (!link) return;
 
-    if (isSignedIn) {
-      window.open(link, "_blank", "noopener,noreferrer");
+  // 🔐 If not signed in → open login first
+  if (!isSignedIn) {
+    setPendingApplyLink(link);
+    clerk.openSignIn();
+    return;
+  }
+
+  if (!user) return;
+
+  try {
+    // 💳 Show credit toast
+    setShowToast(true);
+
+    const usage = await consumeCredit(user.id, "job_apply");
+
+    if (!usage.allowed) {
+      alert("You have reached your job application limit. Please upgrade.");
       return;
     }
 
-    // Not signed in: remember the link and open Clerk sign-in modal
-    setPendingApplyLink(link);
+    // ✅ Credit successful → open job link
+    window.open(link, "_blank", "noopener,noreferrer");
 
-    try {
-      clerk.openSignIn();
-    } catch (err) {
-      console.warn("clerk.openSignIn failed, redirecting to /sign-in", err);
-      window.location.href = "/sign-in";
+  } catch (err) {
+    console.error("Error consuming credit:", err);
+  }
+};
+
+
+  useEffect(() => {
+    if (isSignedIn && pendingApplyLink) {
+     setPendingApplyLink(null);
+      window.open(pendingApplyLink, "_blank", "noopener,noreferrer");
     }
-  };
+  }, [isSignedIn, pendingApplyLink]);
 
   if (loading) {
     return (
@@ -452,6 +495,12 @@ function Jobs() {
           </div>
         </div>
       </div>
+      
+      <CreditUsedToast
+        show={showToast}
+        onClose={() => setShowToast(false)}
+      />
+
     </div>
   );
 }
