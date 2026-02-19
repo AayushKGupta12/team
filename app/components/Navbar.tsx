@@ -44,6 +44,7 @@ const navItems: NavItem[] = [
       { label: "Cover Letter", href: "/cover-letter" },
       { label: "IT Jobs", href: "/it-jobs" },
       { label: "Blogs", href: "/blog" },
+      { label: "Extension", href: "/extension" },
       { label: "KIIT PYQ", href: "/kiit" },
     ],
   },

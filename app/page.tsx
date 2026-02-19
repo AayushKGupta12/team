@@ -186,8 +186,8 @@ const Page = () => {
       
       <div>
         <Banner
-          isPositive={false}
-          message="Happy valentine's week! Find your perfect job match with VFound."
+          isPositive={true}
+          message="Intelligent Agent is live, Beta V1.0.0 is live, Install now and get premimum workspace"
         />
         <Navbar />
         <Hero />

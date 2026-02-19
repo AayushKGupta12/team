@@ -15,6 +15,7 @@ import {
   Info,
   Menu,
   Book,
+  Chrome,
   ChevronLeft, ChevronRight, Pen
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -120,6 +121,7 @@ export default function DesktopSidebar({
           <NavItem icon={Book} label="Read" href="/read" collapsed={collapsed} />
           <NavItem icon={Menu} label="Blogs" href="/blog" collapsed={collapsed} />
           <NavItem icon={Pen} label="KIIT Study Material" href="/kiit" collapsed={collapsed} />
+          <NavItem icon={Chrome} label="Extension" href="/extension" collapsed={collapsed} />
           
 
         </div>

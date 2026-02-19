@@ -7,7 +7,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const services = [
-    { label: "KIIT PYQ's", href: "/kiit" },
+    { label: "Chrome Extension", href: "/extension" },
     { label: "IT Jobs", href: "/it-jobs" },
     { label: "Resume Analysis", href: "/ai-resume-analysis" },
     { label: "Cover Letter", href: "/cover-letter" },
