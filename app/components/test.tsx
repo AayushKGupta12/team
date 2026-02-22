@@ -176,7 +176,7 @@ export default function Testimonials() {
 <div className="mt-5 bg-[#0d2440] py-16 sm:py-20 px-6 lg:px-8">
   <div className="text-center mb-12 sm:mb-16">
     <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-300">
-      Trusted by 15,000+ IT professionals
+      Trusted by 18,000+ IT professionals
     </h3>
     <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
       Join thousands building better careers through our community

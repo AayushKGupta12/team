@@ -56,12 +56,12 @@ const features = [
 
 const upcomingFeatures = [
   {
-    title: "Intelligent Chrome Extension",
+    title: "Intelligent Research Agent",
     description:
       "On-page research assistant for instant coding help, technical documentation, and problem-solving. Get contextual answers while coding, debugging, or learning new technologies without leaving your browser.",
     icon: Chrome,
     category: "Developer Tools",
-    eta: "Coming Q2 2025",
+    eta: "Live Beta V1.1.0",
     gradient: "from-blue-100 to-indigo-100",
     iconColor: "text-blue-600",
   },

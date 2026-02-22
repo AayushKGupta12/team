@@ -79,6 +79,8 @@ export default function ExtensionDashboard() {
   const [showApiKey, setShowApiKey] = useState(false);
   const [showApiWarning, setShowApiWarning] = useState(false);
 
+  const [muted, setMuted] = useState(true);
+
   useEffect(() => {
     if (showApiKey) {
       const t = setTimeout(() => setShowApiKey(false), 10000);
@@ -441,35 +443,50 @@ export default function ExtensionDashboard() {
             </div>
 
             {/* Video guide */}
-            <div className="rounded-2xl border p-8 lg:p-10 space-y-5" style={{ background: T.surface, borderColor: T.border }}>
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-base font-semibold" style={{ color: T.navy }}>Quick Start Guide</p>
-                  <p className="text-sm mt-1" style={{ color: T.muted }}>New to the extension? Watch the 2-min walkthrough</p>
-                </div>
-                <span className="text-xs font-semibold px-3 py-1 rounded-full" style={{ background: T.tealBg, color: T.teal, border: `1px solid ${T.tealBorder}` }}>
-                  2 min
-                </span>
-              </div>
-              <div className="relative rounded-xl overflow-hidden" style={{ border: `1px solid ${T.border}` }}>
-                <div className="aspect-video relative">
-                  <iframe
-                    className="w-full h-full"
-                    src="https://www.youtube.com/embed/aSte18D2_YE?autoplay=1&mute=1&controls=0&loop=1&playlist=aSte18D2_YE&modestbranding=1&rel=0"
-                    title="SmartStudy Extension Quick Guide"
-                    frameBorder="0"
-                    allow="autoplay"
-                    allowFullScreen
-                  />
-                  <div className="absolute inset-0 cursor-pointer" onClick={() => window.open("https://youtu.be/aSte18D2_YE?si=39JMjss2y8sBdVzf", "_blank")} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
-                  <div className="absolute bottom-4 left-4 right-4 pointer-events-none">
-                    <p className="text-white text-sm font-medium">SmartStudy Extension – Quick Start Guide</p>
-                    <p className="text-white/60 text-xs mt-0.5">2:18 · Click to watch on YouTube</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+<div className="rounded-2xl border p-8 lg:p-10 space-y-5" style={{ background: T.surface, borderColor: T.border }}>
+  <div className="flex items-center justify-between">
+    <div>
+      <p className="text-base font-semibold" style={{ color: T.navy }}>Quick Start Guide</p>
+      <p className="text-sm mt-1" style={{ color: T.muted }}>New to the extension? Watch the 2-min walkthrough</p>
+    </div>
+    <span className="text-xs font-semibold px-3 py-1 rounded-full" style={{ background: T.tealBg, color: T.teal, border: `1px solid ${T.tealBorder}` }}>
+      2 min
+    </span>
+  </div>
+  
+  <div className="relative rounded-3xl overflow-hidden shadow-2xl" style={{ border: `1px solid ${T.border}` }}>
+    <div className="aspect-video relative">
+      <iframe
+        className="w-full h-full"
+        src={`https://www.youtube.com/embed/674Dj3HwsNM?autoplay=1&mute=${muted ? 1 : 0}&modestbranding=1&rel=0`}
+        title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      />
+
+      {/* Sound Button Overlay */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          setMuted(!muted);
+        }}
+        className="absolute bottom-1 right-1 z-10 flex items-center gap-1 p-1 
+                   bg-white/95 border border-neutral-200/80 rounded-full font-semibold text-neutral-700"
+      >
+        <span className="text-base">
+          {muted ? "🔇" : "🔊"}
+        </span>
+      </button>
+
+      {/* Click to open on YouTube overlay */}
+      <div 
+        className="absolute inset-0 cursor-pointer" 
+        onClick={() => window.open("https://youtu.be/674Dj3HwsNM?si=DNPM7CJ0UYBmrAMQ", "_blank")} 
+      />
+      </div>
+  </div>
+</div>
           </div>
         </section>
 

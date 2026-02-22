@@ -9,6 +9,7 @@ import Testimonials from './components/test'
 import CongratsPopup from './components/CongratsPopUp'
 import Banner from './components/Banner'
 import ToolsExplorer from './components/ToolsExplorer'
+import YouTubePreview from './components/Youtube'
 
 // FIXED: Complete metadata with OpenGraph and Twitter cards
 export const metadata: Metadata = {
@@ -191,6 +192,7 @@ const Page = () => {
         />
         <Navbar />
         <Hero />
+        <YouTubePreview/>
         <ToolsExplorer/>
         <Features />
         <Testimonials/>
