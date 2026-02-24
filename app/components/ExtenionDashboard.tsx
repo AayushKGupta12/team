@@ -491,7 +491,7 @@ export default function ExtensionDashboard() {
         </section>
 
         {/* ── Billing & Upgrade ── */}
-        <section className="space-y-5">
+        {/* <section className="space-y-5">
           <SectionLabel teal={T.teal} navy={T.navy} border={T.border}>Billing & Upgrade</SectionLabel>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
@@ -513,7 +513,7 @@ export default function ExtensionDashboard() {
               </button>
             </div>
 
-            {/* Upgrade card — uses teal CTA just like your website's "Check now" button */}
+            Upgrade card — uses teal CTA just like your  ----- remove this from code 
             <div
               className="rounded-2xl border p-8 space-y-5 relative overflow-hidden"
               style={{ background: `linear-gradient(135deg, ${T.tealBg} 0%, #f0fdf9 100%)`, borderColor: T.tealBorder }}
@@ -539,7 +539,7 @@ export default function ExtensionDashboard() {
               </button>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* ── Support & Resources ── */}
         <section className="space-y-5">
