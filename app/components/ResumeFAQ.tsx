@@ -140,7 +140,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
 const QASection: React.FC = () => {
   const features = [
     {
-      icon: <Target className="w-5 h-5" />,
+      icon: <Target />,
       title: "Deep Technical & Skill-Based Evaluation",
       description:
         "Your resume is analyzed for technical proficiency, tools mastery, and role-specific relevance—not just keywords.",
@@ -150,11 +150,11 @@ const QASection: React.FC = () => {
         "Practical capability evaluation beyond theory",
       ],
       imageUrl:
-        "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/1000209124-removebg-preview.png",
+        "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&auto=format&fit=crop",
       reverse: false,
     },
     {
-      icon: <Award className="w-5 h-5" />,
+      icon: <Award />,
       title: "Project & Experience-Level Assessment",
       description:
         "Projects, internships, and academic experience are evaluated fairly for students and professionals alike.",
@@ -164,11 +164,11 @@ const QASection: React.FC = () => {
         "Hands-on work and tool usage recognition",
       ],
       imageUrl:
-        "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/1000209144-removebg-preview.png",
+        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop",
       reverse: true,
     },
     {
-      icon: <TrendingUp className="w-5 h-5" />,
+      icon: <TrendingUp />,
       title: "Industry-Aligned Capability Analysis",
       description:
         "Your resume is benchmarked against current IT industry standards and role expectations in India.",
@@ -178,11 +178,11 @@ const QASection: React.FC = () => {
         "Role-based skill and technology alignment",
       ],
       imageUrl:
-        "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/1000209146-removebg-preview.png",
+        "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&auto=format&fit=crop",
       reverse: false,
     },
     {
-      icon: <Users className="w-5 h-5" />,
+      icon: <Users />,
       title: "Percentile-Based Scoring & Comparison",
       description:
         "Understand how your resume performs compared to thousands of real IT job applicants.",
@@ -192,11 +192,11 @@ const QASection: React.FC = () => {
         "Recruiter-style and ATS-aware evaluation",
       ],
       imageUrl:
-        "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/1000209150-removebg-preview.png",
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop",
       reverse: true,
     },
     {
-      icon: <Sparkles className="w-5 h-5" />,
+      icon: <Sparkles />,
       title: "Best-Suited Job Role Recommendations",
       description:
         "Get data-driven job recommendations based on your skills, projects, and experience level.",
@@ -206,7 +206,7 @@ const QASection: React.FC = () => {
         "Higher shortlist and interview success probability",
       ],
       imageUrl:
-        "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/1000209140-removebg-preview.png",
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&auto=format&fit=crop",
       reverse: false,
     },
   ];
