@@ -430,6 +430,342 @@ const page = () => {
 
       <section className="space-y-5">
         <h2 className="text-2xl font-medium">
+          Internship Program Terms
+        </h2>
+
+        <p className="text-md text-gray-700">
+          The platform provides a structured internship learning experience designed
+          to allow users to work on assigned projects, build practical skills, and
+          receive a certificate of completion upon successful fulfillment of program
+          requirements. Participation in the internship program does not constitute
+          employment, partnership, or contractual hiring relationship with the
+          platform, its owners, or affiliated organizations. The internship is
+          provided solely as a skill development and project-based learning
+          opportunity.
+          <br /><br />
+          Each participant may be assigned a project or learning task relevant to the
+          selected domain. Interns are responsible for completing the assigned work
+          independently and submitting their work through the designated submission
+          system before the specified deadline. The platform reserves the right to
+          review submitted work for completeness, authenticity, and compliance with
+          program guidelines before approving the internship for certification.
+          <br /><br />
+          The platform does not guarantee employment, job placement, recruitment
+          opportunities, or financial compensation as a result of completing the
+          internship. Any career opportunities that arise from participation are the
+          sole responsibility of the participant and any third parties involved.
+          Completion of the internship indicates that the participant has completed
+          the learning activities associated with the program but does not represent
+          an endorsement of professional competency beyond the scope of the project
+          work.
+          <br /><br />
+          Interns agree not to submit plagiarized, copied, automatically generated,
+          or third-party project work that they do not own or have permission to use.
+          The platform reserves the right to reject submissions that violate academic
+          integrity, intellectual property rights, or platform policies. Repeated
+          violations may result in suspension or permanent restriction from the
+          internship program.
+        </p>
+      </section>
+
+
+      <section className="space-y-5">
+        <h2 className="text-2xl font-medium">
+          Project Submission & Evaluation
+        </h2>
+
+        <p className="text-md text-gray-700">
+          Interns are required to submit their completed project through the official
+          submission process provided on the platform. Submissions must include the
+          necessary materials required for evaluation, which may include project
+          documentation, code repositories, reports, design files, or demonstration
+          links depending on the nature of the assigned project.
+          <br /><br />
+          The platform may review submissions through automated checks, manual
+          verification, or internal evaluation processes to determine whether the
+          project meets the minimum completion requirements. Approval of the project
+          is based on the presence of demonstrable work related to the assigned task
+          and adherence to submission guidelines. The platform reserves the right to
+          reject or request revisions for submissions that are incomplete, invalid,
+          unrelated to the assigned project, or suspected to violate intellectual
+          property standards.
+          <br /><br />
+          Submission deadlines may be defined based on the selected internship
+          duration. Participants acknowledge that failure to submit within the
+          designated timeframe may result in expiration of the internship session or
+          require reapplication for a new program cycle.
+          <br /><br />
+          The platform does not guarantee approval of submissions that fail to meet
+          the minimum requirements, and approval decisions made by the platform’s
+          evaluation process shall be considered final.
+        </p>
+      </section>
+
+
+      <section className="space-y-5">
+        <h2 className="text-2xl font-medium">
+          Certificate Issuance & Verification
+        </h2>
+
+        <p className="text-md text-gray-700">
+          Upon successful completion of the internship requirements and approval of
+          the submitted project, participants may become eligible to receive a
+          digital certificate of completion issued through the platform. Certificates
+          are generated only after the completion requirements have been fulfilled
+          and any applicable verification or processing steps have been completed.
+          <br /><br />
+          Certificates issued by the platform are intended to acknowledge completion
+          of the internship program and participation in the associated learning
+          activities. Certificates may include identifying information such as the
+          participant’s name, internship domain, duration, and a unique verification
+          identifier that allows external parties to confirm the authenticity of the
+          certificate through the platform’s verification system.
+          <br /><br />
+          The platform reserves the right to revoke, invalidate, or suspend a
+          certificate if it is determined that the certificate was obtained through
+          fraudulent activity, misrepresentation, plagiarism, or any violation of the
+          platform’s policies. Any attempt to modify, falsify, duplicate, or misuse a
+          certificate issued by the platform may result in permanent account
+          suspension and potential legal action where applicable.
+          <br /><br />
+          The platform does not guarantee that certificates will be recognized by any
+          specific employer, institution, or organization. Recognition of the
+          certificate depends entirely on the policies of the entity evaluating it.
+        </p>
+      </section>
+
+
+      <section className="space-y-5">
+        <h2 className="text-2xl font-medium">
+          Internship Participation & User Responsibility
+        </h2>
+
+        <p className="text-md text-gray-700">
+          Participants agree to engage with the internship program in a responsible,
+          lawful, and ethical manner. Users must ensure that all information provided
+          during the application process, including personal details, academic
+          information, and project submissions, is accurate and truthful.
+          <br /><br />
+          Interns are responsible for managing their own learning progress,
+          completing assigned tasks, and maintaining secure access to their account.
+          Sharing account credentials, attempting to bypass program restrictions,
+          exploiting platform functionality, or submitting automated or generated
+          content intended to falsely represent project completion is strictly
+          prohibited.
+          <br /><br />
+          The platform may monitor usage activity, submission patterns, and system
+          interactions to detect misuse or abuse of the internship program. If any
+          suspicious activity is detected, the platform reserves the right to suspend
+          access to the internship system, revoke eligibility for certification, or
+          terminate participation in the program.
+          <br /><br />
+          By participating in the internship program, users acknowledge that the
+          platform provides the program as a learning and skill development service
+          and that they are solely responsible for how they apply the knowledge or
+          materials gained during the program.
+        </p>
+      </section>
+
+      <section className="space-y-5">
+  <h2 className="text-2xl font-medium">
+    Internship Certificate Payment & Refund Policy
+  </h2>
+
+  <p className="text-md text-gray-700">
+    Participation in the internship program may require payment of a
+    certificate processing and administrative service fee. This payment
+    covers the operational costs associated with project verification,
+    certificate generation, digital validation infrastructure, and platform
+    maintenance required to deliver the internship experience.
+    <br /><br />
+    By completing a payment through the platform, users acknowledge and
+    agree that the payment is made voluntarily for administrative and
+    certification services related to the internship program. All payments
+    are considered final once successfully processed. The platform operates
+    under a strict <strong>no refund policy</strong>. Under no circumstances
+    will payments made for internship certificates, verification services,
+    or related processing fees be refunded, reversed, or credited back to
+    the user, including but not limited to situations involving incomplete
+    projects, change of decision, misunderstanding of program structure, or
+    failure to meet submission deadlines.
+    <br /><br />
+    Payments are processed through secure third-party payment gateways. The
+    platform does not store or process sensitive financial information such
+    as card details, banking credentials, or authentication data. Users are
+    responsible for ensuring that all payment information submitted during
+    the transaction is accurate and authorized.
+    <br /><br />
+    The internship certificate issued through the platform serves solely as
+    a record of participation in a project-based learning program. The
+    certificate is not issued by an accredited academic institution and
+    therefore <strong>cannot be used to claim academic credit, university
+    credit transfer, or formal educational accreditation</strong> unless an
+    external institution independently chooses to recognize it under its own
+    policies. The platform does not guarantee that the certificate will be
+    accepted by any academic institution, employer, or organization.
+    <br /><br />
+    Any attempt to initiate fraudulent chargebacks, payment disputes, or
+    unauthorized transaction reversals after accessing platform services may
+    result in immediate suspension of the associated account, revocation of
+    certificate eligibility, and restriction from future use of the
+    internship platform. These measures are necessary to maintain the
+    integrity of the payment system and ensure fair access to services for
+    all users.
+  </p>
+</section>
+
+
+<section className="space-y-5">
+  <h2 className="text-2xl font-medium">
+    Project Authenticity & Submission Responsibility
+  </h2>
+
+  <p className="text-md text-gray-700">
+    The internship program operates primarily on a trust-based learning model
+    where participants are expected to submit project work that reflects their
+    own effort, understanding, and implementation of the assigned tasks. The
+    platform may perform basic verification or review of submitted projects;
+    however, it does not guarantee comprehensive evaluation or academic
+    auditing of every submission.
+    <br /><br />
+    By submitting a project, users acknowledge that the work represents their
+    own effort or that they have appropriate rights to use any materials,
+    code, or resources included in the submission. The platform generally
+    accepts submissions in good faith and relies on the honesty and integrity
+    of participants to maintain the credibility of the internship program.
+    <br /><br />
+    The platform shall not be responsible for verifying the originality of
+    every project submission or for detecting copied, automatically generated,
+    or externally sourced work. Responsibility for the authenticity and
+    legality of submitted materials rests entirely with the user submitting
+    the project.
+    <br /><br />
+    If at any time it is discovered that a submission contains plagiarized
+    content, unauthorized third-party work, fraudulent representations, or
+    any attempt to falsely claim project completion, the platform reserves
+    the right to reject the submission, revoke any issued certificate, or
+    suspend the user’s access to the internship services. Such actions may
+    be taken at the platform’s discretion in order to preserve the integrity
+    of the certification system.
+    <br /><br />
+    Participants understand that the internship certificate reflects
+    participation in a project-based learning activity and does not represent
+    a formal audit or guarantee of professional competency. Users remain fully
+    responsible for the authenticity and ownership of the work they submit.
+  </p>
+</section>
+
+<section className="space-y-5">
+  <h2 className="text-2xl font-medium">
+    Internship Nature & Non-Employment Disclaimer
+  </h2>
+
+  <p className="text-md text-gray-700">
+    The internship program offered through the platform is designed as a
+    project-based learning experience intended to help participants develop
+    practical skills and demonstrate their work through independent project
+    submissions. Participation in the internship program does not constitute
+    employment, contractual engagement, partnership, or agency relationship
+    between the user and the platform, its owners, administrators, affiliates,
+    or partners.
+    <br /><br />
+    Interns participate voluntarily for the purpose of gaining experience,
+    completing assigned projects, and receiving a certificate of completion
+    where applicable. The internship program does not involve an employer-
+    employee relationship and does not provide wages, stipends, salaries,
+    employee benefits, or any form of financial compensation for participation
+    in the program.
+    <br /><br />
+    By enrolling in the internship program, users acknowledge that they are
+    participating solely as independent learners completing project-based
+    activities for educational and portfolio-building purposes. The platform
+    does not assign work tasks intended to generate commercial value for the
+    company, and any project work completed by participants is considered a
+    demonstration of learning rather than professional employment services.
+    <br /><br />
+    Participants agree that completion of internship activities does not create
+    any entitlement to employment, job offers, financial compensation, or
+    future contractual relationships with the platform or its affiliates.
+    Nothing within the internship program shall be interpreted as forming an
+    employment agreement under any applicable labor or employment laws.
+  </p>
+</section>
+
+<section className="space-y-5">
+  <h2 className="text-2xl font-medium">
+    Platform Representation & Resume Usage Disclaimer
+  </h2>
+
+  <p className="text-md text-gray-700">
+    The internship program provided through the platform represents a
+    project-based learning experience and participation in a structured
+    skill development program. Participants may reference their completion
+    of the internship in personal resumes, portfolios, professional profiles,
+    or similar materials; however, such references must accurately represent
+    the nature of the program.
+    <br /><br />
+    Users agree not to represent their participation as formal employment,
+    contractual work, consulting services, or professional engagement with
+    the platform. Descriptions that imply employment with the platform,
+    including statements such as “Worked at” or “Employed by” the platform,
+    are considered inaccurate representations of the internship program.
+    <br /><br />
+    Acceptable references may include phrases such as
+    <strong> “Completed a project-based internship program”</strong>,
+    <strong> “Participated in a project internship through the platform”</strong>,
+    or other wording that accurately reflects participation in a learning
+    program rather than employment.
+    <br /><br />
+    The platform shall not be responsible for how participants describe the
+    internship experience to third parties, including employers, recruiters,
+    or educational institutions. Any claims or representations made by users
+    regarding their role, responsibilities, or experience remain solely the
+    responsibility of the individual making such statements.
+    <br /><br />
+    If the platform becomes aware of deliberate or repeated misrepresentation
+    of the internship program as formal employment, it reserves the right to
+    revoke certification records, restrict access to verification services,
+    or take other actions deemed necessary to protect the integrity of the
+    platform and its programs.
+  </p>
+</section>
+
+<section className="space-y-5">
+  <h2 className="text-2xl font-medium">
+    No Guarantee of Employment, Career Outcomes, or Academic Recognition
+  </h2>
+
+  <p className="text-md text-gray-700">
+    The internship program offered through the platform is intended solely as
+    a project-based learning experience designed to help participants build
+    practical skills, explore technical domains, and develop portfolio-ready
+    projects. Participation in the program does not guarantee employment,
+    job placement, internships with external organizations, freelance work,
+    or any form of professional engagement.
+    <br /><br />
+    The platform does not represent or promise that completion of the
+    internship program will result in career advancement, hiring
+    opportunities, interviews, professional recognition, or financial
+    benefit. Any employment decisions made by external organizations,
+    employers, or recruiters are entirely independent of the platform and
+    remain solely at their discretion.
+    <br /><br />
+    Certificates issued through the platform acknowledge completion of a
+    project-based internship program but are not issued by an accredited
+    academic institution. As such, the certificate should not be assumed to
+    qualify for university credit transfer, academic recognition, or formal
+    educational accreditation unless independently recognized by a third
+    party institution under its own policies.
+    <br /><br />
+    Users acknowledge that participation in the internship program is a
+    voluntary learning activity and that the platform makes no guarantees
+    regarding career outcomes, academic acceptance, or professional
+    opportunities that may arise from participation in the program.
+  </p>
+</section>
+
+      <section className="space-y-5">
+        <h2 className="text-2xl font-medium">
           Limitation of Liability
         </h2>
 
@@ -569,7 +905,7 @@ const page = () => {
 
       <section>
         <h1 className='font-semibold text-right'>
-          last updated on: February 19, 2026        
+          last updated on: March 05, 2026        
         </h1>
       </section>
 

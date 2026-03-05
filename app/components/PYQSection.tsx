@@ -424,6 +424,30 @@ export default function PYQSection() {
     ))}
   </div>
 
+  <div className="w-full rounded-3xl bg-gradient-to-r from-pink-700 via-pink-600 to-pink-500 p-10 md:p-14 flex flex-col md:flex-row items-center justify-between mt-20 mb-20">
+
+  <div className="max-w-2xl text-white">
+    <p className="uppercase text-sm tracking-widest text-pink-200 mb-3">
+      Always Evolving
+    </p>
+
+    <h1 className="text-3xl md:text-4xl font-bold leading-tight">
+      We have engineered
+      <span className="underline decoration-pink-200"> Intelligent </span>
+      <span className="underline decoration-pink-200"> Agent </span> 
+      for your <span className="underline decoration-pink-200 text-white">On Live </span> research and coding help without leaving your browser
+    </h1>
+  </div>
+
+  <div className="mt-8 md:mt-0">
+    <a href="/extension"
+       className="bg-black text-white px-8 py-4 rounded-2xl font-semibold flex items-center gap-3 hover:bg-gray-900 transition shadow-lg">
+       Try Extension →
+    </a>
+  </div>
+
+</div>
+
   {/* <motion.p
     initial={{ opacity: 0 }}
     whileInView={{ opacity: 1 }}

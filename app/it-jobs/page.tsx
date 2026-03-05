@@ -1,7 +1,7 @@
-import React from 'react'
-import JobHero from '../components/JobHero'
-import Jobs from '../components/Jobs'
+// import JobHero from '../components/JobHero'
+// import Jobs from '../components/Jobs'
 import { Metadata } from 'next'
+import StaticJobs from '../components/StaticJobs'
 
 // ✅ SEO METADATA
 export const metadata: Metadata = {
@@ -193,7 +193,9 @@ export default async function Page() {
         <h1 className="sr-only">
           IT Jobs in India - Off-Campus and Fresher Opportunities 2026
         </h1>
-        <Jobs/>
+        {/* <Jobs/> */}
+        <StaticJobs/>
+        
     </div>
     </>
   )
