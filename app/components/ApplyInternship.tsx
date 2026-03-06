@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useUser } from "@clerk/nextjs";
+import { ACTION_HMR_REFRESH } from "next/dist/client/components/router-reducer/router-reducer-types";
 
 /* ─────────────────────────────────────────
    InputField defined OUTSIDE parent
@@ -134,9 +135,11 @@ export default function ApplyInternship({ onSuccess }: Props) {
     if (!validateStep()) return;
 
     if (!user?.id) {
-      setError("Authentication error. Please sign in again.");
+      setError("Authentication error. Please Login or Create Account.");
       return;
     }
+
+    
 
     setSubmitting(true);
     setError("");

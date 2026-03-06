@@ -74,21 +74,56 @@ const STEPS: { id: StepId; label: string; sublabel: string; icon: React.ReactNod
 const STEP_ORDER: StepId[] = ["apply", "project", "status", "submit", "payment"];
 const API = process.env.NEXT_PUBLIC_API_URL;
 
+/* ─────────────────────────────────────────
+   Step resolver — maps backend status to
+   which step to SHOW and which are DONE.
+
+   Flow: apply → project → status → submit → payment
+
+   pending_validation : apply+project done, show status (awaiting validation)
+   validated          : apply+project+status done, show submit (ready to upload)
+   project_submitted  : apply+project+status+submit done, show submit
+                        (already submitted — user sees their submission info)
+   approved           : apply+project+status+submit done, show payment
+   payment_pending    : apply+project+status+submit done, show payment
+   completed          : all done, show payment
+───────────────────────────────────────── */
 function resolveFromStatus(status: string): { activeStep: StepId; completed: Set<StepId> } {
   switch (status) {
     case "pending_validation":
-      return { activeStep: "status",  completed: new Set<StepId>(["apply", "project"]) };
+      return {
+        activeStep: "status",
+        completed:  new Set<StepId>(["apply", "project"]),
+      };
     case "validated":
-      return { activeStep: "submit",  completed: new Set<StepId>(["apply", "project", "status"]) };
+      return {
+        activeStep: "submit",
+        completed:  new Set<StepId>(["apply", "project", "status"]),
+      };
     case "project_submitted":
-      return { activeStep: "submit",  completed: new Set<StepId>(["apply", "project", "status"]) };
+      // Project has been submitted — mark submit complete, keep user on submit
+      // so they can see their submission before navigating to payment.
+      return {
+        activeStep: "submit",
+        completed:  new Set<StepId>(["apply", "project", "status", "submit"]),
+      };
     case "approved":
     case "payment_pending":
-      return { activeStep: "payment", completed: new Set<StepId>(["apply", "project", "status", "submit"]) };
+      // Submission was reviewed and approved — now go to payment.
+      return {
+        activeStep: "payment",
+        completed:  new Set<StepId>(["apply", "project", "status", "submit"]),
+      };
     case "completed":
-      return { activeStep: "payment", completed: new Set<StepId>(["apply", "project", "status", "submit", "payment"]) };
+      return {
+        activeStep: "payment",
+        completed:  new Set<StepId>(["apply", "project", "status", "submit", "payment"]),
+      };
     default:
-      return { activeStep: "apply",   completed: new Set<StepId>() };
+      return {
+        activeStep: "apply",
+        completed:  new Set<StepId>(),
+      };
   }
 }
 

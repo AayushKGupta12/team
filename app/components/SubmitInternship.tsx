@@ -60,15 +60,6 @@ export default function SubmitInternship({ internId, onSuccess }: Props) {
     load();
   }, [internId]);
 
-  /* ── Countdown ticker ── */
-  useEffect(() => {
-    if (!dueDate) return;
-    const tick = () => setTimeLeft(calcTimeLeft(dueDate));
-    tick();
-    timerRef.current = setInterval(tick, 1000);
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  }, [dueDate]);
-
   const isExpired = timeLeft?.expired ?? false;
 
   const validate = (): boolean => {
