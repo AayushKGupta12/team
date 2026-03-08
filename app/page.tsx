@@ -10,13 +10,14 @@ import CongratsPopup from './components/CongratsPopUp'
 import Banner from './components/Banner'
 import ToolsExplorer from './components/ToolsExplorer'
 import YouTubePreview from './components/Youtube'
+import Dashboard from './components/Dashboard'
 
 // FIXED: Complete metadata with OpenGraph and Twitter cards
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.vfound.in'),
   title: 'VFound | Career Intelligence',
   description:
-    'VFound helps IT professionals and freshers find jobs with AI-powered resume analysis, ATS checker, cover letter generator, and curated IT job listings. Get hired faster with our career intelligence platform.',
+    'VFound.in helps IT professionals and freshers find jobs with AI-powered resume analysis, ATS checker, cover letter generator, and curated IT job listings. Get hired faster with our career intelligence platform.',
   keywords: [
     'VFound',
     'Vfound.in',
@@ -195,6 +196,7 @@ const Page = () => {
         <YouTubePreview/>
         <ToolsExplorer/>
         <Features />
+        <Dashboard/>
         <Testimonials/>
         <FAQ />
         <CongratsPopup />

@@ -55,7 +55,7 @@ const faqs = [
       "Paste the key inside the extension popup",
       "Reload the extension once after saving",
     ],
-    highlight: "unique API key",
+    highlight: "Unique API key",
   },
   {
     question: "Is my data secure while using the extension?",
