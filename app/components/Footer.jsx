@@ -21,6 +21,9 @@ export default function Footer() {
     { label: "Contact", href: "/contact" },
     // { label: "Our Team", href: "/team" },
     { label: "Terms of Use", href: "/term-of-use" },
+    { label: "Privacy Policy", href: "/privacy_policy" },
+    { label: "Refund Policy", href: "/refund_policy" },
+    { label: "T&C", href: "/T&C" },
     { label: "Disclaimer", href: "/term-of-use#disclaimer" },
   ];
 
