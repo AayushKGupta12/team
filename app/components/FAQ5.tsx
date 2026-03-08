@@ -217,7 +217,7 @@ export default function FAQ() {
                 question={faq.question}
                 answer={faq.answer}
                 bullets={faq.bullets}
-                highlight={faq.highlight || "~"}
+                highlight={"~"}
               />
             ))}
           </div>
