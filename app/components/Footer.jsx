@@ -19,6 +19,7 @@ export default function Footer() {
     { label: "About Us", href: "/about" },
     { label: "Careers", href: "/careers" },
     { label: "Contact", href: "/contact" },
+    { label: "Pricing", href:"/pricing"},
     // { label: "Our Team", href: "/team" },
     { label: "Terms of Use", href: "/term-of-use" },
     { label: "Privacy Policy", href: "/privacy_policy" },

@@ -21,10 +21,10 @@ export default function Hero() {
             <div className="text-sm text-[#2e5e99]">Priced lower than a packet of chips</div>
 
             {/* DESKTOP VERSION - visible only on md+ */}
-            <div className="hidden md:block mt-19">
+            <div className="hidden md:block mt-5">
               <br /><br /><br />
-              Our Price
-              <div className="text-4xl text-[#2e5e99]">Priced lower than a packet of chips</div>
+              Our Price Payment Buy this software
+              <div className="text-md text-[#2e5e99]">Priced lower than a packet of chips</div>
             </div>
             
 
