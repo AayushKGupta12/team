@@ -11,30 +11,19 @@ interface YouTubePreviewProps {
 export default function YouTubePreview({
   videoId = "674Dj3HwsNM",
   title = "See how it works",
-  description = "A calm walkthrough of our product experience.",
 }: YouTubePreviewProps) {
   const [muted, setMuted] = useState(true);
 
   return (
-    <section className="w-full bg-gradient-to-b from-white to-neutral-50 py-24 px-6 lg:px-16">
-      <div className="max-w-7xl mx-auto">
-        {/* Header Badge */}
-        <div className="flex justify-center lg:justify-start mb-8 lg:mb-0">
-          <span className="inline-flex items-center px-4 py-2 bg-neutral-900/5 rounded-full text-xl font-medium text-neutral-700 tracking-wide">
-            ⚡ Product Tour
-          </span>
-        </div>
+    <section className="w-full bg-gradient-to-b from-white to-neutral-50 py-24 px-6 lg:px-16 rounded-b-4xl">
+      <div className="max-w-6xl mx-auto">
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
           {/* ── LEFT CONTENT ── */}
           <div className="flex flex-col items-start gap-8 max-w-xl order-2 lg:order-1">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 leading-[1.1] tracking-tight">
+            <h2 className="text-4xl md:text-5xl md:mt-10 lg:text-6xl font-bold text-neutral-900 leading-[1.1] tracking-tight">
               {title}
             </h2>
-
-            <p className="text-lg text-neutral-600 leading-relaxed max-w-md">
-              {description}
-            </p>
 
             {/* Feature Pills */}
             <div className="flex flex-wrap gap-3">
@@ -48,24 +37,6 @@ export default function YouTubePreview({
                 🔒 Enterprise security
               </span>
             </div>
-
-            {/* Speaker Toggle - Made bolder */}
-            <button
-              onClick={() => setMuted(!muted)}
-              className="group inline-flex items-center gap-3 px-4 py-2.5 
-                       bg-emerald-500/50 border border-neutral-200 rounded-full
-                       text-sm font-semibold text-neutral-700
-                       hover:border-yellow-300 hover:bg-yellow-50 
-                       hover:text-neutral-900 transition-all"
-            >
-              <span className="text-base">
-                {muted ? "🔇" : "🔊"}
-              </span>
-              <span className="tracking-wide">
-                {muted ? "Sound off" : "Sound on"}
-              </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-neutral-300 group-hover:bg-neutral-400 transition-colors" />
-            </button>
           </div>
 
           {/* ── VIDEO ── */}
@@ -84,15 +55,19 @@ export default function YouTubePreview({
                   allowFullScreen
                 />
                 
-                {/* Optional overlay indicator */}
-                <div className="absolute bottom-4 right-4">
-                  <div className="px-3 py-1.5 bg-black/50 backdrop-blur-sm rounded-full text-xs font-medium text-white/90">
-                    {muted ? "🔇 Muted" : "🔊 Audio on"}
-                  </div>
+                {/* ── FUNCTIONAL SOUND BUTTON (INSIDE VIDEO) ── */}
+                <div className="absolute bottom-4 right-4 z-20">
+                  <button
+                    onClick={() => setMuted(!muted)}
+                    className="flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-full text-xs font-semibold text-white hover:bg-black/80 transition-all border border-white/10"
+                  >
+                    <span>{muted ? "🔇" : "🔊"}</span>
+                    <span>{muted ? "Unmute" : "Mute"}</span>
+                  </button>
                 </div>
               </div>
 
-              {/* Caption - Fixed z-index and typo */}
+              {/* Caption */}
               <p className="text-center mt-4 mb-3">
                 <span className="inline-flex items-center gap-2 px-5 py-2 bg-white/80 backdrop-blur-sm rounded-full text-sm font-semibold text-[#0d2440] shadow-sm border border-neutral-200/60">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>

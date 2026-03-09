@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import React, { useState } from "react";
 import {
   SignedIn,
   SignedOut,
@@ -14,9 +15,14 @@ import {
   Phone,
   Info,
   Menu,
+  DollarSignIcon,
   Book,
   Chrome,
-  ChevronLeft, ChevronRight, Pen
+  ChevronLeft, ChevronRight, Pen,
+  ChevronDown,
+  FileQuestionMark,
+  LayoutDashboard,
+  ShieldCheck
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import UsageProvider from "./UsageProvider";
@@ -29,6 +35,7 @@ export default function DesktopSidebar({
   collapsed: boolean;
   setCollapsed: (v: boolean) => void;
 }) {
+  const [internshipOpen, setInternshipOpen] = useState(false);
 
   return (
     <>
@@ -38,8 +45,6 @@ export default function DesktopSidebar({
           className="fixed inset-0 bg-black/50 z-40 lg:hidden"
           onClick={() => setCollapsed(true)}
         />
-
-        
       )}
 
       {/* Sidebar */}
@@ -48,12 +53,30 @@ export default function DesktopSidebar({
             fixed left-0 top-0 z-50
             h-screen bg-[#2e5e99] border-r
             transition-all duration-300 ease-in-out
-            overflow-hidden
+            overflow-y-auto overflow-x-hidden
             ${collapsed
             ? "w-20 -translate-x-full lg:translate-x-0"
-            : "w-54 translate-x-0 bg-[#e7f0fa]"}
+            : "w-54 translate-x-0 bg-[#e7f0fa] no-scrollbar "}
         `}
-        >
+      >
+        {/* LOGO PLACEHOLDER */}
+        <div className="h-20 flex items-center justify-center">
+          {collapsed ? (
+            <a href="/">
+            <div className="w-13 h-13 bg-[#0d2440] rounded-lg flex items-center justify-center font-bold text-[#e7f0fa] shadow-md">
+              <img src="/vfound.png" alt="Logo" className="rounded-3xl"/>
+            </div>
+            </a>
+          ) : (
+            <a href="/">
+            <div className="mt-4 px-3 w-full ">
+                <span className="block text-5xl font-bold kaushan-script-regular text-[#0d2440]">
+                  Vfound.in
+                </span>
+            </div>
+            </a>
+          )}
+        </div>
 
         <button
           onClick={() => setCollapsed(!collapsed)}
@@ -95,13 +118,7 @@ export default function DesktopSidebar({
 
         {/* TAGLINE */}
         {!collapsed && (
-          
-          <div className="mt-4 px-3">
-            <Link href="/">
-              <span className="block text-5xl font-bold kaushan-script-regular text-[#0d2440]">
-                Vfound.in
-              </span>
-            </Link>
+          <div className="px-3">
             <p className="mt-2 ml-3 text-sm text-gray-800">
               Your AI Developer Builder
             </p>
@@ -117,14 +134,49 @@ export default function DesktopSidebar({
 
           <NavItem icon={Sparkles} label="Advance Analysis" href="/ai-resume-analysis" collapsed={collapsed}/>
           <NavItem icon={FileText} label="Cover Letter" href="/cover-letter" collapsed={collapsed} />
-          <NavItem icon={FileText} label="Certification" href="/internship" collapsed={collapsed} />
+          
+          {/* NESTED NAVBAR START */}
+          <div className="flex flex-col">
+            <button 
+              onClick={() => !collapsed && setInternshipOpen(!internshipOpen)}
+              className="group relative flex items-center justify-between w-full gap-3 px-4 py-2 rounded-xs hover:bg-[#7ba4d0] hover:scale-108 text-[#0d2440] transition duration-100 ease-in-out"
+            >
+              <div className="flex items-center gap-3">
+                <ShieldCheck size={25} />
+                {!collapsed && <span className="text-sm font-medium">Certification</span>}
+                {collapsed && (
+                  <div className="absolute left-14 bg-[#0d2440] text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-[2500ms] whitespace-nowrap z-[100]">
+                    Certification
+                  </div>
+                )}
+              </div>
+              {!collapsed && (
+                <ChevronDown size={16} className={`transition-transform ${internshipOpen ? "rotate-180" : ""}`} />
+              )}
+            </button>
+            
+            <AnimatePresence>
+              {internshipOpen && !collapsed && (
+                <motion.div 
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  className="overflow-hidden flex flex-col ml-4 border-l border-gray-400"
+                >
+                  <NavItem icon={FileQuestionMark} label="How it works ?" href="/internship" collapsed={collapsed} isNested />
+                  <NavItem icon={LayoutDashboard} label="Dashboard" href="/internship/userdashboard" collapsed={collapsed} isNested />
+                  <NavItem icon={ShieldCheck} label="Validate" href="/internship/validate" collapsed={collapsed} isNested />
+                  
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          {/* NESTED NAVBAR END */}
+
           <NavItem icon={Pen} label="KIIT Study Material" href="/kiit" collapsed={collapsed} />
           <NavItem icon={Chrome} label="Extension" href="/extension" collapsed={collapsed} />
           <NavItem icon={Briefcase} label="IT Jobs" href="/it-jobs" collapsed={collapsed} />
-          <NavItem icon={Book} label="Read" href="/read" collapsed={collapsed} />
           <NavItem icon={Menu} label="Blogs" href="/blog" collapsed={collapsed} />
-          
-
         </div>
 
         {/* COMPANY */}
@@ -132,12 +184,9 @@ export default function DesktopSidebar({
           {!collapsed && (
             <p className="text-xs text-[#0d2440] px-3 mb-2">COMPANY</p>
           )}
-
           <NavItem icon={Info} label="About Us" href="/about" collapsed={collapsed} />
-          {/* <NavItem icon={Users} label="Team" href="/team" collapsed={collapsed} /> */}
-          <NavItem icon={Phone} label="Contact" href="/contact" collapsed={collapsed} />
-          <NavItem icon={Building2} label="Careers" href="/careers" collapsed={collapsed} />
-
+          <NavItem icon={DollarSignIcon} label="Pricing" href="/pricing" collapsed={collapsed} />
+          <NavItem icon={Phone} label="Contact us" href="/contact" collapsed={collapsed} />
         </div>
 
         {/* BOTTOM */}
@@ -161,8 +210,6 @@ export default function DesktopSidebar({
                         Sign in
                     </a>
                     </div>
-
-
                   <div className="mt-2 flex gap-6">
                     <a
                         href="/sign-up"
@@ -186,22 +233,32 @@ function NavItem({
   label,
   href,
   collapsed,
+  isNested = false
 }: {
   icon: any;
   label: string;
   href: string;
   collapsed: boolean;
+  isNested?: boolean;
 }) {
   return (
     <Link
       href={href}
-      className="flex items-center gap-3 px-4 py-2 rounded-xs 
+      className={`group relative flex items-center gap-3 px-4 py-2 rounded-xs 
             hover:bg-[#7ba4d0] hover:scale-108
             text-[#0d2440] transform 
-            transition duration-100 ease-in-out"
+            transition duration-100 ease-in-out
+            ${isNested ? "ml-2 scale-95 opacity-90" : ""}`}
     >
-      <Icon size={25} classname />
+      <Icon size={isNested ? 20 : 25} />
       {!collapsed && <span className="text-sm font-medium">{label}</span>}
+      
+      {/* 2.5s Tooltip for collapsed mode */}
+      {collapsed && (
+        <div className="absolute left-14 bg-[#0d2440] text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-[2500ms] whitespace-nowrap z-[100]">
+          {label}
+        </div>
+      )}
     </Link>
   );
 }

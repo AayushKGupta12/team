@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 
 const stats = [
   { label: "Resume Analysed", value: 740, color: "bg-amber-400" },
-  { label: "Jobs Applied", value: 3600, color: "bg-green-400" },
-  { label: "Resumes Shortlisted", value: 3276, color: "bg-blue-400" },
-  { label: "Interview Calls", value: 2293, color: "bg-purple-400" },
+  { label: "Extension Users", value: 1600, color: "bg-green-400" },
+  { label: "Certifications Earned", value: 900, color: "bg-blue-400" },
+  { label: "Blogs Read Daily", value: 960, color: "bg-purple-400" },
 ];
 
 const testimonials = [
@@ -176,7 +176,7 @@ export default function Testimonials() {
 <div className="mt-5 bg-[#0d2440] py-16 sm:py-20 px-6 lg:px-8">
   <div className="text-center mb-12 sm:mb-16">
     <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-300">
-      Trusted by 18,000+ IT professionals
+      Trusted by 18,000+ Users
     </h3>
     <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
       Join thousands building better careers through our community

@@ -21,46 +21,57 @@ const features = [
   {
     title: "Improve Your Resume Performance",
     description:
-      "Analyze your resume using comprehensive evaluation covering technical depth, ATS compatibility, role relevance, and industry benchmarks. Our system evaluates resumes using 32+ structured parameters from real hiring processes across Indian IT companies.",
+`• Upload your resume and get an instant ATS and skills evaluation
+• Identify missing keywords and technical skills for IT jobs
+• Receive clear suggestions to improve your resume`,
     image:
-      "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=1200&q=80",
-    alt: "Resume analysis dashboard showing ATS score, technical skills evaluation, and job match percentage for Indian IT jobs",
+      "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=80",
+    alt: "AI resume analysis dashboard evaluating ATS score, technical skills and job readiness for software engineering roles",
     icon: FileText,
     category: "Resume Intelligence",
     status: "available",
     link: "/ai-resume-analysis"
   },
+
   {
     title: "Generate Professional Cover Letters",
     description:
-      "Create clean, professional, and role-specific cover letters generated from your resume. Designed specifically for Indian IT job applications across software development, data science, and cloud computing. Copy, edit, or download instantly.",
+`• Generate job-ready cover letters directly from your resume
+• Tailored for software engineering and IT roles
+• Copy, edit, or download instantly`,
     image:
-      "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/Screenshot%202025-12-11%20134243.png",
-    alt: "Professional cover letter generator interface for software engineers and IT professionals in India",
+      "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=1200&q=80",
+    alt: "Professional cover letter generation tool helping developers create job application letters",
     icon: Sparkles,
     category: "Cover Intelligence",
     status: "available",
     link: "/cover-letter"
   },
+
   {
     title: "Work in India's Top IT Companies",
     description:
-      "Discover verified IT job opportunities across software engineering, data science, machine learning, cloud computing, and cybersecurity. Job listings updated daily and curated for freshers and early-career developers across India's tech ecosystem.",
+`• Discover curated IT job opportunities across India
+• Find roles in software development, AI, data science, and cloud
+• Built for freshers and early-career developers`,
     image:
-      "https://raw.githubusercontent.com/AayushKGupta12/asset/refs/heads/main/Screenshot%202025-12-11%20133854.png",
-    alt: "IT job listings platform for freshers and early-career developers in India showing software engineer and data science positions",
+      "https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=1200&q=80",
+    alt: "IT job search platform helping developers find software engineering and data science roles",
     icon: Briefcase,
     category: "Search Intelligence",
     status: "available",
     link: "/it-jobs"
   },
+
   {
     title: "Skill-Based Internship Program",
     description:
-      "Earn a verified internship certificate by completing real-world, project-based assignments. Choose from 30, 45, or 60-day tracks across domains like Data Science, Web Development, Machine Learning, and more. Every internship is evaluated, approved, and verifiable online — built for freshers who want proof of skills, not just theory.",
+`• Complete real project assignments in tech domains
+• Choose 30, 45, or 60-day internship tracks
+• Earn a verified internship certificate after approval`,
     image:
-      "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80",
-    alt: "Skill-based internship program for freshers with project assignments in data science, web development and machine learning — verified certificates by Vfound",
+      "https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1200&q=80",
+    alt: "Students collaborating on technical internship projects in software development and data science",
     icon: GraduationCap,
     category: "Internship Intelligence",
     status: "available",
@@ -68,17 +79,19 @@ const features = [
   },
 
   {
-  title: "AI Chrome Extension for Smart Research",
-  description:
-    "Use the Vfound Chrome Extension to get instant explanations, summaries, and technical insights directly inside your browser. Highlight any content on the web to generate structured answers, simplify complex topics, and accelerate your research workflow. Built for students, developers, and professionals who want fast, contextual knowledge without leaving the page.",
-  image:
-    "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
-  alt: "AI powered Chrome extension assisting with research, explanations and technical learning directly in the browser",
-  icon: GraduationCap,
-  category: "AI Productivity Tools",
-  status: "available",
-  link: "/extension"
- }
+    title: "AI Chrome Extension for Smart Research",
+    description:
+`• Highlight web content to get instant explanations
+• Generate summaries and technical insights in your browser
+• Learn faster without switching tools`,
+    image:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+    alt: "Developer using AI powered browser extension for technical research and learning",
+    icon: Chrome,
+    category: "AI Productivity Tools",
+    status: "available",
+    link: "/extension"
+  }
 ];
 
 export default function FeatureSection() {
@@ -322,7 +335,7 @@ export default function FeatureSection() {
         }}
       />
 
-      <div className="bg-gradient-to-br from-slate-50 via-blue-50/30 to-amber-50/20">
+      <div className="bg-gradient-to-br from-slate-50 via-blue-50/30 to-amber-50/20 rounded-t-4xl">
         {/* ===== MAIN FEATURES SECTION ===== */}
         <section className="py-20 md:py-28">
           {/* Section Header */}
@@ -343,14 +356,10 @@ export default function FeatureSection() {
             </h1>
 
             <p className="mt-3 text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-              Career intelligence tools for Indian IT professionals. 
+              Career intelligence & Developer tool Kit
             </p>
 
             <div className="mt-4 flex flex-wrap items-center justify-center gap-6 text-sm">
-              <div className="flex items-center gap-2 text-slate-600">
-                <Shield className="w-5 h-5 text-emerald-600" />
-                <span className="font-semibold">740+ Resumes Analyzed</span>
-              </div>
               <div className="flex items-center gap-2 text-slate-600">
                 <Zap className="w-5 h-5 text-amber-600" />
                 <span className="font-semibold">Instant Results</span>
@@ -385,7 +394,7 @@ export default function FeatureSection() {
                         : "from-emerald-100/40 to-teal-100/40"
                     } rounded-3xl blur-2xl opacity-60 group-hover:opacity-80 transition-opacity`}
                   />
-                  <figure className="relative aspect-[5/4] rounded-xl overflow-hidden shadow-md border border-slate-200/60 bg-white">
+                  <figure className="relative aspect-[3/2] rounded-xl overflow-hidden shadow-md border border-slate-200/60 bg-white">
                     <Image
                       src={feature.image}
                       alt={feature.alt}
@@ -425,15 +434,17 @@ export default function FeatureSection() {
                     {feature.title}
                   </h2>
 
-                  <p className="text-lg lg:text-xl text-slate-600 leading-relaxed">
-                    {feature.description}
-                  </p>
+                  <ul className="text-lg lg:text-xl text-slate-600 leading-relaxed space-y-2 list-disc pl-5">
+                    {feature.description.split("•").filter(Boolean).map((point, i) => (
+                      <li key={i}>{point.trim()}</li>
+                    ))}
+                  </ul>
 
                   <a href={feature.link}>
                     <div className="inline-flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-lg border border-emerald-200 hover:scale-105 transition-transform duration-200">
                       <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
                       <span className="text-sm font-semibold text-emerald-700">
-                        Check now
+                        Visit
                       </span>
                     </div>
                   </a>
@@ -474,7 +485,7 @@ export default function FeatureSection() {
                     Always Evolving
                   </span>
                   <h2 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight mb-3">
-                    We&apos;re crafting more{" "}
+                    We&apos;re crafted many{" "}
                     <span className="underline decoration-amber-700 decoration-4 underline-offset-4">
                       Intelligence Systems
                     </span>{" "}

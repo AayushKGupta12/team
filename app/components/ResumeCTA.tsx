@@ -45,7 +45,7 @@ export default function ResumeCTA() {
   const current = testimonials[currentIndex];
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-[#ff5a57] to-[#e02f75] overflow-hidden bg-rotate-45">
+    <section className="relative min-h-screen bg-gradient-to-b from-[#ff5a57] to-[#e02f75] overflow-hidden bg-rotate-45 rounded-t-4xl">
       <div className="absolute inset-0" />
 
       <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center min-h-screen px-6 py-12 lg:px-12 max-w-7xl mx-auto gap-12 lg:gap-20">

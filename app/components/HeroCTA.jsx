@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function HeroCTA() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-16 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-16 overflow-hidden rounded-t-4xl">
       <div
         className="absolute inset-0 w-full h-full"
         style={{
@@ -21,18 +21,6 @@ export default function HeroCTA() {
 
         <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-light max-w-4xl mx-auto leading-relaxed mb-10 opacity-95">
           Trusted by Thousands of developers by all over India
-          
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-5 mt-8 mb-6">
-            <span className="px-5 py-3 bg-[#050c38]/90 backdrop-blur-sm rounded-full text-sm sm:text-base font-medium border border-white/20">
-              7000+ Resume Eveluated
-            </span>
-            <span className="px-5 py-3 bg-[#050c38]/90 backdrop-blur-sm rounded-full text-sm sm:text-base font-medium border border-white/20">
-              6000+ CV Generated
-            </span>
-            <span className="px-5 py-3 bg-[#050c38]/90 backdrop-blur-sm rounded-full text-sm sm:text-base font-medium border border-white/20">
-              580+ Listed Co.
-            </span>
-          </div>
         </div>
 
         <Link href="/sign-up">

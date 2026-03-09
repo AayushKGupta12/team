@@ -119,7 +119,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                     src={imageUrl}
                     alt={title}
                     loading="lazy"
-                    className="mx-auto max-w-full h-72 w-72 sm:h-80 sm:w-80 lg:h-110 lg:w-110 object-contain drop-shadow-lg"
+                    className="mx-auto max-w-full h-72 w-72 sm:h-80 sm:w-80 lg:h-110 lg:w-110 object-contain drop-shadow-lg "
                   />
                 </div>
               </div>
@@ -248,7 +248,7 @@ const QASection: React.FC = () => {
             className="grid grid-cols-3 gap-6 max-w-2xl mx-auto pt-8"
           >
             {[
-              { label: "Resumes Analyzed", value: "50K+" },
+              { label: "Resumes Analyzed", value: "740+" },
               { label: "Success Rate", value: "94%" },
               { label: "Career Paths", value: "200+" },
             ].map((stat, idx) => (

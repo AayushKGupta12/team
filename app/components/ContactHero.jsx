@@ -100,26 +100,49 @@ export default function AboutPage() {
           </div>
 
           {/* Final Contact CTA */}
-          <div className="bg-gradient-to-r from-[#0d2440] to-[#1e3a5c] text-white rounded-3xl p-12 lg:p-16 shadow-2xl">
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6">
-              Got questions? Say hello
-            </h3>
-            <p className="text-xl md:text-2xl opacity-90 mb-10 leading-relaxed max-w-2xl">
-              Resume advice, career doubts, or just want to chat? We reply to everyone personally.
-            </p>
+<div className="relative overflow-hidden bg-gradient-to-br from-[#0d2440] to-[#1e3a5c] text-white rounded-[2.5rem] p-10 lg:p-16 shadow-2xl border border-white/10">
+  {/* Background Decorative Glow */}
+  <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#2e5e99] rounded-full blur-[100px] opacity-20 pointer-events-none" />
 
-            <div className="mt-10 flex gap-6">
-              <a
-                href="mailto:info@vfound.in"
-                className="border relative h-14 py-2 p-15 text-black text-3xl font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
-                Mail us
-              </a>
-            </div>
+  <div className="relative z-10">
+    <h3 className="text-3xl md:text-5xl font-black mb-6 leading-tight tracking-tighter">
+      Got questions? <br /> Say hello to
+      <span className="text-amber-400 italic"> Aayush K. Gupta</span>
+    </h3>
 
-            <p className="mt-8 text-lg md:text-xl text-white/80">
-              You’ll hear back within <span className="font-bold text-white">48 hours</span>
-            </p>
-          </div>
+    {/* Contact Details Grid */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12">
+      <div className="space-y-1">
+        <p className="text-amber-400 text-xs font-black uppercase tracking-widest">Support</p>
+        <p className="text-2xl font-bold">Aayush Kumar Gupta</p>
+      </div>
+      <div className="space-y-1">
+        <p className="text-amber-400 text-xs font-black uppercase tracking-widest">Direct Line</p>
+        <p className="text-2xl font-bold">+91 8252802866</p>
+      </div>
+    </div>
+
+    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+      <a
+        href="mailto:aayushgupta120305@gmail.com"
+        className="group relative inline-flex h-16 items-center justify-center px-10 bg-white text-[#0d2440] text-2xl font-black rounded-2xl shadow-[0_8px_0_0_#cbd5e1] active:shadow-none active:translate-y-[4px] transition-all hover:bg-amber-400 hover:shadow-[0_8px_0_0_#b45309]"
+      >
+        Mail Us
+      </a>
+      
+      <div className="flex flex-col">
+        <span className="text-white text-sm font-bold uppercase tracking-tighter underline decoration-amber-400/50 underline-offset-4">
+          Official Email
+        </span>
+        <span className="text-xl font-bold">aayushgupta120305@gmail.com</span>
+      </div>
+    </div>
+
+    <p className="mt-10 text-sm md:text-base text-white/80 font-medium">
+      Typically responds within <span className="text-white font-bold">48 hours</span> • Business Working Day's
+    </p>
+  </div>
+</div>
         </div>
       </section>
     </>

@@ -18,13 +18,13 @@ export default function Footer() {
   const company = [
     { label: "About Us", href: "/about" },
     { label: "Careers", href: "/careers" },
-    { label: "Contact", href: "/contact" },
+    { label: "Contact us", href: "/contact" },
     { label: "Pricing", href:"/pricing"},
     // { label: "Our Team", href: "/team" },
     { label: "Terms of Use", href: "/term-of-use" },
     { label: "Privacy Policy", href: "/privacy_policy" },
     { label: "Refund Policy", href: "/refund_policy" },
-    { label: "T&C", href: "/T&C" },
+    { label: "Term and Conditions", href: "/T&C" },
     { label: "Disclaimer", href: "/term-of-use#disclaimer" },
   ];
 
