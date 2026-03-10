@@ -145,76 +145,116 @@ export default function VerifyCertificate() {
       {/* ════════════════════════════════════════════════
           HERO — search section
       ════════════════════════════════════════════════ */}
-      <div className="bg-white border-b border-gray-100">
-        <div className="max-w-2xl mx-auto px-6 py-14 text-center">
-          <h1 className="text-[28px] font-bold text-gray-900 leading-tight mb-3">
-            Verify a VFound Certificate
-          </h1>
-          <p className="text-gray-400 text-sm mb-8 max-w-sm mx-auto leading-relaxed">
-            Enter the Intern ID printed on the certificate to confirm its authenticity instantly.
-          </p>
+      <div className="relative w-full h-[360px] bg-[url('https://images.unsplash.com/photo-1682687220742-aba13b6e50ba')] bg-cover bg-center">
 
-          {/* Search row */}
-          <div className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
-            <div className={`flex-1 flex items-center gap-3 px-4 h-12 bg-gray-50 border rounded-xl
-              transition-all duration-200
-              ${error
-                ? "border-red-300 ring-2 ring-red-50"
-                : "border-gray-200 focus-within:border-blue-400 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-50"
-              }`}>
-              <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#9ca3af" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round"
-                  d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0"/>
-              </svg>
-              <input
-                type="text"
-                value={query}
-                onChange={e => { setQuery(e.target.value.toUpperCase()); setError(""); }}
-                onKeyDown={e => e.key === "Enter" && handleVerify()}
-                placeholder="e.g. VF2026DS15304"
-                className="flex-1 bg-transparent text-sm text-gray-900 placeholder-gray-300
-                  focus:outline-none font-mono tracking-widest"
-              />
-              {query && (
-                <button
-                  onClick={() => { setQuery(""); setError(""); setData(null); }}
-                  className="text-gray-300 hover:text-gray-500 text-lg leading-none transition-colors">
-                  ×
-                </button>
-              )}
-            </div>
+  {/* gradient overlay */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+
+  {/* content */}
+  <div className="absolute bottom-0 w-full pb-14 px-6">
+    <div className="max-w-2xl mx-auto text-center text-white">
+
+      {/* heading */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      >
+        <h1 className="text-[32px] font-bold mb-3">
+          Verify your Certificate
+        </h1>
+
+        <p className="text-gray-200 text-sm mb-10 max-w-md mx-auto">
+          Enter the Intern ID printed on the certificate to confirm its authenticity instantly.
+        </p>
+      </motion.div>
+
+
+      {/* search section */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto"
+      >
+
+        {/* glass search box */}
+        <div className={`flex-1 flex items-center gap-3 px-4 h-12
+          bg-white/10 backdrop-blur-lg border rounded-xl shadow-lg
+          transition-all duration-300
+          ${error
+            ? "border-red-400"
+            : "border-white/20 focus-within:border-blue-400 focus-within:bg-white/20"
+          }`}>
+
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#d1d5db" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round"
+              d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0"/>
+          </svg>
+
+          <input
+            type="text"
+            value={query}
+            onChange={e => { setQuery(e.target.value.toUpperCase()); setError(""); }}
+            onKeyDown={e => e.key === "Enter" && handleVerify()}
+            placeholder="e.g. VF2026DS15304"
+            className="flex-1 bg-transparent text-sm text-white placeholder-gray-300
+            focus:outline-none font-mono tracking-widest"
+          />
+
+          {query && (
             <button
-              onClick={handleVerify}
-              disabled={loading}
-              className="h-12 px-6 bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold
-                rounded-xl transition-colors disabled:opacity-50 flex items-center justify-center gap-2 shrink-0"
-            >
-              {loading ? (
-                <>
-                  <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
-                  </svg>
-                  Verifying
-                </>
-              ) : "Verify"}
+              onClick={() => { setQuery(""); setError(""); setData(null); }}
+              className="text-gray-300 hover:text-white text-lg transition">
+              ×
             </button>
-          </div>
-
-          {error && (
-            <motion.p
-              initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }}
-              className="mt-3 text-sm text-red-500 flex items-center justify-center gap-1.5"
-            >
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round"
-                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-              {error}
-            </motion.p>
           )}
         </div>
-      </div>
+
+
+        {/* verify button */}
+        <motion.button
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
+          onClick={handleVerify}
+          disabled={loading}
+          className="h-12 px-6 bg-blue-600 hover:bg-blue-700
+          text-white text-sm font-semibold rounded-xl
+          shadow-lg shadow-blue-900/30
+          transition flex items-center justify-center gap-2"
+        >
+          {loading ? (
+            <>
+              <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="4" fill="none"/>
+              </svg>
+              Verifying
+            </>
+          ) : "Verify"}
+        </motion.button>
+
+      </motion.div>
+
+
+      {/* error message */}
+      {error && (
+        <motion.p
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="mt-4 text-sm text-red-300 flex items-center justify-center gap-2"
+        >
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round"
+              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          {error}
+        </motion.p>
+      )}
+
+    </div>
+  </div>
+</div>
 
       {/* ════════════════════════════════════════════════
           CERTIFICATE RESULT
