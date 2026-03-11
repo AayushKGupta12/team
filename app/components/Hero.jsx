@@ -47,8 +47,10 @@ export default function Hero() {
         {/* Main Content */}
         <div className="relative z-10 max-w-4xl text-center md:text-left mt-8">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-[#0b1724] leading-tight md:leading-none">
-            <span className="block">India’s Largest</span>
-            <span className="text-[#2e5e99]">Developer Builder</span>
+            {/* <span className="block">India’s Largest</span>
+            <span className="text-[#2e5e99]">Developer Builder</span> */}
+            <span className="block">Happy Birthday</span>
+            <span className="text-[#2e5e99]">Founder Sir, Aayush K. Gupta</span>
           </h1>
 
           <p className="mt-8 text-xl md:text-2xl text-gray-700 font-light max-w-2xl">

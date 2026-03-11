@@ -190,7 +190,7 @@ const Page = () => {
       <div>
         <Banner
           isPositive={true}
-          message="Intelligent Agent is live, Beta V1.0.0 is live, Install now and get premimum workspace"
+          message="Happy Birthday Sweetheart! 🎉🎂 Wishing you a day filled with love, laughter, and all your favorite things. You deserve the best on your special day and always. Love you to the moon and back! ❤️ [From Vfound.in to Aayush Gupta]"
         />
         <Navbar />
         <Hero />
