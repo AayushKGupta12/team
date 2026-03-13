@@ -129,7 +129,7 @@ export default function ExtensionDashboard() {
     setShowRegenConfirm(false);
     if (!user) return;
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL_EXT}/api/regenerate-api-key `, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/regenerate-api-key `, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
