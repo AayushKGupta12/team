@@ -11,7 +11,7 @@ import Banner from './components/Banner'
 import ToolsExplorer from './components/ToolsExplorer'
 import YouTubePreview from './components/Youtube'
 import Dashboard from './components/Dashboard'
-import PricingSection from './components/Price'
+// import PricingSection from './components/Price'
 
 // FIXED: Complete metadata with OpenGraph and Twitter cards
 export const metadata: Metadata = {
@@ -190,7 +190,7 @@ const Page = () => {
       <div>
         <Banner
           isPositive={true}
-          message="Happy Birthday Sweetheart! 🎉🎂 Wishing you a day filled with love, laughter, and all your favorite things. You deserve the best on your special day and always. Love you to the moon and back! ❤️ [From Vfound.in to Aayush Gupta]"
+          message="Welcome to VFound! 🎉"
         />
         <Navbar />
         <Hero />
@@ -200,7 +200,7 @@ const Page = () => {
         <Dashboard/>
         <Testimonials/>
         <FAQ />
-        <PricingSection/>
+        {/* <PricingSection/> */}
         <CongratsPopup />
         <HeroCTA />
         <Countdown />
