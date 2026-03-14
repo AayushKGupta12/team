@@ -193,7 +193,7 @@ export default function PortfolioCTA() {
               </h2>
               <p className="text-emerald-50 text-base sm:text-lg mb-8 sm:mb-10 max-w-xl leading-relaxed">
                 Unlock real-time placement insights, automate tracking, and
-                integrate seamlessly with VFound — built for developers and
+                integrate seamlessly with VFound.in built for developers and
                 ambitious students who want an AI edge in their browser.
               </p>
 
@@ -203,21 +203,21 @@ export default function PortfolioCTA() {
                */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <a
-                  href="#" // ← Replace with real Chrome Web Store URL
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Download the VFound AI Chrome Extension for free"
-                  className="
-                    bg-white text-emerald-600 font-semibold
-                    px-6 sm:px-8 py-3 sm:py-4
-                    rounded-xl shadow-lg text-center
-                    hover:scale-105 hover:shadow-2xl
-                    transition-transform duration-200
-                    w-full sm:w-auto
-                  "
-                >
-                  Download Extension
-                </a>
+  href="https://github.com/AayushKGupta12/vfound_extension/archive/refs/heads/main.zip"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Download the VFound AI Chrome Extension for free"
+  className="
+    bg-white text-emerald-600 font-semibold
+    px-6 sm:px-8 py-3 sm:py-4
+    rounded-xl shadow-lg text-center
+    hover:scale-105 hover:shadow-2xl
+    transition-transform duration-200
+    w-full sm:w-auto
+  "
+>
+  Download Extension
+</a>
                 <a
                   href="/extension/api-doc"
                   target="_blank"
