@@ -268,6 +268,14 @@ export default function InternshipStatus({ internId: propId, onValidated }: Prop
               <p className="text-sm text-amber-700 leading-relaxed">
                 Your application is under review. <br/>
                 It may take up to 3 business days to validate your details. We appreciate your patience!
+                <br />
+                <br />
+                In the meantime, feel free to explore our <a href="/internship/project" className="underline font-medium text-blue-600 text-2xl">Guide</a> to prepare for your internship journey.
+                <br />
+                <br />
+                If you have any questions or concerns, contact us at <a href="mailto:support@internship.com" className="underline font-medium text-blue-600 text-2xl">
+                  support@internship.com
+                </a>
               </p>
             </div>
           )}

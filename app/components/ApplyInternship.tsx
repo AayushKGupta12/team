@@ -67,8 +67,15 @@ const FORM_STEPS = [
 const DOMAINS = [
   "Data Science", "Machine Learning", "Web Development",
   "Mobile Development", "UI/UX Design", "DevOps",
-  "Cloud Computing", "Other",
+  "Cloud Computing","Backend - Java","Backend - Flask","Data Analyst","MLOps", "Frontend", "Other",
 ];
+
+const CURRENT_YEAR = new Date().getFullYear();
+const MIN_GRAD_YEAR = CURRENT_YEAR - 3;
+const MAX_GRAD_YEAR = CURRENT_YEAR + 3;
+
+const isValidIndianPhone = (phone: string) => /^[6-9]\d{9}$/.test(phone);
+const isValidCGPA = (cgpa: string) => /^([0-9](\.\d{1,2})?|10(\.0{1,2})?)$/.test(cgpa);
 
 export default function ApplyInternship({ onSuccess }: Props) {
   const { user, isLoaded } = useUser();
@@ -101,23 +108,70 @@ export default function ApplyInternship({ onSuccess }: Props) {
     }
   }, [isLoaded, user]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
-    setForm(p => ({ ...p, [e.target.name]: e.target.value }));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  let { name, value } = e.target;
+
+  if (name === "phone") {
+    value = value.replace(/\D/g, "").slice(0, 10); // only digits, max 10
+  }
+
+  if (name === "cgpa") {
+    value = value.replace(/[^\d.]/g, "");
+  }
+
+  if (name === "graduation_year") {
+    value = value.replace(/\D/g, "").slice(0, 4);
+  }
+
+  setForm(p => ({ ...p, [name]: value }));
+};
 
   const validateStep = (): boolean => {
-    const msgs: Record<number, () => string | null> = {
-      1: () => (!form.first_name || !form.last_name || !form.phone)
-            ? "Please fill in all personal details." : null,
-      2: () => (!form.university || !form.course || !form.graduation_year)
-            ? "Please complete your education details." : null,
-      3: () => (!form.cgpa || !form.duration)
-            ? "Please enter CGPA and select a duration." : null,
-      4: () => !form.domain ? "Please select a domain." : null,
-    };
-    const msg = msgs[step]?.();
-    if (msg) { setError(msg); return false; }
-    setError(""); return true;
+  const msgs: Record<number, () => string | null> = {
+    1: () => {
+      if (!form.first_name || !form.last_name || !form.phone)
+        return "Please fill in all personal details.";
+
+      if (!isValidIndianPhone(form.phone))
+        return "Enter a valid 10 digit Indian phone number.";
+
+      return null;
+    },
+
+    2: () => {
+      if (!form.university || !form.course || !form.graduation_year)
+        return "Please complete your education details.";
+
+      const year = Number(form.graduation_year);
+
+      if (year < MIN_GRAD_YEAR || year > MAX_GRAD_YEAR)
+        return `Graduation year must be between ${MIN_GRAD_YEAR} and ${MAX_GRAD_YEAR}`;
+
+      return null;
+    },
+
+    3: () => {
+      if (!form.cgpa || !form.duration)
+        return "Please enter CGPA and select a duration.";
+
+      if (!isValidCGPA(form.cgpa))
+        return "Enter valid CGPA (0 - 10)";
+
+      return null;
+    },
+
+    4: () => (!form.domain ? "Please select a domain." : null),
   };
+
+  const msg = msgs[step]?.();
+  if (msg) {
+    setError(msg);
+    return false;
+  }
+
+  setError("");
+  return true;
+};
 
   const next = () => {
     if (!validateStep()) return;
@@ -188,14 +242,43 @@ export default function ApplyInternship({ onSuccess }: Props) {
             onChange={handleChange}
             disabled
           />
-          <InputField name="phone" label="Phone Number" type="tel" value={form.phone} onChange={handleChange} />
+         <div className="relative w-full">
+  <div className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-sm text-gray-500">
+    🇮🇳 +91
+  </div>
+
+  <input
+    type="tel"
+    name="phone"
+    value={form.phone}
+    onChange={handleChange}
+    placeholder=" "
+    className="peer w-full pl-16 pr-4 pt-6 pb-2 border rounded-xl
+      focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100
+      transition-all text-gray-900 text-sm bg-gray-50 border-gray-200"
+  />
+
+  <label
+    className="absolute left-16 top-1/2 -translate-y-1/2 text-sm text-gray-400
+      pointer-events-none transition-all
+      peer-focus:top-3 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-blue-500
+      peer-[&:not(:placeholder-shown)]:top-3 peer-[&:not(:placeholder-shown)]:translate-y-0
+      peer-[&:not(:placeholder-shown)]:text-xs">
+    Phone Number
+  </label>
+</div>
         </div>
       );
       case 2: return (
         <div className="space-y-4">
           <InputField name="university"      label="University / College"     value={form.university}      onChange={handleChange} />
           <InputField name="course"          label="Course / Major"           value={form.course}          onChange={handleChange} />
-          <InputField name="graduation_year" label="Expected Graduation Year" value={form.graduation_year} onChange={handleChange} />
+        <InputField
+  name="graduation_year"
+  label={`Expected Graduation Year (${MIN_GRAD_YEAR}-${MAX_GRAD_YEAR})`}
+  value={form.graduation_year}
+  onChange={handleChange}
+/>
         </div>
       );
       case 3: return (
