@@ -297,10 +297,10 @@ async function handlePaidCoverLetter() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-6">
           <h1 id="1" className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-            Professional CV, Built in Seconds
+            Intelligent CL, Built in Seconds
           </h1>
           <p className="mt-2 text-xl text-gray-600 max-w-3xl mx-auto">
-            Upload your resume. Enter the job. Get a perfect ATS-friendly cover letter instantly.
+            Upload your resume. Enter the job. Get a perfect iATS friendly cover letter instantly.
           </p>
         </div>
 
