@@ -187,6 +187,7 @@ export default function DesktopSidebar({
           <NavItem icon={Info} label="About Us" href="/about" collapsed={collapsed} />
           <NavItem icon={DollarSignIcon} label="Pricing" href="/pricing" collapsed={collapsed} />
           <NavItem icon={Phone} label="Contact us" href="/contact" collapsed={collapsed} />
+          <NavItem icon={Book} label="FAQ" href="/FAQ" collapsed={collapsed} />
         </div>
 
         {/* BOTTOM */}
