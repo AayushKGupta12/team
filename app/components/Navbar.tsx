@@ -40,12 +40,12 @@ const navItems: NavItem[] = [
     href: "#",
     hasDropdown: true,
     dropdown: [
+      { label: "KIIT PYQ", href: "/kiit" },
       { label: "Advance Analysis", href: "/ai-resume-analysis" },
       { label: "Cover Letter", href: "/cover-letter" },
+      { label: "Extension", href: "/extension" },
       { label: "IT Jobs", href: "/it-jobs" },
       { label: "Blogs", href: "/blog" },
-      { label: "Extension", href: "/extension" },
-      { label: "KIIT PYQ", href: "/kiit" },
     ],
   },
   {
@@ -57,6 +57,7 @@ const navItems: NavItem[] = [
       { label: "Careers", href: "/careers" },
       // { label: "Team", href: "/team" },
       { label: "Contact Us", href: "/contact" },
+      { label: "FAQ's", href: "/FAQ" },
     ],
   },
 ];

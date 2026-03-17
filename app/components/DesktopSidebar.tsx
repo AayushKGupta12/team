@@ -22,7 +22,8 @@ import {
   ChevronDown,
   FileQuestionMark,
   LayoutDashboard,
-  ShieldCheck
+  ShieldCheck,
+  BookOpen
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import UsageProvider from "./UsageProvider";
@@ -166,7 +167,7 @@ export default function DesktopSidebar({
                   <NavItem icon={FileQuestionMark} label="How it works ?" href="/internship" collapsed={collapsed} isNested />
                   <NavItem icon={LayoutDashboard} label="Dashboard" href="/internship/userdashboard" collapsed={collapsed} isNested />
                   <NavItem icon={ShieldCheck} label="Validate" href="/internship/validate" collapsed={collapsed} isNested />
-                  
+                  <NavItem icon={BookOpen} label="Project" href="/internship/project" collapsed={collapsed} isNested />
                 </motion.div>
               )}
             </AnimatePresence>
