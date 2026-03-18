@@ -40,7 +40,7 @@ export default function PricingSection() {
 
   const handleExtension = () => {
     setExtensionAdded((prev) => !prev);
-    showToast(extensionAdded ? "❌ Extension pack removed" : "✅ Chrome Extension pack added — ₹160");
+    showToast(extensionAdded ? "❌ Extension pack removed" : "✅ Chrome Extension pack added ₹160");
   };
 
   const handleInternshipSelect = (id) => {
@@ -181,7 +181,7 @@ export default function PricingSection() {
                       : "bg-gray-200 text-gray-400 cursor-not-allowed"
                   }`}
                 >
-                  {selectedCredit ? "Recharge Now" : "Select a Pack"} <ArrowRight className="w-4 h-4" />
+                  {selectedCredit ? "Buy Now" : "Select a Pack"} <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -313,7 +313,7 @@ export default function PricingSection() {
                       : "bg-gray-200 text-gray-400 cursor-not-allowed"
                   }`}
                 >
-                  {selectedInternship ? "Join Now →" : "Select a Plan"}
+                  {selectedInternship ? "Enroll Now →" : "Select a Plan"}
                 </button>
               </div>
             </div>

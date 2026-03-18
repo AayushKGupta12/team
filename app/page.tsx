@@ -11,7 +11,7 @@ import Banner from './components/Banner'
 import ToolsExplorer from './components/ToolsExplorer'
 import YouTubePreview from './components/Youtube'
 import Dashboard from './components/Dashboard'
-// import PricingSection from './components/Price'
+import PricingSection from './components/Price'
 
 // FIXED: Complete metadata with OpenGraph and Twitter cards
 export const metadata: Metadata = {
@@ -200,7 +200,7 @@ const Page = () => {
         <Dashboard/>
         <Testimonials/>
         <FAQ />
-        {/* <PricingSection/> */}
+        <PricingSection/>
         <CongratsPopup />
         <HeroCTA />
         <Countdown />
