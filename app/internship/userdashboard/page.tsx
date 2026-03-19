@@ -7,6 +7,7 @@ import InternshipStatus from "../../components/InternshipStatus";
 import ProjectSelector from "../../components/ProjectSelector";
 import SubmitInternship from "../../components/SubmitInternship";
 import PaymentInternship from "../../components/PaymentInternship";
+import CertificateGot from "../../components/CertificateGot";
 
 type StepId = "apply" | "project" | "status" | "submit" | "payment";
 
@@ -653,6 +654,11 @@ export default function InternshipDashboard() {
             </div>
           </div>
         </div>
+
+        <div className="mt-20">
+          <CertificateGot />
+        </div>
+
       </div>
     </div>
   );

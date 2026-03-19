@@ -408,23 +408,8 @@ export default function CertificatePage() {
 </div>        
 
               {/* ── DATE — bottom left, above Archana's signature ── */}
-              {/* y≈415/456 = 91%   x≈185/637 = 29% */}
-              <div
-                className="absolute"
-                style={{
-                  bottom:     "1%",
-                  left:       "13%",
-                  fontSize:   "clamp(8px, 1.2vw, 12px)",
-                  fontWeight: "500",
-                  fontFamily: "sans-serif",
-                  color:      "#9ca3af",
-                  letterSpacing: "0.08em",
-                }}
-              >
-                ID: {intern.intern_id}
-              </div>
 
-              {/* ── CERTIFICATE ID — bottom center ── */}
+              {/* ── CERTIFICATE ID — UP Side ── */}
               <div
                 className="absolute"
                 style={{
