@@ -1,5 +1,7 @@
 "use client";
 
+// Payment ko Verification se change karrha hun. jab account ban jaega tho wapas se verrification ko payment kardena
+
 import { useState, useEffect } from "react";
 
 interface Props {
@@ -65,7 +67,7 @@ export default function PaymentInternship({ internId: propId, onSuccess }: Props
         setTimeout(() => onSuccess?.(), 1600);
       } else {
         setState("error");
-        setApiErr(data.error || "Payment failed. Please try again.");
+        setApiErr(data.error || "Verification failed. Please try again.");
       }
     } catch {
       setState("error");
@@ -94,7 +96,7 @@ export default function PaymentInternship({ internId: propId, onSuccess }: Props
             </svg>
           </div>
           <div>
-            <p className="text-lg font-semibold text-gray-900">Payment Successful!</p>
+            <p className="text-lg font-semibold text-gray-900">Verification Successful!</p>
             <p className="text-sm text-gray-400 mt-1">Your certificate has been generated.</p>
           </div>
         </div>
@@ -144,7 +146,7 @@ export default function PaymentInternship({ internId: propId, onSuccess }: Props
     );
   }
 
-  /* ── Payment form ── */
+  /* ── Verification form ── */
   return (
     <div className="w-full p-8 space-y-5">
 
@@ -180,8 +182,8 @@ export default function PaymentInternship({ internId: propId, onSuccess }: Props
         </div>
         <div className="divide-y divide-gray-100">
           <ReceiptRow label="Item"         value="Internship Certificate" />
-          <ReceiptRow label="Payment Mode" value="Simulated Gateway" />
-          <ReceiptRow label="Amount"       value="Test Payment" />
+          <ReceiptRow label="Verification Mode" value="Simulated Gateway" />
+          <ReceiptRow label="Amount"       value="Test Verification" />
         </div>
       </div>
 
@@ -197,7 +199,7 @@ export default function PaymentInternship({ internId: propId, onSuccess }: Props
       {state === "confirming" && (
         <div className="bg-indigo-50 border border-indigo-200 rounded-xl px-4 py-3 text-center">
           <p className="text-sm font-semibold text-indigo-700">Are you sure?</p>
-          <p className="text-xs text-indigo-500 mt-0.5">Click "Confirm Payment" below to proceed.</p>
+          <p className="text-xs text-indigo-500 mt-0.5">Click "Confirm Verification" below to proceed.</p>
         </div>
       )}
 
@@ -231,9 +233,9 @@ export default function PaymentInternship({ internId: propId, onSuccess }: Props
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
             </svg>
-            Confirm Payment
+            Confirm Verification
           </>
-        ) : !internId ? "Waiting for Intern ID…" : "Simulate Payment →"}
+        ) : !internId ? "Waiting for Intern ID…" : "Simulate Verification →"}
       </button>
 
       {state === "confirming" && (

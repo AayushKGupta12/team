@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-// import { useAuth, useClerk, useUser } from "@clerk/nextjs";
-// import { consumeCredit } from "../../lib/consumeCredit";
+import { useAuth, useClerk, useUser } from "@clerk/nextjs";
+import { consumeCredit } from "../../lib/consumeCredit";
 import { motion } from "framer-motion";
 
 
@@ -14,8 +14,8 @@ const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
   "4th": {
   PS: {
   "2024": "https://drive.google.com/file/d/1lrbRawuiEu3om4buNmPp45Iy9Qv5eq_a/preview",
-  "2023": "https://drive.google.com/file/d/1i9Rnu6MhkKVAnVpe5E0js0hRy4jjK3xz/preview",
-  "2022": "https://drive.google.com/file/d/1zOyBmdLGhrUMLkWHsWfdOgiC5F3Ya8__/preview",
+  "2023": "https://drive.google.com/file/u/0/d/1KU0QbDw3kUZdmIeBv3pAVtBXGitNxRsH/preview",
+  "2022": "https://drive.google.com/file/d/1V4jq2n8RHkcWaF1w75Z202ep8K9zoeFs/preview",
 },
 
 
@@ -189,9 +189,9 @@ export default function PYQSection() {
   const [year, setYear] = useState("2022");
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
 
-  // const { isSignedIn } = useAuth();
-  // const { user } = useUser();
-  // const clerk = useClerk();
+  const { isSignedIn } = useAuth();
+  const { user } = useUser();
+  const clerk = useClerk();
 
   const [pendingView, setPendingView] = useState(false);
   const [showToast, setShowToast] = useState(false);
@@ -227,7 +227,6 @@ export default function PYQSection() {
 
 
   const handleViewDocument = async () => {
-  // 🔒 First check availability (NO AUTH, NO CREDIT)
   const isAvailable = !!PYQ_MAP[semester][subject][year];
 
   if (!isAvailable) {
@@ -235,43 +234,47 @@ export default function PYQSection() {
     return;
   }
 
-  // if (!isSignedIn) {
-  //   setPendingView(true);
-  //   clerk.openSignIn();
-  //   return;
-  // }
+  if (!isSignedIn) {
+    setPendingView(true);
+    clerk.openSignIn();
+    return;
+  }
 
-  // if (!user) return;
+  if (!user) return;
 
-  // ✅ If already paid for this document, just open it
   if (lastPaidDocRef.current === currentDocKey) {
     openPdf();
     return;
   }
 
+  // ✅ OPEN IMMEDIATELY
+  openPdf();
+
   setShowToast(true);
 
-  // const usage = await consumeCredit(user.id, "pyq_view");
+  try {
+    const usage = await consumeCredit(user.id, "pyq_view");
 
-  // if (!usage.allowed) {
-  //   alert("You have reached your PYQ viewing limit. Please upgrade.");
-  //   return;
-  // }
+    if (!usage?.allowed) {
+      alert("Limit reached");
+      setPdfUrl(null); // close modal if needed
+      return;
+    }
 
-  // ✅ Mark this document as paid
-  lastPaidDocRef.current = currentDocKey;
-
-  openPdf();
+    lastPaidDocRef.current = currentDocKey;
+  } catch (err) {
+    console.error("Credit error:", err);
+  }
 };
 
 
 
-  // useEffect(() => {
-  //   if (isSignedIn && pendingView) {
-  //     setPendingView(false);
-  //     handleViewDocument();
-  //   }
-  // }, [isSignedIn, pendingView]);
+  useEffect(() => {
+    if (isSignedIn && pendingView) {
+      setPendingView(false);
+      handleViewDocument();
+    }
+  }, [isSignedIn, pendingView]);
 
   return (
     <div className="min-h-screen bg-slate-50/50 py-12 px-4 sm:px-6 lg:px-8">
@@ -371,10 +374,10 @@ export default function PYQSection() {
         View Document
       </button>
 
-      {/* <CreditUsedToast
+      <CreditUsedToast
         show={showToast}
         onClose={() => setShowToast(false)}
-      /> */}
+      />
           </div>
   </div>
 </div>
