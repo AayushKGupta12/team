@@ -20,16 +20,19 @@ const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
 
 
   Database_Management_System: {
-    "2025": "https://drive.google.com/file/d/11b1-RgvTgHqXGbySlncvWaTZ1DsNjIfA/preview",
-    "2024": "https://drive.google.com/file/d/193MDOPP2YpvapBMOLy5NXy-KFJnbDfzj/preview",
-    "2020": "https://drive.google.com/file/d/1KnGbUcH5rAlFx0IMdnAZer6Ol4wCXU2e/preview",
-    "2023": "https://drive.google.com/file/d/1UNPGoxfS6iN8aHItFPrzxaI12u_EimQd/preview",
+    // "2025": "https://drive.google.com/file/d/11b1-RgvTgHqXGbySlncvWaTZ1DsNjIfA/preview",
+    "2024A": "https://drive.google.com/file/d/1tOsmYEn840vIH2zFJyjXAwmKEoUINxVn/preview",
+    "2024B": "https://drive.google.com/file/d/1rRZyKEccj4Kiaz0ZmfncxilVKDQiDFih/preview",
+    "2022": "https://drive.google.com/file/d/1K4F2QH15pD36J3UDKp7czXQyA5eGYC2w/preview",
+    "2023": "https://drive.google.com/file/d/1OPl5DeDvQT49DlEgmvP7frsHHRJMFL8D/preview",
   },
 
   Operating_System: {
-    "2024": "https://drive.google.com/file/d/1K3S-TlGvdLwsrGp03C2vX3nLNw7B-DsE/preview",
-    "2020": "https://drive.google.com/file/d/10NWOVV40KR6NwY6OiT2U-sKaXKed12lh/preview",
-    "2023": "https://drive.google.com/file/d/10YdcyGp0LCr42QzipLcKRYpT525z1_V5/preview",
+    "2024A": "https://drive.google.com/file/d/13ELfzsFddx6M6CmSxE1qtgsEOvp0J1KJ/preview",
+    "2024B": "https://drive.google.com/file/d/1qEizAcqpoekqHb_GhNoUj-o4UY5AcuKZ/preview",
+    "2022": "https://drive.google.com/file/d/1Py071m0N2BRlmPVfcTZiFBa9DdYb6zQL/preview",
+    "2023": "https://drive.google.com/file/d/1gA3cXH87_0g_g7bZrm68QAtgraVdR5-o/preview",
+    "2025": "https://drive.google.com/file/d/1rripQ-onAy3EzXBkW7kGJITsy4nAYgFT/preview",
   },
 
   Information_Theory_Coding: {
@@ -39,9 +42,10 @@ const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
   },
 
   Computer_Organization_Architecture: {
-    "2024": "https://drive.google.com/file/d/15sAFe-xNRWHK2bqAXiboANhTb3PnA3l9/preview",
-    "2020": "https://drive.google.com/file/d/1yhY4gI9SBxu93lTMCwdxRhC4zduEe89d/preview",
-    "2023": "https://drive.google.com/file/d/1_nMz2Rn7aCUl5yHP24JIWfIj0D9ITAxm/preview",
+    "2025": "https://drive.google.com/file/d/139Ka9S0lDY9FK_R8xy8lIPPGXvP8qqFH/preview",
+    "2024": "https://drive.google.com/file/d/1uz70WD2zQThbjKsFIQv2xrV4RVr69v_J/preview",
+    "2023A": "https://drive.google.com/file/d/1_nMz2Rn7aCUl5yHP24JIWfIj0D9ITAxm/preview",
+    "2023B":"https://drive.google.com/file/d/1eFYtjGXEz6F8QAyKS9apY62SkaXs-cC4/preview",
   },
 
   // AFL: {
@@ -63,23 +67,26 @@ const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
   // },
 
   Descrete_Mathematics: {
-    "2024": "https://drive.google.com/file/d/12hbGwFjCWtmAmb_zqkPeZD4ISDwuT-Ce/preview",
-    "2020": "https://drive.google.com/file/d/1idtMqZbT0z8SrRvT_QbvGrEYwt1iPQA-/preview",
-    "2023": "https://drive.google.com/file/d/1E4WOM7U6wbzvaz5gljena2ihVoDSHHTG/preview",
+    "2025":"https://drive.google.com/file/d/15-7qrWTlndntyMZP7rIMvvu83I56pbJA/preview",
+    "2024": "https://drive.google.com/file/d/1c4dzBDmLAp41hJy3gO7HhzRHen9mUEu3/preview",
+    "2022": "https://drive.google.com/file/d/1U3qU1pFskxhBCRqI_7eVm07dAFqKGnCA/preview",
+    "2023": "https://drive.google.com/file/d/1Nb5_nJ4mRQne3SJgXbf0O09hcwvzYfTO/preview",
   },
 
   Organizational_Behaviour: {
-    // "2024": "",
-    // "2020": "",
-    "2023": "https://drive.google.com/file/d/1433LzKga7FKn8BNlzj2z4E2IJ4X2NKfU/preview",
+    "2025": "https://drive.google.com/file/d/1U03dah6hCHL8pA8VgG-XxysXFl-cDs8A/preview",
+    "2024": "https://drive.google.com/file/d/1oIzh9TOBPGO57ArNyuisUdvzH9R1YHCP/preview",
+    "2023": "https://drive.google.com/file/d/1rAxU74ht1RhzT7vEBTbnsakVfnZBCcUs/preview",
   },
 
   Economics_of_Development: {
-    "2024": "https://drive.google.com/file/d/1UGUUBMeqP7WRhbHj4VeqdJt9I9XOPEbn/preview",
-    // "2020": "",
-    "2023": "https://drive.google.com/file/d/1YEg2frwIhEmo5-Lyz55Hf35DsOCqtdvf/preview",
+    "2025": "https://drive.google.com/file/d/1STnWVcltTPxFdpJbL1T4BMjny_FghFEo/preview",
+    "2024A": "https://drive.google.com/file/d/1ndkH_ihh05dW4GVDkVNLNAjNFih4TWdA/preview",
+    "2024B":"https://drive.google.com/file/d/19M-52PjetYgkHhC8MNvn8XXNastCsPh3/preview",
+    "2023": "https://drive.google.com/file/d/1QIcNBHLhMdrwZrftQh-obFQY-iYbmlDn/preview",
   },
 
+  // Ye mid sems ka he hai
   Engineering_Economics:{
     "2024A" :"https://drive.google.com/file/d/1gYt8XNGcv3mhnBL8_iLbfG7bdu6i1jfu/preview",
     "2024B" : "https://drive.google.com/file/d/1mEuAeD8TQbFrpAq7iADnN0zxLqrwHcEt/preview",
@@ -87,33 +94,50 @@ const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
     "2025B" : "https://drive.google.com/file/d/1eFMjBTXcTMV3Jk05gLpcfGZx14BNvLKg/preview",
   },
 
+  Internatinal_Economic_Corp:{
+    "2025":"https://drive.google.com/file/d/1HAr9yXYrHkjE6v5e9gBhczK10cSdyE1o/preview",
+    "2024A":"https://drive.google.com/file/d/1xQnZxVFO8H_TxG4ntoQJCM2NrJHhJKQC/preview",
+    "2024B":"https://drive.google.com/file/d/1rgv8lxfI-3xt6TtXaze8hrGxj79PiUKH/preview",
+    "2023":"https://drive.google.com/file/d/1MvDH5K8jv_iwOTljOjBwqIaewJkKmy2-/preview",
+  },
+
   Object_Oriented_Programming_Java: {
-  "2024": "https://drive.google.com/file/d/190Ul0ha0j-iy0_p6CTOJ7Wy30XLSRrJp/preview",
-  "2023": "https://drive.google.com/file/d/1BTXowy65AXJHjE_2wq-OtxzIA9D8EEH3/preview",
-  "2022": "https://drive.google.com/file/d/1moXngXeXafkuYlOZTwLeH_N1ToFrw1DK/preview",
+    "2025":"https://drive.google.com/file/d/1bPkzHDvvq-I1WISWShCM51LQEfpxp2Y_/preview",
+    "2024A": "https://drive.google.com/file/d/16hEZZ0rTDyDg0V0Lcyzl8rHn4uHQpKMr/preview",
+    "2024B":"https://drive.google.com/file/d/1G1K0cjCdjaFtTCT8YN99pSWo-fI5uT6z/preview",
+    "2023A": "https://drive.google.com/file/d/1BGIX-PCFaQ8WZsDjSQf8DN9K0vQFquMS/preview",
+    "2022": "https://drive.google.com/file/d/1yZm9LgA4B1jO0liK7CgWPOm0cGmpwawk/preview",
 },
 },
 
   "6th": {
   Machine_Learning: {
-    "2024": "https://drive.google.com/file/d/125qAq9tEcy6XhqGQVpFKNNBGQlbZmCBO/preview",
-    "2023": "https://drive.google.com/file/d/1M7zPAfhPHWiee4Mq_wUmw8VKiTchF2SM/preview",
-    "2022": "https://drive.google.com/file/d/1XSFzunCyG70Mw2KJUM2YjjlCnsOD-YD1/preview",
+    "2025A":"https://drive.google.com/file/d/14HqVoeQAflfSHMN9Wjw3cYnBDjQFvRDP/preview",
+    "2025B":"https://drive.google.com/file/d/1h07awmw2hdif9YeOAllA4S2iJabyOTkE/preview",
+    "2025C":"https://drive.google.com/file/d/1h07awmw2hdif9YeOAllA4S2iJabyOTkE/preview",
+    "2025D":"https://drive.google.com/file/d/1bt7M_Q9SBNfBBxK-Capl7alekZe2yp8u/preview",
+    "2024A": "https://drive.google.com/file/d/1oMGaQntZw1oGdL-h6m7u58PMlb45EPuL/preview",
+    "2023A": "https://drive.google.com/file/d/13mb8CIl5kgUclVklnezYhZOlLokKSn5H/preview",
+    "2023B": "https://drive.google.com/file/d/13mb8CIl5kgUclVklnezYhZOlLokKSn5H/preview",
   },
 
   Artificial_Intelligence: {
-    "2024": "https://drive.google.com/file/d/1c6TI9Jip6LPT2lLCMkO9mBK8KGkWrANY/preview",
-    "2023": "https://drive.google.com/file/d/1sOIGNY473EmzFxtzTq_BpK0iaVhtOViy/preview",
-    "2022": "https://drive.google.com/file/d/1QOGvMEsZaNNez_tef7MYbvsPRsARfTWr/preview",
+    "2025A":"https://drive.google.com/file/d/10sG7tivAn87_TcCdFxzGIgj5Z8OPfKJ0/preview",
+    "2025B": "https://drive.google.com/file/d/1_d0p-hkfIVV1b2rYfU_vORxOSDaYQabd/preview",
+    "2024":"https://drive.google.com/file/d/1V-7nxP4-OHqh9F89H8DYnK2U4uYYtSbA/preview",
+    "2023A": "https://drive.google.com/file/d/1DQTsvQYqFi0Zyt2dsGqBewTvVVBcZjX0/preview",
+    "2022": "https://drive.google.com/file/d/1L3FvZ3X5T_lcy_BRw13joxRqlwF148dw/preview",
   },
 
   Universal_Human_Values: {
-    "2024": "https://drive.google.com/file/d/1RlrpGjoT7xFLkKYJ8-BzbCKvLPH7q7QV/preview",
+    "2025": "https://drive.google.com/file/d/1X0BaikkwQbYZ2ywczYIqH1iAxRX0fCQq/preview",
+    "2024":"https://drive.google.com/file/d/16o6QkWCuJ5_OUBzOgAge8QH0nd7D_Fl_/preview",
   },
 
   Cloud_Computing: {
-    "2024": "https://drive.google.com/file/d/1RcIriSSNIPfUhvqlXdjYm0QYQHjNlMGA/preview",
-    "2023": "https://drive.google.com/file/d/1-uLxf6v5l_R55hxt3bXfFR_oayFACa2N/preview",
+    "2025":"https://drive.google.com/file/d/1Mq4oJy1m_itENDFTwTsTqJfQiiyAFJAu/preview",
+    "2024": "https://drive.google.com/file/d/14P-JBoc2pEiE1qO2100PMJfzmYD0jcVn/preview",
+    "2023": "https://drive.google.com/file/d/1jqf4FxpMrPgHITzqffRfp1LOwEJj7lBJ/preview",
   },
 
   // CV: {
@@ -123,35 +147,36 @@ const PYQ_MAP: Record<SemesterType, Record<string, Record<string, string>>> = {
   // },
 
   Software_Project_Management: {
-    "2024": "https://drive.google.com/file/d/1w_Zf9BDNldGqKgYZU4AHa3UGSf_EqJrd/preview",
-    "2023": "https://drive.google.com/file/d/195w7DW2msLvga6kT0R-ruttaFcB3pS5i/preview",
-    "2019": "https://drive.google.com/file/d/1UE0qGWnJK8ihAw-zEVhQu8DyZw2EmPrW/preview",
+    "2025":"https://drive.google.com/file/d/17XfQ31krDoRvc2mww_eQVVcFC4nAzw4m/preview",
+    "2023": "https://drive.google.com/file/d/1Cgi9mYCH-NN1fb1JUNg3fP9RfQU7Pu9H/preview",
+    "2024": "https://drive.google.com/file/d/1aD19Clwi0mtfn4uPtNeFQJ2i-ndQ9qxV/preview",
+    "2021": "https://drive.google.com/file/d/1xM_7GzZhQEcly9pth1DzttKjUTKWU5oB/preview",
   },
 
-  Natural_Language_Processing: {
-    "2024": "https://drive.google.com/file/d/1UE0qGWnJK8ihAw-zEVhQu8DyZw2EmPrW/preview",
-    "2023": "https://drive.google.com/file/d/1aXBD1m1T123s392OpwuSH9ewmaSLg5gS/preview",
-    "2022": "https://drive.google.com/file/d/10KUEMxzBHJNoO-YZgVYgGD88rcIPDMeb/preview",
-  },
+  // Natural_Language_Processing: {
+  //   "2024": "https://drive.google.com/file/d/1UE0qGWnJK8ihAw-zEVhQu8DyZw2EmPrW/preview",
+  //   "2023": "https://drive.google.com/file/d/1aXBD1m1T123s392OpwuSH9ewmaSLg5gS/preview",
+  //   "2022": "https://drive.google.com/file/d/10KUEMxzBHJNoO-YZgVYgGD88rcIPDMeb/preview",
+  // },
 
-  Microprocessor: {
-    "2015": "https://drive.google.com/file/d/1raOCIDqdwJPt27sRUy9FJmJ1oNzxMh87/preview",
-    "2020": "https://drive.google.com/file/d/1-v-mMHVYcuNfNQU8IECa2fWDWrqjC8eC/preview",
-    "2022": "https://drive.google.com/file/d/1dtC4-sULz1B3Iq9OGtesfsged_MLIrKh/preview",
-  },
+  // Microprocessor: {
+  //   "2015": "https://drive.google.com/file/d/1raOCIDqdwJPt27sRUy9FJmJ1oNzxMh87/preview",
+  //   "2020": "https://drive.google.com/file/d/1-v-mMHVYcuNfNQU8IECa2fWDWrqjC8eC/preview",
+  //   "2022": "https://drive.google.com/file/d/1dtC4-sULz1B3Iq9OGtesfsged_MLIrKh/preview",
+  // },
 
-  Data_Mining: {
-    "2025":"https://drive.google.com/file/d/1WzoFBG490BJisZsDwj4rkjwjw8ci_M6u/preview",
-    "2024":"https://drive.google.com/file/d/1sChA6jKadcSe1B0uJr3G4EnRtBilUqBO/preview",
-    "2024B":"https://drive.google.com/file/d/18hF-R273Ej-BLrWxqeDhAoHJpTyrv7Ot/preview",
-  },
+  // Data_Mining: {
+  //   "2025":"https://drive.google.com/file/d/1WzoFBG490BJisZsDwj4rkjwjw8ci_M6u/preview",
+  //   "2024":"https://drive.google.com/file/d/1sChA6jKadcSe1B0uJr3G4EnRtBilUqBO/preview",
+  //   "2024B":"https://drive.google.com/file/d/18hF-R273Ej-BLrWxqeDhAoHJpTyrv7Ot/preview",
+  // },
 
-  Compiler: {
-    "2024":"https://drive.google.com/file/d/1VSkajJTnsWPlde42p4wRFSoEN6jJ1gLr/preview",
-    "2025":"https://drive.google.com/file/d/1qjjodDLfTCSt_HKjOkemz7KlHkUUzQmq/preview",
-    "2024B": "https://drive.google.com/file/d/1jVt1aLLSMTElj3Rwrv827WmRAzNIkg7a/preview",
-    "2023" : "https://drive.google.com/file/d/1a8iWRTygXChySGfGKzbPKQaR7Ih_2XW3/preview",
-  },
+  // Compiler: {
+  //   "2024":"https://drive.google.com/file/d/1VSkajJTnsWPlde42p4wRFSoEN6jJ1gLr/preview",
+  //   "2025":"https://drive.google.com/file/d/1qjjodDLfTCSt_HKjOkemz7KlHkUUzQmq/preview",
+  //   "2024B": "https://drive.google.com/file/d/1jVt1aLLSMTElj3Rwrv827WmRAzNIkg7a/preview",
+  //   "2023" : "https://drive.google.com/file/d/1a8iWRTygXChySGfGKzbPKQaR7Ih_2XW3/preview",
+  // },
 },
 };
 
@@ -467,37 +492,60 @@ export default function PYQSection() {
 
       {/* --- MODAL --- */}
       {pdfUrl && (
-        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-0 sm:p-6">
-          <div className="bg-white w-full max-w-5xl h-full sm:h-[90vh] sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200">
-            <div className="p-4 border-b flex justify-between items-center bg-white">
-              <span className="font-bold text-slate-700 text-sm sm:text-base">
-                {subject} • {semester} Sem • {year}
-              </span>
-              <button
-                onClick={() => setPdfUrl(null)}
-                className="p-2 hover:bg-slate-300 rounded-full transition-colors text-gray-800 font-extrabold ring-1"
-              >
-                ✕
-              </button>
-            </div>
+  <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-0 sm:p-6">
+    <div className="bg-white w-full max-w-6xl h-full sm:h-[90vh] sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden relative">
 
-            <iframe
-              src={pdfUrl}
-              className="flex-1 w-full bg-slate-50"
-              title="PDF Preview"
-            />
+      {/* HEADER */}
+      <div className="px-5 py-1 border-b flex justify-between items-center bg-white z-10">
+        <span className="font-bold text-slate-700 text-sm sm:text-base">
+          {subject} • {semester} Sem • {year}
+        </span>
 
-            <div className="p-4 bg-slate-50 border-t flex justify-end">
-              <button
-                onClick={whatsappShare}
-                className="flex items-center gap-2 px-6 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-emerald-100"
-              >
-                Send to WhatsApp
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+        {/* Header Watermark */}
+        <span className="text-[10px] sm:text-xs text-gray-400 font-semibold text-right">
+          Access All kinds of PDF from Vfound.in | Career Intelligence
+        </span>
+
+        <button
+          onClick={() => setPdfUrl(null)}
+          className="ml-3 p-2 hover:bg-slate-300 rounded-full transition-colors text-gray-800 font-extrabold ring-1"
+        >
+          ✕
+        </button>
+      </div>
+
+      {/* CENTER WATERMARK */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+  <p className="text-gray-500 text-sm sm:text-2xl font-semibold opacity-25 rotate-[-25deg] text-center px-4 leading-snug">
+    Available @ Vfound.in <br /> Career Intelligence
+  </p>
+</div>
+
+      {/* PDF VIEW */}
+      <iframe
+        src={pdfUrl}
+        className="flex-1 w-full bg-slate-50 z-0"
+        title="PDF Preview"
+      />
+
+      {/* FOOTER */}
+      <div className="px-5 py-2 bg-slate-50 border-t flex justify-between items-center z-10">
+        
+        {/* Footer Watermark */}
+        <span className="text-xl sm:text-xs text-gray-400 font-semibold">
+          Access All kinds of PDF from Vfound.in
+        </span>
+
+        <button
+          onClick={whatsappShare}
+          className="flex items-center gap-2 px-6 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-emerald-100"
+        >
+          Share your Friend
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </div>
   );
 }
