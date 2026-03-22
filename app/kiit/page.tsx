@@ -12,7 +12,7 @@ const page = () => {
 
         <Banner
         isPositive={true}
-        message="Best of Luck your Mid Semester Exams!"
+        message="Best of Luck your End Semester Exams! Study Well "
       />
       
     </div>
