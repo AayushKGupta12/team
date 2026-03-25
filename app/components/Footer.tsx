@@ -26,9 +26,9 @@ export default function Footer() {
   ];
 
   const legal = [
-    { label: "Term and Conditions", href: "/T&C" },
-    { label: "Privacy Policy", href: "/privacy_policy" },
-    { label: "Refund Policy", href: "/refund_policy" },
+    { label: "Term and Conditions", href: "/terms-and-conditions" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Refund Policy", href: "/refund-policy" },
     { label: "Terms of Use", href: "/term-of-use" },
     { label: "Disclaimer", href: "/term-of-use#disclaimer" },
   ];
