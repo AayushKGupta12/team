@@ -144,10 +144,10 @@ export default function DesktopSidebar({
             >
               <div className="flex items-center gap-3">
                 <ShieldCheck size={25} />
-                {!collapsed && <span className="text-sm font-medium">- Skill validation</span>}
+                {!collapsed && <span className="text-sm font-medium">Skill validation</span>}
                 {collapsed && (
                   <div className="absolute left-14 bg-[#0d2440] text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-[2500ms] whitespace-nowrap z-[100]">
-                    - Skill validation
+                    Skill validation
                   </div>
                 )}
               </div>
