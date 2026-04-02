@@ -22,7 +22,7 @@ export default function Footer() {
     { label: "About Us", href: "/about" },
     { label: "Careers", href: "/careers" },
     { label: "Contact us", href: "/contact" },
-    { label: "Pricing", href: "/pricing" },
+    // { label: "Pricing", href: "/pricing" },
   ];
 
   const legal = [
