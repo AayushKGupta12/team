@@ -107,20 +107,8 @@ export default function AboutPage() {
   <div className="relative z-10">
     <h3 className="text-3xl md:text-5xl font-black mb-6 leading-tight tracking-tighter">
       Got questions? <br /> Say hello to
-      <span className="text-amber-400 italic"> Aayush K. Gupta</span>
+      <span className="text-amber-400 italic"> Us</span>
     </h3>
-
-    {/* Contact Details Grid */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12">
-      <div className="space-y-1">
-        <p className="text-amber-400 text-xs font-black uppercase tracking-widest">Support</p>
-        <p className="text-2xl font-bold">Aayush Kumar Gupta</p>
-      </div>
-      <div className="space-y-1">
-        <p className="text-amber-400 text-xs font-black uppercase tracking-widest">Direct Line</p>
-        <p className="text-2xl font-bold">+91 8252802866</p>
-      </div>
-    </div>
 
     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
       <a
@@ -134,7 +122,6 @@ export default function AboutPage() {
         <span className="text-white text-sm font-bold uppercase tracking-tighter underline decoration-amber-400/50 underline-offset-4">
           Official Email
         </span>
-        <span className="text-xl font-bold">aayushgupta120305@gmail.com</span>
       </div>
     </div>
 
