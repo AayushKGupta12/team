@@ -61,7 +61,7 @@ const faqs = [
   {
     category: 'iats',
     q: 'How accurate is the iATS score?',
-    a: 'iATS achieves 99.99% accuracy in predicting ATS rejection or shortlisting. It is trained on 60,000+ real Indian IT resumes, covers 32+ hiring parameters, and is retrained every month.',
+    a: 'iATS achieves 99.99% accuracy in predicting ATS rejection or shortlisting. It is trained on 3,00,000+ real Indian IT resumes, covers 32+ hiring parameters, and is retrained every month.',
   },
   {
     category: 'iats',

@@ -190,7 +190,7 @@ const faqStructuredData = {
       "name": "How accurate is the iATS score?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "VFound's iATS achieves 99.99% accuracy in predicting ATS rejection or shortlisting. It is trained on 60,000+ real Indian IT resumes and updated every month to reflect the latest IT hiring trends and ATS logic."
+        "text": "VFound's iATS achieves 99.99% accuracy in predicting ATS rejection or shortlisting. It is trained on 3,00,000+ real Indian IT resumes and updated every month to reflect the latest IT hiring trends and ATS logic."
       }
     },
     {
@@ -428,7 +428,7 @@ export default function FAQPageRoute() {
             rejection with 99.99% accuracy — no job description needed. It generates 8 scores:
             iATS Score, Selection Score, Percentile Rank, Career Health Score, Resume Quality
             Score, Experience Score, Technical Compatibility Score, and Market Positioning.
-            Updated monthly. Trained on 60,000+ real Indian IT resumes.
+            Updated monthly. Trained on 3,00,000+ real Indian IT resumes.
           </p>
         </section>
 

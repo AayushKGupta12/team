@@ -9,7 +9,7 @@ import ResumeHero from "../components/ResumeHero";
 import ATSResumeCheckerApp from "../components/Analysis";
 import CareerHealthDashboard from "../components/CareerHealthDashboard";
 import ResumeFAQ from "../components/ResumeFAQ";
-import FAQ from "../components/FAQ2";
+import FAQ from "../components/ResumeTest";
 import ResumeCTA from "../components/ResumeCTA";
 
 // ============================================================
@@ -189,7 +189,7 @@ const structuredData = {
         "AI model updated every month for the latest IT industry trends",
         "Up to 75 free lifetime analysis credits",
         "Intelligent Performance Tracking Dashboard",
-        "Trained on 60,000+ real Indian IT resumes"
+        "Trained on 3,00,000+ real Indian IT resumes"
       ],
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -310,7 +310,7 @@ const structuredData = {
           "name": "How accurate is the iATS Score?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "VFound's iATS achieves 99.99% accuracy in predicting whether an ATS system will reject or shortlist a resume. It is trained on 60,000+ real Indian IT resumes and updated monthly, ensuring the scoring reflects current ATS logic and IT hiring standards."
+            "text": "VFound's iATS achieves 99.99% accuracy in predicting whether an ATS system will reject or shortlist a resume. It is trained on 3,00,000+ real Indian IT resumes and updated monthly, ensuring the scoring reflects current ATS logic and IT hiring standards."
           }
         },
         {
@@ -586,9 +586,9 @@ export default async function Page() {
             completeness, formatting compliance, skill currency, and role relevance.
           </p>
 
-          <h3>17. Trained on 60,000+ Real Indian IT Resumes</h3>
+          <h3>17. Trained on 3,00,000+ Real Indian IT Resumes</h3>
           <p>
-            The iATS model is trained on over 60,000 real Indian IT resumes, making it highly
+            The iATS model is trained on over 3,00,000 real Indian IT resumes, making it highly
             accurate for the Indian IT job market, including product companies, service companies,
             startups, and MNCs operating in India.
           </p>
