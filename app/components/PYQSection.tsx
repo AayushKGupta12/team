@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 
 
 import CreditUsedToast from "./CreditUsedToast";
+import { Linkedin } from "lucide-react";
 
 type SemesterType = "4th" | "6th";
 
@@ -398,6 +399,15 @@ export default function PYQSection() {
       >
         View Document
       </button>
+<a
+  href="https://www.linkedin.com/company/112375135"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center justify-center rounded-2xl bg-blue-600 p-3 text-white hover:bg-blue-700 transition-all hover:shadow-lg active:scale-95"
+>
+  LinkedIn
+</a>
+
 
       <CreditUsedToast
         show={showToast}
