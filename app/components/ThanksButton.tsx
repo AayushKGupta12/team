@@ -58,7 +58,7 @@ export default function ThanksButton() {
       key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // set in .env.local
       amount: amount * 100,
       currency: "INR",
-      name: "VFound.in | Career Intelligence",
+      name: "VFound.in",
       description: "Appreciation Token for VFound",
       order_id: data.orderId,
       theme: { color: "#6366f1" },
@@ -150,7 +150,7 @@ export default function ThanksButton() {
                     <input
                       type="range"
                       min={10}
-                      max={300}
+                      max={100}
                       step={10}
                       value={amount}
                       onChange={(e) => setAmount(Number(e.target.value))}
@@ -158,8 +158,8 @@ export default function ThanksButton() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-3 gap-3">
-                    {[20, 40, 60, 80, 100, 200].map((v) => (
+                  <div className="grid grid-cols-2 gap-3">
+                    {[ 40, 60, 80, 100].map((v) => (
                       <button
                         key={v}
                         onClick={() => setAmount(v)}
