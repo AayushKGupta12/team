@@ -133,7 +133,7 @@ export default function DesktopSidebar({
             <p className="text-xs text-[#0d2440] px-3 mb-2">SERVICES</p>
           )}
 
-          <NavItem icon={Sparkles} label="Advance Analysis" href="/ai-resume-analysis" collapsed={collapsed}/>
+          <NavItem icon={Sparkles} label="Advance Analysis" href="/ai-resume-analyser" collapsed={collapsed}/>
           <NavItem icon={FileText} label="Cover Letter" href="/cover-letter" collapsed={collapsed} />
           
           {/* NESTED NAVBAR START */}

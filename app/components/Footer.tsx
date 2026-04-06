@@ -9,7 +9,7 @@ export default function Footer() {
   const pathname = usePathname();
 
   const services = [
-    { label: "Resume Analysis", href: "/ai-resume-analysis" },
+    { label: "Resume Analysis", href: "/ai-resume-analyser" },
     { label: "Cover Letter", href: "/cover-letter" },
     { label: "Skill Certification", href: "/internship/userdashboard" },
     { label: "Internship Validate", href: "/internship/validate" },

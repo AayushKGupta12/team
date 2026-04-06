@@ -41,7 +41,7 @@ const navItems: NavItem[] = [
     hasDropdown: true,
     dropdown: [
       { label: "KIIT PYQ", href: "/kiit" },
-      { label: "Advance Analysis", href: "/ai-resume-analysis" },
+      { label: "Advance Analysis", href: "/ai-resume-analyser" },
       { label: "Cover Letter", href: "/cover-letter" },
       { label: "Extension", href: "/extension" },
       { label: "IT Jobs", href: "/it-jobs" },
@@ -202,9 +202,9 @@ export default function Navbar(): React.JSX.Element {
       >
 
       <IconLink
-        href="/ai-resume-analysis"
+        href="/ai-resume-analyser"
         icon={<Sparkles size={15} />}
-        active={pathname === "/ai-resume-analysis"}
+        active={pathname === "/ai-resume-analyser"}
       />
 
       <IconLink

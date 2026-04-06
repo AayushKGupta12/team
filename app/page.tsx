@@ -11,6 +11,7 @@ import Banner from './components/Banner'
 import ToolsExplorer from './components/ToolsExplorer'
 import YouTubePreview from './components/Youtube'
 import Dashboard from './components/Dashboard'
+import Updates from './components/Updates'
 // import PricingSection from './components/Price'
 
 // FIXED: Complete metadata with OpenGraph and Twitter cards
@@ -202,6 +203,7 @@ const Page = () => {
         <FAQ />
         {/* <PricingSection/> */}
         <CongratsPopup />
+        <Updates/>
         <HeroCTA />
         <Countdown />
       </div>
