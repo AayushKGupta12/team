@@ -3,13 +3,13 @@ import PYQSection from '../components/PYQSection'
 import ToolsExplorer from '../components/ToolsExplorer'
 import Banner from '../components/Banner'
 import ThanksButton from '../components/ThanksButton'
-import Geurilla from '../components/Geurilla'
+// import Geurilla from '../components/Geurilla'
 
 
 const page = () => {
   return (
     <div>
-        <Geurilla/>
+        {/* <Geurilla/> */}
         <PYQSection/>
         <ThanksButton/>
         <ToolsExplorer/>
