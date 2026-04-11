@@ -37,6 +37,9 @@ export default function DesktopSidebar({
   setCollapsed: (v: boolean) => void;
 }) {
   const [internshipOpen, setInternshipOpen] = useState(false);
+  const [analysisOpen, setAnalysisOpen] = useState(false);
+  const [toolsOpen, setToolsOpen] = useState(false);
+  const [newsOpen, setNewsOpen] = useState(false);
 
   return (
     <>
@@ -51,13 +54,14 @@ export default function DesktopSidebar({
       {/* Sidebar */}
       <aside
         className={`
-            fixed left-0 top-0 z-50
-            h-screen bg-[#2e5e99] border-r
-            transition-all duration-300 ease-in-out
-            overflow-y-auto overflow-x-hidden
-            ${collapsed
+          fixed left-0 top-0 z-50
+          h-screen bg-[#2e5e99] border-r
+          transition-all duration-300 ease-in-out
+          overflow-y-auto overflow-x-hidden
+          flex flex-col
+          ${collapsed
             ? "w-20 -translate-x-full lg:translate-x-0"
-            : "w-54 translate-x-0 bg-[#e7f0fa] no-scrollbar "}
+            : "w-54 translate-x-0 bg-[#e7f0fa] no-scrollbar"}
         `}
       >
         {/* LOGO PLACEHOLDER */}
@@ -127,14 +131,50 @@ export default function DesktopSidebar({
           </div>
         )}
 
+        <div className="text-3xl mt-4">
+          <NavItem icon={ShieldCheck} label="KIIT PYQ's" href="/kiit" collapsed={collapsed} isNested />
+
+        </div>
+
+        
+
+
         {/* SERVICES */}
         <div className="mt-6 px-2">
           {!collapsed && (
             <p className="text-xs text-[#0d2440] px-3 mb-2">SERVICES</p>
           )}
 
-          <NavItem icon={Sparkles} label="Advance Analysis" href="/ai-resume-analyser" collapsed={collapsed}/>
-          <NavItem icon={FileText} label="Cover Letter" href="/cover-letter" collapsed={collapsed} />
+          {/* ANALYSIS DROPDOWN */}
+          <div className="flex flex-col">
+            <button 
+              onClick={() => !collapsed && setAnalysisOpen(!analysisOpen)}
+              className="group relative flex items-center justify-between w-full gap-3 px-4 py-2 rounded-xs hover:bg-[#7ba4d0] hover:scale-108 text-[#0d2440] transition duration-100 ease-in-out"
+            >
+              <div className="flex items-center gap-3">
+                <Sparkles size={25} />
+                {!collapsed && <span className="text-sm font-medium">Analysis</span>}
+              </div>
+
+              {!collapsed && (
+                <ChevronDown size={16} className={`transition-transform ${analysisOpen ? "rotate-180" : ""}`} />
+              )}
+            </button>
+
+            <AnimatePresence>
+              {analysisOpen && !collapsed && (
+                <motion.div 
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  className="overflow-hidden flex flex-col ml-4 border-l border-gray-400"
+                >
+                  <NavItem icon={Sparkles} label="Advance Analysis" href="/ai-resume-analyser" collapsed={collapsed} isNested />
+                  <NavItem icon={FileText} label="Cover Letter" href="/cover-letter" collapsed={collapsed} isNested />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
           
           {/* NESTED NAVBAR START */}
           <div className="flex flex-col">
@@ -174,14 +214,70 @@ export default function DesktopSidebar({
           </div>
           {/* NESTED NAVBAR END */}
 
-          <NavItem icon={Pen} label="KIIT Study Material" href="/kiit" collapsed={collapsed} />
-          <NavItem icon={Chrome} label="Extension" href="/extension" collapsed={collapsed} />
-          <NavItem icon={Briefcase} label="IT Jobs" href="/it-jobs" collapsed={collapsed} />
-          <NavItem icon={Menu} label="Blogs" href="/blog" collapsed={collapsed} />
+          {/* TOOLS DROPDOWN */}
+<div className="flex flex-col">
+  <button 
+    onClick={() => !collapsed && setToolsOpen(!toolsOpen)}
+    className="group relative flex items-center justify-between w-full gap-3 px-4 py-2 rounded-xs hover:bg-[#7ba4d0] hover:scale-108 text-[#0d2440] transition duration-100 ease-in-out"
+  >
+    <div className="flex items-center gap-3">
+      <Briefcase size={25} />
+      {!collapsed && <span className="text-sm font-medium">Tools & Jobs</span>}
+    </div>
+
+    {!collapsed && (
+      <ChevronDown size={16} className={`transition-transform ${toolsOpen ? "rotate-180" : ""}`} />
+    )}
+  </button>
+
+  <AnimatePresence>
+    {toolsOpen && !collapsed && (
+      <motion.div 
+        initial={{ height: 0, opacity: 0 }}
+        animate={{ height: "auto", opacity: 1 }}
+        exit={{ height: 0, opacity: 0 }}
+        className="overflow-hidden flex flex-col ml-4 border-l border-gray-400"
+      >
+        <NavItem icon={Chrome} label="Extension" href="/extension" collapsed={collapsed} isNested />
+        <NavItem icon={Briefcase} label="IT Jobs" href="/it-jobs" collapsed={collapsed} isNested />
+      </motion.div>
+    )}
+  </AnimatePresence>
+</div>
+          {/* NEWS DROPDOWN */}
+<div className="flex flex-col">
+  <button 
+    onClick={() => !collapsed && setNewsOpen(!newsOpen)}
+    className="group relative flex items-center justify-between w-full gap-3 px-4 py-2 rounded-xs hover:bg-[#7ba4d0] hover:scale-108 text-[#0d2440] transition duration-100 ease-in-out"
+  >
+    <div className="flex items-center gap-3">
+      <Menu size={25} />
+      {!collapsed && <span className="text-sm font-medium">News</span>}
+    </div>
+
+    {!collapsed && (
+      <ChevronDown size={16} className={`transition-transform ${newsOpen ? "rotate-180" : ""}`} />
+    )}
+  </button>
+
+  <AnimatePresence>
+    {newsOpen && !collapsed && (
+      <motion.div 
+        initial={{ height: 0, opacity: 0 }}
+        animate={{ height: "auto", opacity: 1 }}
+        exit={{ height: 0, opacity: 0 }}
+        className="overflow-hidden flex flex-col ml-4 border-l border-gray-400"
+      >
+        <NavItem icon={Menu} label="Blogs" href="/blog" collapsed={collapsed} isNested />
+        <NavItem icon={Menu} label="News" href="/news" collapsed={collapsed} isNested />
+      </motion.div>
+    )}
+  </AnimatePresence>
+</div>
         </div>
 
         {/* COMPANY */}
-        <div className="mt-6 px-2">
+        <div className="mt-6 px-2 pb-28">
           {!collapsed && (
             <p className="text-xs text-[#0d2440] px-3 mb-2">COMPANY</p>
           )}
@@ -192,37 +288,36 @@ export default function DesktopSidebar({
         </div>
 
         {/* BOTTOM */}
-        <div className="absolute bottom-0 w-full bg-[#ffd77a]/70 rounded-t-3xl p-3">
-          <SignedIn>
-            <div className="flex items-center justify-between">
-              {!collapsed && <UsageProvider />}
-              <div className="flex items-center justify-center scale-150">
-                <UserButton />
+        {/* BOTTOM - Now scrolls naturally */}
+          <div className="mt-auto px-3 pb-4 pt-4 border-t border-yellow-300 bg-[#ffd77a]/90 rounded-t-3xl">
+            <SignedIn>
+              <div className="flex items-center justify-between">
+                {!collapsed && <UsageProvider />}
+                <div className="flex items-center justify-center scale-150">
+                  <UserButton />
+                </div>
               </div>
-            </div>
-          </SignedIn>
+            </SignedIn>
 
-          <SignedOut>
-            {!collapsed && (
-              <div className="flex gap-2">
-                  <div className="mt-2 flex gap-6">
-                    <a
-                        href="/sign-in"
-                        className="border relative h-8 py-0.5 px-2.5 text-black text-xl font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
-                        Sign in
-                    </a>
-                    </div>
-                  <div className="mt-2 flex gap-6">
-                    <a
-                        href="/sign-up"
-                        className="border relative h-8 py-0.5 p-2.5 text-black text-xl font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
-                        Sign up
-                    </a>
-                    </div>
-              </div>
-            )}
-          </SignedOut>
-        </div>
+            <SignedOut>
+              {!collapsed && (
+                <div className="flex flex-col gap-3 mt-2">
+                  <a
+                    href="/sign-in"
+                    className="border h-9 flex items-center justify-center text-black font-bold rounded-3xl hover:bg-white transition-all"
+                  >
+                    Sign in
+                  </a>
+                  <a
+                    href="/sign-up"
+                    className="border h-9 flex items-center justify-center text-black font-bold rounded-3xl hover:bg-white transition-all"
+                  >
+                    Sign up
+                  </a>
+                </div>
+              )}
+            </SignedOut>
+          </div>
       </aside>
     </>
   );

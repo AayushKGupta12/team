@@ -61,86 +61,91 @@ const SOCIALS = [
 
 const faqs = [
   {
-    question: "What kind of internship certificate does VFound provide?",
+    question: "What is the VFound Skill Validation Program and how is it different from a traditional internship?",
     answer:
-      "VFound does not issue generic participation certificates. Every intern completes a real, industry level project that is individually reviewed and verified by our team of 70+ domain expert mentors. Your profile is approved only after your project submission passes mentor evaluation making every VFound certificate a verified proof of real-world capability.",
+      "The VFound Skill Validation Program is an advanced internship-style experience where you complete real-world, industry-level tasks to prove your skills. Unlike traditional internships that focus on participation, VFound focuses on validated output. Your work is evaluated and only then you become eligible for a verified certificate.",
     bullets: [
-      "Industry grade projects not dummy assignments",
-      "Reviewed by 70+ verified domain mentors",
-      "Account verification tied to project quality",
-      "Certificate reflects evaluated technical competency",
+      "Internship-style structure with real-world tasks",
+      "Focus on skill validation instead of participation",
+      "No generic certificates — only performance-based",
+      "Built for resume, ATS, and real hiring value",
     ],
   },
   {
-    question: "How are VFound internship projects selected and updated?",
+    question: "Do I still get an internship certificate after completing the program?",
     answer:
-      "VFound continuously refreshes its project library and also accepts live industry projects submitted directly by companies. These are published on the platform so interns work on current, real-world challenges not outdated case studies. This means every cohort engages with problems that matter in the industry today.",
+      "Yes. Upon successful completion of the Skill Validation Program, you receive a verified internship certificate from VFound. This certificate represents not just participation, but validated proof of your skills based on completed tasks and evaluations.",
     bullets: [
-      "Projects updated regularly to reflect industry trends",
-      "Industry partners can submit live projects to VFound",
-      "Interns work on real company problems",
-      "Curriculum stays relevant with every new batch",
+      "Verified internship certificate issued",
+      "Based on completed tasks and evaluation",
+      "Stronger than generic participation certificates",
+      "Can be used in resumes, LinkedIn, and job applications",
     ],
-
-
   },
   {
-    question: "What are the internship duration options and what is included in each?",
+    question: "How does the skill validation process work?",
     answer:
-      "VFound offers internships in three durations: 30 days, 45 days, and 60 days, each scaling in depth. The 30-day track includes 1 project review and 1 quiz. The 45-day track includes 1 project review and 2 quizzes. The 60-day track includes 3 project reviews and 3 quizzes. Note: the exact structure may be adjusted based on candidate availability and cohort requirements.",
+      "You are given real-world tasks similar to what companies expect in internships. Your submissions are evaluated based on quality, correctness, and completion. Only after meeting the required standards does your profile get validated and certification unlocked.",
     bullets: [
-      "30 Days : 1 project review + 1 quiz",
-      "45 Days : 1 project review + 2 quizzes",
-      "60 Days : 3 project reviews + 3 quizzes",
-      "Structure subject to change based on cohort size",
+      "Task-based evaluation system",
+      "Performance-based validation",
+      "Real-world problem solving approach",
+      "Certificate unlocked only after completion",
     ],
-
   },
   {
-    question: "Which domains does VFound offer internships in?",
+  question: "Is this a paid internship or a paid certification program?",
+  answer:
+    "VFound follows a one-time registration model. To get started, users are required to pay a ₹110 registration fee, which gives full access to the Skill Validation Program, including tasks, dashboard, and progress tracking. After completing the program, users can optionally unlock their verified certificate and detailed skill report.",
+  bullets: [
+    "₹110 one-time registration fee",
+    "Access to full Skill Validation Program and tasks",
+    "No recurring or hidden charges",
+    "Certificate and skill report unlock available after completion",
+  ],
+},
+  {
+    question: "What is the duration of the Skill Validation Program or internship?",
     answer:
-      "VFound currently offers structured internship programs across 3 core domains, each with mentor-reviewed projects, quizzes, and a verified completion process. The domains are selected to reflect high-demand career tracks ensuring that completing a VFound internship translates directly to job relevant skills.",
+      "The program typically follows a structured timeline of 30, 45, or 60 days depending on the track you choose. Each duration includes a set of tasks, evaluations, and progress milestones designed to simulate a real internship experience.",
     bullets: [
-      "3 specialized domain tracks available",
-      "Mentor network covers each domain in depth",
-      "Domain-specific projects reviewed independently",
-      "Skills validated against real industry standards",
+      "30, 45, and 60 day options available",
+      "Structured task-based progression",
+      "Designed like a real internship timeline",
+      "Flexible completion based on user pace",
     ],
-
   },
   {
-    question: "Can top-performing interns receive a full-time job offer?",
+    question: "Which domains are available under the VFound program?",
     answer:
-      "Yes. VFound's best performers are eligible for full time offers in their domain either directly from VFound or from the company that issued the project they worked on. VFound's minimum offer starts at 5.2 LPA, subject to negotiation. Project issuers from the industry may also extend independent offers to standout performers.",
+      "VFound offers multiple high-demand domains where users can validate their skills through practical tasks. Each domain includes curated assignments aligned with industry requirements to ensure real-world relevance.",
     bullets: [
-      "Top performers eligible for direct full-time offers",
-      "Offers from VFound or the industry project issuer",
-      "VFound minimum: ₹5.2 LPA (subject to negotiation)",
-      "Performance on submitted project is the primary evaluation criteria",
+      "Multiple in-demand domains available",
+      "Domain-specific task assignments",
+      "Aligned with industry expectations",
+      "Continuously updated based on trends",
     ],
-
   },
   {
-    question: "How does the mentor verification process work?",
+    question: "Will this help me in placements or getting a job?",
     answer:
-      "Every intern's submitted project is reviewed by a qualified mentor from VFound's team of 70+ domain experts. Mentors evaluate project quality, technical accuracy, and completeness before approving your intern profile. This two-step validation project review followed by profile verification ensures that every verified VFound intern has genuinely earned their certification.",
+      "Yes. The Skill Validation Program is designed to improve your chances of getting shortlisted by proving your actual abilities. High-performing candidates may also get opportunities for full-time roles or referrals through VFound or partner companies.",
     bullets: [
-      "70+ active domain mentors on the review panel",
-      "Project submitted → mentor evaluates code quality",
-      "Profile approved only after passing mentor review",
-      "Rigorous two-step verification: project + account",
+      "Improves resume and ATS performance",
+      "Demonstrates real skills to recruiters",
+      "Top performers may receive job opportunities",
+      "Useful for freshers and early-career professionals",
     ],
-
   },
   {
-    question: "Is the VFound internship suitable for freshers and students?",
+    question: "Why should I choose VFound over other internship platforms?",
     answer:
-      "Yes. VFound is specifically designed for students and early career professionals who want more than just a certificate line on their resume. The program gives you real project experience, mentor feedback, and for top performers a path to a verified full-time offer. You build something real, get it reviewed by an expert, and leave with proof of your work.",
+      "Most platforms provide certificates for participation. VFound focuses on proof of work. You complete real tasks, get evaluated, and only then earn certification. This makes your profile more credible and valuable in the job market.",
     bullets: [
-      "Designed for students and early-career candidates",
-      "No prior work experience required to apply",
-      "Mentor feedback included in every review",
-      "Real project output you can showcase to employers",
+      "No fake or participation-based certificates",
+      "Real-world task evaluation system",
+      "Skill validation over completion",
+      "Higher credibility for career growth",
     ],
   },
 ];
