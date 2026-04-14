@@ -32,10 +32,9 @@ export default function InternshipHero() {
 
         {/* 🔥 HEADLINE (POSITIONED) */}
         <h1 className="text-4xl md:text-6xl font-semibold text-slate-900 leading-tight tracking-tight text-center mb-6">
-          Build real skills.{" "}
+          Build Projects{" "}
           <span className="text-blue-600">Get verified.</span>
           <br />
-          Not just another internship certificate.
         </h1>
 
         {/* 🔥 TRUST STRIP */}
