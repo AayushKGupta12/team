@@ -63,33 +63,57 @@ export default function ProjectSelector({ internId, domain, onSuccess }: Props) 
   const [error,        setError]        = useState("");
   const [shuffleCount, setShuffleCount] = useState(0);
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   /* ── Fetch all domain-matching projects once ── */
   useEffect(() => {
-    if (!domain) return;
-    const fetch_ = async () => {
-      setLoading(true); setError("");
-      try {
-        const res  = await fetch(`${API}/api/projects?domain=${encodeURIComponent(domain)}`);
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error || "Failed to load projects");
-        setAllProjects(data.projects ?? data);
-        setShown(sampleN(data.projects ?? data, 5));
-      } catch (e: any) {
-        setError(e.message || "Could not load projects. Please try again.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetch_();
-  }, [domain]);
+  if (!domain) return;
+
+  const fetch_ = async () => {
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch(`${API}/api/projects?domain=${encodeURIComponent(domain)}`);
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.error || "Failed to load projects");
+
+      const projects = data.projects ?? data;
+
+      setAllProjects(projects);
+      setShown(projects.slice(0, 5)); // first 5
+      setCurrentIndex(0);             // reset index
+    } catch (e: any) {
+      setError(e.message || "Could not load projects. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetch_();
+}, [domain]);
 
   /* ── Reshuffle shown 5 from the full list ── */
   const reshuffle = useCallback(() => {
-    setSelected(null);
-    setExpanded(null);
-    setShown(sampleN(allProjects, 5));
-    setShuffleCount(c => c + 1);
-  }, [allProjects]);
+  if (allProjects.length === 0) return;
+
+  setSelected(null);
+  setExpanded(null);
+
+  const nextIndex = currentIndex + 5;
+
+  if (nextIndex >= allProjects.length) {
+    // loop back to start
+    setShown(allProjects.slice(0, 5));
+    setCurrentIndex(0);
+  } else {
+    setShown(allProjects.slice(nextIndex, nextIndex + 5));
+    setCurrentIndex(nextIndex);
+  }
+
+  setShuffleCount(c => c + 1);
+}, [allProjects, currentIndex]);
 
   /* ── Submit chosen project ── */
   const handleSubmit = async () => {
@@ -247,7 +271,7 @@ export default function ProjectSelector({ internId, domain, onSuccess }: Props) 
                 <path strokeLinecap="round" strokeLinejoin="round"
                   d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
               </motion.svg>
-              Reshuffle
+              Next set
             </button>
           )}
         </div>

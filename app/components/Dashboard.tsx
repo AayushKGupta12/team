@@ -44,54 +44,34 @@ function Sparkline({ points, color, fill }) {
 
 const stats = [
   {
-    val: "1,040+",
+    val: "740+",
     label: "Resumes Analysed",
     change: "+38% this month",
     good: true,
-    spark: [310, 480, 620, 750, 890, 1040],
+    spark: [31, 80, 220, 430, 680, 740],
     color: "#2E5E99",
     fill: "#2E5E99",
     lightBg: "#EEF4FF",
   },
   {
-    val: "780+",
+    val: "360+",
     label: "Cover Letters",
     change: "+22% this month",
     good: true,
-    spark: [180, 260, 390, 510, 640, 780],
+    spark: [18, 26, 39, 51, 64, 78],
     color: "#059669",
     fill: "#059669",
     lightBg: "#ECFDF5",
   },
   {
-    val: "94K+",
+    val: "1.6K+",
     label: "Extension Uses",
     change: "Chrome · Edge · Brave",
     good: null,
-    spark: [8000, 15000, 28000, 45000, 70000, 94000],
+    spark: [120, 240, 480, 900, 1300, 1600],
     color: "#7C3AED",
     fill: "#7C3AED",
     lightBg: "#F5F3FF",
-  },
-  {
-    val: "3,600+",
-    label: "IT Job Applicants",
-    change: "+26% this month",
-    good: true,
-    spark: [620, 850, 1100, 1380, 1740, 3600],
-    color: "#0EA47A",
-    fill: "#0EA47A",
-    lightBg: "#EDFAF5",
-  },
-  {
-    val: "43",
-    label: "Blogs Published",
-    change: "2 new this week",
-    good: true,
-    spark: [4, 6, 5, 8, 9, 11],
-    color: "#D97706",
-    fill: "#D97706",
-    lightBg: "#FFFBEB",
   },
   {
     val: "634",
@@ -144,19 +124,16 @@ export default function ProductAnalytics() {
 
         {/* Header */}
         <div className="mb-10">
-          <span className="px-3 py-1 text-xs bg-yellow-100 text-yellow-700 rounded-full">
-            Platform Analytics
-          </span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-4 text-[#e7f0fa]">
             VFound.in :  Number's
           </h2>
-          <p className="text-[#93afc8] mt-2 text-sm sm:text-base max-w-xl">
+          <p className="text-[#d7edff] mt-2 text-sm sm:text-base max-w-xl">
             A snapshot of how our tools are being used across
           </p>
         </div>
 
         {/* ── Stat cards ─────────────────────────────────────────────── */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-6">
           {stats.map((s) => (
             <div
               key={s.label}
@@ -244,7 +221,7 @@ export default function ProductAnalytics() {
               title: "Resume & Cover Letter",
               lines: [
                 { label: "Avg. ATS score improvement", val: "+34 pts" },
-                { label: "Cover letters generated", val: "780+" },
+                { label: "Cover letters generated", val: "360+" },
                 { label: "User satisfaction", val: "94%" },
               ],
               accent: "#2E5E99", light: "#EEF4FF",
@@ -265,7 +242,6 @@ export default function ProductAnalytics() {
               lines: [
                 { label: "Mentor-verified certificates", val: "634" },
                 { label: "Full-time offers made", val: "89" },
-                { label: "Min. offer (VFound)", val: "₹5.2 LPA" },
               ],
               accent: "#D97706", light: "#FFFBEB",
             },

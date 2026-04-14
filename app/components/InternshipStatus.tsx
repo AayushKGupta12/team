@@ -26,7 +26,7 @@ interface StatusData {
   applied_at?: string;
   due_date?: string;
   assigned_projects?: any;
-  project_details?: ProjectData[]; // resolved by backend
+  project_details?: ProjectData[];
 }
 
 const STATUS_LABELS: Record<string, { label: string; color: string; bg: string; ring: string; dot: string }> = {
@@ -58,9 +58,8 @@ const STATUS_LABELS: Record<string, { label: string; color: string; bg: string; 
 
 const DURATION_LABELS: Record<string, string> = {
   "30_days": "30 Days",
+  "45_days": "45 Days",
   "60_days": "60 Days",
-  "90_days": "90 Days",
-  "6_months": "6 Months",
 };
 
 const formatDate = (iso?: string) =>
@@ -78,7 +77,6 @@ export default function InternshipStatus({ internId: propId, onValidated }: Prop
   const [error,   setError]   = useState("");
   const [fetched, setFetched] = useState(false);
 
-  /* Auto-fetch when propId is provided */
   useEffect(() => {
     if (propId) {
       setQuery(propId);
@@ -86,21 +84,17 @@ export default function InternshipStatus({ internId: propId, onValidated }: Prop
     }
   }, [propId]);
 
-  /* When status changes to a "done" state, fire onValidated */
-  // useEffect(() => {
-  //   if (!data?.status) return;
-  //   const advanceOn = ["validated", "approved", "payment_pending", "completed"];
-  //   if (advanceOn.includes(data.status)) {
-  //     const t = setTimeout(() => onValidated?.(), 7000);
-  //     return () => clearTimeout(t);
-  //   }
-  // }, [data?.status]);
-
   const doFetch = async (id?: string) => {
     const target = (id ?? query).trim();
-    if (!target) { setError("Please enter your Intern ID."); return; }
+    if (!target) { 
+      setError("Please enter your Intern ID."); 
+      return; 
+    }
 
-    setLoading(true); setError(""); setData(null); setFetched(false);
+    setLoading(true); 
+    setError(""); 
+    setData(null); 
+    setFetched(false);
 
     try {
       const res  = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/internship/status/${target}`);
@@ -113,12 +107,12 @@ export default function InternshipStatus({ internId: propId, onValidated }: Prop
     } catch {
       setError("Network error. Please try again.");
     } finally {
-      setLoading(false); setFetched(true);
+      setLoading(false); 
+      setFetched(true);
     }
   };
 
   const cfg        = data?.status ? STATUS_LABELS[data.status] ?? STATUS_LABELS.pending_validation : null;
-  const canAdvance = data?.status && ["validated", "approved", "payment_pending", "completed"].includes(data.status);
   const projects   = data?.project_details ?? [];
 
   return (
@@ -217,7 +211,7 @@ export default function InternshipStatus({ internId: propId, onValidated }: Prop
               </Section>
             )}
 
-            {/* Assigned Projects — populated from backend-resolved project_details */}
+            {/* Assigned Projects */}
             {projects.length > 0 && (
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">
@@ -226,32 +220,28 @@ export default function InternshipStatus({ internId: propId, onValidated }: Prop
                 <div className="space-y-3">
                   {projects.map((proj, idx) => (
                     <div key={proj.id ?? idx} className="bg-gray-50 border border-gray-100 rounded-xl overflow-hidden">
-
-                      {/* Project header: title + short ID */}
                       <div className="px-4 py-3 border-b border-gray-100 flex items-start justify-between gap-3">
-                        <div className="min-w-0">
+                        <div className="min-w-0 flex-1">
                           <p className="font-semibold text-gray-800">
                             {proj.title ?? "Untitled Project"}
                           </p>
                           {proj.description && (
-                            <p className="text-xs text-gray-700 leading-relaxed line-clamp-2">
-                              Description : {proj.description}
+                            <p className="text-xs text-gray-700 leading-relaxed mt-1">
+                              {proj.description}
                             </p>
                           )}
                         </div>
                         {proj.id && (
-                          <span className="text-[10px] font-mono text-gray-700 bg-gray-200 border border-gray-300 rounded px-2 py-1.5">
+                          <span className="text-[10px] font-mono text-gray-700 bg-gray-200 border border-gray-300 rounded px-2 py-1.5 shrink-0">
                             {proj.id}
                           </span>
                         )}
                       </div>
 
-                      {/* Project meta */}
                       <Row label="Domain"            value={proj.domain} />
                       <Row label="Performance Focus" value={proj.performance_focus} />
                       <TagRow label="Fields"         tags={proj.fields} />
                       <TagRow label="Tech Stack"     tags={proj.tech_stack} />
-
                     </div>
                   ))}
                 </div>
@@ -262,35 +252,16 @@ export default function InternshipStatus({ internId: propId, onValidated }: Prop
 
           {/* Pending notice */}
           {data.status === "pending_validation" && (
-            <div className="mx-5 mb-5 flex items-start gap-2.5 bg-amber-50 border border-amber-100
-              rounded-xl px-4 py-3">
+            <div className="mx-5 mb-5 flex items-start gap-2.5 bg-amber-50 border border-amber-100 rounded-xl px-4 py-3">
               <span className="text-amber-500 mt-0.5 text-base">⏳</span>
               <p className="text-sm text-amber-700 leading-relaxed">
                 Your application is under review. <br/>
                 It may take up to 3 business days to validate your details. We appreciate your patience!
-                <br />
-                <br />
-                In the meantime, feel free to explore our <a href="/internship/project" className="underline font-medium text-blue-600 text-2xl">Guide</a> to prepare for your internship journey.
-                <br />
-                <br />
-                If you have any questions or concerns, contact us at <a href="mailto:support@internship.com" className="underline font-medium text-blue-600 text-2xl">
-                  support@internship.com
-                </a>
+                <br /><br />
+                In the meantime, feel free to explore our <a href="/internship/project" className="underline font-medium text-blue-600">Guide</a> to prepare for your internship journey.
+                <br /><br />
+                If you have any questions, contact us at <a href="mailto:support@vfound.in" className="underline font-medium text-blue-600">support@vfound.in</a>
               </p>
-            </div>
-          )}
-
-          {/* Advance button */}
-          {canAdvance && onValidated && (
-            <div className="px-5 pb-5">
-              <button onClick={onValidated}
-                className="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm
-                  font-medium rounded-xl transition-colors flex items-center justify-center gap-2">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
-                </svg>
-                Continue to Project Submission
-              </button>
             </div>
           )}
         </div>
@@ -305,7 +276,6 @@ export default function InternshipStatus({ internId: propId, onValidated }: Prop
         </div>
       )}
 
-      {/* Waiting hint */}
       {!fetched && !loading && propId && (
         <div className="flex items-center justify-center py-10 gap-3">
           <svg className="animate-spin w-5 h-5 text-indigo-400" viewBox="0 0 24 24" fill="none">
@@ -319,7 +289,7 @@ export default function InternshipStatus({ internId: propId, onValidated }: Prop
   );
 }
 
-/* ── Sub-components (unchanged) ── */
+/* ── Improved Sub-components for better visibility ── */
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
@@ -334,23 +304,30 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 function Row({ label, value }: { label: string; value?: string }) {
   if (!value || value === "—") return null;
   return (
-    <div className="flex justify-between items-center px-4 py-2.5 border-b border-gray-300 last:border-0">
-      <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">{label}</span>
-      <span className="text-sm text-gray-700 font-medium text-right max-w-[60%]">{value}</span>
+    <div className="flex justify-between items-start px-4 py-3 border-b border-gray-300 last:border-0 gap-4">
+      <span className="text-xs font-medium text-gray-400 uppercase tracking-wider shrink-0 pt-0.5 w-28">
+        {label}
+      </span>
+      <span className="text-sm text-gray-700 font-medium flex-1 text-right break-words">
+        {value}
+      </span>
     </div>
   );
 }
 
-/* Renders array fields as small pill badges, matching the existing gray palette */
 function TagRow({ label, tags }: { label: string; tags?: string[] }) {
   if (!tags?.length) return null;
   return (
-    <div className="flex items-start justify-between gap-3 px-4 py-2.5 border-b border-gray-300 last:border-0">
-      <span className="text-xs font-medium text-gray-400 uppercase tracking-wider shrink-0 pt-0.5">{label}</span>
-      <div className="flex flex-wrap gap-1 justify-end max-w-[60%]">
+    <div className="flex items-start justify-between gap-4 px-4 py-3 border-b border-gray-300 last:border-0">
+      <span className="text-xs font-medium text-gray-400 uppercase tracking-wider shrink-0 pt-0.5 w-28">
+        {label}
+      </span>
+      <div className="flex flex-wrap gap-1.5 justify-end flex-1">
         {tags.map(tag => (
-          <span key={tag}
-            className="font-semibold text-gray-600 bg-amber-100 border border-amber-200 rounded-md px-2">
+          <span 
+            key={tag}
+            className="font-semibold text-gray-600 bg-amber-100 border border-amber-200 rounded-md px-2.5 py-1 text-sm"
+          >
             {tag}
           </span>
         ))}

@@ -17,12 +17,12 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: '1',
-    title: 'How to write content about your photographs',
-    excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit quis auctor odio arcu et dolor.',
+    title: 'Quarterly Result: vfound.in reaches 76,000+ users.',
+    excerpt: 'We’ve hit a major milestone with 76,000 active users on vfound.in! This growth reflects the value we’re providing to job seekers and professionals in the IT industry. With the launch of our AI Resume Analyzer and new features on the horizon, we’re excited to continue this journey of empowering careers.',
     image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80',
-    category: 'Growth',
+    category: 'Quarterly Result',
     readTime: '7 Mins Read',
-    slug: 'write-content-photographs-1',
+    slug: 'news/Q1-result-2026-great-start',
     imageAlt: 'Two people collaborating on photography content'
   },
   {
@@ -136,7 +136,7 @@ const Read: React.FC = () => {
               {/* Content Container */}
               <div className="p-6 flex-1 flex flex-col">
                 <h2 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200">
-                  <a href={`/blog/${post.slug}`} className="hover:underline">
+                  <a href={`/${post.slug}`} className="hover:underline">
                     {post.title}
                   </a>
                 </h2>

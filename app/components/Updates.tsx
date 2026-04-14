@@ -19,7 +19,7 @@ const updates: UpdateItem[] = [
     description: 'We’ve hit a major milestone with 74,000 active users on vfound.in! This growth reflects the value we’re providing to job seekers and professionals in the IT industry. With the launch of our AI Resume Analyzer and new features on the horizon, we’re excited to continue this journey of empowering careers.',
     date: 'April 2026',
     size: 'large',
-    href: '/#'
+    href: '/news/Q1-result-2026-great-start'
   },
   {
     id: '2',

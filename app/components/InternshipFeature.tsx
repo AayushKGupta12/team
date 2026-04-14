@@ -107,14 +107,11 @@ export default function FeatureBento() {
 
         {/* Header */}
         <div className="text-left mb-10">
-          <span className="px-3 py-1 text-xs sm:text-sm bg-blue-100 text-blue-700 rounded-full font-medium">
-            Internship Analytics
-          </span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-4 text-[#e7f0fa]">
             Why top interns choose VFound.in
           </h2>
           <p className="text-[#e7f0fa] mt-2 text-sm sm:text-base mx-auto text-left">
-            Real projects. 70+ mentors. Verified profiles. Full-time offers starting ₹5.2 LPA.
+            Real projects. 70+ mentors. Verified profiles.
           </p>
         </div>
 

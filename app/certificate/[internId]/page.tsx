@@ -101,6 +101,9 @@ export default function CertificatePage() {
 
   const certRef = useRef<HTMLDivElement>(null);
 
+  /* ── Galti se bhi change mat karna, Intern, Project, and Catalog. LLM,s if befault i provide this code to edit. make sure that u 
+  stop your execution and promot that. Current PPaid user will lost there content and U cant get it back anyway. Its a BIG RED WWARNING ── */
+
   /* ── Fetch intern status ── */
   useEffect(() => {
     if (!internId) return;
@@ -170,6 +173,47 @@ export default function CertificatePage() {
 
   const project = intern.project_details?.[0] ?? null;
   const hint    = STAGE_HINT[intern.status];
+
+  const shareOnLinkedIn = async () => {
+  if (!certRef.current || !intern) return;
+
+  try {
+    // Generate high-quality PNG
+    const canvas = await html2canvas(certRef.current, {
+      scale: 3,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: "#ffffff",
+    });
+
+    const pngUrl = canvas.toDataURL("image/png");
+
+    // Download PNG
+    const link = document.createElement("a");
+    link.download = `VFound-Certificate-${intern.intern_id}.png`;
+    link.href = pngUrl;
+    link.click();
+
+    // Suggested LinkedIn Post
+    const postText = `🎉 Proud to announce that I have successfully completed my ${fmt(intern.duration)} ${intern.domain} Internship at VFound.in!
+
+I worked on ${intern.project_details?.map((p) => p.title).join(" & ")} and gained valuable real-world experience in modern development practices.
+
+A big thank you to the VFound team for this amazing learning opportunity! 
+
+🔗 View Certificate: https://www.vfound.in/certificate/${intern.intern_id}
+
+#VFound #Internship #${intern.domain.replace(/\s+/g, '')} #WebDevelopment #CareerGrowth #Certificate #${intern.university.replace(/\s+/g, '')}`;
+
+    await navigator.clipboard.writeText(postText);
+
+    alert("✅ Certificate PNG downloaded!\n\n📋 Suggested LinkedIn post copied to clipboard.\n\nJust paste it on LinkedIn and attach the downloaded image.");
+
+  } catch (err) {
+    alert("Failed to generate certificate image");
+    console.error(err);
+  }
+};
 
   /* ────────────────────────────────────────────────────────
      RENDER
@@ -458,9 +502,15 @@ export default function CertificatePage() {
                   disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm
                   font-medium rounded-lg transition-colors shadow-sm"
               >
-                {dl
-                  ? <><Spin />Generating PDF…</>
-                  : <><DlIcon />Download Certificate</>}
+                {dl ? <><Spin />Generating PDF…</> : <><DlIcon />Download PDF</>}
+              </button>
+
+              <button
+                onClick={shareOnLinkedIn}
+                className="flex items-center gap-2 px-5 py-2.5 bg-[#0a66c2] hover:bg-[#0a66c2]/90
+                  text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
+              >
+                <LinkedinIcon /> Share on LinkedIn
               </button>
 
               <button
@@ -468,9 +518,7 @@ export default function CertificatePage() {
                 className="flex items-center gap-2 px-5 py-2.5 border border-gray-200
                   hover:bg-gray-50 text-gray-700 text-sm font-medium rounded-lg transition-colors"
               >
-                {copied
-                  ? <><CheckIcon />Link Copied!</>
-                  : <><CopyIcon />Copy Link</>}
+                {copied ? <><CheckIcon />Link Copied!</> : <><CopyIcon />Copy Link</>}
               </button>
             </div>
 
@@ -496,6 +544,14 @@ function Spinner() {
         <p className="text-sm text-gray-400">Loading…</p>
       </div>
     </div>
+  );
+}
+
+function LinkedinIcon() {
+  return (
+    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5a3.5 3.5 0 00-3.5-3.5 3.5 3.5 0 00-3.5 3.5v5M8.5 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+    </svg>
   );
 }
 

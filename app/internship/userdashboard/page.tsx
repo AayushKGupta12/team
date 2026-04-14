@@ -2,25 +2,31 @@
 
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useUser } from "@clerk/nextjs";
 import ApplyInternship from "../../components/ApplyInternship";
 import InternshipStatus from "../../components/InternshipStatus";
 import ProjectSelector from "../../components/ProjectSelector";
 import SubmitInternship from "../../components/SubmitInternship";
 import PaymentInternship from "../../components/PaymentInternship";
 import CertificateGot from "../../components/CertificateGot";
+import UpdateInternDetails from "../../components/UpdateInternDetails";
 
 type StepId = "apply" | "project" | "status" | "submit" | "payment";
 
-interface Session {
+interface InternRecord {
   intern_id: string;
-  user_id:   string;
-  status:    string;
-  domain:    string;
+  user_id: string;
+  status: string;
+  domain: string;
+  due_date?: string;
+  is_validated: boolean;
+  is_project_submitted: boolean;
+  is_approved: boolean;
+  is_paid: boolean;
+  is_completed: boolean;
+  assigned_projects?: unknown;
 }
 
-/* ─────────────────────────────────────────
-   Step definitions
-───────────────────────────────────────── */
 const STEPS: { id: StepId; label: string; sublabel: string; icon: React.ReactNode }[] = [
   {
     id: "apply", label: "Apply", sublabel: "Submit application",
@@ -50,7 +56,7 @@ const STEPS: { id: StepId; label: string; sublabel: string; icon: React.ReactNod
     ),
   },
   {
-    id: "submit", label: "Submit", sublabel: "Upload project",
+    id: "submit", label: "Submit Now", sublabel: "Upload project",
     icon: (
       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
         <path strokeLinecap="round" strokeLinejoin="round"
@@ -72,73 +78,75 @@ const STEPS: { id: StepId; label: string; sublabel: string; icon: React.ReactNod
 const STEP_ORDER: StepId[] = ["apply", "project", "status", "submit", "payment"];
 const API = process.env.NEXT_PUBLIC_API_URL;
 
-/* ─────────────────────────────────────────
-   Step resolver — maps backend status to
-   which step to SHOW and which are DONE.
+function resolveFromBooleans(data: InternRecord): {
+  activeStep: StepId;
+  completed: Set<StepId>;
+} {
+  const projectSelected = Array.isArray(data.assigned_projects)
+    ? data.assigned_projects.length > 0
+    : data.assigned_projects != null;
 
-   Flow: apply → project → status → submit → payment
-
-   pending_validation : apply+project done, show status (awaiting validation)
-   validated          : apply+project+status done, show submit (ready to upload)
-   project_submitted  : apply+project+status+submit done, show submit
-                        (already submitted — user sees their submission info)
-   approved           : apply+project+status+submit done, show payment
-   payment_pending    : apply+project+status+submit done, show payment
-   completed          : all done, show payment
-───────────────────────────────────────── */
-function resolveFromStatus(status: string): { activeStep: StepId; completed: Set<StepId> } {
-  switch (status) {
-    case "pending_validation":
-      return {
-        activeStep: "status",
-        completed:  new Set<StepId>(["apply", "project"]),
-      };
-    case "validated":
-      return {
-        activeStep: "submit",
-        completed:  new Set<StepId>(["apply", "project", "status"]),
-      };
-    case "project_submitted":
-      // Project has been submitted — mark submit complete, keep user on submit
-      // so they can see their submission before navigating to payment.
-      return {
-        activeStep: "submit",
-        completed:  new Set<StepId>(["apply", "project", "status", "submit"]),
-      };
-    case "approved":
-    case "payment_pending":
-      // Submission was reviewed and approved — now go to payment.
-      return {
-        activeStep: "payment",
-        completed:  new Set<StepId>(["apply", "project", "status", "submit"]),
-      };
-    case "completed":
-      return {
-        activeStep: "payment",
-        completed:  new Set<StepId>(["apply", "project", "status", "submit", "payment"]),
-      };
-    default:
-      return {
-        activeStep: "apply",
-        completed:  new Set<StepId>(),
-      };
+  if (data.is_completed || data.is_paid) {
+    return {
+      activeStep: "payment",
+      completed: new Set<StepId>(STEP_ORDER)
+    };
   }
+  if (data.is_approved) {
+    return {
+      activeStep: "payment",
+      completed: new Set<StepId>(["apply", "project", "status", "submit"])
+    };
+  }
+  if (data.is_project_submitted) {
+    return {
+      activeStep: "submit",
+      completed: new Set<StepId>(["apply", "project", "status", "submit"])
+    };
+  }
+  if (data.is_validated) {
+    return {
+      activeStep: "submit",
+      completed: new Set<StepId>(["apply", "project", "status"])
+    };
+  }
+  if (projectSelected) {
+    return {
+      activeStep: "status",
+      completed: new Set<StepId>(["apply", "project"])
+    };
+  }
+  if (data.intern_id) {
+    return {
+      activeStep: "project",
+      completed: new Set<StepId>(["apply"])
+    };
+  }
+  return {
+    activeStep: "apply",
+    completed: new Set<StepId>()
+  };
 }
 
 /* ═══════════════════════════════════════════
    MAIN DASHBOARD
 ═══════════════════════════════════════════ */
 export default function InternshipDashboard() {
+  const { user, isLoaded } = useUser();
+
   const [activeStep,    setActiveStep]    = useState<StepId>("apply");
   const [completed,     setCompleted]     = useState<Set<StepId>>(new Set());
   const [direction,     setDirection]     = useState(1);
   const [internId,      setInternId]      = useState("");
   const [domain,        setDomain]        = useState("");
-  const [session,       setSession]       = useState<Session | null>(null);
+  const [intern,        setIntern]        = useState<InternRecord | null>(null);
+  const isFullyDone = intern?.is_completed && intern?.is_paid;
   const [restoring,     setRestoring]     = useState(true);
   const [greeting,      setGreeting]      = useState("Good morning");
   const [dueDate,       setDueDate]       = useState<string | null>(null);
   const [sidebarOpen,   setSidebarOpen]   = useState(false);
+  const [showDelete,    setShowDelete]    = useState(false);
+  const [deleting,      setDeleting]      = useState(false);
 
   useEffect(() => {
     const h = new Date().getHours();
@@ -147,128 +155,215 @@ export default function InternshipDashboard() {
   }, []);
 
   useEffect(() => {
+    if (!isLoaded) return;
+
     const restore = async () => {
-      const raw = localStorage.getItem("vf_session");
-      if (!raw) { setRestoring(false); return; }
-
-      let saved: { user_id?: string; intern_id?: string; domain?: string } | null = null;
-      try { saved = JSON.parse(raw); } catch {}
-
-      const lookupId = saved?.user_id || saved?.intern_id;
-      if (!lookupId) { setRestoring(false); return; }
-
-      if (saved?.intern_id) setInternId(saved.intern_id);
-      if (saved?.domain)    setDomain(saved.domain);
+      if (!user?.id) {
+        setRestoring(false);
+        return;
+      }
 
       try {
-        const res  = await fetch(`${API}/api/internship/status/${lookupId}`);
-        const data = await res.json();
-
-        if (!res.ok || data.error) {
-          localStorage.removeItem("vf_session");
-        } else {
-          const { activeStep: step, completed: done } = resolveFromStatus(data.status);
-          const resolvedInternId = data.intern_id || saved?.intern_id || "";
-          const resolvedUserId   = data.user_id   || saved?.user_id   || "";
-          const resolvedDomain   = data.domain    || saved?.domain    || "";
-          setSession({ user_id: resolvedUserId, intern_id: resolvedInternId, status: data.status, domain: resolvedDomain });
-          setInternId(resolvedInternId);
-          setDomain(resolvedDomain);
-          if (data.due_date) setDueDate(data.due_date);
-          setActiveStep(step);
-          setCompleted(done);
-          localStorage.setItem("vf_session", JSON.stringify({
-            user_id:   resolvedUserId,
-            intern_id: resolvedInternId,
-            domain:    resolvedDomain,
-          }));
+        const res = await fetch(`${API}/api/internship/by-clerk/${user.id}`);
+        if (res.status === 404 || !res.ok) {
+          setRestoring(false);
+          return;
         }
-      } catch {}
-      finally { setRestoring(false); }
-    };
-    restore();
-  }, []);
 
+        const data: InternRecord = await res.json();
+
+        // ── KEY FIX: if the most recent record is completed, reset the
+        //    dashboard to a fresh "apply" state. ApplyInternship will show
+        //    the "Apply for More Skills" screen automatically because it
+        //    detects the completed record via by-clerk on its own mount.
+        if (data.is_completed) {
+          setIntern(null);
+          setInternId("");
+          setDomain("");
+          setDueDate(null);
+          setCompleted(new Set());
+          setActiveStep("apply");
+          setRestoring(false);
+          return;
+        }
+
+        // Normal active flow
+        const { activeStep: step, completed: done } = resolveFromBooleans(data);
+        setIntern(data);
+        setInternId(data.intern_id || "");
+        setDomain(data.domain || "");
+        if (data.due_date) setDueDate(data.due_date);
+        setActiveStep(step);
+        setCompleted(done);
+
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setRestoring(false);
+      }
+    };
+
+    restore();
+  }, [isLoaded, user?.id]);
+
+  /* ── Polling ── */
   useEffect(() => {
-    const pollId = session?.user_id || session?.intern_id;
+    const pollId = intern?.intern_id;
     if (!pollId) return;
-    if (!["pending_validation", "project_submitted"].includes(session?.status ?? "")) return;
+    const pollableStatuses = ["pending_validation", "project_submitted"];
+    if (!pollableStatuses.includes(intern?.status ?? "")) return;
 
     const interval = setInterval(async () => {
       try {
         const res  = await fetch(`${API}/api/internship/status/${pollId}`);
         const data = await res.json();
-        if (!res.ok || data.status === session?.status) return;
-        const { activeStep: step, completed: done } = resolveFromStatus(data.status);
-        setSession(s => s ? { ...s, status: data.status } : s);
+        if (!res.ok || data.status === intern?.status) return;
+
+        const updated: InternRecord = { ...intern!, ...data };
+        const { activeStep: step, completed: done } = resolveFromBooleans(updated);
+
+        setIntern(updated);
         setCompleted(done);
-        setDirection(1);
         setActiveStep(step);
       } catch {}
     }, 15_000);
 
     return () => clearInterval(interval);
-  }, [session?.status, session?.user_id, session?.intern_id]);
+  }, [intern?.status, intern?.intern_id]);
 
+  /* ── Navigation ── */
   const goToStep = (id: StepId) => {
-    const curr = STEP_ORDER.indexOf(activeStep);
-    const next = STEP_ORDER.indexOf(id);
-    setDirection(next >= curr ? 1 : -1);
+    if (isFullyDone && id !== "apply") return;
+
+    const currentIndex = STEP_ORDER.indexOf(activeStep);
+    const targetIndex  = STEP_ORDER.indexOf(id);
+
+    if (targetIndex > currentIndex) {
+      if (!completed.has(activeStep)) return;
+    }
+
+    setDirection(targetIndex > currentIndex ? 1 : -1);
     setActiveStep(id);
     setSidebarOpen(false);
   };
 
-  const markDoneAndNext = (current: StepId, next: StepId) => {
-    setCompleted(prev => new Set([...prev, current]));
+  const goToNextStep = () => {
+    const currentIdx = STEP_ORDER.indexOf(activeStep);
+    if (currentIdx >= STEPS.length - 1 || !completed.has(activeStep)) return;
     setDirection(1);
-    setActiveStep(next);
+    setActiveStep(STEP_ORDER[currentIdx + 1]);
   };
 
+  /* ── Mark Step as Done ── */
+  const markDone = (current: StepId) => {
+    setCompleted(prev => new Set([...prev, current]));
+  };
+
+  /* ── Called when ApplyInternship submits a NEW application ── */
   const onApplied = async (intern_id: string) => {
     setInternId(intern_id);
-    localStorage.setItem("vf_session", JSON.stringify({ intern_id }));
+    if (!user?.id) return;
+
     try {
-      const res  = await fetch(`${API}/api/internship/status/${intern_id}`);
-      const data = await res.json();
-      if (res.ok && !data.error) {
-        const resolvedUserId = data.user_id || "";
-        const resolvedDomain = data.domain  || "";
-        setSession({ intern_id, user_id: resolvedUserId, status: "pending_validation", domain: resolvedDomain });
-        setDomain(resolvedDomain);
-        localStorage.setItem("vf_session", JSON.stringify({ user_id: resolvedUserId, intern_id, domain: resolvedDomain }));
-      } else {
-        setSession({ intern_id, user_id: "", status: "pending_validation", domain: "" });
+      const res = await fetch(`${API}/api/internship/by-clerk/${user.id}`);
+      if (res.ok) {
+        const data: InternRecord = await res.json();
+        // New application — not completed, load normally
+        if (!data.is_completed) {
+          const { activeStep: step, completed: done } = resolveFromBooleans(data);
+          setIntern(data);
+          setDomain(data.domain || "");
+          if (data.due_date) setDueDate(data.due_date);
+          setActiveStep(step);
+          setCompleted(done);
+        }
       }
-    } catch {
-      setSession({ intern_id, user_id: "", status: "pending_validation", domain: "" });
+    } catch (err) {
+      console.error(err);
     }
-    markDoneAndNext("apply", "project");
+
+    markDone("apply");
+  };
+
+  /* ── Delete application ── */
+  const handleDelete = async () => {
+    if (!user?.id) return;
+    setDeleting(true);
+    try {
+      await fetch(`${API}/api/internship/restart/${internId}`, { method: "DELETE" });
+      setIntern(null);
+      setInternId("");
+      setDomain("");
+      setDueDate(null);
+      setCompleted(new Set());
+      setActiveStep("apply");
+      setDirection(1);
+      setShowDelete(false);
+    } catch {}
+    finally { setDeleting(false); }
   };
 
   /* ── Loading ── */
-  if (restoring) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-11 h-11 rounded-xl bg-blue-600 flex items-center justify-center mx-auto mb-5">
-            <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-            </svg>
-          </div>
-          <p className="text-sm font-semibold text-gray-900 mb-1">Loading session</p>
-          <p className="text-sm text-gray-400">Fetching your latest progress…</p>
+  if (restoring || !isLoaded) {
+   return (
+  <div className="min-h-screen bg-white flex items-center justify-center font-sans">
+    <div className="text-center w-full max-w-xs">
+      {/* Icon with a Soft Ripple Effect */}
+      <div className="relative w-16 h-16 mx-auto mb-8">
+        <div className="absolute inset-0 bg-blue-400 rounded-2xl animate-ping opacity-20"></div>
+        <div className="relative w-16 h-16 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-200">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
         </div>
       </div>
-    );
+
+      {/* Dynamic Text with an Animated Bar */}
+      <div className="space-y-3">
+        <h3 className="text-sm font-bold text-slate-900 tracking-tight">
+          Preparing your Workspace
+        </h3>
+        
+        {/* Modern Minimalist Progress Bar */}
+        <div className="h-1 w-32 bg-slate-100 rounded-full mx-auto overflow-hidden">
+          <div className="h-full bg-blue-600 rounded-full animate-loading-bar origin-left"></div>
+        </div>
+
+        {/* Micro-Copy: Rotating through system checks */}
+        <p className="text-[11px] font-medium text-slate-400 uppercase tracking-widest animate-pulse">
+          Verifying Proof of Work…
+        </p>
+      </div>
+
+      {/* Decorative background element for the "SaaS" feel */}
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-50/50 rounded-full blur-[80px]"></div>
+      </div>
+
+      {/* Add this to your Tailwind CSS/Global Styles */}
+      <style jsx>{`
+        @keyframes loading-bar {
+          0% { transform: scaleX(0); }
+          50% { transform: scaleX(0.7); }
+          100% { transform: scaleX(1); }
+        }
+        .animate-loading-bar {
+          animation: loading-bar 2s ease-in-out infinite;
+        }
+      `}</style>
+    </div>
+  </div>
+);
   }
 
-  /* ── Derived values ── */
   const currentIdx  = STEP_ORDER.indexOf(activeStep);
   const progressPct = (completed.size / STEPS.length) * 100;
 
   const dueDateFormatted = dueDate
     ? new Date(dueDate).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })
     : null;
+
+  const canGoNext = completed.has(activeStep) && currentIdx < STEPS.length - 1;
 
   const statCards = [
     {
@@ -308,31 +403,28 @@ export default function InternshipDashboard() {
     },
   ];
 
-  /* ── Sidebar content (shared between desktop + mobile drawer) ── */
   const SidebarContent = () => (
     <div className="flex flex-col gap-4">
-
-      {/* Steps nav */}
       <div className="bg-white border border-gray-200 rounded-2xl p-3">
         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.08em] px-2 pt-1 pb-3">
           Steps
         </p>
         <nav className="flex flex-col gap-0.5">
           {STEPS.map((step, i) => {
-            const isDone   = completed.has(step.id);
-            const isActive = activeStep === step.id;
-            const isLocked = !isDone && i > 0 && !completed.has(STEP_ORDER[i - 1]);
+            const isDone      = completed.has(step.id);
+            const isActive    = activeStep === step.id;
+            const isLocked    = !isDone && !isActive && (i === 0 ? false : !completed.has(STEP_ORDER[i - 1]));
+            const isClickable = isFullyDone ? step.id === "apply" : true;
 
             return (
               <button
                 key={step.id}
-                onClick={() => !isLocked && goToStep(step.id)}
-                disabled={isLocked}
+                onClick={() => isClickable && goToStep(step.id)}
+                disabled={!isClickable}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border-none text-left
                   transition-colors duration-150
                   ${isActive  ? "bg-blue-600"
-                  : isDone    ? "hover:bg-gray-50 cursor-pointer"
-                  : isLocked  ? "opacity-35 cursor-not-allowed"
+                  : isLocked  ? "opacity-30 cursor-not-allowed"
                   :             "hover:bg-gray-50 cursor-pointer"}`}
               >
                 <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0
@@ -352,11 +444,12 @@ export default function InternshipDashboard() {
                   </p>
                   <p className={`text-[11px] truncate
                     ${isActive ? "text-white/60" : "text-gray-400"}`}>
-                    {step.sublabel}
+                    {isDone ? "Completed" : step.sublabel}
                   </p>
                 </div>
-                {isLocked && (
-                  <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="#d1d5db" strokeWidth={2}>
+                {(isLocked || isDone) && !isActive && (
+                  <svg width="1" height="1" fill="none" viewBox="0 0 24 24"
+                    stroke={isDone ? "#86efac" : "#d1d5db"} strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round"
                       d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                   </svg>
@@ -374,10 +467,8 @@ export default function InternshipDashboard() {
           <span className="text-xs font-bold text-blue-600">{Math.round(progressPct)}%</span>
         </div>
         <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-blue-600 rounded-full transition-all duration-700 ease-out"
-            style={{ width: `${Math.max(progressPct, 4)}%` }}
-          />
+          <div className="h-full bg-blue-600 rounded-full transition-all duration-700 ease-out"
+            style={{ width: `${Math.max(progressPct, 4)}%` }}/>
         </div>
         <p className="text-[11px] text-gray-400 mt-2">{completed.size}/{STEPS.length} steps done</p>
       </div>
@@ -392,13 +483,87 @@ export default function InternshipDashboard() {
           </a>.
         </p>
       </div>
+
+      {/* Permanently Deactivate — only for active (non-completed) internships */}
+      {internId && !intern?.is_completed && (
+        <button
+          onClick={() => setShowDelete(true)}
+          className="flex items-center justify-center gap-2 w-full py-2.5 rounded-2xl
+            border border-rose-200 text-xs font-semibold text-rose-500
+            hover:bg-rose-50 transition-colors"
+        >
+          <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round"
+              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+          </svg>
+          Permanently Deactivate Application
+        </button>
+      )}
     </div>
   );
 
   return (
     <div className="min-h-screen bg-gray-50">
 
-      {/* ── MOBILE: step drawer backdrop ── */}
+      {/* ── Permanently Deactivate confirm popup ── */}
+      <AnimatePresence>
+        {showDelete && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              onClick={() => !deleting && setShowDelete(false)}
+              className="fixed inset-0 bg-black/40 z-50 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 10 }}
+              transition={{ duration: 0.18 }}
+              className="fixed inset-0 z-50 flex items-center justify-center px-4 pointer-events-none"
+            >
+              <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full pointer-events-auto">
+                <div className="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center mx-auto mb-5">
+                  <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#e11d48" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 text-center mb-2">Permanently Deactivate Application?</h3>
+                <p className="text-sm text-gray-500 text-left leading-relaxed mb-1">
+                  This will permanently deactivate your internship application for{" "}
+                  <span className="font-semibold text-gray-800">{domain || "this domain"}</span>.
+                </p>
+                <p className="text-xs text-rose-500 font-semibold text-center mb-7">
+                  ⚠ This cannot be undone.
+                </p>
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => setShowDelete(false)} disabled={deleting}
+                    className="flex-1 py-3 rounded-2xl border border-gray-200 text-sm
+                      font-semibold text-gray-600 hover:bg-gray-50 transition-colors disabled:opacity-50">
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleDelete} disabled={deleting}
+                    className="flex-1 py-3 rounded-2xl bg-rose-600 hover:bg-rose-700 text-white
+                      text-sm font-semibold transition-colors disabled:opacity-60
+                      flex items-center justify-center gap-2">
+                    {deleting && (
+                      <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
+                      </svg>
+                    )}
+                    {deleting ? "Deactivating…" : "Yes, Deactivate"}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* ── MOBILE sidebar drawer ── */}
       <AnimatePresence>
         {sidebarOpen && (
           <>
@@ -437,24 +602,20 @@ export default function InternshipDashboard() {
       {/* ── PAGE ── */}
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
 
-        {/* ── PAGE HEADING ── */}
+        {/* Heading */}
         <div className="flex items-start justify-between mb-8">
           <div>
             <p className="text-sm text-gray-400 mb-1">{greeting}</p>
             <h1 className="text-2xl font-bold text-gray-900 leading-tight">Internship Dashboard</h1>
             <p className="text-sm text-gray-400 mt-1.5">
-              {session
-                ? "Welcome back — your progress has been restored."
+              {intern
+                ? "Welcome back : your progress has been restored."
                 : "Complete all 5 steps to receive your verified certificate."}
             </p>
           </div>
-
-          {/* Mobile: hamburger to open steps drawer */}
-          <button
-            onClick={() => setSidebarOpen(true)}
+          <button onClick={() => setSidebarOpen(true)}
             className="lg:hidden flex items-center gap-2 px-3 py-2 bg-white border border-gray-200
-              rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors shrink-0 mt-1"
-          >
+              rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors shrink-0 mt-1">
             <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
@@ -462,21 +623,16 @@ export default function InternshipDashboard() {
           </button>
         </div>
 
-        {/* ── STAT CARDS ── */}
+        {/* Stat cards */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
           {statCards.map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
+            <motion.div key={s.label}
+              initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
               className={`${s.bg} rounded-2xl px-4 py-4`}
-              style={{ border: `1px solid ${s.borderHex}33` }}
-            >
-              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.06em] mb-2">
-                {s.label}
-              </p>
-              <p className={`font-bold mb-0.5 truncate ${s.textColor} ${(s as any).mono ? "font-mono text-xs" : "text-lg"}`}>
+              style={{ border: `1px solid ${s.borderHex}33` }}>
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.06em] mb-2">{s.label}</p>
+              <p className={`font-bold mb-0.5 truncate ${s.textColor} ${(s as { mono?: boolean }).mono ? "font-mono text-xs" : "text-lg"}`}>
                 {s.value}
               </p>
               <p className="text-[11px] text-gray-400">{s.sub}</p>
@@ -484,15 +640,15 @@ export default function InternshipDashboard() {
           ))}
         </div>
 
-        {/* ── MAIN LAYOUT ── */}
+        {/* Main layout */}
         <div className="flex flex-col lg:grid lg:grid-cols-[240px_1fr] gap-5 lg:gap-6 items-start">
 
-          {/* ── SIDEBAR — desktop only ── */}
+          {/* Sidebar desktop */}
           <div className="hidden lg:flex flex-col gap-4 sticky top-6">
             <SidebarContent />
           </div>
 
-          {/* ── MAIN CONTENT ── */}
+          {/* Main content */}
           <div className="w-full min-w-0">
 
             {/* Content header */}
@@ -515,25 +671,23 @@ export default function InternshipDashboard() {
               </span>
             </div>
 
-            {/* Mobile: horizontal step pills */}
+            {/* Mobile step pills */}
             <div className="flex gap-2 overflow-x-auto pb-1 mb-4 lg:hidden no-scrollbar">
               {STEPS.map((step, i) => {
                 const isDone   = completed.has(step.id);
                 const isActive = activeStep === step.id;
-                const isLocked = !isDone && i > 0 && !completed.has(STEP_ORDER[i - 1]);
+                const isLocked = !isDone && !isActive && (i === 0 ? false : !completed.has(STEP_ORDER[i - 1]));
                 return (
-                  <button
-                    key={step.id}
-                    onClick={() => !isLocked && goToStep(step.id)}
-                    disabled={isLocked}
+                  <button key={step.id}
+                    onClick={() => goToStep(step.id)}
+                    disabled={!completed.has(step.id) && activeStep !== step.id}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold
                       whitespace-nowrap shrink-0 border transition-colors
                       ${isActive  ? "bg-blue-600 text-white border-blue-600"
-                      : isDone    ? "bg-green-50 text-green-700 border-green-200"
+                      : isDone    ? "bg-green-50 text-green-600 border-green-200 opacity-60 cursor-not-allowed"
                       : isLocked  ? "bg-gray-50 text-gray-300 border-gray-100 cursor-not-allowed"
-                      :             "bg-white text-gray-500 border-gray-200"}`}
-                  >
-                    {isDone && !isActive && (
+                      :             "bg-white text-gray-500 border-gray-200"}`}>
+                    {isDone && (
                       <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
                       </svg>
@@ -546,25 +700,18 @@ export default function InternshipDashboard() {
 
             {/* Component card */}
             <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-
-              {/* Top progress bar */}
               <div className="h-[3px] bg-gray-100">
-                <div
-                  className="h-full bg-blue-600 transition-all duration-700 ease-out"
-                  style={{ width: `${Math.max(progressPct, 4)}%` }}
-                />
+                <div className="h-full bg-blue-600 transition-all duration-700 ease-out"
+                  style={{ width: `${Math.max(progressPct, 4)}%` }}/>
               </div>
 
-              {/* Animated component swap */}
               <AnimatePresence mode="wait" custom={direction}>
-                <motion.div
-                  key={activeStep}
-                  custom={direction}
+                <motion.div key={activeStep} custom={direction}
                   initial={{ opacity: 0, x: direction * 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: direction * -20 }}
-                  transition={{ duration: 0.18, ease: "easeInOut" }}
-                >
+                  transition={{ duration: 0.18, ease: "easeInOut" }}>
+
                   {activeStep === "apply" && (
                     <ApplyInternship onSuccess={onApplied} />
                   )}
@@ -572,79 +719,60 @@ export default function InternshipDashboard() {
                     <ProjectSelector
                       internId={internId}
                       domain={domain}
-                      onSuccess={() => markDoneAndNext("project", "status")}
+                      onSuccess={() => markDone("project")}
                     />
                   )}
                   {activeStep === "status" && (
                     <InternshipStatus
                       internId={internId}
-                      onValidated={() => markDoneAndNext("status", "submit")}
+                      onValidated={() => markDone("status")}
                     />
                   )}
                   {activeStep === "submit" && (
                     <SubmitInternship
                       internId={internId}
-                      onSuccess={() => markDoneAndNext("submit", "payment")}
+                      onSuccess={() => markDone("submit")}
                     />
                   )}
                   {activeStep === "payment" && (
                     internId ? (
                       <PaymentInternship
                         internId={internId}
-                        onSuccess={() =>
-                          setCompleted(prev => new Set([...prev, "payment" as StepId]))
-                        }
+                        onSuccess={() => setCompleted(prev => new Set([...prev, "payment" as StepId]))}
                       />
                     ) : (
                       <div className="p-8 text-center">
                         <p className="text-sm text-red-500">
-                          ⚠ Intern ID not found. Please go back to Status and refresh.
+                          ⚠ Intern ID not found.
                         </p>
                       </div>
                     )
                   )}
+
                 </motion.div>
               </AnimatePresence>
             </div>
 
-            {/* Bottom navigation */}
+            {/* Bottom nav */}
             <div className="flex items-center justify-between mt-5">
-              <button
-                onClick={() => currentIdx > 0 && goToStep(STEP_ORDER[currentIdx - 1])}
-                disabled={currentIdx === 0}
-                className={`flex items-center gap-1.5 text-sm text-gray-500 bg-transparent border-none
-                  p-0 font-[inherit] transition-opacity
-                  ${currentIdx === 0 ? "opacity-0 cursor-default" : "cursor-pointer hover:text-gray-700"}`}
-              >
-                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/>
-                </svg>
-                Previous
-              </button>
-
-              {/* Step dots */}
               <div className="flex gap-1.5 items-center">
                 {STEPS.map(s => (
-                  <div
-                    key={s.id}
-                    className={`rounded-full transition-all duration-300 h-2
-                      ${activeStep === s.id
-                        ? "w-5 bg-blue-600"
-                        : completed.has(s.id)
-                          ? "w-2 bg-green-300"
-                          : "w-2 bg-gray-200"}`}
+                  <div key={s.id} className={`rounded-full transition-all duration-300 h-2
+                    ${activeStep === s.id
+                      ? "w-5 bg-blue-600"
+                      : completed.has(s.id) ? "w-2 bg-green-300" : "w-2 bg-gray-200"}`}
                   />
                 ))}
               </div>
 
               <button
-                onClick={() => currentIdx < STEPS.length - 1 && goToStep(STEP_ORDER[currentIdx + 1])}
-                disabled={currentIdx === STEPS.length - 1 || !completed.has(activeStep)}
-                className={`flex items-center gap-1.5 text-sm text-gray-500 bg-transparent border-none
-                  p-0 font-[inherit] transition-opacity
-                  ${(currentIdx === STEPS.length - 1 || !completed.has(activeStep))
-                    ? "opacity-30 cursor-not-allowed"
-                    : "cursor-pointer hover:text-gray-700"}`}
+                onClick={goToNextStep}
+                disabled={!canGoNext}
+                className={`flex items-center gap-1.5 text-sm bg-transparent border-none
+                  p-0 font-[inherit] transition-all
+                  ${canGoNext
+                    ? "text-blue-600 cursor-pointer hover:text-blue-800 font-semibold"
+                    : "text-gray-300 cursor-not-allowed"}`}
               >
                 Next
                 <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -652,10 +780,12 @@ export default function InternshipDashboard() {
                 </svg>
               </button>
             </div>
+
           </div>
         </div>
 
         <div className="mt-20">
+          <UpdateInternDetails/>
           <CertificateGot />
         </div>
 

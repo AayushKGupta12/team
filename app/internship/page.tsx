@@ -8,10 +8,12 @@ import FAQ5 from '../components/FAQ5'
 import InternshipShowcase from '../components/InternshipFeature2'
 import InternshipHero from '../components/InternshipHero'
 import InternshipStructuredData from '../components/InternshipStructuredData'
+import InternTest from '../components/InternTest'
+import InternshipFeature3 from '../components/InternshipFeature3'
 
 // ── Static Metadata (for <head>) ──────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'Paid Internship in Bhubaneswar & Patna 2025 | AI Resume Certification | VFound',
+  title: 'Verify Skills VFound',
   description:
     'Get a verified internship certificate with real project experience in Bhubaneswar and Patna. VFound.in offers paid internship programs in AI, Web Development & Data Science. Enhance your resume with AI-verified certification trusted by recruiters.',
   keywords: [
@@ -116,8 +118,10 @@ export default function InternshipPage() {
       {/* Actual page content */}
       <main>
         <InternshipHero />
+        <InternshipFeature3 />
         <InternshipFeature />
         <InternshipShowcase />
+        <InternTest/>
         <FAQ5 />
       </main>
     </>

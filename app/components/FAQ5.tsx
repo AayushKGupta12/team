@@ -230,68 +230,74 @@ export default function FAQ() {
       </section>
 
       <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 pb-12 mt-auto">
-        <div className="relative bg-gradient-to-br from-[#111111] via-[#1a1a1a] to-[#222222]
-          rounded-3xl px-8 sm:px-12 py-10 overflow-hidden">
+  <div className="relative bg-gradient-to-br from-[#111111] via-[#1a1a1a] to-[#222222]
+    rounded-3xl px-8 sm:px-12 py-12 overflow-hidden border border-white/10">
 
-          {/* Yellow glow blobs */}
-          <div className="absolute -top-12 -right-12 w-56 h-56 bg-yellow-400 rounded-full
-            opacity-[0.15] blur-3xl pointer-events-none"/>
-          <div className="absolute -bottom-8 left-1/4 w-48 h-32 bg-yellow-300 rounded-full
-            opacity-[0.08] blur-3xl pointer-events-none"/>
-          <div className="absolute top-1/2 -translate-y-1/2 -left-8 w-32 h-32 bg-yellow-500
-            rounded-full opacity-[0.07] blur-2xl pointer-events-none"/>
+    {/* Glow Effects */}
+    <div className="absolute -top-12 -right-12 w-56 h-56 bg-yellow-400 rounded-full opacity-[0.15] blur-3xl pointer-events-none"/>
+    <div className="absolute -bottom-8 left-1/4 w-48 h-32 bg-yellow-300 rounded-full opacity-[0.08] blur-3xl pointer-events-none"/>
 
-          <div className="relative z-10 flex flex-col lg:flex-row items-center
-            justify-between gap-8">
+    <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
 
-            {/* Left text */}
-            <div className="text-center lg:text-left">
-              <span className="inline-block text-[10px] font-bold text-yellow-400 uppercase
-                tracking-[0.2em] mb-3 bg-yellow-400/10 border border-yellow-400/20
-                px-3 py-1 rounded-full">
-                Stay connected
-              </span>
-              <h2 className="text-white text-2xl sm:text-3xl font-bold leading-snug mb-2">
-                Follow VFound for updates,<br className="hidden sm:block"/>
-                opportunities &amp; more
-              </h2>
-              
-            </div>
+      {/* LEFT CONTENT */}
+      <div className="text-center lg:text-left max-w-xl">
 
-            {/* Right — social buttons */}
-            <div className="flex flex-col gap-3 w-full lg:w-auto lg:min-w-[260px]">
-              {SOCIALS.map(s => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-3 px-5 py-3 rounded-2xl
-                    bg-white/[0.06] hover:bg-yellow-400
-                    border border-white/10 hover:border-yellow-400
-                    text-white hover:text-black
-                    transition-all duration-200 hover:scale-[1.02]
-                    hover:shadow-xl hover:shadow-yellow-400/20"
-                >
-                  <span className="w-8 h-8 rounded-xl bg-white/10 group-hover:bg-black/10
-                    flex items-center justify-center shrink-0 transition-colors">
-                    {s.icon}
-                  </span>
-                  <span className="text-sm font-semibold flex-1">
-                    Follow on {s.label}
-                  </span>
-                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" strokeWidth={2.5}
-                    className="opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5
-                      transition-all duration-200">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
-                  </svg>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
+        {/* HEADING */}
+        <h2 className="text-white text-3xl sm:text-4xl font-bold leading-snug mb-3">
+          Don’t just collect certificates. <br className="hidden sm:block"/>
+          <span className="text-yellow-400">Prove your skills.</span>
+        </h2>
+
+        {/* CTA BUTTON */}
+        <a
+          href="https://vfound.in/certificate/VF2026DO00001"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-3 bg-yellow-400 hover:bg-yellow-300 text-black font-semibold text-sm sm:text-base px-6 py-3 rounded-xl transition-all hover:scale-[1.04] shadow-lg"
+        >
+          View Verified Certificate →
+        </a>
+
+        {/* MICRO TRUST */}
+        <p className="mt-4 text-xs text-gray-200">
+          Trusted by 70+ experts • 76K+ interactions in 2026
+        </p>
       </div>
+
+      {/* RIGHT SIDE (UNCHANGED SOCIALS) */}
+      <div className="flex flex-col gap-3 w-full lg:w-auto lg:min-w-[260px]">
+        {SOCIALS.map(s => (
+          <a
+            key={s.label}
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-3 px-5 py-3 rounded-2xl
+              bg-white/[0.06] hover:bg-yellow-400
+              border border-white/10 hover:border-yellow-400
+              text-white hover:text-black
+              transition-all duration-200 hover:scale-[1.02]
+              hover:shadow-xl hover:shadow-yellow-400/20"
+          >
+            <span className="w-8 h-8 rounded-xl bg-white/10 group-hover:bg-black/10
+              flex items-center justify-center shrink-0 transition-colors">
+              {s.icon}
+            </span>
+            <span className="text-sm font-semibold flex-1">
+              Follow on {s.label}
+            </span>
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" strokeWidth={2.5}
+              className="opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-200">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</div>
     </>
   );
 }
