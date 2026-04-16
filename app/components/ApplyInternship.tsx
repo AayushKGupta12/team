@@ -43,10 +43,8 @@ const FORM_STEPS = [
 ];
 
 const DOMAINS = [
-  "Data Science", "Machine Learning", "Web Development",
-  "Mobile Development", "UI/UX Design", "DevOps",
-  "Cloud Computing", "Backend - Java", "Backend - Flask",
-  "Data Analyst", "MLOps", "Frontend", "Other",
+  "Data Science", "Machine Learning", "UI/UX", "DevOps", "Backend - Java", "Backend - Flask","Backend - Django",
+  "Data Analyst", "MLOps", "Frontend", "SDE Projects",
 ];
 
 const DURATIONS = [

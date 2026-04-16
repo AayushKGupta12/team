@@ -4,7 +4,7 @@ const testimonials = [
   {
     quote: "The 'No-Nonsense' approach is what hooked me. They don't give you boring videos; you get a real PR to solve. My mentor helped me fix structural flaws in my code. It’s basically a real job experience.",
     name: "Arjun Mehta",
-    role: "Backend Intern",
+    role: "SDE Internship",
     batch: "Batch of 2026",
     avatar: "https://i.pravatar.cc/150?u=arjun",
     projectUrl: "https://vfound.in/certificate/VF2026DO00001"
@@ -15,7 +15,7 @@ const testimonials = [
     role: "Frontend Developer",
     batch: "Batch of 2025",
     avatar: "https://i.pravatar.cc/150?u=ishita",
-    projectUrl: "https://vfound.in/certificate/VF2026DO00001"
+    projectUrl: "https://vfound.in/certificate/VF2025SD00001"
   },
   {
     quote: "Building a production-ready feature with CI/CD pipelines under guidance was incredibly insightful. VFound teaches you the industry standards that college courses usually skip.",
@@ -23,7 +23,7 @@ const testimonials = [
     role: "Full Stack Engineer",
     batch: "Batch of 2026",
     avatar: "https://i.pravatar.cc/150?u=rahul",
-    projectUrl: "https://vfound.in/certificate/VF2026DO00001"
+    projectUrl: "https://vfound.in/certificate/VF2026SD00002"
   },
   {
     quote: "The Code Reviews were brutal but necessary. My mentor pushed me to write clean, optimized code. This isn't just a certificate; it's a real validation of my engineering skills.",
@@ -31,7 +31,7 @@ const testimonials = [
     role: "Java Intern",
     batch: "Batch of 2025",
     avatar: "https://i.pravatar.cc/150?u=priya",
-    projectUrl: "https://vfound.in/certificate/VF2026DO00001"
+    projectUrl: "https://vfound.in/certificate/VF2025BJ00001"
   },
   {
     quote: "VFound provided the exact edge I needed for off-campus drives. Practical project work and mentor sign-offs made my resume extremely credible to recruiters.",
@@ -39,7 +39,7 @@ const testimonials = [
     role: "Data Science Intern",
     batch: "Batch of 2026",
     avatar: "https://i.pravatar.cc/150?u=aman",
-    projectUrl: "https://vfound.in/certificate/VF2026DO00001"
+    projectUrl: "https://vfound.in/certificate/VF2026DS00001"
   },
   {
     quote: "I appreciated the heavy emphasis on testing and documentation. This experience gave me a massive head start when I joined my first company as a fresher.",
@@ -47,7 +47,7 @@ const testimonials = [
     role: "UI/UX Developer",
     batch: "Batch of 2025",
     avatar: "https://i.pravatar.cc/150?u=sneha",
-    projectUrl: "https://vfound.in/certificate/VF2026DO00001"
+    projectUrl: "https://vfound.in/certificate/VF2025SD00003"
   },
   {
     quote: "The weekly mentor check-ins were a game-changer. I wasn't just completing a task; I was finally understanding the 'why' behind big architectural decisions.",
@@ -55,7 +55,7 @@ const testimonials = [
     role: "Python Backend Intern",
     batch: "Batch of 2026",
     avatar: "https://i.pravatar.cc/150?u=vikram",
-    projectUrl: "https://vfound.in/certificate/VF2026DO00001"
+    projectUrl: "https://vfound.in/certificate/VF2026BF00001"
   },
   {
     quote: "It felt like working in an agile environment. The deadlines were realistic, and the mentor support was fantastic whenever I got stuck on critical bugs.",
@@ -63,7 +63,7 @@ const testimonials = [
     role: "MERN Stack Intern",
     batch: "Batch of 2025",
     avatar: "https://i.pravatar.cc/150?u=ananya",
-    projectUrl: "https://vfound.in/certificate/VF2026DO00001"
+    projectUrl: "https://vfound.in/certificate/VF2025SD00004"
   },
   {
     quote: "Worked on real-world datasets and model deployment. The certificate is a huge boost for anyone targeting high-paying Applied ML roles in India.",
@@ -71,7 +71,7 @@ const testimonials = [
     role: "ML Intern",
     batch: "Batch of 2026",
     avatar: "https://i.pravatar.cc/150?u=rohan",
-    projectUrl: "https://vfound.in/certificate/VF2026DO00001"
+    projectUrl: "https://vfound.in/certificate/VF2026ML00001"
   },
   {
     quote: "The peer review process opened my eyes to different problem-solving approaches. VFound is more than an internship; it's a high-quality developer community.",
@@ -79,7 +79,7 @@ const testimonials = [
     role: "DevOps Intern",
     batch: "Batch of 2025",
     avatar: "https://i.pravatar.cc/150?u=divya",
-    projectUrl: "https://vfound.in/certificate/VF2026DO00001"
+    projectUrl: "https://vfound.in/certificate/VF2025DO00001"
   }
 ];
 

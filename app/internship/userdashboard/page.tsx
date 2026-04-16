@@ -474,12 +474,13 @@ export default function InternshipDashboard() {
       </div>
 
       {/* Help */}
-      <div className="bg-blue-50 border border-blue-200 rounded-2xl px-4 py-4">
-        <p className="text-[13px] font-semibold text-blue-800 mb-1.5">Need help?</p>
-        <p className="text-xs text-blue-500 leading-relaxed">
-          Email your internship coordinator at{" "}
-          <a href="mailto:intern.coordinator@vfound.in" className="font-semibold text-blue-800 underline">
-            intern.coordinator@vfound.in
+      <div className="border border-gray-400 rounded-2xl px-4 py-4">
+        <p className="text-[13px] font-semibold text-gray-800 mb-1.5">Need help?</p>
+        <p className="text-xs text-gray-600 leading-relaxed">
+          At any time, <span className="font-semibold">if you are unable to access your past applications</span>, you may inform your mentor and then You can fill out a new form. <br /> <span className="font-semibold">Please mention your details:</span> <br />
+           Email <br /> InternID <br /> {" "} Issues faced <br />
+          <a href="mailto:aayushkumargupta.yt.12@gmail.com" className="font-semibold text-blue-800 underline">
+            Mail Here.
           </a>.
         </p>
       </div>

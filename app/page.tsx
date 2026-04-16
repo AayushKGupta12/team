@@ -19,8 +19,11 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.vfound.in'),
   title: 'VFound | Career Intelligence',
   description:
-    'VFound.in helps IT professionals and freshers find jobs with AI-powered resume analysis, ATS checker, cover letter generator, and curated IT job listings. Get hired faster with our career intelligence platform.',
+    'VFound.in helps IT professionals and freshers find jobs with AI-powered resume analysis, ATS checker, cover letter generator, and curated IT job listings. Get hired faster with our career intelligence platform. We will soon be changing our Domain name. To Tauzand.in Stay tuned for more updates.',
   keywords: [
+    'Tauzand.in',
+    'Tauzand',
+    'tauzand.in',
     'VFound',
     'Vfound.in',
     'ATS checker',
