@@ -108,7 +108,7 @@ export default function FeatureBento() {
         {/* Header */}
         <div className="text-left mb-10">
           <h2 className="text-3xl sm:text-4xl font-bold mt-4 text-[#e7f0fa]">
-            Why top interns choose VFound.in
+            Why Interns Choose VFound.in
           </h2>
           <p className="text-[#e7f0fa] mt-2 text-sm sm:text-base mx-auto text-left">
             Real projects. 70+ mentors. Verified profiles.

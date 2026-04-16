@@ -67,7 +67,7 @@ export default function InternshipShowcase() {
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-5xl font-bold text-gray-900">
-            Your internship journey, <span className="bg-yellow-300 -rotate-1 px-1 py-1.5 rounded-2xl">simplified</span>
+            Your <span className="bg-yellow-300 -rotate-1 px-1.5 py-1 rounded-md">Verified</span> Internship Journe
           </h2>
         </div>
 

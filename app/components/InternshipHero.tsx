@@ -32,17 +32,17 @@ export default function InternshipHero() {
 
         {/* 🔥 HEADLINE (POSITIONED) */}
         <h1 className="text-4xl md:text-6xl font-semibold text-slate-900 leading-tight tracking-tight text-center mb-6">
-          Build Projects{" "}
-          <span className="text-blue-600">Get verified.</span>
+          Prove Your Skills with{" "}
+          <span className="text-blue-600 underline-offset-4 underline">Verified Work</span>
           <br />
         </h1>
 
         {/* 🔥 TRUST STRIP */}
         <div className="flex flex-wrap justify-center gap-4 mb-14 text-xs md:text-sm text-slate-500">
           <span>✔ 100% Verified</span>
-          <span>✔ Accepted Across India</span>
-          <span>✔ 2-Year Validity</span>
-          <span>✔ Mentor Evaluated</span>
+          <span>✔ 1300+ students joined</span>
+          <span>✔ 70+ mentors</span>
+          <span>✔ Verified across India</span>
         </div>
 
         {/* GRID */}
