@@ -59,7 +59,7 @@ export default function Hero() {
           {/* Premium Gradient Button */}
           <div className="mt-12">
             <a
-              href="/ai-resume-analysis"
+              href="/ai-resume-analyser"
               className="group relative inline-flex items-center gap-4 overflow-hidden rounded-full bg-[#0d2440] px-10 py-5 text-xl font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
             >
               {/* Outer glow */}

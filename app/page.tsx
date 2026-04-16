@@ -63,7 +63,7 @@ export const metadata: Metadata = {
       'Find IT jobs, analyze your resume with AI, and generate ATS-friendly cover letters. Built for freshers and professionals in India.',
     images: [
       {
-        url: 'https://www.vfound.in/og-image.jpg', // You need to add this image
+        url: 'https://www.vfound.in/public/vfound.png', // You need to add this image
         width: 1200,
         height: 630,
         alt: 'VFound - Career Intelligence Platform',
