@@ -8,7 +8,7 @@ import Countdown from './components/Countdown'
 import Testimonials from './components/test'
 import CongratsPopup from './components/CongratsPopUp'
 import Banner from './components/Banner'
-import ToolsExplorer from './components/ToolsExplorer'
+// import ToolsExplorer from './components/ToolsExplorer'
 import YouTubePreview from './components/Youtube'
 import Dashboard from './components/Dashboard'
 import Updates from './components/Updates'
@@ -199,7 +199,7 @@ const Page = () => {
         <Navbar />
         <Hero />
         <YouTubePreview/>
-        <ToolsExplorer/>
+        {/* <ToolsExplorer/> */}
         <Features />
         <Dashboard/>
         <Testimonials/>
