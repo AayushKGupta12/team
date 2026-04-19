@@ -51,7 +51,7 @@ const UnifiedPricing = () => {
 
               <div className="mb-8">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-5xl font-black text-slate-950">₹399</span>
+                  <span className="text-5xl font-black text-slate-950">₹249</span>
                   <span className="text-slate-400 font-bold"> for 2 Months</span>
                 </div>
                 <p className="text-[11px] font-bold text-emerald-600 mt-2 flex items-center gap-1 uppercase">
