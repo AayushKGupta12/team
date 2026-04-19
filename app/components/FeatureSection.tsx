@@ -30,7 +30,7 @@ const features = [
     icon: FileText,
     category: "Resume Intelligence",
     status: "available",
-    link: "/ai-resume-analysis"
+    link: "/ai-resume-analyser"
   },
 
   {
