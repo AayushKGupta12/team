@@ -211,41 +211,62 @@ export default function ApplyInternship({ onSuccess }: Props) {
 
   /* ── Check DB on mount ── */
   useEffect(() => {
-    if (!isLoaded) return;
-    const check = async () => {
-      if (!user?.id) { setScreen("form"); return; }
+  if (!isLoaded) return;
 
-      if (user.primaryEmailAddress?.emailAddress)
-        setForm(prev => ({ ...prev, email: user.primaryEmailAddress!.emailAddress }));
+  const check = async () => {
+    if (!user?.id) { setScreen("form"); return; }
 
-      try {
-        const res = await fetch(`${API}/api/internship/by-clerk/${user.id}`);
-        if (res.status === 404 || !res.ok) { setScreen("form"); return; }
+    if (user.primaryEmailAddress?.emailAddress) {
+      setForm(prev => ({
+        ...prev,
+        email: user.primaryEmailAddress!.emailAddress,
+      }));
+    }
 
-        const data = await res.json();
+    try {
+      const res = await fetch(`${API}/api/internship/by-clerk/${user.id}`);
 
-        if (data?.intern_id) {
-          const completed = data.is_completed === true;
+      if (res.status === 404 || !res.ok) {
+        // No existing application — but still check if
+        // they've registered before (paid ₹110 in a past cycle)
+        await checkRegistration();
+        setScreen("form");
+        return;
+      }
 
-          setExistingInternId(data.intern_id);
-          setExistingDomain(data.domain || "");
-          setIsCompleted(completed);
-          setIsLocked(
-            data.is_project_submitted === true ||
-            data.is_approved          === true ||
-            completed
-          );
+      const data = await res.json();
 
-          const paid = await checkRegistration();
-          setIsRegistered(paid);
-          setScreen("existing");
-        } else {
-          setScreen("form");
-        }
-      } catch { setScreen("form"); }
-    };
-    check();
-  }, [isLoaded, user?.id]);
+      if (data?.intern_id) {
+        const completed = data.is_completed === true;
+
+        setExistingInternId(data.intern_id);
+        setExistingDomain(data.domain || "");
+        setIsCompleted(completed);
+        setIsLocked(
+          data.is_project_submitted === true ||
+          data.is_approved          === true ||
+          completed
+        );
+
+        // ✅ Read is_registered directly from the row —
+        //    no separate network call needed, no race condition.
+        //    is_registered is inherited correctly into every new
+        //    row from apply_internship(), so this is always accurate.
+        setIsRegistered(data.is_registered === true);
+
+        setScreen("existing");
+      } else {
+        await checkRegistration();
+        setScreen("form");
+      }
+    } catch {
+      await checkRegistration();
+      setScreen("form");
+    }
+  };
+
+  check();
+}, [isLoaded, user?.id]);
 
   /* ── Start Over — Deactivate application ── */
   const handleStartOver = async () => {
@@ -275,19 +296,19 @@ export default function ApplyInternship({ onSuccess }: Props) {
     setForm(p => ({ ...p, [name]: value }));
   };
 
-  /* ── Check if user already paid registration ── */
-  const checkRegistration = async (): Promise<boolean> => {
-    if (!user?.id) return false;
-    try {
-      const res  = await fetch(`${API}/api/registration/status/${user.id}`);
-      const data = await res.json();
-      const paid = data.is_registered === true;
-      setIsRegistered(paid);
-      return paid;
-    } catch {
-      return false;
-    }
-  };
+  /* ── Check registration status from interns table ── */
+const checkRegistration = async (): Promise<boolean> => {
+  if (!user?.id) return false;
+  try {
+    const res  = await fetch(`${API}/api/registration/status/${user.id}`);
+    const data = await res.json();
+    const paid = data.is_registered === true;
+    setIsRegistered(paid);
+    return paid;
+  } catch {
+    return false;
+  }
+};
 
   /* ── Load Razorpay script dynamically ── */
   const loadRazorpay = (): Promise<boolean> =>
