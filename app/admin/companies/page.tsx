@@ -1,6 +1,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import AdminCompaniesClient from "./AdminCompaniesClient";
+import AdminApplicantsClient from "./AdminApplicantsClient";
 
 export default async function Page() {
   const user = await currentUser();
@@ -31,5 +32,10 @@ export default async function Page() {
     redirect("/");
   }
 
-  return <AdminCompaniesClient />;
+  return (
+    <div >
+      <AdminCompaniesClient />
+      <AdminApplicantsClient />
+    </div>
+  );
 }
