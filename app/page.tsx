@@ -114,6 +114,8 @@ export const metadata: Metadata = {
 // Strategy: kept all original @graph nodes intact.
 // Added: alternateName for Tauzand on Organization, new FAQ entries for
 // rebrand + skill validation, and an internal link anchor to /internship.
+
+
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [

@@ -310,8 +310,8 @@ export default function InternshipDashboard() {
     <div className="text-center w-full max-w-xs">
       {/* Icon with a Soft Ripple Effect */}
       <div className="relative w-16 h-16 mx-auto mb-8">
-        <div className="absolute inset-0 bg-blue-400 rounded-2xl animate-ping opacity-20"></div>
-        <div className="relative w-16 h-16 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-200">
+        <div className="absolute inset-0 bg-blue-400 rounded-md animate-ping opacity-20"></div>
+        <div className="relative w-16 h-16 rounded-md bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-200">
           <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
           </svg>
@@ -405,7 +405,7 @@ export default function InternshipDashboard() {
 
   const SidebarContent = () => (
     <div className="flex flex-col gap-4">
-      <div className="bg-white border border-gray-200 rounded-2xl p-3">
+      <div className="bg-white border border-gray-200 rounded-md p-3">
         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.08em] px-2 pt-1 pb-3">
           Steps
         </p>
@@ -461,7 +461,7 @@ export default function InternshipDashboard() {
       </div>
 
       {/* Progress */}
-      <div className="bg-white border border-gray-200 rounded-2xl px-4 py-4">
+      <div className="bg-white border border-gray-200 rounded-md px-4 py-4">
         <div className="flex justify-between items-center mb-3">
           <p className="text-xs font-semibold text-gray-700">Overall Progress</p>
           <span className="text-xs font-bold text-blue-600">{Math.round(progressPct)}%</span>
@@ -474,7 +474,7 @@ export default function InternshipDashboard() {
       </div>
 
       {/* Help */}
-      <div className="border border-gray-400 rounded-2xl px-4 py-4">
+      <div className="border border-gray-400 rounded-md px-4 py-4">
         <p className="text-[13px] font-semibold text-gray-800 mb-1.5">Need help?</p>
         <p className="text-xs text-gray-600 leading-relaxed">
           At any time, <span className="font-semibold">if you are unable to access your past applications</span>, you may inform your mentor and then You can fill out a new form. <br /> <span className="font-semibold">Please mention your details:</span> <br />
@@ -489,7 +489,7 @@ export default function InternshipDashboard() {
       {internId && !intern?.is_completed && (
         <button
           onClick={() => setShowDelete(true)}
-          className="flex items-center justify-center gap-2 w-full py-2.5 rounded-2xl
+          className="flex items-center justify-center gap-2 w-full py-2.5 rounded-md
             border border-rose-200 text-xs font-semibold text-rose-500
             hover:bg-rose-50 transition-colors"
         >
@@ -523,7 +523,7 @@ export default function InternshipDashboard() {
               className="fixed inset-0 z-50 flex items-center justify-center px-4 pointer-events-none"
             >
               <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full pointer-events-auto">
-                <div className="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center mx-auto mb-5">
+                <div className="w-12 h-12 rounded-md bg-rose-100 flex items-center justify-center mx-auto mb-5">
                   <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#e11d48" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round"
                       d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
@@ -540,13 +540,13 @@ export default function InternshipDashboard() {
                 <div className="flex gap-3">
                   <button
                     onClick={() => setShowDelete(false)} disabled={deleting}
-                    className="flex-1 py-3 rounded-2xl border border-gray-200 text-sm
+                    className="flex-1 py-3 rounded-md border border-gray-200 text-sm
                       font-semibold text-gray-600 hover:bg-gray-50 transition-colors disabled:opacity-50">
                     Cancel
                   </button>
                   <button
                     onClick={handleDelete} disabled={deleting}
-                    className="flex-1 py-3 rounded-2xl bg-rose-600 hover:bg-rose-700 text-white
+                    className="flex-1 py-3 rounded-md bg-rose-600 hover:bg-rose-700 text-white
                       text-sm font-semibold transition-colors disabled:opacity-60
                       flex items-center justify-center gap-2">
                     {deleting && (
@@ -630,13 +630,13 @@ export default function InternshipDashboard() {
             <motion.div key={s.label}
               initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
-              className={`${s.bg} rounded-2xl px-4 py-4`}
+              className={`${s.bg} rounded-md px-4 py-4`}
               style={{ border: `1px solid ${s.borderHex}33` }}>
-              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.06em] mb-2">{s.label}</p>
+              <p className="text-[12px] font-bold text-gray-500 uppercase tracking-[0.06em] mb-2">{s.label}</p>
               <p className={`font-bold mb-0.5 truncate ${s.textColor} ${(s as { mono?: boolean }).mono ? "font-mono text-xs" : "text-lg"}`}>
                 {s.value}
               </p>
-              <p className="text-[11px] text-gray-400">{s.sub}</p>
+              <p className="text-[11.5px] text-gray-500">{s.sub}</p>
             </motion.div>
           ))}
         </div>
@@ -700,7 +700,7 @@ export default function InternshipDashboard() {
             </div>
 
             {/* Component card */}
-            <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+            <div className="bg-white border border-gray-200 rounded-md overflow-hidden shadow-sm">
               <div className="h-[3px] bg-gray-100">
                 <div className="h-full bg-blue-600 transition-all duration-700 ease-out"
                   style={{ width: `${Math.max(progressPct, 4)}%` }}/>
