@@ -89,7 +89,7 @@ const UnifiedPricing = () => {
               <ShieldCheck size={120} className="absolute -right-8 -bottom-8 opacity-20" />
               <h4 className="text-xl font-bold mb-2">The Win-Win Clause</h4>
               <p className="text-emerald-50 text-xs leading-relaxed opacity-90">
-                The ₹110 registration fee unlocks your dashboard and mentor access. You only pay the program fee once your work passes the final logic audit.
+                The ₹269 registration fee unlocks your dashboard and mentor access. You only pay the program fee once your work passes the final logic audit.
               </p>
             </div>
 

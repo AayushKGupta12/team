@@ -113,7 +113,7 @@ const PaymentSafetySheet = ({
                     <div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                   </div>
                 ) : (
-                  "Proceed to Pay ₹110"
+                  "Proceed to Pay ₹269"
                 )}
               </button>
 
@@ -228,7 +228,7 @@ export default function ApplyInternship({ onSuccess }: Props) {
 
       if (res.status === 404 || !res.ok) {
         // No existing application — but still check if
-        // they've registered before (paid ₹110 in a past cycle)
+        // they've registered before (paid ₹269 in a past cycle)
         await checkRegistration();
         setScreen("form");
         return;
@@ -888,7 +888,7 @@ const checkRegistration = async (): Promise<boolean> => {
                         <path strokeLinecap="round" strokeLinejoin="round"
                           d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
                       </svg>
-                      Pay ₹110 to Activate
+                      Pay ₹269 to Activate
                     </>
                   )}
                 </button>

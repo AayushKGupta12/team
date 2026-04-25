@@ -96,9 +96,9 @@ const faqs = [
   {
   question: "Is this a paid internship or a paid certification program?",
   answer:
-    "VFound follows a one-time registration model. To get started, users are required to pay a ₹110 registration fee, which gives full access to the Skill Validation Program, including tasks, dashboard, and progress tracking. After completing the program, users can optionally unlock their verified certificate and detailed skill report.",
+    "VFound follows a one-time registration model. To get started, users are required to pay a ₹269 registration fee, which gives full access to the Skill Validation Program, including tasks, dashboard, and progress tracking. After completing the program, users can optionally unlock their verified certificate and detailed skill report.",
   bullets: [
-    "₹110 one-time registration fee",
+    "₹269 one-time registration fee",
     "Access to full Skill Validation Program and tasks",
     "No recurring or hidden charges",
     "Certificate and skill report unlock available after completion",
