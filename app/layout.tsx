@@ -53,6 +53,7 @@ export default function RootLayout({
               gtag('config', 'G-RFS8XFXTZ7');
             `}
           </Script>
+          <meta name="google-adsense-account" content="ca-pub-1545445003970128"></meta>
         </head>
 
         <body

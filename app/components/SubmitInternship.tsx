@@ -198,7 +198,7 @@ export default function SubmitInternship({ internId, onSuccess }: Props) {
             onChange={e => { setLink(e.target.value); setLinkErr(""); }}
             onBlur={() => link && !isValidProjectLink(link) && setLinkErr("Enter a valid project link (Google Drive, GitHub, or PDF).")}
             onKeyDown={e => e.key === "Enter" && handleSubmit()}
-            placeholder="Google Drive / GitHub Repo / PDF link"
+            placeholder="Google Drive / GitHub Repo"
             className="flex-1 bg-transparent text-sm text-gray-900 placeholder-gray-400 focus:outline-none min-w-0"
           />
           {link && (
