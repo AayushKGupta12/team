@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Check, ShieldCheck, BadgeCheck, Timer, Zap, ArrowRight, Lock, Users, Globe } from 'lucide-react';
+import { Check, ShieldCheck, BadgeCheck, Timer, Zap, ArrowRight, Lock, Users, Globe, Sparkles } from 'lucide-react';
 
 const UnifiedPricing = () => {
   const allFeatures = [
@@ -35,7 +35,7 @@ const UnifiedPricing = () => {
           {/* Main Pricing Card */}
           <div className="col-span-12 lg:col-span-5 bg-white rounded-[2.5rem] p-10 border border-slate-200 shadow-xl shadow-slate-200/50 flex flex-col justify-between relative overflow-hidden">
             <div className="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold px-6 py-2 rounded-bl-2xl uppercase tracking-widest">
-              Starting From 30 Days
+              Recruiters Verified
             </div>
             
             <div>
@@ -51,12 +51,8 @@ const UnifiedPricing = () => {
 
               <div className="mb-8">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-5xl font-black text-slate-950">₹249</span>
-                  <span className="text-slate-400 font-bold"> for 2 Months</span>
+                  <span className="text-5xl font-black text-slate-950">at ₹2 only</span>
                 </div>
-                <p className="text-[11px] font-bold text-emerald-600 mt-2 flex items-center gap-1 uppercase">
-                  <Lock size={12} /> Pay only after your project is successfully verified
-                </p>
               </div>
 
               <div className="space-y-3 mb-10">
@@ -124,19 +120,61 @@ const UnifiedPricing = () => {
             </div>
 
             {/* Global/India Reach Tile */}
-            <div className="md:col-span-2 bg-yellow-100 rounded-[2.5rem] p-8 border border-blue-100 flex items-center justify-between">
+            <div className="md:col-span-2 bg-white rounded-[2.5rem] p-8 border border-slate-200 flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <Globe className="text-black" size={24} />
-                <span className="text-sm font-bold text-black tracking-tight">Access the Pan-India Talent Dashboard</span>
+                <Globe className="text-blue-600" size={24} />
+                <span className="text-sm font-bold text-slate-950 tracking-tight">Access the Pan-India Talent Dashboard</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
                 <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Live Connect</span>
               </div>
             </div>
-
           </div>
         </div>
+
+        {/* --- New Yellow CTA Section --- */}
+        {/* --- Enhanced Yellow CTA Section --- */}
+<div className="mt-8 bg-gradient-to-r from-yellow-400 via-amber-400 to-orange-500 rounded-[2.5rem] p-1 text-slate-950 shadow-2xl shadow-yellow-200/50 hover:shadow-yellow-300/40 transition-all duration-500 group">
+  <div className="bg-white/80 backdrop-blur-md rounded-[2.3rem] p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-10">
+    
+    <div className="space-y-6 text-center lg:text-left">
+      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-200/50 text-amber-900 text-[11px] font-bold uppercase tracking-[0.2em] border">
+        <Sparkles size={14} className="animate-pulse" /> 
+        Special Launch Offer
+      </div>
+      
+      <div className="space-y-2">
+        <h3 className="text-3xl md:text-4xl font-black tracking-tight leading-[1.1] text-slate-950">
+          Start your internship journey <br className="hidden md:block" />
+          from <span className="text-amber-600 drop-shadow-sm">₹2 only</span>
+        </h3>
+        <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">
+          + Nominal Registration Charges
+        </p>
+      </div>
+
+      <div className="flex flex-wrap items-center justify-center lg:justify-start gap-y-3 gap-x-6">
+        {[
+          "Certificate Link",
+          "Resume Credibility",
+          "LinkedIn Profile Credibility"
+        ].map((item, idx) => (
+          <span key={idx} className="flex items-center gap-2 text-sm font-bold text-slate-700">
+            <BadgeCheck size={18} className="text-amber-500" />
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+    
+    <button className="group/btn relative whitespace-nowrap px-10 py-5 bg-slate-950 text-white rounded-2xl font-extrabold text-xl hover:bg-blue-600 transition-all hover:scale-[1.02] active:scale-95 shadow-2xl shadow-slate-950/20 flex items-center gap-3">
+      Get Started Now
+      <ArrowRight size={22} className="group-hover/btn:translate-x-1 transition-transform" />
+    </button>
+  </div>
+</div>
+        
       </div>
     </section>
   );

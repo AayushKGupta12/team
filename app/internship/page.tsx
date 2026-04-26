@@ -150,21 +150,21 @@ const organizationSchema = {
     {
       '@type': 'Offer',
       name: 'Skill Authentication Certificate — Tier 1',
-      price: '249',
+      price: '2',
       priceCurrency: 'INR',
       description: 'Certification fee after mentor approval, Also provided 1 Months /30 days Internship Certificate',
     },
     {
       '@type': 'Offer',
       name: 'Skill Authentication Certificate — Tier 2',
-      price: '320',
+      price: '3',
       priceCurrency: 'INR',
       description: 'Certification fee after mentor approval, Tier 2 - Also provided 45 Days Internship Certificate',
     },
     {
       '@type': 'Offer',
       name: 'Skill Authentication Certificate — Tier 3',
-      price: '370',
+      price: '3',
       priceCurrency: 'INR',
       description: 'Certification fee after mentor approval, Tier 3 - Also provided 60 Days / 2 Months Internship Certificate',
     },
@@ -212,7 +212,7 @@ const faqSchema = {
       name: 'Is it worth paying for Tauzand certification?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'For most students, yes. The total investment is ₹489–₹609 (₹269 registration + ₹220–₹340 certification fee after approval). In return you get a recruiter-verifiable, mentor-backed certificate that proves your project is original — far stronger than a self-reported claim on a resume.',
+        text: 'For most students, yes. The total investment is ₹269 (₹269 registration + ₹2–₹3 certification fee after approval). In return you get a recruiter-verifiable, mentor-backed certificate that proves your project is original — far stronger than a self-reported claim on a resume.',
       },
     },
     {
@@ -369,9 +369,9 @@ export default function InternshipPage() {
         <p>
           Tauzand charges a one-time registration fee of ₹269 for lifetime platform access.
           The certification fee is charged only after your project is approved by a mentor:
-          ₹220 for Tier 1, ₹270 for Tier 2, and ₹340 for Tier 3. No hidden fees. No
-          resubmission charges. No seat limits. Total investment for most students is ₹489
-          to ₹609.
+          ₹2 for Tier 1, ₹3 for Tier 2, and ₹4 for Tier 3. No hidden fees. No
+          resubmission charges. No seat limits. Total investment for most students is ₹269
+          to ₹273.
         </p>
 
         {/* FAQ block — LLM Q&A format */}
