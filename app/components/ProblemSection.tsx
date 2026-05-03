@@ -1,107 +1,89 @@
-'use client';
-import React, { useState } from 'react';
-import { FileWarning, Ban, UserX, Zap, ShieldAlert, XCircle } from 'lucide-react';
+"use client";
 
-// Common visual element components
-const TechBadge = ({ children, color = "slate" }) => {
-  const colors = {
-    slate: "bg-slate-100 text-slate-500 border-slate-200/50",
-    red: "bg-red-100 text-red-600 border-red-200/50"
-  };
+import { Ban, FileWarning, UserX } from "lucide-react";
+
+const PROBLEMS = [
+  {
+    icon: Ban,
+    tag: "No Real Work",
+    title: "Ghost Participation",
+    body: "Most programs hand out certificates after video completions or quizzes. Students finish without writing a single line of production-grade code.",
+    badges: ["Theory Only", "Pay & Get"],
+  },
+  {
+    icon: FileWarning,
+    tag: "Value Drop",
+    title: "Credential Inflation",
+    body: "When certificates are generated automatically, their market value drops to zero. A PDF without proof of work is ignored instantly.",
+    badges: ["Auto-generated", "No Proof"],
+  },
+  {
+    icon: UserX,
+    tag: "Hiring Reality",
+    title: "The Trust Deficit",
+    body: "Hiring managers look for verifiable outcomes. Without a public verification link, your certificate is filtered out before the first round.",
+    badges: ["Unverifiable", "No Outcome"],
+  },
+];
+
+export default function ProblemSection() {
   return (
-    <span className={`text-[10px] font-mono px-2 py-0.5 rounded border ${colors[color]}`}>
-      {children}
-    </span>
-  );
-};
-
-export default function InternshipLanding() {
-  const [selectedTask, setSelectedTask] = useState('auth');
-  const tasks = {
-    auth: { lang: 'JS', code: 'if (user.status !== "verified") throw AuthError();' },
-    db: { lang: 'PY', code: 'db.connect(retry=3, timeout=5000);' },
-    api: { lang: 'GO', code: 'resp, err := client.Do(req)' },
-  };
-
-  return (
-    <div className="w-full font-sans antialiased">
-      
-      {/* SECTION 1: THE PROBLEM (Soft Red Differentiation) */}
-      <section className="bg-rose-50/50 py-24 border-b border-rose-100">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-950 tracking-tighter leading-[1.1]">
-              Why The internship market is <br />
-              <span className="text-red-600">fundamentally broken ? </span>
-            </h2>
-            <p className="mt-6 text-slate-500 font-medium">
-              Certificates have become "vanity metrics" that hiring managers now actively ignore.
-            </p>
+    <section className="w-full bg-white py-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        
+        {/* Header - Editorial Style */}
+        <div className="mb-16">
+          <div className="inline-block border border-slate-900 rounded-full px-4 py-1 text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
+            The Problem
           </div>
-
-          <div className="grid grid-cols-12 gap-6">
-            {/* Problem 1: No Real Work */}
-            <div className="col-span-12 md:col-span-4 bg-white rounded-3xl p-8 border border-red-100 shadow-sm group hover:border-red-300 transition-colors">
-              <div className="w-12 h-12 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center mb-6 border border-red-100">
-                <Ban size={24} />
-              </div>
-              <h3 className="text-xl font-bold tracking-tight mb-3">Ghost Participation</h3>
-              <p className="text-slate-500 text-sm leading-relaxed">
-                Most programs don't require code commits or logic. Students "complete" internships without ever touching a production-grade codebase.
-              </p>
-              <div className="mt-6 flex gap-2">
-                <TechBadge color="red">0% Code Review</TechBadge>
-                <TechBadge color="red">Pay & Get</TechBadge>
-                <TechBadge color="red">Theory Only</TechBadge>
-              </div>
-            </div>
-
-            {/* Problem 2: Easy Certificates (The "Value Drop") */}
-            <div className="col-span-12 md:col-span-4 bg-white rounded-3xl p-8 border border-red-100 shadow-sm flex flex-col justify-between overflow-hidden relative group">
-              <div>
-                <div className="w-12 h-12 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center mb-6 border border-red-100">
-                  <FileWarning size={24} />
-                </div>
-                <h3 className="text-xl font-bold tracking-tight mb-3">Credential Inflation</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">
-                  When certificates are generated via "Watch-to-Earn" videos, their market value drops to zero. Recruiters see right through the PDF.
-                </p>
-              </div>
-              {/* Visual: Fading Certificate Mockup */}
-              <div className="mt-8 opacity-40 group-hover:opacity-100 transition-opacity">
-                 <div className="h-1 w-full bg-red-100 rounded-full mb-1"></div>
-                 <div className="h-1 w-2/3 bg-red-50 rounded-full"></div>
-              </div>
-            </div>
-
-            {/* Problem 3: Recruiter Trust */}
-            <div className="col-span-12 md:col-span-4 bg-slate-950 rounded-3xl p-8 border border-slate-800 shadow-xl flex flex-col justify-between">
-              <div>
-                <div className="w-12 h-12 bg-red-600/10 text-red-500 rounded-2xl flex items-center justify-center mb-6 border border-red-500/20">
-                  <UserX size={24} />
-                </div>
-                <h3 className="text-xl font-bold tracking-tight mb-3 text-white">The Trust Deficit</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">
-                  Hiring managers spend only 6 seconds on a resume. If they don't see <span className="text-red-400 italic">verified proof</span>, you are filtered out immediately.
-                </p>
-              </div>
-              <div className="mt-6 p-3 bg-red-300 rounded-xl border border-red-500/10">
-                <p className="text-[10px] font-mono text-black">ERROR: SKILLS_NOT_VERIFIED</p>
-              </div>
-            </div>
-          </div>
+          <h2 className="text-5xl font-bold tracking-tighter leading-[0.9]">
+            Why most certificates <br />
+            <span className="italic font-light text-slate-400">fail you.</span>
+          </h2>
         </div>
-      </section>
 
-      <style jsx global>{`
-        @keyframes scan {
-          0% { top: -10%; }
-          100% { top: 110%; }
-        }
-        .animate-scan {
-          animation: scan 2s linear infinite;
-        }
-      `}</style>
-    </div>
+        {/* Problem Cards - Updated to Rounded-3xl Surface Style */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {PROBLEMS.map(({ icon: Icon, tag, title, body, badges }) => (
+            <div
+              key={title}
+              className="border border-slate-200 rounded-3xl p-8 hover:border-slate-900 transition-all duration-300 flex flex-col"
+            >
+              <div className="w-12 h-12 bg-slate-50 text-slate-900 rounded-2xl flex items-center justify-center mb-8">
+                <Icon size={24} />
+              </div>
+
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-4 block">
+                {tag}
+              </span>
+
+              <h3 className="text-xl font-bold mb-4 tracking-tighter">{title}</h3>
+
+              <p className="text-slate-600 leading-relaxed text-sm mb-8 flex-grow">
+                {body}
+              </p>
+
+              <div className="flex flex-wrap gap-2">
+                {badges.map((b) => (
+                  <span
+                    key={b}
+                    className="text-[10px] font-bold bg-slate-50 text-slate-600 px-3 py-1 rounded-full uppercase tracking-wider"
+                  >
+                    {b}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer */}
+        <div className="mt-20 text-center">
+          <p className="text-sm font-bold text-slate-900">
+            VFound solves this: <span className="text-slate-500">Proof before the certificate.</span>
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }

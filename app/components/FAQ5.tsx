@@ -255,7 +255,7 @@ export default function FAQ() {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-3 bg-yellow-400 hover:bg-yellow-300 text-black font-semibold text-sm sm:text-base px-6 py-3 rounded-xl transition-all hover:scale-[1.04] shadow-lg"
         >
-          View Verified Certificate →
+          View Sample Certificate →
         </a>
 
         {/* MICRO TRUST */}

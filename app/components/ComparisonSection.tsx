@@ -59,17 +59,14 @@ export default function PremiumComparison() {
       <div className="max-w-6xl mx-auto px-6">
         
         {/* Header: Editorial Style */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <div className="max-w-xl">
-            <TechBadge>Comparison Matrix // 2026</TechBadge>
-            <h2 className="text-5xl font-extrabold text-slate-950 tracking-tighter leading-[0.9] mt-4">
-              Stop collecting <span className="text-yellow-400">paper.</span><br />
-              Start proving <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">impact.</span>
-            </h2>
-          </div>
-          <p className="text-slate-500 text-sm max-w-[280px] leading-relaxed border-l border-slate-200 pl-6">
-            Traditional certificates are a legacy format. VFound is the operating system for verified engineering talent.
-          </p>
+        <div className="mb-16">
+          <span className="inline-block border border-slate-900 rounded-full px-4 py-1 text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
+            Comparison Matrix // 2026
+          </span>
+          <h2 className="text-5xl md:text-6xl font-bold tracking-tighter leading-[0.9]">
+            Stop collecting paper.<br />
+            <span className="italic font-light text-slate-400">Start proving impact.</span>
+          </h2>
         </div>
 
         {/* The Bento Table */}
@@ -141,16 +138,6 @@ export default function PremiumComparison() {
 
   {/* Card 2: Map & Reach */}
   <div className="bg-white rounded-[2rem] p-8 border border-slate-200 flex flex-col justify-between shadow-sm relative overflow-hidden group">
-    {/* Stylized India Map Watermark */}
-    <div className="absolute right-[-10%] bottom-[-10%] opacity-[0.08] group-hover:opacity-[0.12] transition-opacity pointer-events-none">
-      <svg width="180" height="200" viewBox="0 0 200 230" fill="currentColor" className="text-slate-950">
-        <path d="M100 0 L110 10 L130 15 L145 30 L150 50 L170 70 L180 90 L175 110 L185 130 L170 160 L150 190 L130 210 L100 230 L70 210 L50 190 L30 160 L15 130 L25 110 L20 90 L30 70 L50 50 L55 30 L70 15 L90 10 Z" />
-        {/* Simple dots representing cities */}
-        <circle cx="60" cy="60" r="5" />
-        <circle cx="140" cy="100" r="5" />
-        <circle cx="100" cy="180" r="5" />
-      </svg>
-    </div>
 
     <div className="relative z-10">
       <StatusPill variant="slate">Network</StatusPill>
@@ -180,7 +167,7 @@ export default function PremiumComparison() {
   </div>
 
   {/* Card 3: Security/Trust */}
-  <div className="bg-slate-50 rounded-[2rem] p-8 border border-slate-200/50 flex flex-col justify-between hover:bg-white transition-colors duration-500 group">
+  <div className="bg-gray-200 rounded-[2rem] p-8 border border-slate-200/50 flex flex-col justify-between hover:bg-white transition-colors duration-500 group">
     <div>
       <div className="w-8 h-8 bg-blue-600/10 rounded-lg flex items-center justify-center text-blue-600 mb-4 group-hover:scale-110 transition-transform">
         <ShieldCheck size={18} />
