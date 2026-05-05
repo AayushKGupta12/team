@@ -12,7 +12,7 @@ const page = () => {
         </h1>
 
         <p className="text-md text-gray-700">
-          Thank you for using Vfound !
+          Thank you for using Tauzand !
         </p>
 
         <div className="text-md text-gray-700 space-y-4">

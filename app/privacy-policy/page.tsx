@@ -13,7 +13,7 @@ const page = () => {
       <p className="mb-6">
       This Privacy Policy describes how 8252802866 and its affiliates (collectively "8252802866, we, our, us") 
       collect, use, share, protect or otherwise process your information/ personal data through our website 
-      https://www.vfound.in/ (hereinafter referred to as Platform). Please note that you may be able to 
+      https://www.Tauzand.in/ (hereinafter referred to as Platform). Please note that you may be able to 
       browse certain sections of the Platform without registering with us.We do not offer any product/service 
       under this Platform outside India and your personal data will primarily be stored and processed in India. 
       By visiting this Platform, providing your information or availing any product/service offered on the 

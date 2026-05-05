@@ -33,7 +33,7 @@ function calcTimeLeft(dueDateStr: string): TimeLeft {
 }
 
 const LINKEDIN_URL  = "https://www.linkedin.com/company/career_intelligence";
-const INSTAGRAM_URL = "https://www.instagram.com/vfound.in?utm_source=qr&igsh=bXMyM2p0eTcwZHZs";
+const INSTAGRAM_URL = "https://www.instagram.com/Tauzand.in?utm_source=qr&igsh=bXMyM2p0eTcwZHZs";
 
 export default function SubmitInternship({ internId, onSuccess }: Props) {
   const [link,       setLink]       = useState("");

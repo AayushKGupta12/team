@@ -1,10 +1,34 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // FIXED: Use www.vfound.in instead of vfound.in to match your live site
-  const baseUrl = "https://www.vfound.in";
+  // FIXED: Use www.tauzand.in instead of tauzand.in to match your live site
+  const baseUrl = "https://www.tauzand.in";
   
   return [
+    {
+      url: `${baseUrl}/internship`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/internship/userdashboard`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/internship/validate`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/internship/project`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -12,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/ai-resume-analysis`,
+      url: `${baseUrl}/ai-resume-analyser`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
@@ -21,12 +45,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/cover-letter`,
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/internship`,
-      lastModified: new Date(),
-      changeFrequency: "daily",
       priority: 0.9,
     },
     {
@@ -40,12 +58,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/kiit`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
     },
     {
       url: `${baseUrl}/about`,
@@ -67,6 +79,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/term-of-use`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/about-founder`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.3,

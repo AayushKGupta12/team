@@ -12,7 +12,7 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     quote:
-      "vfound identified gaps in my stack, ranked my experience with AI parsing, and recommended roles where my percentile score was highest. The technical evaluation made my strengths obvious to recruiters.",
+      "Tauzand identified gaps in my stack, ranked my experience with AI parsing, and recommended roles where my percentile score was highest. The technical evaluation made my strengths obvious to recruiters.",
     author: "Kunal Sahu",
     title: "Solutions Engineer",
   },
@@ -52,7 +52,7 @@ export default function ResumeCTAHero() {
               <div className="flex items-center gap-4">
                 <div className="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center text-white text-[10px] font-bold">VF</div>
                 <div>
-                  <p className="text-sm font-bold text-slate-900">VFound.in Engineering</p>
+                  <p className="text-sm font-bold text-slate-900">Tauzand.in Engineering</p>
                   <p className="text-xs text-slate-500">Core R&D</p>
                 </div>
               </div>

@@ -260,7 +260,7 @@ export default function InternshipStatus({ internId: propId, onValidated }: Prop
                 <br /><br />
                 In the meantime, feel free to explore our <a href="/internship/project" className="underline font-medium text-blue-600">Guide</a> to prepare for your internship journey.
                 <br /><br />
-                If you have any questions, contact us at <a href="mailto:support@vfound.in" className="underline font-medium text-blue-600">support@vfound.in</a>
+                If you have any questions, contact us at <a href="mailto:support@Tauzand.in" className="underline font-medium text-blue-600">support@Tauzand.in</a>
               </p>
             </div>
           )}

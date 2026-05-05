@@ -40,7 +40,7 @@ interface MockUsageHistory {
   usage: number;
 }
 
-// ── Design tokens matching Vfound.in ──
+// ── Design tokens matching Tauzand.in ──
 const T = {
   bg: "#F3F4F6",           // cool blue-gray page bg (matches sidebar tone)
   surface: "#ffffff",       // card / panel white
@@ -589,7 +589,7 @@ export default function ExtensionDashboard() {
               })}
             </time>
           </p>
-          <p className="text-md" style={{ color: T.muted }}>Vfound.in · All rights reserved</p>
+          <p className="text-md" style={{ color: T.muted }}>Tauzand.in · All rights reserved</p>
         </footer>
       </div>
 

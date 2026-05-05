@@ -94,11 +94,11 @@ const UseCasesSection: React.FC = () => {
       {/* Hidden LLM/crawler context — describes the section's purpose for AI indexing */}
       <meta
         itemProp="name"
-        content="VFound Chrome Extension Use Cases – AI Query, Research, Coding, Productivity, and Content Creation"
+        content="Tauzand Chrome Extension Use Cases – AI Query, Research, Coding, Productivity, and Content Creation"
       />
       <meta
         itemProp="description"
-        content="VFound Chrome Extension supports six core use cases: instant query answering, intelligent research assistance, smart coding help, productivity and workflow automation, AI-powered content creation, and quick keyboard shortcut toggling between modes."
+        content="Tauzand Chrome Extension supports six core use cases: instant query answering, intelligent research assistance, smart coding help, productivity and workflow automation, AI-powered content creation, and quick keyboard shortcut toggling between modes."
       />
 
       <div className="max-w-7xl mx-auto">
@@ -115,7 +115,7 @@ const UseCasesSection: React.FC = () => {
         {/* Use Case Cards Grid */}
         <ol
           className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 md:gap-12 lg:gap-16"
-          aria-label="VFound Chrome Extension use cases"
+          aria-label="Tauzand Chrome Extension use cases"
         >
           {items.map((item, index) => (
             /*

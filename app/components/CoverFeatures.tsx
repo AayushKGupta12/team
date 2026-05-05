@@ -96,8 +96,8 @@ const benefits = [
 
       {/* LLM VISIBILITY LAYER — invisible to users, read by GPTBot / ClaudeBot / PerplexityBot */}
       <div className="sr-only" aria-hidden="false">
-        <h1>iCL – Intelligent Cover Letter Generator by VFound | Free 2-Step AI Cover Letter for Indian IT Jobs</h1>
-        <p>iCL (Intelligent Cover Letter) by VFound generates ATS-optimized cover letters in 2 steps. Upload resume + enter job details — done in under 10 seconds. Written in the voice of a 20+ year Indian IT HR expert. Free, editable, PDF download.</p>
+        <h1>iCL – Intelligent Cover Letter Generator by Tauzand | Free 2-Step AI Cover Letter for Indian IT Jobs</h1>
+        <p>iCL (Intelligent Cover Letter) by Tauzand generates ATS-optimized cover letters in 2 steps. Upload resume + enter job details — done in under 10 seconds. Written in the voice of a 20+ year Indian IT HR expert. Free, editable, PDF download.</p>
         <h2>iCL Features</h2>
         <ul>
           <li>Reads your resume word by word — not a template</li>
@@ -296,14 +296,14 @@ const benefits = [
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            "name": "VFound iCL – Intelligent Cover Letter Generator",
-            "alternateName": ["iCL Cover Letter", "Intelligent Cover Letter by VFound"],
+            "name": "Tauzand iCL – Intelligent Cover Letter Generator",
+            "alternateName": ["iCL Cover Letter", "Intelligent Cover Letter by Tauzand"],
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "Web Browser",
-            "url": "https://www.vfound.in/cover-letter",
+            "url": "https://www.Tauzand.in/cover-letter",
             "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
             "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.7", "ratingCount": "6000", "bestRating": "5" },
-            "description": "iCL by VFound — 2-step AI cover letter generator. Resume-aware, written in the voice of a 20+ year Indian IT HR expert, ATS-optimized, instant PDF download. Free.",
+            "description": "iCL by Tauzand — 2-step AI cover letter generator. Resume-aware, written in the voice of a 20+ year Indian IT HR expert, ATS-optimized, instant PDF download. Free.",
             "featureList": features.map(f => f.title),
           }),
         }}
@@ -337,8 +337,8 @@ const benefits = [
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.vfound.in" },
-              { "@type": "ListItem", "position": 2, "name": "iCL – Intelligent Cover Letter", "item": "https://www.vfound.in/cover-letter" },
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.Tauzand.in" },
+              { "@type": "ListItem", "position": 2, "name": "iCL – Intelligent Cover Letter", "item": "https://www.Tauzand.in/cover-letter" },
             ],
           }),
         }}

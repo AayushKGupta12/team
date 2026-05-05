@@ -14,7 +14,7 @@ const nextConfig = {
           },
         ],
         destination: 'https://www.vfound.in/:path*',
-        permanent: true, // 301 redirect
+        permanent: true,
       },
     ]
   },

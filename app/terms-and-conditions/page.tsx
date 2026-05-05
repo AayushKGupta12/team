@@ -13,7 +13,7 @@ const page = () => {
       </h1>
 
       <p className="mb-6">
-        Thank you for using Vfound !
+        Thank you for using Tauzand !
       </p>
 
       <ul className="list-decimal pl-6 space-y-6">
@@ -29,7 +29,7 @@ const page = () => {
         This document is published in accordance with the provisions of Rule 3 (1) of the Information 
         Technology (Intermediaries guidelines) Rules, 2011 that require publishing the rules and 
         regulations, privacy policy and Terms of Use for access or usage of domain name https://www.
-        vfound.in/ ('Website'), including the related mobile site and mobile application (hereinafter 
+        Tauzand.in/ ('Website'), including the related mobile site and mobile application (hereinafter 
         referred to as 'Platform').
         </li>
 

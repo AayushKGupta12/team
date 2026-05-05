@@ -114,7 +114,7 @@ export default function SignInPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                quote: "VFound helped me tailor my resume exactly to what recruiters expect. The insights were surprisingly accurate.",
+                quote: "Tauzand helped me tailor my resume exactly to what recruiters expect. The insights were surprisingly accurate.",
                 author: "Final year CS student",
                 rating: 5,
               },
@@ -129,7 +129,7 @@ export default function SignInPage() {
                 rating: 4,
               },
               {
-                quote: "VFound feels like a career mentor rather than just another tool. The guidance actually makes sense.",
+                quote: "Tauzand feels like a career mentor rather than just another tool. The guidance actually makes sense.",
                 author: "Early-career professional",
                 rating: 5,
               },
@@ -178,7 +178,7 @@ export default function SignInPage() {
       <hr />
       <footer className="border-t border-white/5 py-3 text-center text-sm text-gray-300 bg-gray-900">
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
-          <span>© {new Date().getFullYear()} VFound.in</span>
+          <span>© {new Date().getFullYear()} Tauzand.in</span>
           <div className="flex gap-6">
             <Link href="/term-of-use" className="hover:text-gray-50">
               Terms of Use

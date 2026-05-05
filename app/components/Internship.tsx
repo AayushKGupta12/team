@@ -36,7 +36,7 @@ export default function InternshipApplication() {
       <div className="max-w-4xl mx-auto bg-white shadow-xl rounded-2xl p-8">
 
         <h1 className="text-2xl font-semibold mb-6">
-          Internship Application – Vfound.in
+          Internship Application – Tauzand.in
         </h1>
 
         {/* SECTION 1 */}

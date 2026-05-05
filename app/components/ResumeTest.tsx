@@ -47,7 +47,7 @@ const testimonials: Testimonial[] = [
       "The precision of the AI analysis helped me align my project contributions with industry-specific keywords. I saw a significant increase in recruiter views.",
     author: "Ishita Verma",
     role: "Software Engineer",
-    company: "VFound",
+    company: "Tauzand",
     color: "bg-rose-200",
   },
 ];

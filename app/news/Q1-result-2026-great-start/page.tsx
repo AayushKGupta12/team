@@ -35,9 +35,9 @@ const metrics = [
 
 const highlights = [
   { icon: "🌍", title: "Global Footprint",          text: "Users active across 8+ countries India, United States, Singapore, Japan, Netherlands, Australia, Ireland signalling cross-border relevance for career intelligence." },
-  { icon: "📈", title: "30-Day Active Users Surge",  text: "Monthly active users reached 26,690, a 269.6% increase, demonstrating that vfound.in's career intelligence content is driving sustained, recurring engagement month over month." },
-  { icon: "🇺🇸", title: "USA Traction Accelerating", text: "United States added 321 new users this quarter, a 57.4% rise, validating vfound.in's value proposition across competitive, English-speaking job markets." },
-  { icon: "🔁", title: "Loyalty Signals",            text: "With 353 returning users from India and 11 each from Japan and the Netherlands, vfound.in is building a loyal, repeat audience the hallmark of a trusted B2C platform." },
+  { icon: "📈", title: "30-Day Active Users Surge",  text: "Monthly active users reached 26,690, a 269.6% increase, demonstrating that Tauzand.in's career intelligence content is driving sustained, recurring engagement month over month." },
+  { icon: "🇺🇸", title: "USA Traction Accelerating", text: "United States added 321 new users this quarter, a 57.4% rise, validating Tauzand.in's value proposition across competitive, English-speaking job markets." },
+  { icon: "🔁", title: "Loyalty Signals",            text: "With 353 returning users from India and 11 each from Japan and the Netherlands, Tauzand.in is building a loyal, repeat audience the hallmark of a trusted B2C platform." },
 ];
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -54,7 +54,7 @@ const CustomTooltip = ({ active, payload, label }) => {
   );
 };
 
-export default function VFoundQ1Report() {
+export default function TauzandQ1Report() {
   const [activeTab, setActiveTab] = useState("activity");
 
   return (
@@ -73,13 +73,13 @@ export default function VFoundQ1Report() {
               className="text-3xl md:text-4xl font-bold text-slate-900 leading-snug mb-5 tracking-tight"
               style={{ fontFamily: "'Lora', Georgia, serif" }}
             >
-              vfound.in Records 76,484 Total Views in Q1 FY2026 Career Intelligence Platform
+              Tauzand.in Records 76,484 Total Views in Q1 FY2026 Career Intelligence Platform
               Achieves Strong Cross-Border Growth
             </h1>
 
             <p className="text-base md:text-lg text-gray-600 leading-relaxed mb-7 font-sans font-normal">
               India's emerging career intelligence platform,{" "}
-              <strong className="text-indigo-600 font-semibold">vfound.in</strong>, closes the first
+              <strong className="text-indigo-600 font-semibold">Tauzand.in</strong>, closes the first
               quarter of FY2026 with measurable momentum 76,484 website views, 35,536 tracked user
               events, and a growing international audience spanning 8+ countries. The data reflects a
               platform moving confidently from early traction to repeatable, compounding growth.
@@ -87,7 +87,7 @@ export default function VFoundQ1Report() {
 
             <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 font-sans">
               <span>
-                <span className="text-gray-600 font-medium">By</span> vfound.in Editorial Team
+                <span className="text-gray-600 font-medium">By</span> Tauzand.in Editorial Team
               </span>
               <span className="text-gray-300">·</span>
               <span>April 13, 2026</span>
@@ -137,7 +137,7 @@ export default function VFoundQ1Report() {
 
           <p className="text-base leading-loose text-gray-600 mb-5 font-sans font-normal">
             Q1 FY2026 (January – April 13, 2026) marks a pivotal chapter for{" "}
-            <strong className="text-gray-900">vfound.in</strong>. The platform, which focuses on{" "}
+            <strong className="text-gray-900">Tauzand.in</strong>. The platform, which focuses on{" "}
             <em>career intelligence</em> curating actionable guidance for job seekers, early
             professionals, and career switchers recorded{" "}
             <strong>76,484 total page views</strong> and{" "}
@@ -159,7 +159,7 @@ export default function VFoundQ1Report() {
               style={{ fontFamily: "'Lora', serif" }}
             >
               "A 76.7% rise in returning users is not a vanity metric it is the clearest signal
-              that vfound.in is becoming a trusted reference point in India's career intelligence
+              that Tauzand.in is becoming a trusted reference point in India's career intelligence
               space."
             </p>
           </blockquote>
@@ -251,7 +251,7 @@ export default function VFoundQ1Report() {
           <p className="text-base leading-loose text-gray-600 mb-5 font-sans font-normal">
             India remains the dominant traffic source contributing over{" "}
             <strong>26,690 new users</strong> and <strong>17,744 returning visitors</strong> in Q1.
-            However, the international dimension of vfound.in's growth is where the story becomes
+            However, the international dimension of Tauzand.in's growth is where the story becomes
             compelling. The United States added <strong>321 new users</strong>, reflecting a 57.4%
             increase. Singapore saw a staggering <strong>3,100%+ rise</strong> in new user
             registrations, pointing to untapped demand in Southeast Asia's knowledge economy.
@@ -259,7 +259,7 @@ export default function VFoundQ1Report() {
 
           <p className="text-base leading-loose text-gray-600 mb-5 font-sans font-normal">
             Additionally, Japan recorded over <strong>1,000% growth</strong> in returning users a
-            data point that underscores that even markets outside vfound.in's primary focus are
+            data point that underscores that even markets outside Tauzand.in's primary focus are
             independently discovering and bookmarking the platform's content as a career resource.
           </p>
 
@@ -285,14 +285,14 @@ export default function VFoundQ1Report() {
           <p className="text-base leading-loose text-gray-600 mb-5 font-sans font-normal">
             One of the most important quality signals in Q1 is the{" "}
             <strong>views-per-active-user ratio of 6.9×</strong> up 81.8% compared to the prior
-            period. This means each visitor who engages with vfound.in explores nearly 7 pages or
+            period. This means each visitor who engages with Tauzand.in explores nearly 7 pages or
             content pieces per session, a strong indicator of content discoverability, internal
             linking quality, and topical relevance.
           </p>
 
           <p className="text-base leading-loose text-gray-600 mb-5 font-sans font-normal">
             The <strong>35,536 registered event counts</strong> covering clicks, scroll depth, form
-            interactions, and content engagement validate that vfound.in's audience is not passive.
+            interactions, and content engagement validate that Tauzand.in's audience is not passive.
             Users are actively interacting with resources, tools, and editorial content. This level of
             interaction depth is characteristically seen in platforms where users perceive genuine
             utility.
@@ -331,7 +331,7 @@ export default function VFoundQ1Report() {
           </h2>
 
           <p className="text-base leading-loose text-gray-600 mb-5 font-sans font-normal">
-            The Q1 data establishes vfound.in as a platform with strong early-stage network effects.
+            The Q1 data establishes Tauzand.in as a platform with strong early-stage network effects.
             A 23.2% returning user rate in a platform's formative growth phase is a signal that
             content-market fit is already being achieved. As SEO indexing deepens, content coverage
             expands, and user acquisition scales, Q2 FY2026 is positioned to see compounded returns
@@ -340,7 +340,7 @@ export default function VFoundQ1Report() {
 
           <p className="text-base leading-loose text-gray-600 mb-5 font-sans font-normal">
             With <strong>India, USA, Singapore, and Japan</strong> all demonstrating independent,
-            organic traction, vfound.in's career intelligence model is proving relevant across
+            organic traction, Tauzand.in's career intelligence model is proving relevant across
             geographies a rare indicator for a platform that launched without a formal international
             GTM strategy. The next quarter will focus on deepening these markets, improving
             event-to-registration conversion, and expanding the breadth of career resources offered
@@ -351,14 +351,14 @@ export default function VFoundQ1Report() {
           <div className="border-t border-gray-200 mt-10 pt-6">
             <p className="text-xs text-gray-400 leading-relaxed font-sans">
               <strong className="text-gray-500">Data Sources:</strong> All metrics referenced in
-              this report are sourced directly from vfound.in's Google Analytics 4 dashboard for
+              this report are sourced directly from Tauzand.in's Google Analytics 4 dashboard for
               the period January 1, 2026 to April 13, 2026. Event counts and session data are
               captured via GA4's enhanced measurement configuration. Country-level data reflects
               user-declared and IP-derived geolocation.
             </p>
             <div className="flex flex-wrap gap-2 mt-4">
               {[
-                "#CareerIntelligence", "#vfound", "#Q1FY2026",
+                "#CareerIntelligence", "#Tauzand", "#Q1FY2026",
                 "#StartupGrowth", "#IndiaStartups", "#SaaS",
                 "#CareerTech", "#JobSearch", "#GrowthMetrics",
               ].map((tag) => (

@@ -80,7 +80,7 @@ export default function ProblemSection() {
         {/* Footer */}
         <div className="mt-20 text-center">
           <p className="text-sm font-bold text-slate-900">
-            VFound solves this: <span className="text-slate-500">Proof before the certificate.</span>
+            Tauzand solves this: <span className="text-slate-500">Proof before the certificate.</span>
           </p>
         </div>
       </div>

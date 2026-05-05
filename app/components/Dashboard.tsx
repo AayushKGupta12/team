@@ -125,7 +125,7 @@ export default function ProductAnalytics() {
         {/* Header */}
         <div className="mb-10">
           <h2 className="text-3xl sm:text-4xl font-bold mt-4 text-[#e7f0fa]">
-            VFound.in :  Number's
+            Tauzand.in :  Number's
           </h2>
           <p className="text-[#d7edff] mt-2 text-sm sm:text-base max-w-xl">
             A snapshot of how our tools are being used across

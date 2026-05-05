@@ -32,7 +32,7 @@ const SOCIALS = [
   },
   {
     label: "Instagram",
-    href:  "https://www.instagram.com/vfound.in",
+    href:  "https://www.instagram.com/Tauzand.in",
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
@@ -61,9 +61,9 @@ const SOCIALS = [
 
 const faqs = [
   {
-    question: "What is the VFound Skill Validation Program and how is it different from a traditional internship?",
+    question: "What is the Tauzand Skill Validation Program and how is it different from a traditional internship?",
     answer:
-      "The VFound Skill Validation Program is an advanced internship-style experience where you complete real-world, industry-level tasks to prove your skills. Unlike traditional internships that focus on participation, VFound focuses on validated output. Your work is evaluated and only then you become eligible for a verified certificate.",
+      "The Tauzand Skill Validation Program is an advanced internship-style experience where you complete real-world, industry-level tasks to prove your skills. Unlike traditional internships that focus on participation, Tauzand focuses on validated output. Your work is evaluated and only then you become eligible for a verified certificate.",
     bullets: [
       "Internship-style structure with real-world tasks",
       "Focus on skill validation instead of participation",
@@ -74,7 +74,7 @@ const faqs = [
   {
     question: "Do I still get an internship certificate after completing the program?",
     answer:
-      "Yes. Upon successful completion of the Skill Validation Program, you receive a verified internship certificate from VFound. This certificate represents not just participation, but validated proof of your skills based on completed tasks and evaluations.",
+      "Yes. Upon successful completion of the Skill Validation Program, you receive a verified internship certificate from Tauzand. This certificate represents not just participation, but validated proof of your skills based on completed tasks and evaluations.",
     bullets: [
       "Verified internship certificate issued",
       "Based on completed tasks and evaluation",
@@ -96,7 +96,7 @@ const faqs = [
   {
   question: "Is this a paid internship or a paid certification program?",
   answer:
-    "VFound follows a one-time registration model. To get started, users are required to pay a ₹269 registration fee, which gives full access to the Skill Validation Program, including tasks, dashboard, and progress tracking. After completing the program, users can optionally unlock their verified certificate and detailed skill report.",
+    "Tauzand follows a one-time registration model. To get started, users are required to pay a ₹269 registration fee, which gives full access to the Skill Validation Program, including tasks, dashboard, and progress tracking. After completing the program, users can optionally unlock their verified certificate and detailed skill report.",
   bullets: [
     "₹269 one-time registration fee",
     "Access to full Skill Validation Program and tasks",
@@ -116,9 +116,9 @@ const faqs = [
     ],
   },
   {
-    question: "Which domains are available under the VFound program?",
+    question: "Which domains are available under the Tauzand program?",
     answer:
-      "VFound offers multiple high-demand domains where users can validate their skills through practical tasks. Each domain includes curated assignments aligned with industry requirements to ensure real-world relevance.",
+      "Tauzand offers multiple high-demand domains where users can validate their skills through practical tasks. Each domain includes curated assignments aligned with industry requirements to ensure real-world relevance.",
     bullets: [
       "Multiple in-demand domains available",
       "Domain-specific task assignments",
@@ -129,7 +129,7 @@ const faqs = [
   {
     question: "Will this help me in placements or getting a job?",
     answer:
-      "Yes. The Skill Validation Program is designed to improve your chances of getting shortlisted by proving your actual abilities. High-performing candidates may also get opportunities for full-time roles or referrals through VFound or partner companies.",
+      "Yes. The Skill Validation Program is designed to improve your chances of getting shortlisted by proving your actual abilities. High-performing candidates may also get opportunities for full-time roles or referrals through Tauzand or partner companies.",
     bullets: [
       "Improves resume and ATS performance",
       "Demonstrates real skills to recruiters",
@@ -138,9 +138,9 @@ const faqs = [
     ],
   },
   {
-    question: "Why should I choose VFound over other internship platforms?",
+    question: "Why should I choose Tauzandd over other internship platforms?",
     answer:
-      "Most platforms provide certificates for participation. VFound focuses on proof of work. You complete real tasks, get evaluated, and only then earn certification. This makes your profile more credible and valuable in the job market.",
+      "Most platforms provide certificates for participation. Tauzand focuses on proof of work. You complete real tasks, get evaluated, and only then earn certification. This makes your profile more credible and valuable in the job market.",
     bullets: [
       "No fake or participation-based certificates",
       "Real-world task evaluation system",
@@ -250,7 +250,7 @@ export default function FAQ() {
 
         {/* CTA BUTTON */}
         <a
-          href="https://vfound.in/certificate/VF2026DO00001"
+          href="https://Tauzand.in/certificate/VF2026DO00001"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-3 bg-yellow-400 hover:bg-yellow-300 text-black font-semibold text-sm sm:text-base px-6 py-3 rounded-xl transition-all hover:scale-[1.04] shadow-lg"

@@ -8,7 +8,7 @@ export default async function Page() {
 
   // Not logged in → redirect to homepage / sign-in
   if (!user) {
-    redirect("https://vfound.in");
+    redirect("https://Tauzand.in");
   }
 
   // Extract primary email

@@ -61,7 +61,7 @@ export default function Navbar(): React.JSX.Element {
   const pathname = usePathname();
 
   const shareOnWhatsApp = () => {
-    const text = encodeURIComponent("Check out Vfound...\nhttps://vfound.in");
+    const text = encodeURIComponent("Check out Tauzand...\nhttps://Tauzand.in");
     window.open(`https://wa.me/?text=${text}`, "_blank");
   };
 
@@ -96,9 +96,9 @@ export default function Navbar(): React.JSX.Element {
               
               {/* MINI LOGO (Mobile Only) */}
               <div className="flex items-center gap-2 ml-3">
-                <img src="/vfound.png" alt="logo" className="md:hidden h-7 w-7 rounded-lg" />
+                <img src="/Tauzand.png" alt="logo" className="md:hidden h-7 w-7 rounded-lg" />
                 <Link href="/" className="text-[#0d2440] kaushan-script-regular text-2xl md:text-4xl font-bold">
-                  Vfound.in
+                  Tauzand.in
                 </Link>
               </div>
 

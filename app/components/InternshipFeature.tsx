@@ -94,7 +94,7 @@ export default function FeatureBento() {
           <div className="border border-slate-900 rounded-3xl p-8 bg-slate-950 text-white flex flex-col justify-center">
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Placement Rate</span>
             <div className="text-5xl font-bold tracking-tighter mb-2 text-white">92%</div>
-            <p className="text-slate-300 text-sm font-medium">Successful hiring conversion rate across all VFound partner tracks.</p>
+            <p className="text-slate-300 text-sm font-medium">Successful hiring conversion rate across all Tauzand partner tracks.</p>
           </div>
         </div>
       </div>

@@ -132,7 +132,7 @@ export default function SignInPage() {
     },
     {
       quote:
-        "VFound feels like a smart starting point for anyone serious about building a career, especially early on.",
+        "tauzand feels like a smart starting point for anyone serious about building a career, especially early on.",
       author: "Early-career professional",
       rating: 5,
     },
@@ -181,7 +181,7 @@ export default function SignInPage() {
       <hr />
       <footer className="border-t border-white/5 py-3 text-center text-sm text-gray-300 bg-gray-900">
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
-          <span>© {new Date().getFullYear()} VFound.in</span>
+          <span>© {new Date().getFullYear()} Tauzand.in</span>
           <div className="flex gap-6">
             <Link href="/term-of-use" className="hover:text-gray-50">
               Terms of Use

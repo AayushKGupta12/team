@@ -20,7 +20,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    // FIXED: Use www.vfound.in instead of vfound.in
-    sitemap: "https://www.vfound.in/sitemap.xml",
+    // FIXED: Use www.tauzand.in instead of tauzand.in
+    sitemap: "https://www.tauzand.in/sitemap.xml",
   };
 }

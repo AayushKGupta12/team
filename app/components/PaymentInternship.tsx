@@ -52,7 +52,7 @@ export default function PaymentInternship({ internId: propId, onSuccess }: Props
       .finally(() => setChecking(false));
   }, [internId]);
 
-  const certUrl = `https://vfound.in/certificate/${internId}`;
+  const certUrl = `https://Tauzand.in/certificate/${internId}`;
 
   
   
@@ -88,7 +88,7 @@ export default function PaymentInternship({ internId: propId, onSuccess }: Props
       currency: orderData.currency,
       order_id: orderData.order_id,
 
-      name: "VFound Internship",
+      name: "Tauzand Internship",
       description: "Certificate Fee",
 
       handler: async (response: any) => {
@@ -292,7 +292,7 @@ export default function PaymentInternship({ internId: propId, onSuccess }: Props
 
     {/* Trust Note */}
     <p className="text-xs text-gray-500 mt-4 leading-relaxed">
-      <span className="font-bold underline-offset-2">Non-Refundable</span>. By proceeding, you agree to our <span className="font-bold">Terms of Service</span>. Your certificate will be issued within 2 Hours after successful payment. For any queries, Please visit our <a href="https://vfound.in/faq" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 font-medium">FAQ</a> or <a href="https://www.vfound.in/contact" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 font-medium">contact support</a>.
+      <span className="font-bold underline-offset-2">Non-Refundable</span>. By proceeding, you agree to our <span className="font-bold">Terms of Service</span>. Your certificate will be issued within 2 Hours after successful payment. For any queries, Please visit our <a href="https://Tauzand.in/faq" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 font-medium">FAQ</a> or <a href="https://www.Tauzand.in/contact" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 font-medium">contact support</a>.
     </p>
   </div>
 )}

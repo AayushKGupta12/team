@@ -11,7 +11,7 @@ const page = () => {
       </h1>
 
       <p className="text-md text-gray-700">
-        Thank you for using Vfound !
+        Thank you for using Tauzand !
         <br />
         <br />
         These Terms of Use constitute a legally binding agreement between you
@@ -835,7 +835,7 @@ const page = () => {
       <section className="space-y-5"> 
       <h2 className="text-2xl font-medium"> Chrome Extension Usage & Data Policy </h2> 
       <p className="text-md text-gray-700"> 
-        The Vfound Chrome Extension is designed to operate with strict privacy and secure usage standards. We do not permanently store any user questions, queries, follow-up messages, or session conversations submitted through the extension. All interactions are processed temporarily for generating responses and are not retained for public access, resale, profiling, or external sharing. User data remains confidential and is handled through secure backend infrastructure with encrypted communication channels to ensure protection at all times. <br /><br /> 
+        The Tauzand Chrome Extension is designed to operate with strict privacy and secure usage standards. We do not permanently store any user questions, queries, follow-up messages, or session conversations submitted through the extension. All interactions are processed temporarily for generating responses and are not retained for public access, resale, profiling, or external sharing. User data remains confidential and is handled through secure backend infrastructure with encrypted communication channels to ensure protection at all times. <br /><br /> 
         API keys issued for extension access are unique to each registered account. Users are solely responsible for safeguarding their API keys. Sharing API credentials, attempting credit exploitation, automating abusive usage, or distributing access to unauthorized third parties may result in immediate suspension of extension access. Any misuse that impacts system stability, credit integrity, or service fairness will be treated as a violation of platform policy. <br /><br /> 
         The extension operates on a credit-based system, and users acknowledge that responsible usage is required to maintain service availability. We do not assume liability for misuse arising from voluntary API sharing or intentional circumvention of usage limits. These measures are implemented to ensure a secure, fair, and reliable experience for all extension users. 
       </p> 

@@ -22,21 +22,21 @@ import Script from "next/script";
 
 const faqs = [
   {
-    question: "What is the VFound Chrome Extension?",
+    question: "What is the Tauzand Chrome Extension?",
     answer:
-      "VFound Chrome Extension is an AI-powered browser tool designed to help students, developers, and professionals simplify technical content, improve resumes, and accelerate research directly inside their browser — without switching tabs.",
+      "Tauzand Chrome Extension is an AI-powered browser tool designed to help students, developers, and professionals simplify technical content, improve resumes, and accelerate research directly inside their browser — without switching tabs.",
     bullets: [
       "AI-powered smart study and research assistance",
       "Instant technical explanations and summaries",
       "Context-aware coding insights and debugging help",
       "Secure API key-based access",
     ],
-    highlight: "VFound Chrome Extension",
+    highlight: "Tauzand Chrome Extension",
   },
   {
-    question: "Is the VFound Chrome Extension free to use?",
+    question: "Is the Tauzand Chrome Extension free to use?",
     answer:
-      "Yes, the VFound Chrome Extension provides free credits for new users so they can experience its full feature set before choosing to recharge. There are no hidden charges.",
+      "Yes, the Tauzand Chrome Extension provides free credits for new users so they can experience its full feature set before choosing to recharge. There are no hidden charges.",
     bullets: [
       "Free initial usage credits for all new users",
       "No hidden background charges",
@@ -46,11 +46,11 @@ const faqs = [
     highlight: "Yes,",
   },
   {
-    question: "How do I activate the VFound extension?",
+    question: "How do I activate the Tauzand extension?",
     answer:
-      "Activation is simple. After installing the extension from your VFound dashboard, generate or copy your unique API key, paste it into the extension popup, and reload the extension once. You're ready to use it immediately.",
+      "Activation is simple. After installing the extension from your Tauzand dashboard, generate or copy your unique API key, paste it into the extension popup, and reload the extension once. You're ready to use it immediately.",
     bullets: [
-      "Log in to your VFound dashboard",
+      "Log in to your Tauzand dashboard",
       "Generate or copy your API key",
       "Paste the key inside the extension popup",
       "Reload the extension once after saving",
@@ -82,9 +82,9 @@ const faqs = [
     highlight: null,
   },
   {
-    question: "What makes VFound different from other AI tools?",
+    question: "What makes Tauzand different from other AI tools?",
     answer:
-      "Unlike generic AI chat tools, VFound is built specifically for students, developers, and professionals who need concise, focused, and technically accurate explanations — without leaving their current browser tab.",
+      "Unlike generic AI chat tools, Tauzand is built specifically for students, developers, and professionals who need concise, focused, and technically accurate explanations — without leaving their current browser tab.",
     bullets: [
       "Short, optimised answers designed for productivity",
       "Technical context-aware responses",
@@ -96,7 +96,7 @@ const faqs = [
   {
     question: "Do I need an account to use the extension?",
     answer:
-      "Yes, a VFound account is required to generate your API key and track usage securely through the dashboard. Account creation is free and takes under a minute.",
+      "Yes, a Tauzand account is required to generate your API key and track usage securely through the dashboard. Account creation is free and takes under a minute.",
     bullets: [
       "Account-based authentication for security",
       "Secure API key generation from dashboard",
@@ -106,9 +106,9 @@ const faqs = [
     highlight: null,
   },
   {
-    question: "How does VFound use AI to help with research and resumes?",
+    question: "How does Tauzand use AI to help with research and resumes?",
     answer:
-      "VFound uses advanced AI models to simplify study materials, provide technical explanations, generate coding insights, summarise long articles, and offer tailored resume improvement suggestions — all accessible via a browser side panel.",
+      "Tauzand uses advanced AI models to simplify study materials, provide technical explanations, generate coding insights, summarise long articles, and offer tailored resume improvement suggestions — all accessible via a browser side panel.",
     bullets: [
       "AI-powered smart study and research responses",
       "Resume improvement with ATS optimisation tips",

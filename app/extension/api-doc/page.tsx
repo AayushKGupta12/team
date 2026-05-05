@@ -50,7 +50,7 @@ const ApiDocumentation = () => {
       icon: BookOpen,
       items: [
         { id: 'P1', label: '1. Create Your Account' },
-        { id: 'P2', label: '2. Sign In to VFound.in' },
+        { id: 'P2', label: '2. Sign In to Tauzand.in' },
         { id: 'P3', label: '3. Beta Account Creation' },
         {
           id: 'P4',
@@ -105,7 +105,7 @@ const ApiDocumentation = () => {
                   <BookOpen className="w-5 h-5 text-white" />
                 </div>
                 <h1 className="text-3xl font-semibold text-gray-900">
-                  Extension Documentation | <span className='bg-yellow-300 p-2 rotate-1 rounded-md'><a href="www.vfound.in">VFound.in</a></span>
+                  Extension Documentation | <span className='bg-yellow-300 p-2 rotate-1 rounded-md'><a href="www.Tauzand.in">Tauzand.in</a></span>
                 </h1>
               </div>
               <p className="text-base text-gray-600 ml-13">
@@ -207,10 +207,10 @@ const ApiDocumentation = () => {
                     <div className="flex-1">
                       <h3 className="text-xl font-semibold text-gray-900 mb-3">Create Your Account</h3>
                       <p className="text-gray-700 leading-relaxed mb-4">
-                        Start by creating a free account on VFound.in. This will give you access to our beta features, including the Chrome extension and API integration. The signup process is simple and takes less than a minute to complete. You only need basic details like your name, email address, and password. Once registered, your account becomes your central access point to all current and upcoming features, allowing you to manage your profile, extension access, and integration settings securely.
+                        Start by creating a free account on Tauzand.in. This will give you access to our beta features, including the Chrome extension and API integration. The signup process is simple and takes less than a minute to complete. You only need basic details like your name, email address, and password. Once registered, your account becomes your central access point to all current and upcoming features, allowing you to manage your profile, extension access, and integration settings securely.
                       </p>
                       <a
-                        href="https://www.vfound.in/sign-up"
+                        href="https://www.Tauzand.in/sign-up"
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors"
                       >
                         Create Account
@@ -227,7 +227,7 @@ const ApiDocumentation = () => {
                       2
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">Sign In to VFound.in</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">Sign In to Tauzand.in</h3>
                       <p className="text-gray-700 leading-relaxed">
                         Once your account is created, sign in using your credentials. This step verifies your identity and prepares your dashboard. After logging in, the system securely connects your account with the extension services and enables personalized functionality. Your dashboard will load automatically, where you can access extension instructions, manage settings, and monitor your usage.
                       </p>
@@ -259,7 +259,7 @@ const ApiDocumentation = () => {
                     <div className="flex-1">
                       <h3 className="text-xl font-semibold text-gray-900 mb-3">Generate API Key</h3>
                       <p className="text-gray-700 leading-relaxed mb-6">
-                        Your API Key is generated and displayed on the dashboard immediately after account creation. This key acts as your unique authentication token that securely connects your extension with your VFound account. It ensures that all requests made through the extension are properly authorized and linked to your profile.
+                        Your API Key is generated and displayed on the dashboard immediately after account creation. This key acts as your unique authentication token that securely connects your extension with your Tauzand account. It ensures that all requests made through the extension are properly authorized and linked to your profile.
                       </p>
 
                       {/* Code block */}
@@ -300,7 +300,7 @@ const ApiDocumentation = () => {
                         <div id="P4p3" className="scroll-mt-8">
                           <h4 className="text-lg font-semibold text-gray-900 mb-2">Paste API Key</h4>
                           <p className="text-gray-700 leading-relaxed mb-3">
-                            Open the content.js file in the downloaded extension and paste your API key. This step connects your local extension with your VFound account and enables all personalized features.
+                            Open the content.js file in the downloaded extension and paste your API key. This step connects your local extension with your Tauzand account and enables all personalized features.
                           </p>
                           <div className="bg-gray-900 rounded-lg p-4">
                             <code className="text-sm font-mono text-gray-300">
@@ -438,7 +438,7 @@ const ApiDocumentation = () => {
 
               <div className="space-y-6">
                 <p className="text-gray-700 leading-relaxed">
-                  At VFound, we are committed to protecting your privacy and maintaining the confidentiality of your personal information. This Privacy Policy formally explains what data we collect, why we collect it, and how we protect it. By using our platform, extension, or API services, you acknowledge and agree to the practices described herein.
+                  At Tauzand, we are committed to protecting your privacy and maintaining the confidentiality of your personal information. This Privacy Policy formally explains what data we collect, why we collect it, and how we protect it. By using our platform, extension, or API services, you acknowledge and agree to the practices described herein.
                 </p>
 
                 <div className="border-l-4 border-gray-700 bg-gray-50 p-6">
@@ -478,13 +478,13 @@ const ApiDocumentation = () => {
 
               <div className="space-y-6">
                 <p className="text-gray-700 leading-relaxed">
-                  VFound formally provides this extension, platform, and API services on an "as-is" and "as-available" basis without any express or implied warranties of any kind. The Company does not guarantee uninterrupted availability, complete accuracy, or error-free operation of its services.
+                  Tauzand formally provides this extension, platform, and API services on an "as-is" and "as-available" basis without any express or implied warranties of any kind. The Company does not guarantee uninterrupted availability, complete accuracy, or error-free operation of its services.
                 </p>
 
                 <div className="border-l-4 border-gray-700 bg-gray-50 p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">Use of Data</h3>
                   <p className="text-gray-700 leading-relaxed">
-                    By accessing or using VFound services, you formally acknowledge and agree that the Company may collect, store, and process certain data in accordance with the stated Privacy Policy. You further agree that you are solely responsible for ensuring your use of the extension and API complies with all applicable local, national, and international laws, regulations, and institutional policies.
+                    By accessing or using Tauzand services, you formally acknowledge and agree that the Company may collect, store, and process certain data in accordance with the stated Privacy Policy. You further agree that you are solely responsible for ensuring your use of the extension and API complies with all applicable local, national, and international laws, regulations, and institutional policies.
                   </p>
                 </div>
 

@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     body: JSON.stringify({
       amount: amount * 100, // INR → paise
       currency: "INR",
-      receipt: `vfound_thanks_${Date.now()}`,
+      receipt: `_thanks_${Date.now()}`,
     }),
   });
 

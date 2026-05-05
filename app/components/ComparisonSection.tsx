@@ -21,35 +21,35 @@ export default function PremiumComparison() {
     label: "Proof of Work", 
     sub: "Git-based logic validation",
     trad: "Zero (PDF only)", 
-    vfound: "Real-time Commit Tracking",
+    Tauzand: "Real-time Commit Tracking",
     icon: <Fingerprint size={16} />
   },
   { 
     label: "Credential Integrity", 
     sub: "Blockchain skill anchoring",
     trad: "Easy to Forge", 
-    vfound: "Immutable & Publicly Verified",
+    Tauzand: "Immutable & Publicly Verified",
     icon: <ShieldCheck size={16} />
   },
   { 
     label: "Engineering Oversight", 
     sub: "Direct industry mentorship",
     trad: "Unsupervised / Solo", 
-    vfound: "1-on-1 Senior Review",
+    Tauzand: "1-on-1 Senior Review",
     icon: <UserCheck size={16} /> // Make sure to import UserCheck from lucide-react
   },
   { 
     label: "Professional Shelf-life", 
     sub: "Extended credential validity",
     trad: "Instant Decay", 
-    vfound: "2-Year Industry Passport",
+    Tauzand: "2-Year Industry Passport",
     icon: <CalendarCheck size={16} /> // Make sure to import CalendarCheck from lucide-react
   },
   { 
     label: "Industry Alignment", 
     sub: "Hiring partner standards",
     trad: "Generic Curriculum", 
-    vfound: "Production-Grade Specs",
+    Tauzand: "Production-Grade Specs",
     icon: <Zap size={16} />
   }
 ];
@@ -77,7 +77,7 @@ export default function PremiumComparison() {
             <div className="grid grid-cols-12 border-b border-slate-100 bg-slate-100">
               <div className="col-span-6 p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest">Structural Feature</div>
               <div className="col-span-3 p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center">Legacy</div>
-              <div className="col-span-3 p-8 text-[11px] font-black text-blue-600 uppercase tracking-widest text-center bg-blue-100">VFound.in</div>
+              <div className="col-span-3 p-8 text-[11px] font-black text-blue-600 uppercase tracking-widest text-center bg-blue-100">Tauzand.in</div>
             </div>
 
             {tableData.map((row, i) => (
@@ -100,7 +100,7 @@ export default function PremiumComparison() {
                 <div className="col-span-3 p-8 border-l border-blue-100/50 bg-blue-50/10 border-b border-slate-50 flex flex-col items-center justify-center gap-2 relative">
                   <div className="w-2 h-2 rounded-full bg-blue-500 absolute top-4 right-4 animate-pulse" />
                   <Check className="text-blue-600" size={20} strokeWidth={3} />
-                  <span className="text-[10px] font-bold text-blue-700 uppercase tracking-tighter text-center">{row.vfound}</span>
+                  <span className="text-[10px] font-bold text-blue-700 uppercase tracking-tighter text-center">{row.Tauzand}</span>
                 </div>
               </div>
             ))}

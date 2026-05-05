@@ -60,7 +60,7 @@ export default function InternshipHero() {
               <iframe
                 className="w-full h-full"
                 src={`https://www.youtube.com/embed/n81xhOqcVc8?autoplay=1&${isMuted ? 'mute=1' : 'mute=0'}&loop=1&playlist=n81xhOqcVc8&controls=0&modestbranding=1`}
-                title="VFound Internship Preview"
+                title="Tauzand Internship Preview"
                 allow="autoplay; encrypted-media"
               />
             </div>

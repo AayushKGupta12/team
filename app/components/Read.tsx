@@ -17,8 +17,8 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: '1',
-    title: 'Quarterly Result: vfound.in reaches 76,000+ users.',
-    excerpt: 'We’ve hit a major milestone with 76,000 active users on vfound.in! This growth reflects the value we’re providing to job seekers and professionals in the IT industry. With the launch of our AI Resume Analyzer and new features on the horizon, we’re excited to continue this journey of empowering careers.',
+    title: 'Quarterly Result: Tauzand.in reaches 76,000+ users.',
+    excerpt: 'We’ve hit a major milestone with 76,000 active users on Tauzand.in! This growth reflects the value we’re providing to job seekers and professionals in the IT industry. With the launch of our AI Resume Analyzer and new features on the horizon, we’re excited to continue this journey of empowering careers.',
     image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80',
     category: 'Quarterly Result',
     readTime: '7 Mins Read',

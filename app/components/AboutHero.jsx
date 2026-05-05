@@ -157,7 +157,7 @@ export default function HeroAndAbout() {
             </h3>
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-15">
               <a
-                href="mailto:support@vfound.in"
+                href="mailto:support@Tauzand.in"
                 className="group border relative h-16 px-12 flex items-center justify-center text-[#0d2440] text-2xl font-black overflow-hidden bg-[#ffd77a] rounded-2xl transition-all duration-200 ease-in-out shadow-[0_8px_0_0_#b45309] hover:translate-y-[-2px] hover:shadow-[0_10px_0_0_#b45309] active:translate-y-[4px] active:shadow-none"
               >
                 Let&apos;s Talk

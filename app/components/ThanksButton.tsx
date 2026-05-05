@@ -58,8 +58,8 @@ export default function ThanksButton() {
       key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // set in .env.local
       amount: amount * 100,
       currency: "INR",
-      name: "VFound.in",
-      description: "Appreciation Token for VFound",
+      name: "Tauzand.in",
+      description: "Appreciation Token for Tauzand",
       order_id: data.orderId,
       theme: { color: "#6366f1" },
       modal: {
@@ -91,7 +91,7 @@ export default function ThanksButton() {
           <div className="space-y-4">
             <h2 className="text-4xl font-bold tracking-tight text-slate-900 md:text-6xl leading-[1.1]">
               Fuel the code <br />
-              <span className="text-emerald-600 italic font-serif">behind VFound</span>
+              <span className="text-emerald-600 italic font-serif">behind Tauzand</span>
             </h2>
             <p className="mx-auto text-lg leading-relaxed text-slate-500 lg:mx-0 lg:max-w-md font-light">
               We provide advanced career tools to thousands of students for free. 
@@ -200,7 +200,7 @@ export default function ThanksButton() {
                   <div className="space-y-2">
                     <h3 className="text-3xl font-bold text-slate-900 font-serif italic tracking-tight">Magnificent!</h3>
                     <p className="text-slate-400 max-w-[260px] text-sm font-medium leading-relaxed">
-                      You are officially a patron of VFound. Your support keeps us online.
+                      You are officially a patron of Tauzand. Your support keeps us online.
                     </p>
                   </div>
                   

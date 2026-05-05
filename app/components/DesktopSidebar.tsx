@@ -74,7 +74,7 @@ export default function DesktopSidebar({
             <a href="/">
               <div className="mt-4 px-3 w-full ">
                 <span className="block text-5xl font-bold kaushan-script-regular text-[#0d2440]">
-                  Vfound.in
+                  Tauzand.in
                 </span>
               </div>
             </a>

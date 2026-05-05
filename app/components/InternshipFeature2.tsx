@@ -108,7 +108,7 @@ export default function InternshipShowcase() {
               <div className="w-3 h-3 rounded-full bg-green-300" />
             </div>
             <div className="flex items-center gap-1.5 bg-white border border-gray-200 rounded-lg px-3 py-1 text-xs text-gray-400 w-44 justify-center">
-              vfound.in/dashboard
+              Tauzand.in/dashboard
             </div>
             <div className="w-20" />
           </div>
@@ -159,7 +159,7 @@ export default function InternshipShowcase() {
 
     {/* Refined CTA - Matching the "Hero" pill style */}
     <a
-      href="https://vfound.in/certificate/VF2026DO00001"
+      href="https://Tauzand.in/certificate/VF2026DO00001"
       target="_blank"
       rel="noopener noreferrer"
       className="inline-flex items-center bg-slate-900 text-white font-bold text-xs uppercase tracking-[0.2em] px-10 py-5 rounded-full transition-all hover:bg-blue-600 hover:-translate-y-1 shadow-lg"

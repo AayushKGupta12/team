@@ -244,7 +244,7 @@ export default function PYQSection() {
       `Hey! I found the KIIT ${subject} (${year}) Previous Year Questions here:`
     );
     window.open(
-      `https://wa.me/?text=${text}%20https://vfound.in/kiit`,
+      `https://wa.me/?text=${text}%20https://Tauzand.in/kiit`,
       "_blank"
     );
   };
@@ -513,7 +513,7 @@ export default function PYQSection() {
 
         {/* Header Watermark */}
         <span className="text-[10px] sm:text-xs text-gray-400 font-semibold text-right">
-          Access All kinds of PDF from Vfound.in | Career Intelligence
+          Access All kinds of PDF from Tauzand.in | Career Intelligence
         </span>
 
         <button
@@ -527,7 +527,7 @@ export default function PYQSection() {
       {/* CENTER WATERMARK */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
   <p className="text-gray-500 text-sm sm:text-2xl font-semibold opacity-25 rotate-[-25deg] text-center px-4 leading-snug">
-    Available @ Vfound.in <br /> Career Intelligence
+    Available @ Tauzand.in <br /> Career Intelligence
   </p>
 </div>
 
@@ -543,7 +543,7 @@ export default function PYQSection() {
         
         {/* Footer Watermark */}
         <span className="text-xl sm:text-xs text-gray-400 font-semibold">
-          Access All kinds of PDF from Vfound.in
+          Access All kinds of PDF from Tauzand.in
         </span>
 
         <button

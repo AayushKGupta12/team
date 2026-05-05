@@ -38,7 +38,7 @@ const imageCards = [
     src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
     title: "Real-Time Analytics",
     desc: "Monitor usage, performance & activity instantly",
-    alt: "Dashboard showing real-time analytics and performance metrics for the VFound Chrome extension",
+    alt: "Dashboard showing real-time analytics and performance metrics for the Tauzand Chrome extension",
   },
   {
     src: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=800",
@@ -84,10 +84,10 @@ export default function PortfolioCTA() {
         itemType="https://schema.org/Product"
       >
         {/* Hidden product name for schema entity linking */}
-        <meta itemProp="name" content="VFound Chrome Extension" />
+        <meta itemProp="name" content="Tauzand Chrome Extension" />
         <meta
           itemProp="description"
-          content="VFound is a smart AI-powered Chrome extension for real-time analytics, seamless browser integration, AI assistance, and secure productivity tracking."
+          content="Tauzand is a smart AI-powered Chrome extension for real-time analytics, seamless browser integration, AI assistance, and secure productivity tracking."
         />
 
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -101,7 +101,7 @@ export default function PortfolioCTA() {
           <div
             className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5"
             role="list"
-            aria-label="VFound extension feature highlights"
+            aria-label="Tauzand extension feature highlights"
           >
             {imageCards.map((card, i) => (
               <ImageCard
@@ -133,7 +133,7 @@ export default function PortfolioCTA() {
                 className="text-gray-600 text-base sm:text-lg leading-relaxed"
                 itemProp="description"
               >
-                VFound intelligently integrates with your browser to deliver
+                Tauzand intelligently integrates with your browser to deliver
                 real-time insights, automated AI workflows, and performance
                 tracking — helping students, developers, and professionals work
                 smarter, faster, and more efficiently.
@@ -147,7 +147,7 @@ export default function PortfolioCTA() {
              */}
             <ul
               className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 sm:gap-y-6 gap-x-6 sm:gap-x-8"
-              aria-label="VFound extension features"
+              aria-label="Tauzand extension features"
               itemProp="featureList"
             >
               {features.map((feature, i) => (
@@ -193,7 +193,7 @@ export default function PortfolioCTA() {
               </h2>
               <p className="text-emerald-50 text-base sm:text-lg mb-8 sm:mb-10 max-w-xl leading-relaxed">
                 Unlock real-time placement insights, automate tracking, and
-                integrate seamlessly with VFound.in built for developers and
+                integrate seamlessly with Tauzand.in built for developers and
                 ambitious students who want an AI edge in their browser.
               </p>
 
@@ -203,10 +203,10 @@ export default function PortfolioCTA() {
                */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <a
-  href="https://github.com/AayushKGupta12/vfound_extension/archive/refs/heads/main.zip"
+  href="https://github.com/AayushKGupta12/Tauzand_extension/archive/refs/heads/main.zip"
   target="_blank"
   rel="noopener noreferrer"
-  aria-label="Download the VFound AI Chrome Extension for free"
+  aria-label="Download the Tauzand AI Chrome Extension for free"
   className="
     bg-white text-emerald-600 font-semibold
     px-6 sm:px-8 py-3 sm:py-4
@@ -222,7 +222,7 @@ export default function PortfolioCTA() {
                   href="/extension/api-doc"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Read VFound Chrome Extension API documentation"
+                  aria-label="Read Tauzand Chrome Extension API documentation"
                   className="
                     bg-transparent border border-white text-white font-semibold
                     px-6 sm:px-8 py-3 sm:py-4

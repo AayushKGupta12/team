@@ -119,9 +119,9 @@ function Jobs() {
   *Stipend/CTC:* ${job.Stipend || "Not disclosed"}
   *Eligible Batch:* ${job.Batch || "Check official notification"}
 
-  *Apply here:* ${job.Link || "https://vfound.in"}
+  *Apply here:* ${job.Link || "https://Tauzand.in"}
 
-  Stay updated with latest IT jobs → https://vfound.in`;
+  Stay updated with latest IT jobs → https://Tauzand.in`;
 
     return `https://wa.me/?text=${encodeURIComponent(msg)}`;
   };

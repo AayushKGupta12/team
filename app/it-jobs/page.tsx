@@ -5,8 +5,8 @@ import StaticJobs from '../components/StaticJobs'
 
 // ✅ SEO METADATA
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.vfound.in'),
-  title: 'IT Jobs in India | VFound',
+  metadataBase: new URL('https://www.Tauzand.in'),
+  title: 'IT Jobs in India | Tauzand',
   description:
     'Discover verified IT jobs for freshers and professionals in India. Software engineer, data science, AI, cloud computing, cybersecurity jobs. Updated daily. Direct company applications.',
   keywords: [
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
     'computer science jobs',
     'engineering jobs'
   ],
-  authors: [{ name: 'VFound' }],
-  creator: 'VFound',
-  publisher: 'VFound',
+  authors: [{ name: 'Tauzand' }],
+  creator: 'Tauzand',
+  publisher: 'Tauzand',
   robots: {
     index: true,
     follow: true,
@@ -48,17 +48,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://www.vfound.in/it-jobs',
-    siteName: 'VFound',
+    url: 'https://www.Tauzand.in/it-jobs',
+    siteName: 'Tauzand',
     title: 'IT Jobs in India - Fresher & Off-Campus Jobs 2026',
     description:
       'Find verified IT jobs updated daily. Software engineering, data science, AI, cloud roles. Direct company applications for freshers and professionals.',
     images: [
       {
-        url: 'https://www.vfound.in/it-jobs-og.jpg',
+        url: 'https://www.Tauzand.in/it-jobs-og.jpg',
         width: 1200,
         height: 630,
-        alt: 'VFound IT Jobs India',
+        alt: 'Tauzand IT Jobs India',
       },
     ],
   },
@@ -66,11 +66,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'IT Jobs in India - Fresher Jobs 2026',
     description: 'Verified IT jobs for freshers. Software, data science, AI roles. Updated daily.',
-    images: ['https://www.vfound.in/it-jobs-og.jpg'],
-    creator: '@vfound',
+    images: ['https://www.Tauzand.in/it-jobs-og.jpg'],
+    creator: '@Tauzand',
   },
   alternates: {
-    canonical: 'https://www.vfound.in/it-jobs',
+    canonical: 'https://www.Tauzand.in/it-jobs',
   },
 }
 
@@ -80,8 +80,8 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://www.vfound.in/it-jobs#webpage",
-      "url": "https://www.vfound.in/it-jobs",
+      "@id": "https://www.Tauzand.in/it-jobs#webpage",
+      "url": "https://www.Tauzand.in/it-jobs",
       "name": "IT Jobs in India",
       "description": "Curated list of verified IT job opportunities for freshers and professionals",
       "inLanguage": "en-IN"
@@ -90,7 +90,7 @@ const structuredData = {
       "@type": "CollectionPage",
       "name": "IT Jobs in India",
       "description": "Curated list of verified IT job opportunities for freshers and professionals in India",
-      "url": "https://www.vfound.in/it-jobs",
+      "url": "https://www.Tauzand.in/it-jobs",
       "mainEntity": {
         "@type": "ItemList",
         "name": "IT Job Categories",
@@ -136,7 +136,7 @@ const structuredData = {
           "name": "Are these jobs verified?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, all IT jobs listed on VFound are verified and link directly to company career pages. We regularly update listings and remove expired positions."
+            "text": "Yes, all IT jobs listed on Tauzand are verified and link directly to company career pages. We regularly update listings and remove expired positions."
           }
         },
         {
@@ -144,7 +144,7 @@ const structuredData = {
           "name": "Can freshers apply for these jobs?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, VFound specializes in fresher-friendly and off-campus IT jobs. Many positions are specifically targeted for recent graduates and entry-level candidates."
+            "text": "Yes, Tauzand specializes in fresher-friendly and off-campus IT jobs. Many positions are specifically targeted for recent graduates and entry-level candidates."
           }
         }
       ]
@@ -160,7 +160,7 @@ const breadcrumbData = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.vfound.in"
+      "item": "https://www.Tauzand.in"
     },
     {
       "@type": "ListItem",

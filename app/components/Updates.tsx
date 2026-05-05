@@ -15,8 +15,8 @@ const updates: UpdateItem[] = [
   {
     id: '1',
     category: 'Quaterly Result',
-    title: 'vfound.in reaches 74,000 active users.',
-    description: 'We’ve hit a major milestone with 74,000 active users on vfound.in! This growth reflects the value we’re providing to job seekers and professionals in the IT industry. With the launch of our AI Resume Analyzer and new features on the horizon, we’re excited to continue this journey of empowering careers.',
+    title: 'Tauzand.in reaches 74,000 active users.',
+    description: 'We’ve hit a major milestone with 74,000 active users on Tauzand.in! This growth reflects the value we’re providing to job seekers and professionals in the IT industry. With the launch of our AI Resume Analyzer and new features on the horizon, we’re excited to continue this journey of empowering careers.',
     date: 'April 2026',
     size: 'large',
     href: '/news/Q1-result-2026-great-start'
@@ -98,7 +98,7 @@ export default function AnnouncementPage() {
             Read More
           </h1>
           <p className="max-w-md text-lg text-gray-500">
-            Insights, milestones, and the latest news from the vfound.in engineering team.
+            Insights, milestones, and the latest news from the Tauzand.in engineering team.
           </p>
         </div>
 

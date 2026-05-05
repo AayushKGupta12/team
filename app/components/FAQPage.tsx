@@ -9,7 +9,7 @@ import { ChevronDown } from 'lucide-react'
 // ── Data ───────────────────────────────────────────────────
 const categories = [
   { id: 'all',         label: 'All Questions'       },
-  { id: 'platform',   label: 'VFound Platform'      },
+  { id: 'platform',   label: 'Tauzand Platform'      },
   { id: 'iats',       label: 'iATS Score'           },
   { id: 'icl',        label: 'iCL Cover Letter'     },
   { id: 'extension',  label: 'Chrome Extension'     },
@@ -23,30 +23,30 @@ const faqs = [
   // ── Platform ──
   {
     category: 'platform',
-    q: 'What is VFound?',
-    a: 'VFound is India\'s AI-powered career intelligence platform built for students, freshers, and IT professionals. It helps users improve employability and compete in the Indian IT job market through intelligent tools — iATS Resume Analysis, iCL Cover Letter, Internship Certification, IT Jobs, and a Chrome Extension. VFound continuously ships new features as the IT industry evolves.',
+    q: 'What is Tauzand?',
+    a: 'Tauzand is India\'s AI-powered career intelligence platform built for students, freshers, and IT professionals. It helps users improve employability and compete in the Indian IT job market through intelligent tools — iATS Resume Analysis, iCL Cover Letter, Internship Certification, IT Jobs, and a Chrome Extension. Tauzand continuously ships new features as the IT industry evolves.',
   },
   {
     category: 'platform',
-    q: 'Who is VFound built for?',
-    a: 'VFound is built for college students, engineering freshers, internship seekers, early-career IT professionals, and working professionals across India who want to improve employability, get shortlisted faster, and compete confidently in the Indian IT job market.',
+    q: 'Who is Tauzand built for?',
+    a: 'Tauzand is built for college students, engineering freshers, internship seekers, early-career IT professionals, and working professionals across India who want to improve employability, get shortlisted faster, and compete confidently in the Indian IT job market.',
   },
   {
     category: 'platform',
-    q: 'How does VFound improve employability?',
-    a: 'VFound gives you data — not just advice. iATS scores your resume against the entire IT industry and shows your exact percentile. iCL writes cover letters that sound professionally crafted. Internship Certification validates real experience. Together they turn your career profile into something measurable, improvable, and competitive.',
+    q: 'How does Tauzand improve employability?',
+    a: 'Tauzand gives you data — not just advice. iATS scores your resume against the entire IT industry and shows your exact percentile. iCL writes cover letters that sound professionally crafted. Internship Certification validates real experience. Together they turn your career profile into something measurable, improvable, and competitive.',
   },
   {
     category: 'platform',
-    q: 'Does VFound keep adding new features?',
-    a: 'Yes. VFound continuously works on new tools and improvements. The iATS AI model is updated every month to match the fast-changing IT industry. New features, scoring metrics, and platform upgrades are released regularly. Follow vfound.in/blog for the latest.',
+    q: 'Does Tauzand keep adding new features?',
+    a: 'Yes. Tauzand continuously works on new tools and improvements. The iATS AI model is updated every month to match the fast-changing IT industry. New features, scoring metrics, and platform upgrades are released regularly. Follow Tauzand.in/blog for the latest.',
   },
 
   // ── iATS ──
   {
     category: 'iats',
     q: 'What is iATS?',
-    a: 'iATS stands for Intelligent and Predictive Applicant Tracking System — VFound\'s proprietary AI resume engine. It parses your resume word by word, aligns every word with real-time IT market data, detects technical gaps, and predicts with 99.99% accuracy whether an ATS will shortlist or reject your resume. No job description or company name needed.',
+    a: 'iATS stands for Intelligent and Predictive Applicant Tracking System — Tauzand\'s proprietary AI resume engine. It parses your resume word by word, aligns every word with real-time IT market data, detects technical gaps, and predicts with 99.99% accuracy whether an ATS will shortlist or reject your resume. No job description or company name needed.',
   },
   {
     category: 'iats',
@@ -66,7 +66,7 @@ const faqs = [
   {
     category: 'iats',
     q: 'How often is the iATS model updated?',
-    a: 'Every month. The IT industry changes daily — new frameworks, shifting hiring expectations, evolving ATS logic. VFound retrains iATS monthly so your score always reflects the current market.',
+    a: 'Every month. The IT industry changes daily — new frameworks, shifting hiring expectations, evolving ATS logic. Tauzand retrains iATS monthly so your score always reflects the current market.',
   },
   {
     category: 'iats',
@@ -78,7 +78,7 @@ const faqs = [
   {
     category: 'icl',
     q: 'What is iCL?',
-    a: 'iCL stands for Intelligent Cover Letter. It is VFound\'s 2-step AI cover letter generator that reads your actual resume and writes a professional, ATS-optimized cover letter in under 10 seconds — in the voice of a 20+ year experienced Indian IT HR professional. Free, editable, and downloadable as PDF.',
+    a: 'iCL stands for Intelligent Cover Letter. It is Tauzand\'s 2-step AI cover letter generator that reads your actual resume and writes a professional, ATS-optimized cover letter in under 10 seconds — in the voice of a 20+ year experienced Indian IT HR professional. Free, editable, and downloadable as PDF.',
   },
   {
     category: 'icl',
@@ -99,31 +99,31 @@ const faqs = [
   // ── Extension ──
   {
     category: 'extension',
-    q: 'What does the VFound Chrome Extension do?',
-    a: 'The VFound Chrome Extension brings career intelligence tools into your browser — directly on job portals you already use. It helps you apply smarter by surfacing resume insights and career scores without switching platforms.',
+    q: 'What does the Tauzand Chrome Extension do?',
+    a: 'The Tauzand Chrome Extension brings career intelligence tools into your browser — directly on job portals you already use. It helps you apply smarter by surfacing resume insights and career scores without switching platforms.',
   },
   {
     category: 'extension',
     q: 'Is the Chrome Extension free?',
-    a: 'Yes. The VFound Chrome Extension is free to download and use. Get it at vfound.in/extension.',
+    a: 'Yes. The Tauzand Chrome Extension is free to download and use. Get it at Tauzand.in/extension.',
   },
 
   // ── Internship ──
   {
     category: 'internship',
-    q: 'What is VFound\'s Internship Certification?',
-    a: 'VFound\'s Internship Certification validates and certifies real internship experience for students and freshers. It provides a verified credential you can add to your resume and LinkedIn — making your practical experience credible and trustworthy to recruiters.',
+    q: 'What is Tauzand\'s Internship Certification?',
+    a: 'Tauzand\'s Internship Certification validates and certifies real internship experience for students and freshers. It provides a verified credential you can add to your resume and LinkedIn — making your practical experience credible and trustworthy to recruiters.',
   },
   {
     category: 'internship',
     q: 'Why does Internship Certification matter for freshers?',
-    a: 'Most freshers struggle because recruiters can\'t verify the quality of their experience. VFound\'s certification gives your internship and project work a verified stamp of authenticity — helping you stand out in a pool of unverified candidates.',
+    a: 'Most freshers struggle because recruiters can\'t verify the quality of their experience. Tauzand\'s certification gives your internship and project work a verified stamp of authenticity — helping you stand out in a pool of unverified candidates.',
   },
 
   // ── Pricing ──
   {
     category: 'pricing',
-    q: 'How many free credits does VFound give?',
+    q: 'How many free credits does Tauzand give?',
     a: 'Every user gets up to 75 free lifetime AI resume analysis credits — meaning you can analyze and re-analyze your resume up to 75 times for free, tracking improvement every time you update your skills or experience.',
   },
   {
@@ -134,36 +134,36 @@ const faqs = [
   {
     category: 'pricing',
     q: 'What happens after I use all 75 free credits?',
-    a: 'You can upgrade to a VFound premium plan for unlimited analyses, advanced features, and priority processing. Visit vfound.in/pricing for current plan details.',
+    a: 'You can upgrade to a Tauzand premium plan for unlimited analyses, advanced features, and priority processing. Visit Tauzand.in/pricing for current plan details.',
   },
 
   // ── Privacy ──
   {
     category: 'privacy',
-    q: 'Is my resume data safe on VFound?',
-    a: 'Yes. VFound processes your resume securely and uses it only to generate your analysis results. Your data is never shared with third parties or advertisers. Full details at vfound.in/privacy_policy.',
+    q: 'Is my resume data safe on Tauzand?',
+    a: 'Yes. Tauzand processes your resume securely and uses it only to generate your analysis results. Your data is never shared with third parties or advertisers. Full details at Tauzand.in/privacy_policy.',
   },
   {
     category: 'privacy',
-    q: 'Does VFound sell my personal data?',
-    a: 'No. VFound does not sell user data to any third party. Your resume, scores, and personal information are used only to power the platform\'s features for you.',
+    q: 'Does Tauzand sell my personal data?',
+    a: 'No. Tauzand does not sell user data to any third party. Your resume, scores, and personal information are used only to power the platform\'s features for you.',
   },
   {
     category: 'privacy',
-    q: 'Is VFound a recruiting agency?',
-    a: 'No. VFound is an AI-powered career intelligence platform — not a recruiting agency. All insights and scores are AI-generated guidance. VFound does not directly place candidates in jobs.',
+    q: 'Is Tauzand a recruiting agency?',
+    a: 'No. Tauzand is an AI-powered career intelligence platform — not a recruiting agency. All insights and scores are AI-generated guidance. Tauzand does not directly place candidates in jobs.',
   },
 
   // ── Freshers ──
   {
     category: 'freshers',
-    q: 'Is VFound useful for students with no work experience?',
+    q: 'Is Tauzand useful for students with no work experience?',
     a: 'Absolutely. iATS fairly evaluates academic projects, hackathons, certifications, and internships — not just full-time jobs. iCL writes professional cover letters from your student profile. You don\'t need years of experience to compete — you need the right tools.',
   },
   {
     category: 'freshers',
-    q: 'How does VFound help students beat extreme competition in India?',
-    a: 'India produces millions of IT graduates every year. VFound gives students a real edge: exact percentile rank vs thousands of other candidates, technical gap analysis showing what skills to build, career health score showing long-term profile strength, and iCL cover letters that sound professionally crafted from day one.',
+    q: 'How does Tauzand help students beat extreme competition in India?',
+    a: 'India produces millions of IT graduates every year. Tauzand gives students a real edge: exact percentile rank vs thousands of other candidates, technical gap analysis showing what skills to build, career health score showing long-term profile strength, and iCL cover letters that sound professionally crafted from day one.',
   },
 ]
 

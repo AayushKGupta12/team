@@ -22,7 +22,7 @@ export default function FAQ() {
   },
   {
     label: "Instagram",
-    href:  "https://www.instagram.com/vfound.in",
+    href:  "https://www.instagram.com/Tauzand.in",
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
@@ -75,7 +75,7 @@ export default function FAQ() {
                 Stay connectedclea
               </span>
               <h2 className="text-white text-2xl sm:text-3xl font-bold leading-snug mb-2">
-                Follow VFound for updates,<br className="hidden sm:block"/>
+                Follow Tauzanddd for updates,<br className="hidden sm:block"/>
                 opportunities &amp; more
               </h2>
               
@@ -130,25 +130,25 @@ export default function FAQ() {
                 acceptedAnswer: {
                   "@type": "Answer",
                   text:
-                    "Yes, Vfound provides free resume analysis with ATS checks, technical depth evaluation, and actionable improvement suggestions for IT graduates and freshers."
+                    "Yes, Tauzand provides free resume analysis with ATS checks, technical depth evaluation, and actionable improvement suggestions for IT graduates and freshers."
                 }
               },
               {
                 "@type": "Question",
-                name: "Does Vfound provide IT jobs?",
+                name: "Does Tauzand provide IT jobs?",
                 acceptedAnswer: {
                   "@type": "Answer",
                   text:
-                    "Yes, Vfound lists real IT job openings including off-campus roles, fresher jobs, and direct company application links."
+                    "Yes, Tauzand lists real IT job openings including off-campus roles, fresher jobs, and direct company application links."
                 }
               },
               {
                 "@type": "Question",
-                name: "Does Vfound use AI?",
+                name: "Does Tauzand use AI?",
                 acceptedAnswer: {
                   "@type": "Answer",
                   text:
-                    "Yes, Vfound uses advanced AI and Algorithm's to analyze resumes, detect skill gaps, and optimize content for modern hiring systems."
+                    "Yes, Tauzand uses advanced AI and Algorithm's to analyze resumes, detect skill gaps, and optimize content for modern hiring systems."
                 }
               }
             ]
@@ -175,7 +175,7 @@ export default function FAQ() {
                 answer={
                   <>
                     <p className="mb-3 text-gray-700">
-                      <span className="bg-[#ffe8b1] px-2">Yes,</span> Vfound offers a <span className="bg-[#ffe8b1] px-2">completely free</span> resume analysis
+                      <span className="bg-[#ffe8b1] px-2">Yes,</span> Tauzand offers a <span className="bg-[#ffe8b1] px-2">completely free</span> resume analysis
                       feature designed specifically for IT students, recent
                       graduates, and early career professionals. Unlike basic
                       keyword scanners, our <span className="bg-[#ffe8b1] px-2">system deeply evaluates</span> your resume
@@ -199,11 +199,11 @@ export default function FAQ() {
                 index={1}
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
-                question="Does Vfound provide IT jobs?"
+                question="Does Tauzand provide IT jobs?"
                 answer={
                   <>
                     <p className="mb-3 text-gray-700">
-                      <span className="bg-[#ffe8b1] px-2">Yes,</span> Vfound actively helps candidates discover real and
+                      <span className="bg-[#ffe8b1] px-2">Yes,</span> Tauzand actively helps candidates discover real and
                       relevant IT job opportunities through its dedicated jobs
                       section. The focus is on <span className="bg-[#ffe8b1] px-2">fresher friendly</span> and off campus
                       hiring.
@@ -228,7 +228,7 @@ export default function FAQ() {
                 answer={
                   <>
                     <p className="mb-3 text-gray-700">
-                      Vfound is a developer builder tooklit where early professional come to get career insights and improve their job readiness.
+                      Tauzand is a developer builder tooklit where early professional come to get career insights and improve their job readiness.
                       <span className="bg-[#ffe8b1] px-2">career intelligence platform</span> that connects users with real world scenarios and opportunities.
                     </p>
                     <ul className="list-disc ml-6 space-y-1 text-gray-700">
@@ -247,11 +247,11 @@ export default function FAQ() {
                 index={9}
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
-                question="Is my resume data safe on Vfound?"
+                question="Is my resume data safe on Tauzand?"
                 answer={
                   <>
                     <p className="mb-3 text-gray-700">
-                      <span className="bg-[#ffe8b1] px-2">Yes,</span> user data privacy and security are taken seriously on Vfound.
+                      <span className="bg-[#ffe8b1] px-2">Yes,</span> user data privacy and security are taken seriously on Tauzand.
                       Uploaded resumes are processed only to provide analysis and insights.
                     </p>
                     <ul className="list-disc ml-6 space-y-1 text-gray-700">
@@ -300,11 +300,11 @@ export default function FAQ() {
               index={5}
               openIndex={openIndex}
               toggleFAQ={toggleFAQ}
-              question="How is Vfound different from other platforms?"
+              question="How is Tauzand different from other platforms?"
               answer={
                 <>
                   <p className="mb-3 text-gray-700">
-                    Vfound is built specifically for <span className="bg-[#ffe8b1] px-2">recent IT graduates</span> and early-career
+                    Tauzand is built specifically for <span className="bg-[#ffe8b1] px-2">recent IT graduates</span> and early-career
                     professionals, unlike generic job portals or resume tools. Every feature
                     is designed with <span className="bg-[#ffe8b1] px-2">fresher-level hiring expectations</span> and real-world
                     industry needs in mind.
@@ -330,7 +330,7 @@ export default function FAQ() {
               answer={
                 <>
                   <p className="mb-3 text-gray-700">
-                    Yes, Vfound offers a <span className="bg-[#ffe8b1] px-2">free trial that</span> allows users to experience core
+                    Yes, Tauzand offers a <span className="bg-[#ffe8b1] px-2">free trial that</span> allows users to experience core
                     platform features before committing to any paid plans. The free trial
                     is designed to help you understand how our tools work and how they can
                     improve your job readiness.
@@ -354,11 +354,11 @@ export default function FAQ() {
                 index={3}
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
-                question="Does Vfound use AI?"
+                question="Does Tauzand use AI?"
                 answer={
                   <>
                     <p className="mb-3 text-gray-700">
-                      Yes, Vfound uses advanced AI and large language models to
+                      Yes, Tauzand uses advanced AI and large language models to
                       power its resume analysis and <span className="bg-[#ffe8b1] px-2">content optimization tools.</span>
                       The goal is to provide context aware and role specific
                       insights.

@@ -160,12 +160,12 @@ export default function Contributors() {
         <div className="text-center mt-20">
 
           <p className="text-lg text-gray-700 italic font-bold">
-           “Building vfound wasn’t just about code, it was about creating something
+           “Building Tauzand wasn’t just about code, it was about creating something
             that genuinely helps students take their first career step.”
           </p>
 
           <p className="text-xl text-gray-600 font-medium mt-2">
-            Thank you to every contributor who made vfound.in better.
+            Thank you to every contributor who made Tauzand.in better.
           </p>
         </div>
       </div>

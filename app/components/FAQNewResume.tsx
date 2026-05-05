@@ -13,51 +13,51 @@ interface FAQ {
 const faqs: FAQ[] = [
   {
     id: 1,
-    question: "Can I use Vfound after ChatGPT or other AI tools?",
+    question: "Can I use Tauzand after ChatGPT or other AI tools?",
     answer:
-      "Yes. Vfound is specifically designed to be used after tools like ChatGPT, Gemini, or Claude. While these AI tools help you write and optimize your resume, Vfound analyzes it using real ATS scoring logic, keyword matching, and recruiter-level evaluation to ensure it performs well in actual hiring systems.",
+      "Yes. Tauzand is specifically designed to be used after tools like ChatGPT, Gemini, or Claude. While these AI tools help you write and optimize your resume, Tauzand analyzes it using real ATS scoring logic, keyword matching, and recruiter-level evaluation to ensure it performs well in actual hiring systems.",
   },
   {
     id: 2,
     question: "Why should I not rely only on ChatGPT for resume optimization?",
     answer:
-      "ChatGPT is excellent for generating and improving resume content, but it does not simulate real Applicant Tracking Systems (ATS). Vfound bridges this gap by providing ATS score, keyword gap analysis, and domain-specific recommendations, making your resume job-ready for real-world screening.",
+      "ChatGPT is excellent for generating and improving resume content, but it does not simulate real Applicant Tracking Systems (ATS). Tauzand bridges this gap by providing ATS score, keyword gap analysis, and domain-specific recommendations, making your resume job-ready for real-world screening.",
   },
   {
     id: 3,
-    question: "What makes Vfound different from other AI resume analyzers?",
+    question: "What makes Tauzand different from other AI resume analyzers?",
     answer:
-      "Vfound is built for students and early professionals preparing for internships and placements. It combines AI-based resume analysis with ATS scoring, recruiter insights, and domain-specific evaluation, making it more practical than generic resume tools.",
+      "Tauzand is built for students and early professionals preparing for internships and placements. It combines AI-based resume analysis with ATS scoring, recruiter insights, and domain-specific evaluation, making it more practical than generic resume tools.",
   },
   {
     id: 4,
     question: "What is an ATS score and why is it important?",
     answer:
-      "An ATS (Applicant Tracking System) score represents how well your resume matches job requirements based on keywords, formatting, and structure. Recruiters use ATS software to filter resumes, and Vfound helps you optimize your resume to pass these filters effectively.",
+      "An ATS (Applicant Tracking System) score represents how well your resume matches job requirements based on keywords, formatting, and structure. Recruiters use ATS software to filter resumes, and Tauzand helps you optimize your resume to pass these filters effectively.",
   },
   {
     id: 5,
-    question: "Is Vfound a good resume analyzer for students and freshers?",
+    question: "Is Tauzand a good resume analyzer for students and freshers?",
     answer:
-      "Yes. Vfound is one of the best resume analyzers for students and freshers, especially for campus placements and internships. It focuses on improving shortlist chances by aligning resumes with industry expectations and recruiter behavior.",
+      "Yes. Tauzand is one of the best resume analyzers for students and freshers, especially for campus placements and internships. It focuses on improving shortlist chances by aligning resumes with industry expectations and recruiter behavior.",
   },
   {
     id: 6,
-    question: "How does Vfound improve my chances of getting shortlisted?",
+    question: "How does Tauzand improve my chances of getting shortlisted?",
     answer:
-      "Vfound identifies missing keywords, weak project descriptions, formatting issues, and skill gaps. By fixing these based on ATS and recruiter standards, users typically see higher visibility and better shortlist rates in job applications.",
+      "Tauzand identifies missing keywords, weak project descriptions, formatting issues, and skill gaps. By fixing these based on ATS and recruiter standards, users typically see higher visibility and better shortlist rates in job applications.",
   },
   {
     id: 7,
-    question: "When should I use Vfound in my resume preparation workflow?",
+    question: "When should I use Tauzand in my resume preparation workflow?",
     answer:
-      "The ideal workflow is: first use an AI tool like ChatGPT to draft or optimize your resume, and then use Vfound as the final validation step to check ATS score and real-world effectiveness before applying to jobs.",
+      "The ideal workflow is: first use an AI tool like ChatGPT to draft or optimize your resume, and then use Tauzand as the final validation step to check ATS score and real-world effectiveness before applying to jobs.",
   },
   {
     id: 8,
-    question: "Can Vfound help with internship and placement preparation?",
+    question: "Can Tauzand help with internship and placement preparation?",
     answer:
-      "Yes. Vfound is designed for internship and placement preparation. It provides insights tailored for software engineering roles, technical internships, and entry-level positions, helping you stand out among thousands of applicants.",
+      "Yes. Tauzand is designed for internship and placement preparation. It provides insights tailored for software engineering roles, technical internships, and entry-level positions, helping you stand out among thousands of applicants.",
   },
 ];
 
@@ -78,7 +78,7 @@ export default function FAQSection() {
         </h2>
 
         <p className="text-slate-600 mb-10">
-          Learn how to use Vfound as the final ATS validation step after using AI tools like ChatGPT for resume optimization.
+          Learn how to use Tauzand as the final ATS validation step after using AI tools like ChatGPT for resume optimization.
         </p>
 
         {/* FAQ List */}

@@ -87,7 +87,7 @@ function InfoBlock({
   },
   {
     label: "Instagram",
-    href:  "https://www.instagram.com/vfound.in",
+    href:  "https://www.instagram.com/Tauzand.in",
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
@@ -280,7 +280,7 @@ export default function VerifyCertificate() {
               <div className="flex-1">
                 <p className="text-sm font-semibold text-emerald-800">Certificate is valid</p>
                 <p className="text-xs text-emerald-600 mt-0.5">
-                  This certificate was issued by VFound and is authentic.
+                  This certificate was issued by Tauzand and is authentic.
                 </p>
               </div>
               <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-100
@@ -401,7 +401,7 @@ export default function VerifyCertificate() {
                 <div className="px-8 py-4 bg-gray-50 border-t border-gray-100
                   flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold text-gray-500">VFound Internship Programme</span>
+                    <span className="text-xs font-semibold text-gray-500">Tauzand Internship Programme</span>
                   </div>
                   <div className="flex items-center gap-1.5 text-xs text-gray-400">
                     <svg width="11" height="11" fill="none" viewBox="0 0 24 24"
@@ -409,7 +409,7 @@ export default function VerifyCertificate() {
                       <path strokeLinecap="round" strokeLinejoin="round"
                         d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                     </svg>
-                    Verified · vfound.in/verify
+                    Verified · Tauzand.in/verify
                   </div>
                 </div>
               </div>
@@ -487,7 +487,7 @@ export default function VerifyCertificate() {
                       <span className="font-semibold text-gray-600">
                         {data.domain}
                       </span>{" "}
-                      internship programme at VFound
+                      internship programme at Tauzand
                       {data.project_title && (
                         <> and delivered the project{" "}
                           <span className="font-semibold text-gray-600 italic">
@@ -597,7 +597,7 @@ export default function VerifyCertificate() {
                 Stay Connected
               </span>
               <h2 className="text-white text-2xl sm:text-3xl font-bold leading-snug mb-2">
-                Follow VFound for updates,<br className="hidden sm:block"/>
+                Follow Tauzand for updates,<br className="hidden sm:block"/>
                 opportunities &amp; more
               </h2>
               <p className="text-gray-400 text-sm max-w-sm">
@@ -658,7 +658,7 @@ export default function VerifyCertificate() {
 
           {/* Copyright */}
           <p className="text-xs text-gray-400 shrink-0">
-            © {new Date().getFullYear()} VFound. All rights reserved.
+            © {new Date().getFullYear()} Tauzand. All rights reserved.
           </p>
         </div>
       </footer>
