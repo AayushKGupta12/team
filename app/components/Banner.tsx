@@ -20,7 +20,7 @@ function Banner({ isPositive, message }: BannerProps) {
         px-4 py-1 shadow-md
         ${isPositive
           ? 'bg-green-300 text-[#1F2933]'
-          : 'bg-red-400 text-white'
+          : 'bg-yellow-400 text-[#1F2933]'
         }`}
     >
       {/* Message */}

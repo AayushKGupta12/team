@@ -351,9 +351,10 @@ const Page = () => {
       {/* ── Actual page content — completely unchanged ─────────────────────── */}
       <div>
         <Banner
-          isPositive={true}
-          message="Site is Under Maintenance. We are working hard to bring you an even better experience. Stay tuned!"
+          isPositive={false}
+          message="Vfound is now Tauzand! Same platform, stronger identity. Explore tauzand.in for career intelligence and skill validation."
         />
+
         <Navbar />
         <Hero />
         <YouTubePreview/>

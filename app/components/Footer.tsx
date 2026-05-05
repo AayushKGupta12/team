@@ -49,8 +49,8 @@ export default function Footer() {
               <div className="relative h-10 w-10 flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
                 {/* Logo Image */}
                 <Image 
-                    src="/vfound.png" 
-                    alt="Vfound.png" 
+                    src="/tauzand.png" 
+                    alt="Tauzand.png" 
                     fill 
                     className="object-contain rounded-md" 
                     sizes="40px"
@@ -58,7 +58,7 @@ export default function Footer() {
                 />
               </div>
               <span className="text-4xl font-normal text-white kaushan-script-regular transition-all group-hover:text-[#7ba4d0]">
-                Vfound.in
+                Tauzand.in
               </span>
             </Link>
             

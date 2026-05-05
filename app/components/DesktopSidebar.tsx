@@ -67,7 +67,7 @@ export default function DesktopSidebar({
           {collapsed ? (
             <a href="/">
               <div className="w-13 h-13 bg-[#0d2440] rounded-lg flex items-center justify-center font-bold text-[#e7f0fa] shadow-md mt-5">
-                <img src="/vfound.png" alt="Logo" className="rounded-3xl"/>
+                <img src="/tauzand.png" alt="Logo" className="rounded-3xl"/>
               </div>
             </a>
           ) : (
