@@ -54,6 +54,7 @@ export default function RootLayout({
             `}
           </Script>
           <meta name="google-adsense-account" content="ca-pub-1545445003970128"></meta>
+          <meta name="google-adsense-account" content="ca-pub-2884987145159373"></meta>
         </head>
 
         <body
