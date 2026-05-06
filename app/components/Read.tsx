@@ -27,12 +27,12 @@ const blogPosts: BlogPost[] = [
   },
   {
     id: '2',
-    title: 'How to write content about your photographs',
-    excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit quis auctor odio arcu et dolor.',
+    title: 'Vfound has rebranded itself to Tauzand.in',
+    excerpt: 'We are thrilled to announce that Vfound has rebranded itself to Tauzand.in! This change reflects our commitment to providing a more personalized and engaging experience for our users. With the new name, we aim to continue empowering job seekers and professionals in the IT industry with innovative tools and resources. Stay tuned for exciting updates and features coming your way!',
     image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80',
     category: 'Growth',
-    readTime: '7 Mins Read',
-    slug: 'write-content-photographs-2',
+    readTime: '3 Mins Read',
+    slug: 'news/vfound-has-rebranded-itself-to-tauzand',
     imageAlt: 'Modern interior design with blue chair'
   },
   {

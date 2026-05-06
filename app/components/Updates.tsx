@@ -24,11 +24,11 @@ const updates: UpdateItem[] = [
   {
     id: '2',
     category: 'Product',
-    title: 'LLM Engine Optimization',
-    description: 'We’ve reduced latency by 30% for our AI Resume Analyzer.',
+    title: 'Vfound has rebranded itself to Tauzand.in',
+    description: 'We are thrilled to announce that Vfound has rebranded itself to Tauzand.in! This change reflects our commitment to providing a more personalized and engaging experience for our users.',
     date: 'March 2026',
     size: 'medium',
-    href: '/#'
+    href: '/news/vfound-has-rebranded-itself-to-tauzand'
   },
   {
     id: '3',
