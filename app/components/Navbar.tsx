@@ -95,8 +95,8 @@ export default function Navbar(): React.JSX.Element {
             <div className="flex items-center justify-between gap-2 md:gap-4 rounded-2xl bg-[#7ba4d0]/10 border border-black/50 backdrop-blur-xl shadow-xl pr-4 md:pr-6 py-2 md:py-3">
               
               {/* MINI LOGO (Mobile Only) */}
-              <div className="flex items-center gap-2 ml-3">
-                <img src="/Tauzand.png" alt="logo" className="md:hidden h-7 w-7 rounded-lg" />
+              <div className="flex items-center gap-3 ml-2">
+                <img src="/tauzand.png" alt="logo" className="md:hidden h-10 w-10 rounded-lg" />
                 <Link href="/" className="text-[#0d2440] kaushan-script-regular text-2xl md:text-4xl font-bold">
                   Tauzand.in
                 </Link>

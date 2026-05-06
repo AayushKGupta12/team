@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactCompiler: true,
+  trailingSlash: false,
 
   // SEO: Redirect non-www to www for consistency
   async redirects() {
@@ -40,6 +41,10 @@ const nextConfig = {
           {
             key: 'Referrer-Policy',
             value: 'origin-when-cross-origin'
+          },
+          { 
+            key: 'Permissions-Policy',
+            value: 'geolocation=()'
           },
         ],
       },

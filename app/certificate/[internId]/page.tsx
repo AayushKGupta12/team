@@ -58,6 +58,11 @@ const today = new Date().toLocaleDateString("en-IN", {
   year: "numeric", month: "long", day: "numeric",
 });
 
+/** Issue date formatted for the certificate */
+const issueDate = new Date().toLocaleDateString("en-IN", {
+  year: "numeric", month: "long", day: "numeric",
+});
+
 const STEPS = [
   { key: "is_validated"          as const, label: "Profile Validated"  },
   { key: "is_project_submitted"  as const, label: "Project Submitted"  },
@@ -71,18 +76,7 @@ const STAGE_HINT: Record<string, { text: string; color: string }> = {
   project_submitted:  { text: "Project received — under review by our team.",                  color: "#8b5cf6" },
   approved:           { text: "Project approved! Complete payment to unlock your certificate.", color: "#f59e0b" },
   payment_pending:    { text: "Payment is being processed.",                                    color: "#f59e0b" },
-  completed:          { text: "Certificate issued !",                     color: "#16a34a" },
-};
-
-const DIFF_BG: Record<string, string> = {
-  easy: "#dcfce7", basic: "#dcfce7",
-  medium: "#fef9c3", intermediate: "#fef9c3",
-  hard: "#fee2e2", advanced: "#fee2e2",
-};
-const DIFF_FG: Record<string, string> = {
-  easy: "#15803d", basic: "#15803d",
-  medium: "#92400e", intermediate: "#92400e",
-  hard: "#991b1b", advanced: "#991b1b",
+  completed:          { text: "Certificate issued!",                                            color: "#16a34a" },
 };
 
 /* ─────────────────────────────────
@@ -120,7 +114,7 @@ export default function CertificatePage() {
   /* ── Generate QR pointing to this certificate's URL ── */
   useEffect(() => {
     if (!internId) return;
-    QRCode.toDataURL(`https://vfound.in/certificate/${internId}`, {
+    QRCode.toDataURL(`https://tauzand.in/certificate/${internId}`, {
       width: 200,
       margin: 1,
       color: { dark: "#1e40af", light: "#ffffff" },
@@ -155,14 +149,14 @@ export default function CertificatePage() {
       const imgH  = canvas.height;
       const pdf   = new jsPDF(imgW > imgH ? "landscape" : "portrait", "pt", [imgW / 3, imgH / 3]);
       pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0, imgW / 3, imgH / 3);
-      pdf.save(`VFound-Certificate-${intern.intern_id}.pdf`);
+      pdf.save(`Tauzand-Certificate-${intern.intern_id}.pdf`);
     } finally {
       setDl(false);
     }
   };
 
   const copyLink = () => {
-    navigator.clipboard.writeText(`https://vfound.in/certificate/${intern?.intern_id}`);
+    navigator.clipboard.writeText(`https://tauzand.in/certificate/${intern?.intern_id}`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -175,45 +169,38 @@ export default function CertificatePage() {
   const hint    = STAGE_HINT[intern.status];
 
   const shareOnLinkedIn = async () => {
-  if (!certRef.current || !intern) return;
+    if (!certRef.current || !intern) return;
+    try {
+      const canvas = await html2canvas(certRef.current, {
+        scale: 3,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: "#ffffff",
+      });
 
-  try {
-    // Generate high-quality PNG
-    const canvas = await html2canvas(certRef.current, {
-      scale: 3,
-      useCORS: true,
-      allowTaint: true,
-      backgroundColor: "#ffffff",
-    });
+      const pngUrl = canvas.toDataURL("image/png");
+      const link   = document.createElement("a");
+      link.download = `Tauzand-Certificate-${intern.intern_id}.png`;
+      link.href     = pngUrl;
+      link.click();
 
-    const pngUrl = canvas.toDataURL("image/png");
-
-    // Download PNG
-    const link = document.createElement("a");
-    link.download = `VFound-Certificate-${intern.intern_id}.png`;
-    link.href = pngUrl;
-    link.click();
-
-    // Suggested LinkedIn Post
-    const postText = `🎉 Proud to announce that I have successfully completed my ${fmt(intern.duration)} ${intern.domain} Internship at VFound.in!
+      const postText = `🎉 Proud to announce that I have successfully completed my ${fmt(intern.duration)} ${intern.domain} Internship at Tauzand.in!
 
 I worked on ${intern.project_details?.map((p) => p.title).join(" & ")} and gained valuable real-world experience in modern development practices.
 
-A big thank you to the VFound team for this amazing learning opportunity! 
+A big thank you to the Tauzand team for this amazing learning opportunity!
 
-🔗 View Certificate: https://www.vfound.in/certificate/${intern.intern_id}
+🔗 View Certificate: https://tauzand.in/certificate/${intern.intern_id}
 
-#VFound #Internship #${intern.domain.replace(/\s+/g, '')} #WebDevelopment #CareerGrowth #Certificate #${intern.university.replace(/\s+/g, '')}`;
+#Tauzand #Internship #${intern.domain.replace(/\s+/g, "")} #WebDevelopment #CareerGrowth #Certificate #${intern.university.replace(/\s+/g, "")}`;
 
-    await navigator.clipboard.writeText(postText);
-
-    alert("✅ Certificate PNG downloaded!\n\n📋 Suggested LinkedIn post copied to clipboard.\n\nJust paste it on LinkedIn and attach the downloaded image.");
-
-  } catch (err) {
-    alert("Failed to generate certificate image");
-    console.error(err);
-  }
-};
+      await navigator.clipboard.writeText(postText);
+      alert("✅ Certificate PNG downloaded!\n\n📋 Suggested LinkedIn post copied to clipboard.\n\nJust paste it on LinkedIn and attach the downloaded image.");
+    } catch (err) {
+      alert("Failed to generate certificate image");
+      console.error(err);
+    }
+  };
 
   /* ────────────────────────────────────────────────────────
      RENDER
@@ -225,7 +212,7 @@ A big thank you to the VFound team for this amazing learning opportunity!
         {/* ── Page header ── */}
         <div className="border-b pb-5 mt-20">
           <p className="text-xs text-gray-400 uppercase tracking-widest mb-1">
-            Vfound Internship Program
+            Tauzand Internship & Skill Validation Program
           </p>
           <h1 className="text-2xl font-bold text-gray-900">{fullName}</h1>
           <p className="text-sm text-gray-500 mt-1">
@@ -239,9 +226,9 @@ A big thank you to the VFound team for this amazing learning opportunity!
           <div
             className="flex items-start gap-3 px-4 py-3 rounded-lg border text-sm"
             style={{
-              background:   hint.color + "12",
-              borderColor:  hint.color + "40",
-              color:        "#374151",
+              background:  hint.color + "12",
+              borderColor: hint.color + "40",
+              color:       "#374151",
             }}
           >
             <span style={{ color: hint.color, flexShrink: 0 }}>●</span>
@@ -307,7 +294,7 @@ A big thank you to the VFound team for this amazing learning opportunity!
                   ["Duration",   fmt(intern.duration)],
                   ["University", intern.university],
                   ["Applied",    fmtDate(intern.created_at)],
-                  ["Due Date",   fmtDate(intern.due_date)],
+                  ["Certificate Date",   fmtDate(intern.due_date)],
                   ["Status",     intern.status?.replace(/_/g, " ")],
                 ] as [string, string][]).filter(([, v]) => v).map(([label, value]) => (
                   <tr key={label} className="border-b border-gray-200 last:border-0">
@@ -317,7 +304,6 @@ A big thank you to the VFound team for this amazing learning opportunity!
                 ))}
               </tbody>
             </table>
-
             <div className="flex flex-wrap gap-2 mt-4">
               <Badge ok={intern.is_validated}         yes="Validated"   no="Pending Validation" />
               <Badge ok={intern.is_project_submitted} yes="Submitted"   no="Not Submitted"       neutral />
@@ -326,37 +312,33 @@ A big thank you to the VFound team for this amazing learning opportunity!
           </div>
 
           <div className="border border-gray-300 rounded-xl p-5">
-  <p className="text-xs font-semibold text-gray-700 uppercase tracking-widest mb-4">
-    Project
-  </p>
-  <table className="w-full text-sm">
-    <tbody>
-      {([
-        ["Title",        project?.title],
-        ["Domain",       project?.domain],
-        ["Description",  project?.description],
-        ["Difficulty",   project?.difficulty],
-        ["Performance",  project?.performance_focus],
-        ["Tech Stack",   project?.tech_stack?.join(", ")],
-        ["Focus Areas",  project?.fields?.join(", ")],
-      ] as [string, string | undefined][])
-        .filter(([, v]) => v)
-        .map(([label, value]) => (
-          <tr key={label} className="border-b border-gray-200 last:border-0">
-            <td className="py-2 text-gray-700 font-medium w-28">{label}</td>
-            <td className="py-2 text-gray-800 capitalize">{value}</td>
-          </tr>
-        ))}
-    </tbody>
-    <div className="flex flex-wrap gap-2 mt-4">
-              
-              <Badge ok={intern.is_approved}  yes="Approved"    no="Awaiting Approval"   neutral />
+            <p className="text-xs font-semibold text-gray-700 uppercase tracking-widest mb-4">
+              Project
+            </p>
+            <table className="w-full text-sm">
+              <tbody>
+                {([
+                  ["Title",        project?.title],
+                  ["Description",  project?.description],
+                  ["Difficulty",   project?.difficulty],
+                  ["Performance",  project?.performance_focus],
+                  ["Tech Stack",   project?.tech_stack?.join(", ")],
+                  ["Focus Areas",  project?.fields?.join(", ")],
+                ] as [string, string | undefined][])
+                  .filter(([, v]) => v)
+                  .map(([label, value]) => (
+                    <tr key={label} className="border-b border-gray-200 last:border-0">
+                      <td className="py-2 text-gray-700 font-medium w-28">{label}</td>
+                      <td className="py-2 text-gray-800 capitalize">{value}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+            <div className="flex flex-wrap gap-2 mt-4">
+              <Badge ok={intern.is_approved} yes="Approved" no="Awaiting Approval" neutral />
             </div>
-  </table>
-</div>
+          </div>
 
-
-          
         </div>
 
         {/* ── Certificate section ── */}
@@ -381,22 +363,38 @@ A big thank you to the VFound team for this amazing learning opportunity!
 
             {/* ════════════════════════════════════════════════
                 CERTIFICATE CANVAS
-                Template: 637 × 456 px (your Canva export)
-                All overlays positioned as % of container.
-                Put your PNG at /public/certificate-template.png
+                Template: A4 Landscape (1587 × 1122 px approx.)
+                aspectRatio: "297 / 210"  (A4 landscape mm ratio)
+
+                LAYOUT of the Tauzand template (Image 1):
+                  • Dark navy panel  : left 0–22 % of width
+                  • Content area     : left 22 % → right edge
+                  • Gold medal badge : top-left corner (part of template image)
+                  • Tauzand logo     : top-right corner (part of template image)
+                  • "CERTIFICATE OF COMPLETION" : top ~12–30 % (template)
+                  • "THIS CERTIFICATE IS PRESENTED TO" : ~35 % (template)
+                  • → NAME overlay   : ~44 %  (dynamic)
+                  • → BODY overlay   : ~54–70 % (dynamic)
+                  • A.K.GUPTA sig    : bottom ~80 % at ~35 % from left (template)
+                  • → ISSUE DATE     : ~81 %, left ~27 % (dynamic)
+                  • → VALIDITY       : ~81 %, center (dynamic)
+                  • → CERT ID        : top 1.5 %, right 1.5 % (dynamic)
+                  • → QR CODE        : bottom-right corner (dynamic)
+
+                Place your new PNG at /public/certificate-template.png
             ════════════════════════════════════════════════ */}
             <div
               ref={certRef}
-              className="relative select-none mx-auto overflow-hidden rounded"
+              className="relative select-none mx-auto overflow-hidden"
               style={{
                 width:       "100%",
-                maxWidth:    "860px",
-                aspectRatio: "637 / 456",   /* exact ratio of the Canva PNG */
+                maxWidth:    "900px",
+                aspectRatio: "297 / 210",   /* A4 landscape */
                 background:  "#fff",
-                boxShadow:   "0 4px 24px rgba(0,0,0,0.12)",
+                boxShadow:   "0 4px 32px rgba(0,0,0,0.18)",
               }}
             >
-              {/* Background template image */}
+              {/* ── Background template image ── */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/certificate-template.png"
@@ -405,80 +403,131 @@ A big thank you to the VFound team for this amazing learning opportunity!
                 crossOrigin="anonymous"
               />
 
-              {/* ── NAME — on the blue underline, centered ── */}
-              {/* y≈215/456 = 47.1%   x=center */}
-              
-              <div
-                className="absolute w-full text-center"
-                style={{
-                  top:        "43%",
-                  left:       "0",
-                  right:      "0",
-                  fontSize:   "clamp(16px, 2.9vw, 32px)",
-                  fontWeight: "700",
-                  fontFamily: "Georgia, 'Times New Roman', serif",
-                  color:      "#111827",
-                  letterSpacing: "0.02em",
-                  lineHeight: "1",
-                }}
-              >
-                {fullName}
-              </div>
+              {/* ══════════════════════════════════════
+                  DYNAMIC OVERLAYS
+              ══════════════════════════════════════ */}
 
-              {/* ── CERTIFICATE DESCRIPTION ── */}
-<div
-  className="absolute w-[80%] text-center mx-auto"
-  style={{
-    top: "52%",
-    left: "10%",
-    right: "10%",
-    fontSize: "clamp(7px, 1.6vw, 15px)",
-    fontFamily: "Georgia, serif",
-    color: "#374151",
-    lineHeight: "1.7",
-  }}
->
-  
-  From <span className="font-semibold">{intern.university}</span> has
-  successfully completed a{" "}
-  <span className="font-medium">{fmt(intern.duration)}</span> internship in{" "}
-  <span className="font-semibold">{intern.domain}</span> at{" "}
-  Vfound.in. During this internship, the intern worked on real world projects involving{" "}
-  <span className="font-semibold">
-    {intern.project_details?.map((p) => p.title).join(", ")}
-  </span>{" "}
-  and demonstrated strong understanding of modern development practices,
-  problem-solving ability, and technical implementation.
-</div>        
-
-              {/* ── DATE — bottom left, above Archana's signature ── */}
-
-              {/* ── CERTIFICATE ID — UP Side ── */}
+              {/* ── CANDIDATE NAME — centred in white area, below "presented to" ── */}
               <div
                 className="absolute"
                 style={{
-                  top:     "1%",
-                  right:   "2%",
-                  fontSize:   "clamp(8px, 1.2vw, 12px)",
-                  fontWeight: "500",
-                  fontFamily: "sans-serif",
-                  color:      "#9ca3af",
-                  letterSpacing: "0.08em",
+                  top:       "40%",
+                  left:      "24%",
+                  right:     "4%",
+                  textAlign: "center",
                 }}
               >
-                ID: {intern.intern_id}
+                {/* Name */}
+                <div style={{
+                  fontSize:      "clamp(15px, 2.6vw, 28px)",
+                  fontWeight:    "700",
+                  fontFamily:    "Georgia, 'Times New Roman', serif",
+                  color:         "#0d1b2e",
+                  letterSpacing: "0.08em",
+                  lineHeight:    "1",
+                }}>
+                  {fullName}
+                </div>
+
+                {/* Centered gold rule */}
+                <div style={{
+                  width:      "60%",
+                  height:     "1.5px",
+                  background: "linear-gradient(to right, transparent, #c9a84c 30%, #c9a84c 70%, transparent)",
+                  margin:     "0 auto",
+                }} />
               </div>
 
-              {/* ── QR CODE — replaces the QR placeholder bottom-left ── */}
-              {/* y≈375/456 = 82%   x≈18/637 = 2.8%  size≈70px ≈ 11% of width */}
+              {/* ── BODY PARAGRAPH ── */}
+
+              <div
+                className="absolute"
+                style={{
+                  top:           "48%",
+                  left:          "28%",
+                  right:         "5%",
+                  textAlign:     "left",
+                  fontSize:      "clamp(6.5px, 1.25vw, 13px)",
+                  fontFamily:    "Georgia, serif",
+                  color:         "#4b5563",
+                  lineHeight:    "1.5",
+                  letterSpacing: "0.01em",
+                }}
+              >
+
+                {/* Opening */}
+                <p style={{ marginBottom: "0.55em" }}>
+                  From{" "}
+                  <span style={{ fontWeight: 700, color: "#0d1b2e" }}>{intern.university}</span>
+                  {" "}has successfully completed{" "}
+                  <span style={{ fontWeight: 700, color: "#0d1b2e" }}>{fmt(intern.duration)}</span>
+                  {" "}Internship Programme in{" "}
+                  <span style={{ fontWeight: 700, color: "#0d1b2e" }}>{intern.domain}</span>
+                  {" "}at{" "}
+                  <span style={{ fontWeight: 700, color: "#0d1b2e" }}>Tauzand.</span>
+                  {intern.project_details?.length > 0 && (
+                  <p>
+                    Project undertaken{" "}
+                    <span style={{ fontWeight: 700, fontStyle: "italic", color: "#0d1b2e" }}>
+                      &ldquo;{intern.project_details.map((p) => p.title).join(", ")}&rdquo;
+                    </span>
+                    {intern.project_details[0]?.description && (
+                      <span style={{ fontStyle: "italic", color: "#6b7280" }}>
+                        {" "}  {intern.project_details[0].description}
+                      </span>
+                    )}
+
+                    {/* Performance & focus */}
+                  <p>
+                    {intern.project_details[0]?.performance_focus && (
+                      <>
+                        Focus area - {" "}
+                        <span style={{ fontWeight: 600, color: "#0d1b2e" }}>
+                          {intern.project_details[0].performance_focus}
+                        </span>
+                        {intern.project_details[0]?.fields?.length > 0 ? ",  specialising in " : "."}
+                      </>
+                    )}
+                    {intern.project_details[0]?.fields?.length > 0 && (
+                      <>
+                        {!intern.project_details[0]?.performance_focus && "Specialised in "}
+                        {intern.project_details[0].fields.slice(0, -1).map((f, i) => (
+                          <span key={i}>
+                            <span style={{ fontWeight: 600, color: "#0d1b2e" }}>{f}</span>
+                            {i < intern.project_details[0].fields.length - 2 ? ", " : ""}
+                          </span>
+                        ))}
+                        {intern.project_details[0].fields.length > 1 && " and "}
+                        <span style={{ fontWeight: 600, color: "#0d1b2e" }}>
+                          {intern.project_details[0].fields.at(-1)}
+                        </span>
+                        .
+                      </>
+                    )}
+                  </p>
+                  </p>
+                )}
+                </p>
+
+                {/* Closing */}
+                <p style={{ marginBottom: 0, fontStyle: "italic", color: "#6b7280", fontSize: "0.93em" }}>
+                  Exhibited strong analytical thinking, sound engineering judgement, and a
+                  consistent commitment to production-quality outcomes.
+                </p>
+              </div>
+
+              {/* ── QR CODE — bottom-right corner ── */}
               {qrSrc && (
                 <div
                   className="absolute"
                   style={{
-                    bottom: "1%",
-                    left:   "1%",
-                    width:  "10%",
+                    bottom:      "6.5%",
+                    right:       "4%",
+                    width:       "8%",
                     aspectRatio: "1",
+                    padding:     "2px",
+                    background:  "#ffffff",
+                    borderRadius:"3px",
                   }}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -486,10 +535,28 @@ A big thank you to the VFound team for this amazing learning opportunity!
                     src={qrSrc}
                     alt="Scan to verify certificate"
                     className="w-full h-full"
-                    style={{ imageRendering: "pixelated" }}
+                    style={{ imageRendering: "pixelated", display: "block" }}
                   />
                 </div>
               )}
+
+              <div
+                className="absolute"
+                style={{
+                  bottom:       "4%",
+                  right:         "4%",
+                  fontSize:      "clamp(6px, 1vw, 10px)",
+                  fontWeight:    "600",
+                  fontFamily:    "sans-serif",
+                  letterSpacing: "0.06em",
+                  textAlign:     "right",
+                  lineHeight:    "1.5",
+                }}
+              >
+                <br />
+                {intern.intern_id}
+              </div>
+
             </div>
             {/* END CERTIFICATE CANVAS */}
 
@@ -522,11 +589,70 @@ A big thank you to the VFound team for this amazing learning opportunity!
               </button>
             </div>
 
-            <p className="mt-3 text-xs text-gray-400">
-              Last view on Vfound · {today}
+            <p className="mt-3 text-md text-gray-700 text-right italic">
+              Last view on Tauzand · {today}
             </p>
           </div>
         )}
+
+       <div className="mt-6 border border-gray-100 rounded-xl bg-gray-200 px-6 py-5">
+          <p className="text-xs font-semibold text-gray-600 uppercase tracking-widest mb-4">
+            About Tauzand Internship Program
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {[
+              {
+                label: "Internship & Skill Validation",
+                desc:  "A structured programme designed to bridge academics and industry through hands-on real-world projects.",
+                href:  "https://tauzand.in/internship",
+              },
+              {
+                label: "221+ Open Source Projects",
+                desc:  "Browse our curated list of 221 projects across every domain — pick what matches your skills and goals.",
+                href:  "https://tauzand.in/internship/project",
+              },
+              {
+                label: "Submit as an Intern",
+                desc:  "Apply, submit your work, and get a dedicated mentor assigned to guide you at every stage.",
+                href:  "https://tauzand.in/internship/userdashboard",
+              },
+              {
+                label: "Validate a Certificate",
+                desc:  "Instantly verify the authenticity of any Tauzand-issued certificate using the certificate ID.",
+                href:  "https://tauzand.in/internship/validate",
+              },
+            ].map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col gap-1 p-4 rounded-lg bg-white border border-gray-100
+                  hover:border-blue-200 hover:shadow-sm transition-all"
+              >
+                <span className="text-sm font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
+                  {item.label} ↗
+                </span>
+                <span className="text-xs text-gray-500 leading-relaxed">
+                  {item.desc}
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+            <div className="mt-6 text-xs text-gray-500 italic gap-10 flex flex-wrap justify-end">
+              terms and condition apply. Tauzand reserves the right to modify the internship program structure, project offerings, and certificate criteria at any time without prior notice. By participating in the program, interns agree to adhere to all guidelines and requirements set forth by Tauzand. Certificates are issued based on successful completion of assigned projects and fulfillment of program requirements, as determined by Tauzand's evaluation process. <br/>
+              <a href="https://www.tauzand.in/terms-of-use" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                Terms of Use 
+              </a> 
+              <a href="https://www.tauzand.in/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                Privacy Policy
+              </a>
+              <a href="https://www.tauzand.in/refund-policy" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                Refund Policy
+              </a>
+            </div>
 
       </div>
     </div>

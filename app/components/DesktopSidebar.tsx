@@ -66,16 +66,22 @@ export default function DesktopSidebar({
         <div className="h-20 flex items-center justify-center">
           {collapsed ? (
             <a href="/">
-              <div className="w-13 h-13 bg-[#0d2440] rounded-lg flex items-center justify-center font-bold text-[#e7f0fa] shadow-md mt-5">
-                <img src="/tauzand.png" alt="Logo" className="rounded-3xl"/>
+              <div className="w-13 h-13 bg-[#fff] rounded-lg flex items-center justify-center font-bold text-[#e7f0fa] mt-5">
+                <img
+                  src="/tauzand.png"
+                  alt="Logo"
+                  className="rounded-3xl"
+                />
               </div>
             </a>
           ) : (
             <a href="/">
-              <div className="mt-4 px-3 w-full ">
-                <span className="block text-5xl font-bold kaushan-script-regular text-[#0d2440]">
-                  Tauzand.in
-                </span>
+              <div className="mt-12 px-3 w-full flex justify-center">
+                <img
+                  src="/tauzand.png"
+                  alt="Logo"
+                  className="w-42 h-auto rounded-3xl object-contain"
+                />
               </div>
             </a>
           )}
@@ -119,18 +125,8 @@ export default function DesktopSidebar({
           </AnimatePresence>
         </button>
 
-        {/* TAGLINE */}
-        {!collapsed && (
-          <div className="px-3">
-            <p className="mt-2 ml-3 text-sm text-gray-800">
-              Your AI Developer Builder
-            </p>
-            <hr className="mt-3 text-gray-300"/>
-          </div>
-        )}
-
         {/* SERVICES */}
-        <div className="mt-6 px-2">
+        <div className="mt-14 px-2">
           {!collapsed && (
             <p className="text-xs text-[#0d2440] px-3 mb-2">SERVICES</p>
           )}
