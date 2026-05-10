@@ -754,7 +754,7 @@ const checkRegistration = async (): Promise<boolean> => {
       case 2: return (
         <div className="space-y-4">
           <InputField name="university"      label="University / College" value={form.university}      onChange={handleChange} />
-          <InputField name="course"          label="Course / Major"       value={form.course}          onChange={handleChange} />
+          <InputField name="course"          label="Course ie. BTech in IT"       value={form.course}          onChange={handleChange} />
           <InputField name="graduation_year"
             label={`Expected Graduation Year (${MIN_GRAD_YEAR}-${MAX_GRAD_YEAR})`}
             value={form.graduation_year} onChange={handleChange} />
