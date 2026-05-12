@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   SignedIn,
   SignedOut,
@@ -16,13 +16,15 @@ import {
   Menu,
   Book,
   Chrome,
-  ChevronLeft, 
+  ChevronLeft,
   ChevronRight,
   ChevronDown,
   FileQuestionMark,
   LayoutDashboard,
   ShieldCheck,
-  BookOpen
+  BookOpen,
+  Code,
+  Laptop,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import UsageProvider from "./UsageProvider";
@@ -34,10 +36,18 @@ export default function DesktopSidebar({
   collapsed: boolean;
   setCollapsed: (v: boolean) => void;
 }) {
+  const [mounted, setMounted] = useState(false);
   const [internshipOpen, setInternshipOpen] = useState(false);
   const [analysisOpen, setAnalysisOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
+  const [DSAOpen, setDSAOpen] = useState(false);
   const [newsOpen, setNewsOpen] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   return (
     <>
@@ -134,7 +144,7 @@ export default function DesktopSidebar({
           {/* ANALYSIS */}
           <div className="flex flex-col">
             {!collapsed && (
-              <button 
+              <button
                 onClick={() => setAnalysisOpen(!analysisOpen)}
                 className="group relative flex items-center justify-between w-full gap-3 px-4 py-2 rounded-xs hover:bg-[#7ba4d0] hover:scale-108 text-[#0d2440] transition duration-100 ease-in-out"
               >
@@ -148,7 +158,7 @@ export default function DesktopSidebar({
 
             <AnimatePresence initial={false}>
               {(analysisOpen || collapsed) && (
-                <motion.div 
+                <motion.div
                   initial={collapsed ? { opacity: 1 } : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
@@ -160,11 +170,11 @@ export default function DesktopSidebar({
               )}
             </AnimatePresence>
           </div>
-          
+
           {/* SKILL VALIDATION */}
           <div className="flex flex-col">
             {!collapsed && (
-              <button 
+              <button
                 onClick={() => setInternshipOpen(!internshipOpen)}
                 className="group relative flex items-center justify-between w-full gap-3 px-4 py-2 rounded-xs hover:bg-[#7ba4d0] hover:scale-108 text-[#0d2440] transition duration-100 ease-in-out"
               >
@@ -175,10 +185,10 @@ export default function DesktopSidebar({
                 <ChevronDown size={16} className={`transition-transform ${internshipOpen ? "rotate-180" : ""}`} />
               </button>
             )}
-            
+
             <AnimatePresence initial={false}>
               {(internshipOpen || collapsed) && (
-                <motion.div 
+                <motion.div
                   initial={collapsed ? { opacity: 1 } : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
@@ -193,10 +203,40 @@ export default function DesktopSidebar({
             </AnimatePresence>
           </div>
 
+          {/* DSA */}
+          <div className="flex flex-col">
+            {!collapsed && (
+              <button
+                onClick={() => setDSAOpen(!DSAOpen)}
+                className="group relative flex items-center justify-between w-full gap-3 px-4 py-2 rounded-xs hover:bg-[#7ba4d0] hover:scale-108 text-[#0d2440] transition duration-100 ease-in-out"
+              >
+                <div className="flex items-center gap-3">
+                  <Code size={25} />
+                  <span className="text-sm font-medium">DSA & Sheet's</span>
+                </div>
+                <ChevronDown size={16} className={`transition-transform ${DSAOpen ? "rotate-180" : ""}`} />
+              </button>
+            )}
+
+            <AnimatePresence initial={false}>
+              {(DSAOpen || collapsed) && (
+                <motion.div
+                  initial={collapsed ? { opacity: 1 } : { height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  className={`overflow-hidden flex flex-col ${!collapsed ? "ml-4 border-l border-gray-400" : ""}`}
+                >
+                  <NavItem icon={Laptop} label="Company's DSA" href="/DSA" collapsed={collapsed} isNested />
+                  <NavItem icon={LayoutDashboard} label="DSA Dashboard" href="/DSA/userdashboard" collapsed={collapsed} isNested />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
           {/* TOOLS */}
           <div className="flex flex-col">
             {!collapsed && (
-              <button 
+              <button
                 onClick={() => setToolsOpen(!toolsOpen)}
                 className="group relative flex items-center justify-between w-full gap-3 px-4 py-2 rounded-xs hover:bg-[#7ba4d0] hover:scale-108 text-[#0d2440] transition duration-100 ease-in-out"
               >
@@ -210,7 +250,7 @@ export default function DesktopSidebar({
 
             <AnimatePresence initial={false}>
               {(toolsOpen || collapsed) && (
-                <motion.div 
+                <motion.div
                   initial={collapsed ? { opacity: 1 } : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
@@ -226,7 +266,7 @@ export default function DesktopSidebar({
           {/* NEWS */}
           <div className="flex flex-col">
             {!collapsed && (
-              <button 
+              <button
                 onClick={() => setNewsOpen(!newsOpen)}
                 className="group relative flex items-center justify-between w-full gap-3 px-4 py-2 rounded-xs hover:bg-[#7ba4d0] hover:scale-108 text-[#0d2440] transition duration-100 ease-in-out"
               >
@@ -240,7 +280,7 @@ export default function DesktopSidebar({
 
             <AnimatePresence initial={false}>
               {(newsOpen || collapsed) && (
-                <motion.div 
+                <motion.div
                   initial={collapsed ? { opacity: 1 } : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
@@ -296,7 +336,7 @@ function NavItem({
   label,
   href,
   collapsed,
-  isNested = false
+  isNested = false,
 }: {
   icon: any;
   label: string;
@@ -314,9 +354,9 @@ function NavItem({
             ${isNested && !collapsed ? "ml-2 scale-95 opacity-90" : ""}
             ${collapsed ? "justify-center px-0" : ""}`}
     >
-      <Icon size={(isNested && !collapsed) ? 20 : 25} />
+      <Icon size={isNested && !collapsed ? 20 : 25} />
       {!collapsed && <span className="text-sm font-medium">{label}</span>}
-      
+
       {collapsed && (
         <div className="absolute left-14 bg-[#0d2440] text-white text-lg py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-[500ms] whitespace-nowrap z-[100]">
           {label}

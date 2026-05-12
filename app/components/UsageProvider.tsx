@@ -37,7 +37,7 @@ export default function UsageProvider() {
     <div className="w-[220px] rounded-md border border-[#0d2440]/30 bg-white shadow-sm px-3 py-2">
       {/* Top row */}
       <div className="flex justify-between text-[11px] font-semibold text-[#0d2440] mb-1">
-        <span>{usage.plan.toUpperCase()}</span>
+        <span>{usage.plan?.toUpperCase() ?? "FREE"}</span>
         <span>{usage.used}/{usage.total}</span>
         <span>{percent}% used</span>
       </div>
