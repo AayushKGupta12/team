@@ -35,7 +35,7 @@ const navItems = [
       { label: "Project", href: "/internship/project" },
       { label: "Project Validation", href: "/internship/validate" },
       { label: "DSA", href: "/DSA" },
-      { label: "Company's DSA Sheet", href: "/DSA/it-cheat-sheet" },
+      { label: "Company's DSA Sheet", href: "/DSA/userdashboard" },
       { label: "IT Jobs", href: "/it-jobs" },
       { label: "Blogs", href: "/blog" },
     ]

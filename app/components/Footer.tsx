@@ -13,6 +13,8 @@ export default function Footer() {
     { label: "Cover Letter", href: "/cover-letter" },
     { label: "Skill Certification", href: "/internship/userdashboard" },
     { label: "Internship Validate", href: "/internship/validate" },
+    {label: "Company's DSA", href: "/DSA"},
+    { label: "DSA Sheet", href: "/DSA/userdashboard" },
     { label: "Chrome Extension", href: "/extension" },
     { label: "IT Jobs", href: "/it-jobs" },
     { label: "Blogs", href: "/blog" },
