@@ -11,7 +11,7 @@ const page = () => {
       <h2 className="font-semibold text-xl mt-10 mb-4">Introduction</h2>
 
       <p className="mb-6">
-      This Privacy Policy describes how 8252802866 and its affiliates (collectively "8252802866, we, our, us") 
+      This Privacy Policy describes how Origin and its affiliates (collectively "Origin, we, our, us") 
       collect, use, share, protect or otherwise process your information/ personal data through our website 
       https://www.Tauzand.in/ (hereinafter referred to as Platform). Please note that you may be able to 
       browse certain sections of the Platform without registering with us.We do not offer any product/service 
@@ -73,7 +73,7 @@ const page = () => {
         </li>
 
         <li>
-        If you receive an email, a call from a person/association claiming to be 8252802866 seeking 
+        If you receive an email, a call from a person/association claiming to be Origin seeking 
         any personal data like debit/credit card PIN, net-banking or mobile banking password, we 
         request you to never provide such information.
         </li>

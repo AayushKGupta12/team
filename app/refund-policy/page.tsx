@@ -27,7 +27,7 @@ Cancellations will only be considered if the request is made 1 days of placing t
 cancellation requests may not be entertained if the orders have been communicated to such sellers /
 merchant(s) listed on the Platform and they have initiated the process of shipping them, or the
 product is out for delivery. In such an event, you may choose to reject the product at the doorstep.
-8252802866 does not accept cancellation requests for perishable items like flowers, eatables, etc.
+Origin does not accept cancellation requests for perishable items like flowers, eatables, etc.
 However, the refund / replacement can be made if the user establishes that the quality of the
 product delivered is not good.
 In case of receipt of damaged or defective items, please report to our customer service team. The
@@ -38,7 +38,7 @@ you must bring it to the notice of our customer service within 1 days of receivi
 customer service team after looking into your complaint will take an appropriate decision.
 In case of complaints regarding the products that come with a warranty from the manufacturers,
 please refer the issue to them.
-In case of any refunds approved by 8252802866, it will take 10 days for the refund to be processed
+In case of any refunds approved by Origin, it will take 10 days for the refund to be processed
 to you.
             </li>
 

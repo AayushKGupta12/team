@@ -34,7 +34,7 @@ const page = () => {
         </li>
 
         <li>
-        The Platform is owned by 8252802866, a company incorporated under the Companies Act, 1956 
+        The Platform is owned by Origin, a company incorporated under the Companies Act, 1956 
         with its registered office at Patna (hereinafter referred to as ‘Platform Owner’, 'we', 'us', 'our')..
         </li>
 

@@ -103,7 +103,7 @@ export default function HeroAndAbout() {
               We’re building the future of tech careers in India
             </h2>
             <p className="text-xl text-gray-700 leading-relaxed font-medium">
-              Most job platforms treat you like a resume. We see you as a developer with dreams, gaps, and insane potential. Founded by <span className="text-[#0d2440] font-black underline decoration-[#ffd77a] decoration-4 underline-offset-4">Aayush Kumar Gupta</span>, Developer Builder was born out of a simple frustration: the gap between skill and opportunity.
+              Most job platforms treat you like a resume. We see you as a developer with dreams, gaps, and insane potential. Founded by <span className="text-[#0d2440] font-black underline decoration-[#ffd77a] decoration-4 underline-offset-4">Aayush Gupta</span>, Developer Builder was born out of a simple frustration: the gap between skill and opportunity.
             </p>
             <p className="text-xl text-gray-700 leading-relaxed">
               That’s why we use AI not just to match jobs but to <span className="font-bold text-[#2e5e99]">actually understand your skills</span>, show you exactly what’s missing, give you a clear learning path, and connect you with companies that will fight to hire you.
