@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { useUser } from '@clerk/nextjs';
+import { useClerk } from '@clerk/nextjs';
 
 declare global {
   interface Window { Razorpay: any; }
@@ -9,6 +10,7 @@ declare global {
 
 export default function DSAPayment() {
   const { user } = useUser();
+  const { openSignIn } = useClerk();
 
   // Load Razorpay SDK once
   useEffect(() => {
@@ -21,6 +23,11 @@ export default function DSAPayment() {
 
   async function handlePayment() {
     try {
+
+      if (!user?.id) {
+        openSignIn();
+        return;
+      }
       const orderRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dsa/create-order`, { method: 'POST' });
       const { order } = await orderRes.json();
 
@@ -87,7 +94,7 @@ export default function DSAPayment() {
           onClick={handlePayment} 
           className="group relative flex items-center justify-center gap-3 rounded-2xl bg-slate-900 py-4 px-6 text-sm font-bold text-white transition-all hover:bg-blue-600 hover:shadow-xl hover:shadow-blue-100 active:scale-[0.97]"
         >
-          <span>Get Full Access — ₹89</span>
+          <span>Get Full Access @ ₹89</span>
           <span className="text-slate-400 group-hover:translate-x-1 group-hover:text-white transition-all">→</span>
         </button>
 

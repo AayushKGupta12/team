@@ -14,7 +14,7 @@ const PROBLEMS = [
   {
     icon: Layers3,
     tag: "Company Coverage",
-    title: "62+ Companies",
+    title: "70+ Companies",
     body: "Prepare company-wise with a clean list of hiring brands, so you can jump directly to the path you need.",
     badges: ["Top IT Firms", "Growing List"],
   },

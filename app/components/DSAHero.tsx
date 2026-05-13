@@ -13,7 +13,7 @@ export default function InternshipHero() {
   ];
 
   return (
-    <section className="relative w-full bg-white text-slate-900 overflow-hidden px-15">
+    <section className="relative w-full bg-white text-slate-900 overflow-hidden md:px-15">
       {/* Background Decor */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
         <div className="absolute top-[-10%] right-[-10%] h-[500px] w-[500px] rounded-full bg-blue-50/50 blur-[120px]" />
@@ -54,8 +54,8 @@ export default function InternshipHero() {
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-100 to-transparent rounded-[40px] scale-105 blur-2xl" />
             
             <div className="relative transition-transform duration-500 group-hover:rotate-0">
-              <div className="rounded-[15px] border border-slate-200 bg-white p-3 shadow-[0_40px_100px_rgba(15,23,42,0.12)]">
-                <div className="overflow-hidden rounded-[24px] bg-slate-100 aspect-video lg:aspect-square xl:aspect-video">
+              <div className="rounded-[15px] border border-slate-200 bg-gray-100 p-2 shadow-[0_40px_100px_rgba(15,23,42,0.12)]">
+                <div className="overflow-hidden rounded-[12px] bg-slate-100 aspect-auto lg:aspect-auto xl:aspect-auto">
                   <img
                     src="/DSADashboard.png"
                     alt="Dashboard preview"
@@ -97,7 +97,7 @@ export default function InternshipHero() {
     {/* The "+76 More" Block */}
     <div className="flex items-center justify-center bg-yellow-50 h-24 p-4">
       <span className="text-xl font-bold uppercase tracking-widest text-yellow-500">
-        + 16 More
+        + 59 More
       </span>
     </div>
   </div>

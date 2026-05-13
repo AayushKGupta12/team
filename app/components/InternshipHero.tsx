@@ -33,43 +33,43 @@ export default function InternshipHero() {
             >
               START BUILD TRACK
             </button>
-            <button className="px-8 py-4 border border-slate-200 font-bold text-sm rounded-full hover:bg-slate-50 transition">
+            <button 
+              onClick={() => router.push("/internship/validate")}
+              className="px-8 py-4 border border-slate-200 font-bold text-sm rounded-full hover:bg-slate-50 transition">
               VERIFY CREDENTIAL
             </button>
           </div>
         </div>
 
         {/* Right: Floating Video Frame */}
-        <div className="relative group">
-          <div className="absolute inset-0 bg-slate-400 blur-[80px] rounded-full" />
-          
-          {/* Mobile Toggle (visible only on lg:hidden) */}
-          <button 
-            onClick={() => setIsMuted(!isMuted)}
-            className="lg:hidden absolute top-4 right-4 z-20 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full border border-slate-200 text-[9px] font-bold"
-          >
-            {isMuted ? "🔇 TAP TO UNMUTE" : "🔊 MUTE"}
-          </button>
-
-          <div 
-            className="relative bg-white border border-slate-200 rounded-3xl p-2 shadow-2xl rotate-2 group-hover:rotate-0 transition-all duration-500"
-            onMouseEnter={() => setIsMuted(false)}
-            onMouseLeave={() => setIsMuted(true)}
-          >
-            <div className="aspect-video bg-slate-900 rounded-2xl overflow-hidden">
-              <iframe
-                className="w-full h-full"
-                src={`https://www.youtube.com/embed/n81xhOqcVc8?autoplay=1&${isMuted ? 'mute=1' : 'mute=0'}&loop=1&playlist=n81xhOqcVc8&controls=0&modestbranding=1`}
-                title="Tauzand Internship Preview"
-                allow="autoplay; encrypted-media"
-              />
-            </div>
-            {/* Desktop Hover Hint */}
-            <div className="hidden lg:flex absolute bottom-6 left-6 text-[9px] font-bold text-white uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
-              {isMuted ? "HOVER TO HEAR" : "PLAYING AUDIO"}
+        {/* Right: Visual Frame */}
+          <div className="relative group">
+            {/* Ambient Glow */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-100 to-transparent rounded-[40px] scale-105 blur-2xl" />
+            
+            <div className="relative transition-transform duration-500 group-hover:rotate-0">
+              <div className="rounded-[15px] border border-slate-200 bg-gray-100 p-2 shadow-[0_40px_100px_rgba(15,23,42,0.12)]">
+                <div className="overflow-hidden rounded-[12px] bg-slate-100 aspect-auto lg:aspect-auto xl:aspect-auto">
+                  <img
+                    src="/SampleCertificate.png"
+                    alt="Dashboard preview"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+              
+              {/* Floating Badge */}
+              <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 hidden md:block animate-bounce-slow">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold">✓</div>
+                  <div>
+                    <p className="text-xs font-bold text-slate-900">Validated Credential</p>
+                    <p className="text-[10px] text-slate-400">By Industry Experts</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
       </div>
     </section>
   );
