@@ -462,9 +462,7 @@ A big thank you to the Tauzand team for this amazing learning opportunity!
                   {" "}has successfully completed{" "}
                   <span style={{ fontWeight: 700, color: "#0d1b2e" }}>{fmt(intern.duration)}</span>
                   {" "}Internship Programme in{" "}
-                  <span style={{ fontWeight: 700, color: "#0d1b2e" }}>{intern.domain}</span>
-                  {" "}at{" "}
-                  <span style={{ fontWeight: 700, color: "#0d1b2e" }}>Tauzand.</span>
+                  <span style={{ fontWeight: 700, color: "#0d1b2e" }}>{intern.domain}</span>.
                   {intern.project_details?.length > 0 && (
                   <p>
                     Project undertaken{" "}

@@ -112,18 +112,18 @@ export default function InternshipStatus({ internId: propId, onValidated }: Prop
     }
   };
 
-  const cfg        = data?.status ? STATUS_LABELS[data.status] ?? STATUS_LABELS.pending_validation : null;
+  const cfg      = data?.status ? STATUS_LABELS[data.status] ?? STATUS_LABELS.pending_validation : null;
   const projects   = data?.project_details ?? [];
 
   return (
-    <div className="w-full p-8 space-y-5">
+    <div className="w-full max-w-4xl mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
 
-      {/* Search row */}
-      <div>
-        <label className="block text-md font-semibold uppercase tracking-widest text-gray-800 mb-2">
+      {/* Search Row */}
+      <div className="space-y-2">
+        <label className="block text-sm font-medium text-gray-700 uppercase tracking-wider">
           Intern ID
         </label>
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-3">
           <input
             type="text"
             value={query}
@@ -132,19 +132,19 @@ export default function InternshipStatus({ internId: propId, onValidated }: Prop
             placeholder="e.g. VF2026DS15***"
             readOnly={!!propId}
             className={`flex-1 px-4 py-2.5 bg-gray-50 border rounded-xl text-sm text-gray-900
-              placeholder-gray-300 focus:outline-none focus:border-indigo-400 focus:ring-2
-              focus:ring-indigo-100 transition-all
-              ${propId ? "opacity-70 cursor-default" : "border-gray-200"}`}
+              placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2
+              focus:ring-indigo-100 transition-all w-full
+              ${propId ? "opacity-70 cursor-default border-gray-200" : "border-gray-300"}`}
           />
           <button
             onClick={() => doFetch()}
             disabled={loading}
-            className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm
+            className="w-full sm:w-auto px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm
               font-medium rounded-xl transition-colors shadow-sm disabled:opacity-60
-              flex items-center gap-2 whitespace-nowrap">
+              flex items-center justify-center gap-2 whitespace-nowrap">
             {loading ? (
               <>
-                <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                <svg className="animate-spin w-4 h-4 text-white" viewBox="0 0 24 24" fill="none">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
                 </svg>
@@ -154,35 +154,38 @@ export default function InternshipStatus({ internId: propId, onValidated }: Prop
           </button>
         </div>
         {error && (
-          <p className="mt-2 text-sm text-red-500 flex items-center gap-1.5">
+          <p className="text-sm text-red-600 flex items-center gap-2 mt-1">
             <span>⚠</span> {error}
           </p>
         )}
       </div>
 
-      {/* Result card */}
+      {/* Result Card */}
       {data && (
-        <div className="border border-gray-400 rounded-2xl overflow-hidden">
+        <div className="border border-gray-200 rounded-2xl overflow-hidden bg-white shadow-sm">
 
-          {/* Status banner */}
+          {/* Status Banner */}
           {cfg && (
-            <div className={`flex items-center gap-3 px-5 py-4 border-b ${cfg.bg} ${cfg.ring}`}>
-              <span className={`w-2.5 h-2.5 rounded-full ${cfg.dot} shrink-0 animate-pulse`}/>
-              <div className="flex-1">
-                <p className="text-xs font-semibold uppercase tracking-widest text-gray-950 mb-0.5">Status</p>
-                <p className={`text-base font-semibold ${cfg.color}`}>{cfg.label}</p>
+            <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-5 py-4 border-b ${cfg.bg} ${cfg.ring}`}>
+              <div className="flex items-center gap-3">
+                <span className={`w-2.5 h-2.5 rounded-full ${cfg.dot} shrink-0 animate-pulse`}/>
+                <div>
+                  <p className="text-[11px] font-medium uppercase tracking-wider text-gray-500 mb-0.5">Status</p>
+                  <p className={`text-base font-semibold ${cfg.color}`}>{cfg.label}</p>
+                </div>
               </div>
               {data.intern_id && (
-                <div className="text-right">
-                  <p className="text-sm font-mono font-bold text-gray-700">{data.intern_id}</p>
+                <div className="sm:text-right border-t sm:border-t-0 pt-2 sm:pt-0 border-gray-200/40">
+                  <p className="text-xs text-gray-400 font-medium uppercase tracking-wider mb-0.5">Intern ID</p>
+                  <p className="text-sm font-mono font-medium text-gray-700">{data.intern_id}</p>
                 </div>
               )}
             </div>
           )}
 
-          <div className="p-5 space-y-5">
+          <div className="p-5 space-y-6">
 
-            {/* Applicant */}
+            {/* Applicant Section */}
             {(data.first_name || data.email) && (
               <Section title="Applicant">
                 <Row label="Name"  value={[data.first_name, data.last_name].filter(Boolean).join(" ")} />
@@ -191,7 +194,7 @@ export default function InternshipStatus({ internId: propId, onValidated }: Prop
               </Section>
             )}
 
-            {/* Education */}
+            {/* Education Section */}
             {(data.university || data.course) && (
               <Section title="Education">
                 <Row label="University" value={data.university} />
@@ -201,7 +204,7 @@ export default function InternshipStatus({ internId: propId, onValidated }: Prop
               </Section>
             )}
 
-            {/* Internship details */}
+            {/* Internship Section */}
             {(data.domain || data.duration) && (
               <Section title="Internship">
                 <Row label="Domain"   value={data.domain} />
@@ -211,28 +214,28 @@ export default function InternshipStatus({ internId: propId, onValidated }: Prop
               </Section>
             )}
 
-            {/* Assigned Projects */}
+            {/* Assigned Projects Section */}
             {projects.length > 0 && (
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">
+              <div className="space-y-3">
+                <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">
                   Assigned Project{projects.length > 1 ? "s" : ""}
                 </p>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {projects.map((proj, idx) => (
-                    <div key={proj.id ?? idx} className="bg-gray-50 border border-gray-100 rounded-xl overflow-hidden">
-                      <div className="px-4 py-3 border-b border-gray-100 flex items-start justify-between gap-3">
+                    <div key={proj.id ?? idx} className="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden">
+                      <div className="px-4 py-3.5 border-b border-gray-200 flex flex-col sm:flex-row items-start justify-between gap-3 bg-white">
                         <div className="min-w-0 flex-1">
-                          <p className="font-semibold text-gray-800">
+                          <p className="font-semibold text-gray-800 text-sm sm:text-base">
                             {proj.title ?? "Untitled Project"}
                           </p>
                           {proj.description && (
-                            <p className="text-xs text-gray-700 leading-relaxed mt-1">
+                            <p className="text-xs text-gray-600 leading-relaxed mt-1">
                               {proj.description}
                             </p>
                           )}
                         </div>
                         {proj.id && (
-                          <span className="text-[10px] font-mono text-gray-700 bg-gray-200 border border-gray-300 rounded px-2 py-1.5 shrink-0">
+                          <span className="text-[11px] font-mono font-medium text-gray-600 bg-gray-100 border border-gray-200 rounded-md px-2.5 py-1 shrink-0 self-start sm:self-auto">
                             {proj.id}
                           </span>
                         )}
@@ -250,51 +253,61 @@ export default function InternshipStatus({ internId: propId, onValidated }: Prop
 
           </div>
 
-          {/* Pending notice */}
+          {/* Pending Notice Box */}
           {data.status === "pending_validation" && (
-            <div className="mx-5 mb-5 flex items-start gap-2.5 bg-amber-50 border border-amber-100 rounded-xl px-4 py-3">
-              <span className="text-amber-500 mt-0.5 text-base">⏳</span>
-              <p className="text-sm text-amber-700 leading-relaxed">
-                Your application is under review. <br/>
-                It may take up to 3 business days to validate your details. We appreciate your patience!
-                <br /><br />
-                In the meantime, feel free to explore our <a href="/internship/project" className="underline font-medium text-blue-600">Guide</a> to prepare for your internship journey.
-                <br /><br />
-                If you have any questions, contact us at <a href="mailto:support@Tauzand.in" className="underline font-medium text-blue-600">support@Tauzand.in</a>
-              </p>
+            <div className="mx-5 mb-5 flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3.5">
+              <span className="text-amber-500 text-base shrink-0">⏳</span>
+              <div className="text-sm text-amber-800 space-y-2 leading-relaxed">
+                <p className="font-medium">Your application is under review.</p>
+                <p>It may take up to 3 business days to validate your details. We appreciate your patience!</p>
+                <p>
+                  In the meantime, feel free to explore our{" "}
+                  <a href="/internship/project" className="underline font-medium text-blue-600 hover:text-blue-800 transition-colors">
+                    Guide
+                  </a>{" "}
+                  to prepare for your internship journey.
+                </p>
+                <p className="text-xs pt-1 border-t border-amber-200/60">
+                  Questions? Contact us at{" "}
+                  <a href="mailto:support@Tauzand.in" className="underline font-medium text-blue-600 hover:text-blue-800 transition-colors">
+                    support@Tauzand.in
+                  </a>
+                </p>
+              </div>
             </div>
           )}
         </div>
       )}
 
-      {/* Empty state */}
+      {/* Empty State Box */}
       {fetched && !data && !error && (
-        <div className="text-center py-10 bg-gray-50 rounded-2xl border border-gray-100">
-          <p className="text-3xl mb-2">🔍</p>
-          <p className="font-medium text-gray-700">No application found</p>
-          <p className="text-sm text-gray-400 mt-1">Double-check your Intern ID and try again.</p>
+        <div className="text-center py-12 bg-gray-50 rounded-2xl border border-gray-200 p-4">
+          <p className="text-3xl mb-3">🔍</p>
+          <p className="font-medium text-gray-800 text-sm">No application found</p>
+          <p className="text-xs text-gray-500 mt-1">Double-check your Intern ID and try again.</p>
         </div>
       )}
 
+      {/* Standby Loader */}
       {!fetched && !loading && propId && (
-        <div className="flex items-center justify-center py-10 gap-3">
-          <svg className="animate-spin w-5 h-5 text-indigo-400" viewBox="0 0 24 24" fill="none">
+        <div className="flex items-center justify-center py-12 gap-3">
+          <svg className="animate-spin w-5 h-5 text-indigo-500" viewBox="0 0 24 24" fill="none">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
           </svg>
-          <p className="text-sm text-gray-400">Loading your status…</p>
+          <p className="text-sm text-gray-500 font-medium">Loading your status…</p>
         </div>
       )}
     </div>
   );
 }
 
-/* ── Improved Sub-components for better visibility ── */
+/* ── Refined & Harmonized Sub-components ── */
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div>
-      <p className="text-xs font-semibold uppercase tracking-widest text-gray-950 mb-2">{title}</p>
-      <div className="bg-gray-50 border border-gray-100 rounded-md overflow-hidden">
+    <div className="space-y-2">
+      <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">{title}</p>
+      <div className="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden divide-y divide-gray-200">
         {children}
       </div>
     </div>
@@ -304,11 +317,11 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 function Row({ label, value }: { label: string; value?: string }) {
   if (!value || value === "—") return null;
   return (
-    <div className="flex justify-between items-start px-4 py-3 border-b border-gray-300 last:border-0 gap-4">
-      <span className="text-xs font-medium text-gray-400 uppercase tracking-wider shrink-0 pt-0.5 w-28">
+    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center px-4 py-3 gap-1 sm:gap-4 bg-gray-50">
+      <span className="text-xs font-medium text-gray-400 uppercase tracking-wider sm:w-36 shrink-0">
         {label}
       </span>
-      <span className="text-sm text-gray-700 font-medium flex-1 text-right break-words">
+      <span className="text-sm text-gray-700 font-normal break-all sm:text-right flex-1">
         {value}
       </span>
     </div>
@@ -318,15 +331,15 @@ function Row({ label, value }: { label: string; value?: string }) {
 function TagRow({ label, tags }: { label: string; tags?: string[] }) {
   if (!tags?.length) return null;
   return (
-    <div className="flex items-start justify-between gap-4 px-4 py-3 border-b border-gray-300 last:border-0">
-      <span className="text-xs font-medium text-gray-400 uppercase tracking-wider shrink-0 pt-0.5 w-28">
+    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start px-4 py-3 gap-2 sm:gap-4 bg-gray-50">
+      <span className="text-xs font-medium text-gray-400 uppercase tracking-wider sm:w-36 shrink-0 sm:pt-1">
         {label}
       </span>
-      <div className="flex flex-wrap gap-1.5 justify-end flex-1">
+      <div className="flex flex-wrap gap-1.5 sm:justify-end flex-1">
         {tags.map(tag => (
           <span 
             key={tag}
-            className="font-semibold text-gray-600 bg-amber-100 border border-amber-200 rounded-md px-2.5 py-1 text-sm"
+            className="text-xs font-normal text-gray-700 bg-amber-100 border border-amber-200 rounded-md px-2.5 py-0.5"
           >
             {tag}
           </span>

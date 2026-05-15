@@ -11,6 +11,118 @@ import PaymentInternship from "../../components/PaymentInternship";
 import CertificateGot from "../../components/CertificateGot";
 import UpdateInternDetails from "../../components/UpdateInternDetails";
 
+// ── Payment Safety Bottom Sheet ──────────────────────────
+const PaymentSafetySheet = ({
+  onProceed,
+  onClose,
+  loading,
+}: {
+  onProceed: () => void;
+  onClose: () => void;
+  loading: boolean;
+}) => {
+  useEffect(() => {
+    const timer = setTimeout(() => { onClose(); }, 25000);
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
+  return(
+  <AnimatePresence>
+      {/* Backdrop */}
+      <motion.div
+        key="backdrop"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-md flex items-center justify-center p-4"
+        onClick={onClose}
+      >
+        {/* Modal Window */}
+        <motion.div
+          key="modal"
+          initial={{ scale: 0.95, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.95, opacity: 0 }}
+          transition={{ type: "spring", damping: 30, stiffness: 350 }}
+          className="relative w-full max-w-[440px] bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Progress Countdown Bar */}
+          <div className="absolute top-0 left-0 h-1 bg-gray-100 w-full" />
+          <div className="absolute top-0 left-0 h-1 bg-emerald-500 w-full origin-left animate-[progress_25s_linear_forwards]" />
+
+          <div className="p-6 sm:p-8">
+            {/* Header */}
+            <div className="text-center mb-6">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-emerald-50 mb-3">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#10b981" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                </svg>
+              </div>
+              <h2 className="text-base font-semibold text-gray-900">Secure Payment</h2>
+              <p className="text-xs text-gray-400 mt-1">
+                Please follow these instructions carefully
+              </p>
+            </div>
+
+            {/* Instruction Checklist */}
+            <div className="space-y-2 mb-6">
+              {[
+                { icon: "📶", text: "Stable internet required" },
+                { icon: "📸", text: "Save payment screenshots" },
+                { icon: "⏳", text: "Wait 30s after paying" },
+                { icon: "📋", text: "Note your Transaction ID" },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-lg"
+                >
+                  <span className="text-base shrink-0 grayscale">{item.icon}</span>
+                  <p className="text-sm font-normal text-gray-600">{item.text}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Actions */}
+            <div className="space-y-3">
+              <button
+                onClick={onProceed}
+                disabled={loading}
+                className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+              >
+                {loading ? (
+                  <div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                ) : (
+                  "Proceed to Pay ₹269"
+                )}
+              </button>
+              
+              <p className="text-center text-[11px] text-gray-400">
+                This window will automatically close in 25s
+              </p>
+            </div>
+
+            {/* Gateway Verification footer */}
+            <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-center gap-2 grayscale opacity-50">
+              <span className="text-[10px] text-gray-500 uppercase tracking-wider">Secured by</span>
+              <span className="font-semibold text-sm text-gray-800 tracking-tight">razorpay</span>
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+
+      {/* Embedded Animation Styles */}
+      <style jsx>{`
+        @keyframes progress {
+          from { transform: scaleX(1); }
+          to   { transform: scaleX(0); }
+        }
+      `}</style>
+    </AnimatePresence>
+  );
+};
+// ─────────────────────────────────────────────────────────
+
 type StepId = "apply" | "project" | "status" | "submit" | "payment";
 
 interface InternRecord {
@@ -24,52 +136,58 @@ interface InternRecord {
   is_approved: boolean;
   is_paid: boolean;
   is_completed: boolean;
+  is_registered: boolean;
   assigned_projects?: unknown;
 }
 
 const STEPS: { id: StepId; label: string; sublabel: string; icon: React.ReactNode }[] = [
   {
-    id: "apply", label: "Apply", sublabel: "Submit application",
+    id: "apply",
+    label: "Apply",
+    sublabel: "Submit application",
     icon: (
       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
-        <path strokeLinecap="round" strokeLinejoin="round"
-          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0119 9.414V19a2 2 0 01-2 2z"/>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0119 9.414V19a2 2 0 01-2 2z" />
       </svg>
     ),
   },
   {
-    id: "project", label: "Project", sublabel: "Choose your project",
+    id: "project",
+    label: "Project",
+    sublabel: "Choose your project",
     icon: (
       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
-        <path strokeLinecap="round" strokeLinejoin="round"
-          d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
       </svg>
     ),
   },
   {
-    id: "status", label: "Status", sublabel: "Track progress",
+    id: "status",
+    label: "Status",
+    sublabel: "Track progress",
     icon: (
       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
-        <path strokeLinecap="round" strokeLinejoin="round"
-          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
       </svg>
     ),
   },
   {
-    id: "submit", label: "Submit Now", sublabel: "Upload project",
+    id: "submit",
+    label: "Submit Now",
+    sublabel: "Upload project",
     icon: (
       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
-        <path strokeLinecap="round" strokeLinejoin="round"
-          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
       </svg>
     ),
   },
   {
-    id: "payment", label: "Payment", sublabel: "Get certificate",
+    id: "payment",
+    label: "Payment",
+    sublabel: "Get certificate",
     icon: (
       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
-        <path strokeLinecap="round" strokeLinejoin="round"
-          d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
       </svg>
     ),
   },
@@ -87,45 +205,24 @@ function resolveFromBooleans(data: InternRecord): {
     : data.assigned_projects != null;
 
   if (data.is_completed || data.is_paid) {
-    return {
-      activeStep: "payment",
-      completed: new Set<StepId>(STEP_ORDER)
-    };
+    return { activeStep: "payment", completed: new Set<StepId>(STEP_ORDER) };
   }
   if (data.is_approved) {
-    return {
-      activeStep: "payment",
-      completed: new Set<StepId>(["apply", "project", "status", "submit"])
-    };
+    return { activeStep: "payment", completed: new Set<StepId>(["apply", "project", "status", "submit"]) };
   }
   if (data.is_project_submitted) {
-    return {
-      activeStep: "submit",
-      completed: new Set<StepId>(["apply", "project", "status", "submit"])
-    };
+    return { activeStep: "submit", completed: new Set<StepId>(["apply", "project", "status", "submit"]) };
   }
   if (data.is_validated) {
-    return {
-      activeStep: "submit",
-      completed: new Set<StepId>(["apply", "project", "status"])
-    };
+    return { activeStep: "submit", completed: new Set<StepId>(["apply", "project", "status"]) };
   }
   if (projectSelected) {
-    return {
-      activeStep: "status",
-      completed: new Set<StepId>(["apply", "project"])
-    };
+    return { activeStep: "status", completed: new Set<StepId>(["apply", "project"]) };
   }
   if (data.intern_id) {
-    return {
-      activeStep: "project",
-      completed: new Set<StepId>(["apply"])
-    };
+    return { activeStep: "project", completed: new Set<StepId>(["apply"]) };
   }
-  return {
-    activeStep: "apply",
-    completed: new Set<StepId>()
-  };
+  return { activeStep: "apply", completed: new Set<StepId>() };
 }
 
 /* ═══════════════════════════════════════════
@@ -134,19 +231,27 @@ function resolveFromBooleans(data: InternRecord): {
 export default function InternshipDashboard() {
   const { user, isLoaded } = useUser();
 
-  const [activeStep,    setActiveStep]    = useState<StepId>("apply");
-  const [completed,     setCompleted]     = useState<Set<StepId>>(new Set());
-  const [direction,     setDirection]     = useState(1);
-  const [internId,      setInternId]      = useState("");
-  const [domain,        setDomain]        = useState("");
-  const [intern,        setIntern]        = useState<InternRecord | null>(null);
+  const [activeStep,  setActiveStep]  = useState<StepId>("apply");
+  const [completed,   setCompleted]   = useState<Set<StepId>>(new Set());
+  const [direction,   setDirection]   = useState(1);
+  const [internId,    setInternId]    = useState("");
+  const [domain,      setDomain]      = useState("");
+  const [intern,      setIntern]      = useState<InternRecord | null>(null);
   const isFullyDone = intern?.is_completed && intern?.is_paid;
-  const [restoring,     setRestoring]     = useState(true);
-  const [greeting,      setGreeting]      = useState("Good morning");
-  const [dueDate,       setDueDate]       = useState<string | null>(null);
-  const [sidebarOpen,   setSidebarOpen]   = useState(false);
-  const [showDelete,    setShowDelete]    = useState(false);
-  const [deleting,      setDeleting]      = useState(false);
+  const [restoring,   setRestoring]   = useState(true);
+  const [greeting,    setGreeting]    = useState("Good morning");
+  const [dueDate,     setDueDate]     = useState<string | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showDelete,  setShowDelete]  = useState(false);
+  const [deleting,    setDeleting]    = useState(false);
+
+  // ── Registration / Payment states ──────────────────────
+  const [isRegistered,     setIsRegistered]     = useState<boolean | null>(null);
+  const [regLoading,       setRegLoading]       = useState(false);
+  const [regError,         setRegError]         = useState("");
+  const [showSafetySheet,  setShowSafetySheet]  = useState(false);
+  const [pendingPayAction, setPendingPayAction] = useState<(() => void) | null>(null);
+  // ───────────────────────────────────────────────────────
 
   useEffect(() => {
     const h = new Date().getHours();
@@ -158,24 +263,14 @@ export default function InternshipDashboard() {
     if (!isLoaded) return;
 
     const restore = async () => {
-      if (!user?.id) {
-        setRestoring(false);
-        return;
-      }
+      if (!user?.id) { setRestoring(false); return; }
 
       try {
         const res = await fetch(`${API}/api/internship/by-clerk/${user.id}`);
-        if (res.status === 404 || !res.ok) {
-          setRestoring(false);
-          return;
-        }
+        if (res.status === 404 || !res.ok) { setRestoring(false); return; }
 
         const data: InternRecord = await res.json();
 
-        // ── KEY FIX: if the most recent record is completed, reset the
-        //    dashboard to a fresh "apply" state. ApplyInternship will show
-        //    the "Apply for More Skills" screen automatically because it
-        //    detects the completed record via by-clerk on its own mount.
         if (data.is_completed) {
           setIntern(null);
           setInternId("");
@@ -187,7 +282,6 @@ export default function InternshipDashboard() {
           return;
         }
 
-        // Normal active flow
         const { activeStep: step, completed: done } = resolveFromBooleans(data);
         setIntern(data);
         setInternId(data.intern_id || "");
@@ -195,6 +289,9 @@ export default function InternshipDashboard() {
         if (data.due_date) setDueDate(data.due_date);
         setActiveStep(step);
         setCompleted(done);
+
+        // ── Seed registration status from the record ──
+        setIsRegistered(data.is_registered === true);
 
       } catch (err) {
         console.error(err);
@@ -230,6 +327,135 @@ export default function InternshipDashboard() {
 
     return () => clearInterval(interval);
   }, [intern?.status, intern?.intern_id]);
+
+  /* ── Check registration status from interns table ── */
+  const checkRegistration = async (): Promise<boolean> => {
+    if (!user?.id) return false;
+    try {
+      const res  = await fetch(`${API}/api/registration/status/${user.id}`);
+      const data = await res.json();
+      const paid = data.is_registered === true;
+      setIsRegistered(paid);
+      return paid;
+    } catch {
+      return false;
+    }
+  };
+
+  /* ── Load Razorpay script dynamically ── */
+  const loadRazorpay = (): Promise<boolean> =>
+    new Promise(resolve => {
+      if ((window as any).Razorpay) { resolve(true); return; }
+      const s   = document.createElement("script");
+      s.src     = "https://checkout.razorpay.com/v1/checkout.js";
+      s.onload  = () => resolve(true);
+      s.onerror = () => resolve(false);
+      document.body.appendChild(s);
+    });
+
+  /* ── Full registration + payment flow ── */
+  const handleRegisterAndPay = async () => {
+    if (!user?.id) { setRegError("Please login first."); return; }
+    setRegLoading(true); setRegError("");
+
+    try {
+      const orderRes  = await fetch(`${API}/api/registration/create-order`, {
+        method:  "POST",
+        headers: { "Content-Type": "application/json" },
+        body:    JSON.stringify({ clerk_user_id: user.id }),
+      });
+      const orderData = await orderRes.json();
+
+      if (orderData.already_registered) {
+        setIsRegistered(true);
+        setRegLoading(false);
+        return;
+      }
+      if (!orderRes.ok || !orderData.order_id) {
+        setRegError(orderData.error || "Failed to create order.");
+        setRegLoading(false);
+        return;
+      }
+
+      const loaded = await loadRazorpay();
+      if (!loaded) {
+        setRegError("Payment gateway failed to load. Try again.");
+        setRegLoading(false);
+        return;
+      }
+
+      const options = {
+        key:         orderData.key_id,
+        amount:      orderData.amount,
+        currency:    orderData.currency,
+        order_id:    orderData.order_id,
+        name:        "VFound.in",
+        description: "Internship Registration Fee (One-time, Non-refundable)",
+        prefill: {
+          email:   user.primaryEmailAddress?.emailAddress || "",
+          name:    user.fullName || "",
+          contact: "",
+        },
+        theme: { color: "#2563eb" },
+
+        handler: async (response: {
+          razorpay_order_id: string;
+          razorpay_payment_id: string;
+          razorpay_signature: string;
+        }) => {
+          const verifyRes  = await fetch(`${API}/api/registration/verify-payment`, {
+            method:  "POST",
+            headers: { "Content-Type": "application/json" },
+            body:    JSON.stringify({
+              clerk_user_id:       user.id,
+              intern_id:           internId,
+              razorpay_order_id:   response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature:  response.razorpay_signature,
+            }),
+          });
+          const verifyData = await verifyRes.json();
+
+          if (verifyRes.ok && verifyData.success) {
+            setIsRegistered(true);
+            setRegLoading(false);
+          } else {
+            setIsRegistered(true);
+            setRegLoading(false);
+            alert("Payment received. Verifying in background…");
+          }
+        },
+
+        modal: {
+          ondismiss: () => {
+            setRegError("Payment cancelled. Complete payment to activate your certificate.");
+            setRegLoading(false);
+          },
+        },
+      };
+
+      const rzp = new (window as any).Razorpay(options);
+      rzp.open();
+
+    } catch {
+      setRegError("Something went wrong. Try again.");
+      setRegLoading(false);
+    }
+  };
+
+  /* ── Safety sheet helpers ── */
+  const openSafetySheetThen = (payAction: () => void) => {
+    setPendingPayAction(() => payAction);
+    setShowSafetySheet(true);
+  };
+  const handleSheetProceed = () => {
+    setShowSafetySheet(false);
+    if (pendingPayAction) pendingPayAction();
+  };
+  const handleSheetClose = () => {
+    setShowSafetySheet(false);
+    setPendingPayAction(null);
+  };
 
   /* ── Navigation ── */
   const goToStep = (id: StepId) => {
@@ -268,7 +494,6 @@ export default function InternshipDashboard() {
       const res = await fetch(`${API}/api/internship/by-clerk/${user.id}`);
       if (res.ok) {
         const data: InternRecord = await res.json();
-        // New application — not completed, load normally
         if (!data.is_completed) {
           const { activeStep: step, completed: done } = resolveFromBooleans(data);
           setIntern(data);
@@ -276,6 +501,8 @@ export default function InternshipDashboard() {
           if (data.due_date) setDueDate(data.due_date);
           setActiveStep(step);
           setCompleted(done);
+          // Also seed registration status from the new record
+          setIsRegistered(data.is_registered === true);
         }
       }
     } catch (err) {
@@ -298,6 +525,8 @@ export default function InternshipDashboard() {
       setCompleted(new Set());
       setActiveStep("apply");
       setDirection(1);
+      setIsRegistered(null);
+      setRegError("");
       setShowDelete(false);
     } catch {}
     finally { setDeleting(false); }
@@ -305,55 +534,40 @@ export default function InternshipDashboard() {
 
   /* ── Loading ── */
   if (restoring || !isLoaded) {
-   return (
-  <div className="min-h-screen bg-white flex items-center justify-center font-sans">
-    <div className="text-center w-full max-w-xs">
-      {/* Icon with a Soft Ripple Effect */}
-      <div className="relative w-16 h-16 mx-auto mb-8">
-        <div className="absolute inset-0 bg-blue-400 rounded-md animate-ping opacity-20"></div>
-        <div className="relative w-16 h-16 rounded-md bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-200">
-          <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-          </svg>
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center font-sans">
+        <div className="text-center w-full max-w-xs">
+          <div className="relative w-16 h-16 mx-auto mb-8">
+            <div className="absolute inset-0 bg-blue-400 rounded-md animate-ping opacity-20"></div>
+            <div className="relative w-16 h-16 rounded-md bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-200">
+              <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+          </div>
+          <div className="space-y-3">
+            <h3 className="text-sm font-bold text-slate-900 tracking-tight">Preparing your Workspace</h3>
+            <div className="h-1 w-32 bg-slate-100 rounded-full mx-auto overflow-hidden">
+              <div className="h-full bg-blue-600 rounded-full animate-loading-bar origin-left"></div>
+            </div>
+            <p className="text-[11px] font-medium text-slate-400 uppercase tracking-widest animate-pulse">
+              Verifying Proof of Work…
+            </p>
+          </div>
+          <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-50/50 rounded-full blur-[80px]"></div>
+          </div>
+          <style jsx>{`
+            @keyframes loading-bar {
+              0%   { transform: scaleX(0); }
+              50%  { transform: scaleX(0.7); }
+              100% { transform: scaleX(1); }
+            }
+            .animate-loading-bar { animation: loading-bar 2s ease-in-out infinite; }
+          `}</style>
         </div>
       </div>
-
-      {/* Dynamic Text with an Animated Bar */}
-      <div className="space-y-3">
-        <h3 className="text-sm font-bold text-slate-900 tracking-tight">
-          Preparing your Workspace
-        </h3>
-        
-        {/* Modern Minimalist Progress Bar */}
-        <div className="h-1 w-32 bg-slate-100 rounded-full mx-auto overflow-hidden">
-          <div className="h-full bg-blue-600 rounded-full animate-loading-bar origin-left"></div>
-        </div>
-
-        {/* Micro-Copy: Rotating through system checks */}
-        <p className="text-[11px] font-medium text-slate-400 uppercase tracking-widest animate-pulse">
-          Verifying Proof of Work…
-        </p>
-      </div>
-
-      {/* Decorative background element for the "SaaS" feel */}
-      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-50/50 rounded-full blur-[80px]"></div>
-      </div>
-
-      {/* Add this to your Tailwind CSS/Global Styles */}
-      <style jsx>{`
-        @keyframes loading-bar {
-          0% { transform: scaleX(0); }
-          50% { transform: scaleX(0.7); }
-          100% { transform: scaleX(1); }
-        }
-        .animate-loading-bar {
-          animation: loading-bar 2s ease-in-out infinite;
-        }
-      `}</style>
-    </div>
-  </div>
-);
+    );
   }
 
   const currentIdx  = STEP_ORDER.indexOf(activeStep);
@@ -403,6 +617,7 @@ export default function InternshipDashboard() {
     },
   ];
 
+  // ── Sidebar shared content ────────────────────────────
   const SidebarContent = () => (
     <div className="flex flex-col gap-4">
       <div className="bg-white border border-gray-200 rounded-md p-3">
@@ -433,7 +648,7 @@ export default function InternshipDashboard() {
                   :            "bg-gray-100 text-gray-500"}`}>
                   {isDone ? (
                     <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   ) : step.icon}
                 </div>
@@ -442,8 +657,7 @@ export default function InternshipDashboard() {
                     ${isActive ? "text-white" : isDone ? "text-green-700" : "text-gray-700"}`}>
                     {step.label}
                   </p>
-                  <p className={`text-[11px] truncate
-                    ${isActive ? "text-white/60" : "text-gray-400"}`}>
+                  <p className={`text-[11px] truncate ${isActive ? "text-white/60" : "text-gray-400"}`}>
                     {isDone ? "Completed" : step.sublabel}
                   </p>
                 </div>
@@ -451,7 +665,7 @@ export default function InternshipDashboard() {
                   <svg width="1" height="1" fill="none" viewBox="0 0 24 24"
                     stroke={isDone ? "#86efac" : "#d1d5db"} strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round"
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
                 )}
               </button>
@@ -467,8 +681,10 @@ export default function InternshipDashboard() {
           <span className="text-xs font-bold text-blue-600">{Math.round(progressPct)}%</span>
         </div>
         <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-          <div className="h-full bg-blue-600 rounded-full transition-all duration-700 ease-out"
-            style={{ width: `${Math.max(progressPct, 4)}%` }}/>
+          <div
+            className="h-full bg-blue-600 rounded-full transition-all duration-700 ease-out"
+            style={{ width: `${Math.max(progressPct, 4)}%` }}
+          />
         </div>
         <p className="text-[11px] text-gray-400 mt-2">{completed.size}/{STEPS.length} steps done</p>
       </div>
@@ -477,13 +693,76 @@ export default function InternshipDashboard() {
       <div className="border border-gray-400 rounded-md px-4 py-4">
         <p className="text-[13px] font-semibold text-gray-800 mb-1.5">Need help?</p>
         <p className="text-xs text-gray-600 leading-relaxed">
-          At any time, <span className="font-semibold">if you are unable to access your past applications</span>, you may inform your mentor and then You can fill out a new form. <br /> <span className="font-semibold">Please mention your details:</span> <br />
-           Email <br /> InternID <br /> {" "} Issues faced <br />
+          At any time,{" "}
+          <span className="font-semibold">if you are unable to access your past applications</span>, you may
+          inform your mentor and then You can fill out a new form.{" "}
+          <br />
+          <span className="font-semibold">Please mention your details:</span>
+          <br />
+          Email <br /> InternID <br /> Issues faced <br />
           <a href="mailto:aayushkumargupta.yt.12@gmail.com" className="font-semibold text-blue-800 underline">
             Mail Here.
-          </a>.
+          </a>
+          .
         </p>
       </div>
+
+      {/* ── Registration section — shown only when there's an active (non-completed) internship ── */}
+      {internId && !intern?.is_completed && (
+        <>
+          {/* Not yet paid → show Pay button */}
+          {isRegistered === false && (
+            <button
+              onClick={() => openSafetySheetThen(handleRegisterAndPay)}
+              disabled={regLoading}
+              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-md
+                border border-emerald-300 bg-emerald-50 text-xs font-semibold text-emerald-700
+                hover:bg-emerald-100 transition-colors disabled:opacity-50"
+            >
+              {regLoading ? (
+                <svg className="animate-spin w-3.5 h-3.5" viewBox="0 0 24 24" fill="none">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                </svg>
+              ) : (
+                <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round"
+                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                </svg>
+              )}
+              {regLoading ? "Processing…" : "One time Automation Fee"}
+            </button>
+          )}
+
+          {/* Already paid → show badge */}
+          {isRegistered === true && (
+            <div className="flex items-center justify-center gap-2 w-full py-2.5 rounded-md
+              border border-emerald-200 bg-emerald-50 text-xs font-semibold text-emerald-600">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              Registration Complete
+            </div>
+          )}
+
+          {/* Registration error */}
+          {regError && (
+            <div className="flex items-start gap-2 text-[11px] text-rose-500 bg-rose-50
+              border border-rose-100 rounded-lg px-3 py-2 leading-relaxed">
+              <span className="shrink-0 mt-0.5">⚠</span>
+              <span className="flex-1">{regError}</span>
+              <button
+                onClick={() => setRegError("")}
+                className="shrink-0 text-rose-400 hover:text-rose-600 mt-0.5"
+              >
+                <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          )}
+        </>
+      )}
 
       {/* Permanently Deactivate — only for active (non-completed) internships */}
       {internId && !intern?.is_completed && (
@@ -495,7 +774,7 @@ export default function InternshipDashboard() {
         >
           <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round"
-              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
           </svg>
           Permanently Deactivate Application
         </button>
@@ -505,6 +784,15 @@ export default function InternshipDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+
+      {/* ── Payment Safety Sheet ── */}
+      {showSafetySheet && (
+        <PaymentSafetySheet
+          onProceed={handleSheetProceed}
+          onClose={handleSheetClose}
+          loading={regLoading}
+        />
+      )}
 
       {/* ── Permanently Deactivate confirm popup ── */}
       <AnimatePresence>
@@ -526,10 +814,12 @@ export default function InternshipDashboard() {
                 <div className="w-12 h-12 rounded-md bg-rose-100 flex items-center justify-center mx-auto mb-5">
                   <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#e11d48" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round"
-                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 text-center mb-2">Permanently Deactivate Application?</h3>
+                <h3 className="text-lg font-bold text-gray-900 text-center mb-2">
+                  Permanently Deactivate Application?
+                </h3>
                 <p className="text-sm text-gray-500 text-left leading-relaxed mb-1">
                   This will permanently deactivate your internship application for{" "}
                   <span className="font-semibold text-gray-800">{domain || "this domain"}</span>.
@@ -539,20 +829,24 @@ export default function InternshipDashboard() {
                 </p>
                 <div className="flex gap-3">
                   <button
-                    onClick={() => setShowDelete(false)} disabled={deleting}
+                    onClick={() => setShowDelete(false)}
+                    disabled={deleting}
                     className="flex-1 py-3 rounded-md border border-gray-200 text-sm
-                      font-semibold text-gray-600 hover:bg-gray-50 transition-colors disabled:opacity-50">
+                      font-semibold text-gray-600 hover:bg-gray-50 transition-colors disabled:opacity-50"
+                  >
                     Cancel
                   </button>
                   <button
-                    onClick={handleDelete} disabled={deleting}
+                    onClick={handleDelete}
+                    disabled={deleting}
                     className="flex-1 py-3 rounded-md bg-rose-600 hover:bg-rose-700 text-white
                       text-sm font-semibold transition-colors disabled:opacity-60
-                      flex items-center justify-center gap-2">
+                      flex items-center justify-center gap-2"
+                  >
                     {deleting && (
                       <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
                       </svg>
                     )}
                     {deleting ? "Deactivating…" : "Yes, Deactivate"}
@@ -582,15 +876,17 @@ export default function InternshipDashboard() {
                 <div className="flex items-center gap-2">
                   <div className="w-7 h-7 bg-blue-600 rounded-lg flex items-center justify-center">
                     <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
                   <span className="font-semibold text-sm text-gray-900">Steps</span>
                 </div>
-                <button onClick={() => setSidebarOpen(false)}
-                  className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-200 transition-colors">
+                <button
+                  onClick={() => setSidebarOpen(false)}
+                  className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-200 transition-colors"
+                >
                   <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#6b7280" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
               </div>
@@ -614,11 +910,13 @@ export default function InternshipDashboard() {
                 : "Complete all 5 steps to receive your verified certificate."}
             </p>
           </div>
-          <button onClick={() => setSidebarOpen(true)}
+          <button
+            onClick={() => setSidebarOpen(true)}
             className="lg:hidden flex items-center gap-2 px-3 py-2 bg-white border border-gray-200
-              rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors shrink-0 mt-1">
+              rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors shrink-0 mt-1"
+          >
             <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
             Steps
           </button>
@@ -627,11 +925,14 @@ export default function InternshipDashboard() {
         {/* Stat cards */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
           {statCards.map((s, i) => (
-            <motion.div key={s.label}
-              initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+            <motion.div
+              key={s.label}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
               className={`${s.bg} rounded-md px-4 py-4`}
-              style={{ border: `1px solid ${s.borderHex}33` }}>
+              style={{ border: `1px solid ${s.borderHex}33` }}
+            >
               <p className="text-[12px] font-bold text-gray-500 uppercase tracking-[0.06em] mb-2">{s.label}</p>
               <p className={`font-bold mb-0.5 truncate ${s.textColor} ${(s as { mono?: boolean }).mono ? "font-mono text-xs" : "text-lg"}`}>
                 {s.value}
@@ -679,7 +980,8 @@ export default function InternshipDashboard() {
                 const isActive = activeStep === step.id;
                 const isLocked = !isDone && !isActive && (i === 0 ? false : !completed.has(STEP_ORDER[i - 1]));
                 return (
-                  <button key={step.id}
+                  <button
+                    key={step.id}
                     onClick={() => goToStep(step.id)}
                     disabled={!completed.has(step.id) && activeStep !== step.id}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold
@@ -687,10 +989,11 @@ export default function InternshipDashboard() {
                       ${isActive  ? "bg-blue-600 text-white border-blue-600"
                       : isDone    ? "bg-green-50 text-green-600 border-green-200 opacity-60 cursor-not-allowed"
                       : isLocked  ? "bg-gray-50 text-gray-300 border-gray-100 cursor-not-allowed"
-                      :             "bg-white text-gray-500 border-gray-200"}`}>
+                      :             "bg-white text-gray-500 border-gray-200"}`}
+                  >
                     {isDone && (
                       <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     )}
                     {step.label}
@@ -702,17 +1005,21 @@ export default function InternshipDashboard() {
             {/* Component card */}
             <div className="bg-white border border-gray-200 rounded-md overflow-hidden shadow-sm">
               <div className="h-[3px] bg-gray-100">
-                <div className="h-full bg-blue-600 transition-all duration-700 ease-out"
-                  style={{ width: `${Math.max(progressPct, 4)}%` }}/>
+                <div
+                  className="h-full bg-blue-600 transition-all duration-700 ease-out"
+                  style={{ width: `${Math.max(progressPct, 4)}%` }}
+                />
               </div>
 
               <AnimatePresence mode="wait" custom={direction}>
-                <motion.div key={activeStep} custom={direction}
+                <motion.div
+                  key={activeStep}
+                  custom={direction}
                   initial={{ opacity: 0, x: direction * 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: direction * -20 }}
-                  transition={{ duration: 0.18, ease: "easeInOut" }}>
-
+                  transition={{ duration: 0.18, ease: "easeInOut" }}
+                >
                   {activeStep === "apply" && (
                     <ApplyInternship onSuccess={onApplied} />
                   )}
@@ -743,13 +1050,10 @@ export default function InternshipDashboard() {
                       />
                     ) : (
                       <div className="p-8 text-center">
-                        <p className="text-sm text-red-500">
-                          ⚠ Intern ID not found.
-                        </p>
+                        <p className="text-sm text-red-500">⚠ Intern ID not found.</p>
                       </div>
                     )
                   )}
-
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -758,10 +1062,12 @@ export default function InternshipDashboard() {
             <div className="flex items-center justify-between mt-5">
               <div className="flex gap-1.5 items-center">
                 {STEPS.map(s => (
-                  <div key={s.id} className={`rounded-full transition-all duration-300 h-2
-                    ${activeStep === s.id
-                      ? "w-5 bg-blue-600"
-                      : completed.has(s.id) ? "w-2 bg-green-300" : "w-2 bg-gray-200"}`}
+                  <div
+                    key={s.id}
+                    className={`rounded-full transition-all duration-300 h-2
+                      ${activeStep === s.id
+                        ? "w-5 bg-blue-600"
+                        : completed.has(s.id) ? "w-2 bg-green-300" : "w-2 bg-gray-200"}`}
                   />
                 ))}
               </div>
@@ -777,7 +1083,7 @@ export default function InternshipDashboard() {
               >
                 Next
                 <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
               </button>
             </div>
@@ -786,7 +1092,7 @@ export default function InternshipDashboard() {
         </div>
 
         <div className="mt-20">
-          <UpdateInternDetails/>
+          <UpdateInternDetails />
           <CertificateGot />
         </div>
 
