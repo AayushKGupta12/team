@@ -897,7 +897,7 @@ export default function InternshipDashboard() {
       </AnimatePresence>
 
       {/* ── PAGE ── */}
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-10">
 
         {/* Heading */}
         <div className="flex items-start justify-between mb-8">
@@ -907,7 +907,7 @@ export default function InternshipDashboard() {
             <p className="text-sm text-gray-400 mt-1.5">
               {intern
                 ? "Welcome back : your progress has been restored."
-                : "Complete all 5 steps to receive your verified certificate."}
+                : "Get started by applying to an internship and following the steps to earn your certificate."}
             </p>
           </div>
           <button

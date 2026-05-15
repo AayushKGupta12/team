@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   SignedIn,
   SignedOut,
@@ -25,6 +25,10 @@ import {
   BookOpen,
   Code,
   Laptop,
+  Download,
+  ShieldAlert,
+  DollarSign,
+  UserCheck,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import UsageProvider from "./UsageProvider";
@@ -37,11 +41,15 @@ export default function DesktopSidebar({
   setCollapsed: (v: boolean) => void;
 }) {
   const [mounted, setMounted] = useState(false);
-  const [internshipOpen, setInternshipOpen] = useState(false);
-  const [analysisOpen, setAnalysisOpen] = useState(false);
+  
+  // Dropdown States for expanded sidebar view
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
-  const [DSAOpen, setDSAOpen] = useState(false);
-  const [newsOpen, setNewsOpen] = useState(false);
+  const [researchOpen, setResearchOpen] = useState(false);
+  const [cheatSheetOpen, setCheatSheetOpen] = useState(false);
+  const [updatesOpen, setUpdatesOpen] = useState(false);
+  const [companiesOpen, setCompaniesOpen] = useState(false);
+  const [hiringOpen, setHiringOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -135,176 +143,119 @@ export default function DesktopSidebar({
           </AnimatePresence>
         </button>
 
-        {/* SERVICES */}
-        <div className="mt-14 px-2">
+        {/* SERVICES GROUP */}
+        <div className="mt-14 px-2 flex flex-col gap-1">
           {!collapsed && (
             <p className="text-xs text-[#0d2440] px-3 mb-2">SERVICES</p>
           )}
 
-          {/* ANALYSIS */}
-          <div className="flex flex-col">
-            {!collapsed && (
-              <button
-                onClick={() => setAnalysisOpen(!analysisOpen)}
-                className="group relative flex items-center justify-between w-full gap-3 px-4 py-2 rounded-xs hover:bg-[#7ba4d0] hover:scale-108 text-[#0d2440] transition duration-100 ease-in-out"
-              >
-                <div className="flex items-center gap-3">
-                  <Sparkles size={25} />
-                  <span className="text-sm font-medium">Analysis</span>
-                </div>
-                <ChevronDown size={16} className={`transition-transform ${analysisOpen ? "rotate-180" : ""}`} />
-              </button>
-            )}
+          {/* 1. Services Dropdown */}
+          <CollapseHoldGroup
+            collapsed={collapsed}
+            icon={ShieldCheck}
+            label="Services"
+            isOpen={servicesOpen}
+            setIsOpen={setServicesOpen}
+            items={[
+              { icon: FileQuestionMark, label: "Skill & Internships validation", href: "/internship" },
+              { icon: LayoutDashboard, label: "User_Dashboard", href: "/internship/userdashboard" },
+              { icon: BookOpen, label: "Available Project", href: "/internship/project" },
+              { icon: ShieldCheck, label: "Validate Certificate", href: "/internship/validate" },
+            ]}
+          />
 
-            <AnimatePresence initial={false}>
-              {(analysisOpen || collapsed) && (
-                <motion.div
-                  initial={collapsed ? { opacity: 1 } : { height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  className={`overflow-hidden flex flex-col ${!collapsed ? "ml-4 border-l border-gray-400" : ""}`}
-                >
-                  <NavItem icon={Sparkles} label="Advance Analysis" href="/ai-resume-analyser" collapsed={collapsed} isNested />
-                  <NavItem icon={FileText} label="Cover Letter" href="/cover-letter" collapsed={collapsed} isNested />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+          {/* 2. Tools Dropdown */}
+          <CollapseHoldGroup
+            collapsed={collapsed}
+            icon={Sparkles}
+            label="Tools"
+            isOpen={toolsOpen}
+            setIsOpen={setToolsOpen}
+            items={[
+              { icon: Sparkles, label: "iATS Resume Analysis", href: "/ai-resume-analyser" },
+              { icon: FileText, label: "iCL Cover Letter", href: "/cover-letter" },
+            ]}
+          />
 
-          {/* SKILL VALIDATION */}
-          <div className="flex flex-col">
-            {!collapsed && (
-              <button
-                onClick={() => setInternshipOpen(!internshipOpen)}
-                className="group relative flex items-center justify-between w-full gap-3 px-4 py-2 rounded-xs hover:bg-[#7ba4d0] hover:scale-108 text-[#0d2440] transition duration-100 ease-in-out"
-              >
-                <div className="flex items-center gap-3">
-                  <ShieldCheck size={25} />
-                  <span className="text-sm font-medium">Skill validation</span>
-                </div>
-                <ChevronDown size={16} className={`transition-transform ${internshipOpen ? "rotate-180" : ""}`} />
-              </button>
-            )}
+          {/* 3. Research Agent Dropdown */}
+          <CollapseHoldGroup
+            collapsed={collapsed}
+            icon={Chrome}
+            label="Research Agent"
+            isOpen={researchOpen}
+            setIsOpen={setResearchOpen}
+            items={[
+              { icon: Chrome, label: "Research Extension", href: "/extension" },
+              { icon: Download, label: "Download Extension", href: "https://github.com/AayushKGupta12/Tauzand_extension/archive/refs/heads/main.zip" },
+              { icon: FileText, label: "Documentation", href: "/extension/api-doc" },
+              { icon: ShieldAlert, label: "Term of Use", href: "/term-of-use" },
+            ]}
+          />
 
-            <AnimatePresence initial={false}>
-              {(internshipOpen || collapsed) && (
-                <motion.div
-                  initial={collapsed ? { opacity: 1 } : { height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  className={`overflow-hidden flex flex-col ${!collapsed ? "ml-4 border-l border-gray-400" : ""}`}
-                >
-                  <NavItem icon={FileQuestionMark} label="How it works ?" href="/internship" collapsed={collapsed} isNested />
-                  <NavItem icon={LayoutDashboard} label="Dashboard" href="/internship/userdashboard" collapsed={collapsed} isNested />
-                  <NavItem icon={ShieldCheck} label="Validate" href="/internship/validate" collapsed={collapsed} isNested />
-                  <NavItem icon={BookOpen} label="Project" href="/internship/project" collapsed={collapsed} isNested />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+          {/* 4. Cheat Sheet Dropdown */}
+          <CollapseHoldGroup
+            collapsed={collapsed}
+            icon={Code}
+            label="Cheat Sheet"
+            isOpen={cheatSheetOpen}
+            setIsOpen={setCheatSheetOpen}
+            items={[
+              { icon: Laptop, label: "Company's DSA PYQ", href: "/DSA" },
+              { icon: LayoutDashboard, label: "DSA Dashboard", href: "/DSA/userdashboard" },
+            ]}
+          />
 
-          {/* DSA */}
-          <div className="flex flex-col">
-            {!collapsed && (
-              <button
-                onClick={() => setDSAOpen(!DSAOpen)}
-                className="group relative flex items-center justify-between w-full gap-3 px-4 py-2 rounded-xs hover:bg-[#7ba4d0] hover:scale-108 text-[#0d2440] transition duration-100 ease-in-out"
-              >
-                <div className="flex items-center gap-3">
-                  <Code size={25} />
-                  <span className="text-sm font-medium">DSA & Sheet's</span>
-                </div>
-                <ChevronDown size={16} className={`transition-transform ${DSAOpen ? "rotate-180" : ""}`} />
-              </button>
-            )}
-
-            <AnimatePresence initial={false}>
-              {(DSAOpen || collapsed) && (
-                <motion.div
-                  initial={collapsed ? { opacity: 1 } : { height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  className={`overflow-hidden flex flex-col ${!collapsed ? "ml-4 border-l border-gray-400" : ""}`}
-                >
-                  <NavItem icon={Laptop} label="Company's DSA" href="/DSA" collapsed={collapsed} isNested />
-                  <NavItem icon={LayoutDashboard} label="DSA Dashboard" href="/DSA/userdashboard" collapsed={collapsed} isNested />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* TOOLS */}
-          <div className="flex flex-col">
-            {!collapsed && (
-              <button
-                onClick={() => setToolsOpen(!toolsOpen)}
-                className="group relative flex items-center justify-between w-full gap-3 px-4 py-2 rounded-xs hover:bg-[#7ba4d0] hover:scale-108 text-[#0d2440] transition duration-100 ease-in-out"
-              >
-                <div className="flex items-center gap-3">
-                  <Briefcase size={25} />
-                  <span className="text-sm font-medium">Tools & Jobs</span>
-                </div>
-                <ChevronDown size={16} className={`transition-transform ${toolsOpen ? "rotate-180" : ""}`} />
-              </button>
-            )}
-
-            <AnimatePresence initial={false}>
-              {(toolsOpen || collapsed) && (
-                <motion.div
-                  initial={collapsed ? { opacity: 1 } : { height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  className={`overflow-hidden flex flex-col ${!collapsed ? "ml-4 border-l border-gray-400" : ""}`}
-                >
-                  <NavItem icon={Chrome} label="Extension" href="/extension" collapsed={collapsed} isNested />
-                  <NavItem icon={Briefcase} label="IT Jobs" href="/it-jobs" collapsed={collapsed} isNested />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* NEWS */}
-          <div className="flex flex-col">
-            {!collapsed && (
-              <button
-                onClick={() => setNewsOpen(!newsOpen)}
-                className="group relative flex items-center justify-between w-full gap-3 px-4 py-2 rounded-xs hover:bg-[#7ba4d0] hover:scale-108 text-[#0d2440] transition duration-100 ease-in-out"
-              >
-                <div className="flex items-center gap-3">
-                  <Menu size={25} />
-                  <span className="text-sm font-medium">News</span>
-                </div>
-                <ChevronDown size={16} className={`transition-transform ${newsOpen ? "rotate-180" : ""}`} />
-              </button>
-            )}
-
-            <AnimatePresence initial={false}>
-              {(newsOpen || collapsed) && (
-                <motion.div
-                  initial={collapsed ? { opacity: 1 } : { height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  className={`overflow-hidden flex flex-col ${!collapsed ? "ml-4 border-l border-gray-400" : ""}`}
-                >
-                  <NavItem icon={Menu} label="Blogs" href="/blog" collapsed={collapsed} isNested />
-                  <NavItem icon={Menu} label="News" href="/news" collapsed={collapsed} isNested />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+          {/* 5. Updates & Jobs Dropdown */}
+          <CollapseHoldGroup
+            collapsed={collapsed}
+            icon={Briefcase}
+            label="Updates & Jobs"
+            isOpen={updatesOpen}
+            setIsOpen={setUpdatesOpen}
+            items={[
+              { icon: Briefcase, label: "IT Jobs", href: "/it-jobs" },
+              { icon: Menu, label: "Blogs", href: "/blog" },
+              { icon: Menu, label: "NewsLetter", href: "/news" },
+            ]}
+          />
         </div>
 
-        {/* COMPANY */}
-        <div className="mt-6 px-2 pb-28">
+        {/* COMPANY SECTION GROUP */}
+        <div className="mt-6 px-2 pb-28 flex flex-col gap-1">
           {!collapsed && (
             <p className="text-xs text-[#0d2440] px-3 mb-2">COMPANY</p>
           )}
-          <NavItem icon={Info} label="About Us" href="/about" collapsed={collapsed} />
-          <NavItem icon={Phone} label="Contact us" href="/contact" collapsed={collapsed} />
-          <NavItem icon={Book} label="FAQ" href="/FAQ" collapsed={collapsed} />
+
+          {/* 6. Companies Info Dropdown */}
+          <CollapseHoldGroup
+            collapsed={collapsed}
+            icon={Info}
+            label="Companies info"
+            isOpen={companiesOpen}
+            setIsOpen={setCompaniesOpen}
+            items={[
+              { icon: Info, label: "About us", href: "/about" },
+              { icon: Phone, label: "Contact Us", href: "/contact" },
+              { icon: Book, label: "FAQ's", href: "/FAQ" },
+              { icon: Briefcase, label: "Careers with us", href: "/careers" },
+            ]}
+          />
+
+          {/* 7. We Are Hiring Dropdown */}
+          <CollapseHoldGroup
+            collapsed={collapsed}
+            icon={UserCheck}
+            label="We are Hiring"
+            isOpen={hiringOpen}
+            setIsOpen={setHiringOpen}
+            items={[
+              { icon: Laptop, label: "Technical Roles", href: "https://docs.google.com/forms/d/e/1FAIpQLScUZ5y_RpNN9FXlm5U5ZtGaZuAmOeb_PDwldEUrMG6RO-lRXA/alreadyresponded" },
+              { icon: Briefcase, label: "Non-Technical Roles", href: "https://docs.google.com/forms/d/e/1FAIpQLSe4tiJZCXpelNcGauAiqCDtROksL15gXo9I7V18UyPnUFP7Yw/viewform" },
+            ]}
+          />
         </div>
 
-        {/* BOTTOM */}
+        {/* BOTTOM AUTHENTICATION FOOTER */}
         <div className="mt-auto px-3 pb-4 pt-4 border-t border-yellow-300 bg-[#ffd77a]/90 rounded-t-3xl">
           <SignedIn>
             <div className="flex items-center justify-between">
@@ -326,6 +277,139 @@ export default function DesktopSidebar({
         </div>
       </aside>
     </>
+  );
+}
+
+/* ---------- COMPONENT FOR HOLD-TO-EXPAND DROP-DOWNS ---------- */
+
+interface DropdownItem {
+  icon: any;
+  label: string;
+  href: string;
+}
+
+function CollapseHoldGroup({
+  collapsed,
+  icon: MasterIcon,
+  label,
+  isOpen,
+  setIsOpen,
+  items,
+}: {
+  collapsed: boolean;
+  icon: any;
+  label: string;
+  isOpen: boolean;
+  setIsOpen: (v: boolean) => void;
+  items: DropdownItem[];
+}) {
+  const [isHeld, setIsHeld] = useState(false);
+  const holdTimer = useRef<NodeJS.Timeout | null>(null);
+
+  const handlePointerDown = () => {
+    if (!collapsed) return;
+    // Activates if held down for more than 150ms
+    holdTimer.current = setTimeout(() => {
+      setIsHeld(true);
+    }, 150);
+  };
+
+  const handlePointerUpOrLeave = () => {
+    if (holdTimer.current) clearTimeout(holdTimer.current);
+    setIsHeld(false);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (holdTimer.current) clearTimeout(holdTimer.current);
+    };
+  }, []);
+
+  // Normal rendering when sidebar is expanded
+  if (!collapsed) {
+    return (
+      <div className="flex flex-col">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="group relative flex items-center justify-between w-full gap-3 px-4 py-2 rounded-xs hover:bg-[#7ba4d0] hover:scale-108 text-[#0d2440] transition duration-100 ease-in-out"
+        >
+          <div className="flex items-center gap-3">
+            <MasterIcon size={25} />
+            <span className="text-sm font-medium">{label}</span>
+          </div>
+          <ChevronDown size={16} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
+        </button>
+
+        <AnimatePresence initial={false}>
+          {isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="overflow-hidden flex flex-col ml-4 border-l border-gray-400"
+            >
+              {items.map((item, idx) => (
+                <NavItem key={idx} icon={item.icon} label={item.label} href={item.href} collapsed={collapsed} isNested />
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    );
+  }
+
+  // Collapsed View holding state logic
+  return (
+    <div 
+      className="relative flex justify-center"
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUpOrLeave}
+      onPointerLeave={handlePointerUpOrLeave}
+    >
+      <div className={`group relative flex items-center justify-center px-0 py-2 w-full rounded-xs text-[#0d2440] hover:bg-[#7ba4d0] transition duration-100 ease-in-out cursor-pointer ${isHeld ? 'bg-[#7ba4d0]' : ''}`}>
+        <MasterIcon size={25} />
+
+        {/* Regular Tooltip when not held down */}
+        {!isHeld && (
+          <div className="absolute left-14 bg-[#0d2440] text-white text-lg py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-[500ms] whitespace-nowrap z-[100] pointer-events-none">
+            {label} <span className="text-xs text-gray-400 ml-1">(Hold to preview)</span>
+          </div>
+        )}
+      </div>
+
+      {/* Floating Horizontal Submenu Icons Container upon continuous hold */}
+      <AnimatePresence>
+        {isHeld && (
+          <motion.div
+            initial={{ opacity: 0, x: -10, scale: 0.95 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: -10, scale: 0.95 }}
+            transition={{ duration: 0.15 }}
+            className="absolute left-16 top-0 bg-[#0d2440] p-1.5 rounded-xl shadow-2xl border border-blue-900/40 flex items-center gap-1.5 z-[200]"
+          >
+            <div className="text-[11px] font-bold text-yellow-300 px-2 uppercase border-r border-slate-700 select-none">
+              {label}
+            </div>
+            {items.map((item, idx) => {
+              const SubIcon = item.icon;
+              return (
+                <Link
+                  key={idx}
+                  href={item.href}
+                  className="group/sub relative p-2 rounded-lg bg-slate-800 text-slate-200 hover:bg-[#7ba4d0] hover:text-[#0d2440] transition-colors"
+                >
+                  <SubIcon size={18} />
+                  {/* Floating labels for icons inside floating preview row */}
+                  <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs py-1 px-2 rounded opacity-0 group-hover/sub:opacity-100 transition-opacity duration-150 whitespace-nowrap z-[210] pointer-events-none">
+                    {item.label}
+                  </div>
+                </Link>
+              );
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
@@ -356,12 +440,6 @@ function NavItem({
     >
       <Icon size={isNested && !collapsed ? 20 : 25} />
       {!collapsed && <span className="text-sm font-medium">{label}</span>}
-
-      {collapsed && (
-        <div className="absolute left-14 bg-[#0d2440] text-white text-lg py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-[500ms] whitespace-nowrap z-[100]">
-          {label}
-        </div>
-      )}
     </Link>
   );
 }

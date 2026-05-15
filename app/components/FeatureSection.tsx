@@ -91,6 +91,20 @@ const features = [
     category: "AI Productivity Tools",
     status: "available",
     link: "/extension"
+  },
+  {
+    title : "DSA Dashboard and Company wise Question Bank",
+    description:
+`• Access a comprehensive collection of DSA questions from top companies
+• Practice and improve your problem-solving skills
+• Track your progress and performance over time`,
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    alt: "DSA question bank platform for software engineering interview preparation",
+    icon: GraduationCap,
+    category: "DSA Preparation",
+    status: "available",
+    link: "/DSA"
   }
 ];
 
@@ -272,7 +286,7 @@ export default function FeatureSection() {
             "timeToComplete": "P30D P45D P60D",
             "offers": {
               "@type": "Offer",
-              "price": "249",
+              "price": "269",
               "priceCurrency": "INR",
               "availability": "https://schema.org/InStock"
             }
@@ -327,7 +341,7 @@ export default function FeatureSection() {
                 "name": "Is Tauzand free?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Core tools like resume analysis and cover letter generation are free. The internship program has a nominal fee starting at ₹249."
+                  "text": "Core tools like resume analysis and cover letter generation are free. The internship program has a nominal fee starting at ₹269 as Platform and AI Infrastructre and automation."
                 }
               }
             ]

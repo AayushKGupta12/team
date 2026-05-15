@@ -11,61 +11,82 @@ import {
 } from "@clerk/nextjs";
 
 import {
-  Sparkles,
-  Briefcase,
-  FileText,
-  Building2,
-  Phone,
   Menu,
-  MessageCircle,
 } from "lucide-react";
 
 import UsageProvider from "./UsageProvider";
 
-// Updated NavItems to reflect your Sidebar structure
+// Reorganized NavItems structure to meet your blueprint
 const navItems = [
   { 
     label: "Services", 
     dropdown: [
-      { label: "iATS Analysis", href: "/ai-resume-analyser" },
-      { label: "iCL Cover Letter", href: "/cover-letter" },
-      { label: "Extension", href: "/extension" },
       { label: "Skill & Internships validation", href: "/internship" },
       { label: "User_Dashboard", href: "/internship/userdashboard" },
-      { label: "Project", href: "/internship/project" },
-      { label: "Project Validation", href: "/internship/validate" },
-      { label: "DSA", href: "/DSA" },
-      { label: "Company's DSA Sheet", href: "/DSA/userdashboard" },
-      { label: "IT Jobs", href: "/it-jobs" },
-      { label: "Blogs", href: "/blog" },
+      { label: "Available Project", href: "/internship/project" },
+      { label: "Validate Certificate", href: "/internship/validate" },
     ]
   },
   { 
-    label: "Company", 
+    label: "Tools", 
+    dropdown: [
+      { label: "iATS Resume Analysis", href: "/ai-resume-analyser" },
+      { label: "iCL Cover Letter", href: "/cover-letter" },
+    ]
+  },
+  {
+    label:"Research Agent",
+    dropdown :[
+      { label: "Research Extension", href: "/extension" },
+      { label : "Download Extension", href: "https://github.com/AayushKGupta12/Tauzand_extension/archive/refs/heads/main.zip"},
+      { label: "Documentation", href:"/extension/api-doc"},
+      { label: "Term of Use", href:"/term-of-use"}
+    ]
+  },
+  { 
+    label: "Cheat Sheet", 
+    dropdown: [
+      { label: "Company's DSA PYQ", href: "/DSA" },
+      { label: "DSA Dashboard", href: "/DSA/userdashboard" },
+    ]
+  },
+  { 
+    label: "Updates & Jobs", 
+    dropdown: [
+      { label: "IT Jobs", href: "/it-jobs" },
+      { label: "Blogs", href: "/blog" },
+      { label: "NewsLetter", href: "/news" },
+    ]
+  },
+  { 
+    label: "Companies info", 
     dropdown: [
       { label: "About us", href: "/about" },
       { label: "Contact Us", href: "/contact" },
       { label: "FAQ's", href: "/FAQ" },
       { label: "Careers with us", href: "/careers" },
-      { label: "NewsLetter", href:"/news"},
-      { label: "Pricing", href:"/pricing"},
-
+      { label: "Pricing", href: "/pricing" },
     ]
   },
+  {
+    label: "We are Hiring",
+    dropdown: [
+      { label: "Technical Roles", href: "https://docs.google.com/forms/d/e/1FAIpQLScUZ5y_RpNN9FXlm5U5ZtGaZuAmOeb_PDwldEUrMG6RO-lRXA/alreadyresponded" },
+      { label: "Non-Technical Roles", href: "https://docs.google.com/forms/d/e/1FAIpQLSe4tiJZCXpelNcGauAiqCDtROksL15gXo9I7V18UyPnUFP7Yw/viewform" },
+    ]
+  }
 ];
 
 export default function Navbar(): React.JSX.Element {
   const [open, setOpen] = useState(false);
   const [visible, setVisible] = useState(true);
+  // Track open state for individual category dropdowns in mobile view
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  
   const lastY = useRef(0);
   const ticking = useRef(false);
   const { user } = useUser();
   const pathname = usePathname();
-
-  const shareOnWhatsApp = () => {
-    const text = encodeURIComponent("Check out Tauzand...\nhttps://Tauzand.in");
-    window.open(`https://wa.me/?text=${text}`, "_blank");
-  };
 
   useEffect(() => {
     lastY.current = window.scrollY;
@@ -85,6 +106,10 @@ export default function Navbar(): React.JSX.Element {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const toggleDropdown = (label: string) => {
+    setOpenDropdown(openDropdown === label ? null : label);
+  };
+
   if (pathname === "/sign-in" || pathname === "/sign-up") return null;
 
   return (
@@ -92,11 +117,9 @@ export default function Navbar(): React.JSX.Element {
       {/* ================= DESKTOP & MOBILE TOP NAV ================= */}
       <header className="fixed inset-x-0 top-2 z-40 flex justify-end pointer-events-none">
         <div className={`w-full pointer-events-auto transition-transform duration-300 ${visible ? "translate-y-0" : "-translate-y-32"}`}>
-          {/* Reduced max-width and padding for a sleeker look on mobile */}
           <div className="max-w-110 md:max-w-110 ml-auto px-2 md:px-1">
             <div className="flex items-center justify-between gap-2 md:gap-4 rounded-2xl bg-[#7ba4d0]/10 border border-black/50 backdrop-blur-xl shadow-xl pr-4 md:pr-6 py-2 md:py-3">
               
-              {/* MINI LOGO (Mobile Only) */}
               <div className="flex items-center gap-3 ml-2">
                 <img src="/tauzand.png" alt="logo" className="md:hidden h-10 w-10 rounded-lg" />
                 <Link href="/" className="text-[#0d2440] kaushan-script-regular text-2xl md:text-4xl font-bold">
@@ -121,37 +144,51 @@ export default function Navbar(): React.JSX.Element {
         </div>
       </header>
 
-      {/* ================= MOBILE ICON RAIL (REDUCED SIZE) =================
-      {!open && (
-        <div className="fixed right-1.5 top-1/2 -translate-y-1/2 z-[90] md:hidden">
-          <div className="flex flex-col items-center gap-2.5 bg-white/40 backdrop-blur-xl border border-gray-200 shadow-md rounded-2xl px-1.5 py-3 text-[#0d2440]">
-            <IconLink href="/ai-resume-analyser" icon={<Sparkles size={14} />} active={pathname === "/ai-resume-analyser"} />
-            <IconLink href="/cover-letter" icon={<FileText size={14} />} active={pathname === "/cover-letter"} />
-            <IconLink href="/it-jobs" icon={<Briefcase size={14} />} active={pathname === "/it-jobs"} />
-            <IconLink href="/blog" icon={<FileText size={14} />} active={pathname === "/blog"} />
-            <IconLink href="/contact" icon={<Phone size={14} />} active={pathname === "/contact"} />
-            <button onClick={shareOnWhatsApp} className="p-1.5 text-green-600"><MessageCircle size={14} /></button>
-          </div>
-        </div>
-      )} */}
-
-      {/* ================= MOBILE SIDEBAR ================= */}
+      {/* ================= MOBILE SIDEBAR WITH DROPDOWNS ================= */}
       <div className={`fixed inset-0 z-[99] md:hidden transition-opacity ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
         <div onClick={() => setOpen(false)} className="absolute inset-0 bg-black/40" />
         <aside className={`fixed right-0 inset-y-0 w-2/3 bg-white shadow-md transform transition-transform duration-300 ${open ? "translate-x-0" : "translate-x-full"} p-6 overflow-y-auto`}>
           <button onClick={() => setOpen(false)} className="mb-6 h-8 w-8 rounded bg-[#0d2440] text-white font-bold">✕</button>
 
-          {navItems.map((item) => (
-            <div key={item.label} className="mb-6">
-              <p className="font-bold text-sm uppercase tracking-widest text-gray-400 mb-2">{item.label}</p>
-              {item.dropdown.map((d) => (
-                <Link key={d.href} href={d.href} onClick={() => setOpen(false)} className="flex items-center gap-2 py-2 text-[#0d2440] font-medium border-b border-gray-50 active:bg-blue-50">
-                  <span className="w-1.5 h-1.5 bg-blue-400 rounded-full" /> {/* Sleek indicator */}
-                  {d.label}
-                </Link>
-              ))}
-            </div>
-          ))}
+          <div className="flex flex-col gap-2">
+            {navItems.map((item) => {
+              const isDropdownOpen = openDropdown === item.label;
+              return (
+                <div key={item.label} className="border-b border-gray-100 py-1">
+                  {/* Category Toggle Button */}
+                  <button 
+                    onClick={() => toggleDropdown(item.label)}
+                    className="flex items-center justify-between w-full py-2 text-left text-[#0d2440] font-bold text-sm uppercase tracking-widest"
+                  >
+                    <span>{item.label}</span>
+                    <span className="text-xs text-gray-400">
+                      {isDropdownOpen ? "▲" : "▼"}
+                    </span>
+                  </button>
+                  
+                  {/* Dropdown Items Links Container */}
+                  {isDropdownOpen && (
+                    <div className="pl-2 flex flex-col bg-gray-50/50 rounded-lg mt-1">
+                      {item.dropdown.map((d) => (
+                        <Link 
+                          key={d.href} 
+                          href={d.href} 
+                          onClick={() => {
+                            setOpen(false);
+                            setOpenDropdown(null);
+                          }} 
+                          className="flex items-center gap-2 py-2 text-[#0d2440] font-medium text-sm active:bg-blue-50"
+                        >
+                          <span className="w-1.5 h-1.5 bg-blue-400 rounded-full" />
+                          {d.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
 
           <hr className="bg-gray-300 my-4"/>
 
@@ -172,13 +209,5 @@ export default function Navbar(): React.JSX.Element {
         </aside>
       </div>
     </>
-  );
-}
-
-function IconLink({ href, icon, active }: any) {
-  return (
-    <Link href={href} className={`p-1.5 rounded-lg transition ${active ? "bg-white/60 shadow-sm scale-110" : "hover:bg-black/5"}`}>
-      {icon}
-    </Link>
   );
 }
