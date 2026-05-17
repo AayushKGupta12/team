@@ -29,13 +29,13 @@ export default function InternshipHero() {
           <div className="flex flex-col sm:flex-row gap-4">
             <button 
               onClick={() => router.push("/internship/userdashboard")}
-              className="px-8 py-4 bg-slate-900 text-white font-bold text-sm rounded-full hover:bg-blue-600 transition"
+              className="px-8 py-4 bg-slate-900 text-white font-bold text-sm rounded-full hover:bg-blue-600 transition cursor-pointer"
             >
               START BUILD TRACK
             </button>
             <button 
               onClick={() => router.push("/internship/validate")}
-              className="px-8 py-4 border border-slate-200 font-bold text-sm rounded-full hover:bg-slate-50 transition">
+              className="px-8 py-4 border border-slate-200 font-bold text-sm rounded-full hover:bg-slate-50 transition cursor-pointer">
               VERIFY CREDENTIAL
             </button>
           </div>

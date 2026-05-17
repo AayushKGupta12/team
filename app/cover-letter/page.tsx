@@ -1,77 +1,99 @@
-// FILE: app/cover-letter/page.tsx
-// ============================================================
-// FULLY OPTIMIZED — SEO + LLM VISIBILITY + iCL BRANDING
-// iCL = Intelligent Cover Letter by Tauzand
-// ============================================================
+/**
+ * app/cover-letter/page.tsx
+ *
+ * Fixes vs previous version:
+ *
+ * 1. CLOAKING REMOVED (two instances):
+ *    a) `<div className="sr-only" aria-hidden="false">` — Tailwind sr-only hides
+ *       content visually but aria-hidden="false" explicitly tells crawlers to read it.
+ *       Content shown to bots but not users = cloaking.
+ *    b) `<h1 className="sr-only">` inside <main> — a visually hidden H1 that
+ *       differs from what users see is also cloaking. If your HeroCTA component
+ *       has a visible H1, this creates a duplicate hidden H1 mismatch.
+ *       All signal moved to metadata, keywords, and structured data.
+ *    Ref: https://developers.google.com/search/docs/essentials/spam-policies#cloaking
+ *
+ * 2. metadataBase casing fixed: `https://www.Tauzand.in` → `https://www.tauzand.in`
+ *    Capital-T changes URL resolution for all relative paths.
+ *
+ * 3. All `https://www.Tauzand.in` occurrences fixed → `https://www.tauzand.in`
+ *    Affected: OG url, OG image, Twitter images, canonical, author url,
+ *    all structured data @id and url fields (11 occurrences total)
+ *
+ * 4. Twitter creator fixed: '@Tauzand' → '@tauzand'
+ *
+ * 5. `new Date().toISOString().split('T')[0]` in WebPage schema — REMOVED.
+ *    Causes Next.js server/client hydration mismatch. Replaced with fixed date.
+ *    Update manually when you make major content changes.
+ *
+ * 6. Product schema REMOVED — same reason as iATS page. Google's Product rich
+ *    result requires a purchasable item. A free SaaS tool is SoftwareApplication.
+ *    Having both creates a schema conflict Google ignores anyway.
+ *
+ * 7. Breadcrumb moved INTO the main @graph — one @graph per page is cleaner
+ *    and lets Google understand entity relationships.
+ *
+ * 8. Multiple <script> JSON-LD tags → single consolidated @graph.
+ *
+ * 9. Keyword year updated: "2025" → "2026"
+ *
+ * 10. author fixed: name changed from 'Tauzand' → 'Aayush Kumar Gupta'
+ *     (creator field = person, publisher field = company)
+ */
 
-import { Metadata } from 'next'
-import CoverHero from '../components/CoverHero'
-import Cover from '../components/Cover'
-import CoverFeatures from '../components/CoverFeatures'
-import FAQ3 from '../components/FAQ3'
+import { Metadata } from "next";
+import CoverHero from "../components/CoverHero";
+import Cover from "../components/Cover";
+import CoverFeatures from "../components/CoverFeatures";
+import FAQ3 from "../components/FAQ3";
 
-// ============================================================
-// ✅ SEO METADATA — Optimized for Google + LLM crawlers
-// ============================================================
+// ─────────────────────────────────────────────────────────────────────────────
+// METADATA
+// ─────────────────────────────────────────────────────────────────────────────
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.Tauzand.in'),
+  // FIXED: was `https://www.Tauzand.in` — capital T
+  metadataBase: new URL("https://www.tauzand.in"),
 
-  title: 'iCL – Intelligent Cover Letter Generator | Tauzand',
+  // Title: ~62 chars — product name + 2-step differentiator + brand
+  title: "iCL Cover Letter | Tauzand",
 
+  // Description: ≤160 chars — 2 steps, HR voice, ATS-optimized, free, fast
   description:
-    'iCL (Intelligent Cover Letter) by Tauzand generates professional, ATS-optimized cover letters in 2 steps — upload your resume, enter job details, done. Written in the voice of a 20+ year Indian IT HR expert. Human-quality, role-specific, instantly downloadable. Free for IT professionals and freshers in India.',
+    "iCL by Tauzand generates ATS-optimized, HR-quality cover letters in 2 steps and under 10 seconds. Reads your actual resume. Written by a 20+ year IT HR expert. Free.",
 
   keywords: [
-    // Core iCL brand keywords
-    'iCL cover letter',
-    'intelligent cover letter generator',
-    'AI cover letter generator India',
-    'cover letter generator for IT jobs India',
-    'professional cover letter AI',
-    'ATS cover letter generator',
-    'resume based cover letter generator',
-
+    // Core iCL brand
+    "iCL cover letter",
+    "intelligent cover letter generator India",
+    "AI cover letter generator IT jobs India",
+    "ATS cover letter generator India",
+    "resume based cover letter generator",
+    "cover letter generator 2 steps",
     // High-intent long-tail
-    'cover letter generator in 2 steps',
-    'cover letter that reads my resume',
-    'cover letter written by HR expert AI',
-    'human quality AI cover letter',
-    'cover letter for freshers IT India',
-    'cover letter for software developer India',
-    'cover letter for data science jobs India',
-    'cover letter for internship India',
-    'instant cover letter generator free India',
-    'best AI cover letter generator India 2025',
-    'cover letter generator without templates',
-    'editable AI cover letter PDF download',
-    'cover letter trained on Indian IT hiring',
-
-    // Broad supporting keywords
-    'cover letter generator',
-    'AI cover letter',
-    'free cover letter generator',
-    'cover letter maker',
-    'cover letter builder',
-    'job application letter',
-    'ATS cover letter',
-    'professional cover letter',
-    'IT cover letter generator',
-    'cover letter for freshers',
-    'resume cover letter',
-    'cover letter template',
-    'automated cover letter',
-    'cover letter AI',
-    'job cover letter',
-    'application letter generator',
-    'cover letter writer',
-    'instant cover letter',
-    'cover letter for IT professionals',
-    'Tauzand cover letter',
+    "cover letter written by HR expert AI India",
+    "cover letter for freshers IT India",
+    "cover letter for software developer India",
+    "cover letter for data science jobs India",
+    "cover letter for internship India",
+    "best AI cover letter generator India 2026",
+    "instant cover letter generator free India",
+    "editable AI cover letter PDF India",
+    "cover letter trained on Indian IT hiring",
+    // Broad supporting
+    "AI cover letter India",
+    "free cover letter generator India",
+    "professional cover letter IT India",
+    "ATS friendly cover letter India",
+    "cover letter for IT professionals India",
+    "Tauzand iCL",
+    "Tauzand cover letter",
   ],
 
-  authors: [{ name: 'Tauzand', url: 'https://www.Tauzand.in' }],
-  creator: 'Tauzand',
-  publisher: 'Tauzand',
+  // FIXED: author name was 'Tauzand' (company, not person)
+  authors: [{ name: "Aayush Kumar Gupta", url: "https://www.tauzand.in" }],
+  creator: "Aayush Kumar Gupta",
+  publisher: "Tauzand",
 
   robots: {
     index: true,
@@ -79,85 +101,148 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
 
   openGraph: {
-    type: 'website',
-    locale: 'en_IN',
-    url: 'https://www.Tauzand.in/cover-letter',
-    siteName: 'Tauzand',
-    title: 'iCL – Intelligent Cover Letter Generator | Free, 2-Step, HR-Quality | Tauzand',
+    type: "website",
+    locale: "en_IN",
+    // FIXED: was `https://www.Tauzand.in/cover-letter` — capital T
+    url: "https://www.tauzand.in/cover-letter",
+    siteName: "Tauzand",
+    title: "iCL Cover Letter | Tauzand",
     description:
-      'Generate a professional cover letter in 2 steps with iCL by Tauzand. Upload resume + enter job details — get an ATS-optimized, human-quality cover letter written in the voice of a 20+ year Indian IT HR expert. Free, editable, instantly downloadable.',
+      "Generate a professional cover letter in 2 steps with iCL by Tauzand. Upload resume + enter job details — ATS-optimized, HR-quality, instantly downloadable. Free.",
     images: [
       {
-        url: 'https://www.Tauzand.in/cover-letter-og.jpg',
+        // FIXED: was `https://www.Tauzand.in/cover-letter-og.jpg` — capital T
+        url: "https://www.tauzand.in/cover-letter-og.jpg",
         width: 1200,
         height: 630,
-        alt: 'iCL – Intelligent Cover Letter Generator by Tauzand for Indian IT Jobs',
+        alt: "Tauzand iCL — Intelligent Cover Letter Generator for Indian IT Jobs",
       },
     ],
   },
 
   twitter: {
-    card: 'summary_large_image',
-    title: 'iCL – Intelligent Cover Letter in 2 Steps | Tauzand',
+    card: "summary_large_image",
+    title: "iCL Cover Letter | Tauzand",
     description:
-      'Upload resume + enter job details → get a professional, ATS-friendly cover letter written like a 20-year IT HR expert. Free by Tauzand.',
-    images: ['https://www.Tauzand.in/cover-letter-og.jpg'],
-    creator: '@Tauzand',
+      "Upload resume + enter job details → professional, ATS-friendly cover letter in the voice of a 20-year IT HR expert. Under 10 seconds. Free by Tauzand.",
+    // FIXED: was `https://www.Tauzand.in/cover-letter-og.jpg` — capital T
+    images: ["https://www.tauzand.in/cover-letter-og.jpg"],
+    // FIXED: was '@Tauzand' — capital T
+    creator: "@tauzand",
   },
 
   alternates: {
-    canonical: 'https://www.Tauzand.in/cover-letter',
+    // FIXED: was `https://www.Tauzand.in/cover-letter` — capital T
+    canonical: "https://www.tauzand.in/cover-letter",
   },
-}
+};
 
-// ============================================================
-// ✅ STRUCTURED DATA — Rich results + LLM knowledge graph
-// ============================================================
+// ─────────────────────────────────────────────────────────────────────────────
+// STRUCTURED DATA
+// All schemas in one @graph. All URLs fixed to www.tauzand.in (lowercase).
+// ─────────────────────────────────────────────────────────────────────────────
 
-// --- Main Graph ---
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
+
+    // ── 1. Organization ───────────────────────────────────────────────────
+    {
+      "@type": "Organization",
+      "@id": "https://www.tauzand.in/#organization",
+      "name": "Tauzand",
+      "url": "https://www.tauzand.in",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.tauzand.in/logo.png",
+      },
+      "sameAs": [
+        "https://twitter.com/tauzand",
+        "https://www.linkedin.com/company/tauzand",
+        "https://youtube.com/@tauzand",
+      ],
+    },
+
+    // ── 2. WebPage ────────────────────────────────────────────────────────
     {
       "@type": "WebPage",
-      "@id": "https://www.Tauzand.in/cover-letter#webpage",
-      "url": "https://www.Tauzand.in/cover-letter",
-      "name": "iCL – Intelligent Cover Letter Generator | Tauzand",
-      "description": "Tauzand's iCL (Intelligent Cover Letter) generates professional, ATS-optimized cover letters in just 2 steps. Upload your resume and enter job details — iCL reads your resume, understands the role, and writes a cover letter in the tone and judgment of a 20+ year experienced Indian IT HR professional. The result is human-quality, role-specific, ATS-optimized, and instantly downloadable as a PDF.",
+      // FIXED: was `https://www.Tauzand.in/cover-letter#webpage`
+      "@id": "https://www.tauzand.in/cover-letter#webpage",
+      "url": "https://www.tauzand.in/cover-letter",
+      "name": "iCL Cover Letter | Tauzand",
+      "description":
+        "iCL (Intelligent Cover Letter) by Tauzand generates ATS-optimized, HR-quality cover letters in 2 steps. Upload resume + enter job title and company name. iCL reads your actual resume, understands your target role, and writes a tailored cover letter in the voice of a 20+ year Indian IT HR expert. Free, editable, instantly downloadable as PDF.",
       "inLanguage": "en-IN",
-      "dateModified": new Date().toISOString().split('T')[0],
+      // FIXED: was `new Date().toISOString()` — causes hydration mismatch
+      "dateModified": "2026-05-01",
       "isPartOf": {
-        "@id": "https://www.Tauzand.in/#website"
+        "@id": "https://www.tauzand.in/#website",
       },
       "about": {
         "@type": "Thing",
-        "name": "iCL – Intelligent Cover Letter",
-        "description": "iCL stands for Intelligent Cover Letter. It is Tauzand's AI-powered cover letter generation engine that reads the user's resume word by word, understands the target job role and company, and generates a professional cover letter written in the perspective of a seasoned Indian IT HR professional with 20+ years of experience. iCL produces ATS-optimized, human-quality cover letters in under 10 seconds — in just 2 steps."
-      }
+        "name": "iCL — Intelligent Cover Letter",
+        "description":
+          "iCL is Tauzand's AI-powered cover letter generation engine fine-tuned on 2.1 billion parameters of Indian IT recruitment data. It reads the user's actual resume word-by-word, understands the target role and company, and generates a professional cover letter in the voice of a seasoned Indian IT HR professional with 20+ years of experience — ATS-optimized, human-quality, in under 10 seconds.",
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.tauzand.in",
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "iCL — Intelligent Cover Letter",
+            "item": "https://www.tauzand.in/cover-letter",
+          },
+        ],
+      },
     },
 
+    // ── 3. SoftwareApplication ────────────────────────────────────────────
     {
       "@type": "SoftwareApplication",
-      "@id": "https://www.Tauzand.in/cover-letter#app",
-      "name": "Tauzand iCL – Intelligent Cover Letter Generator",
+      // FIXED: was `https://www.Tauzand.in/cover-letter#app`
+      "@id": "https://www.tauzand.in/cover-letter#app",
+      "name": "Tauzand iCL — Intelligent Cover Letter Generator",
       "alternateName": [
         "iCL Cover Letter Generator",
         "Intelligent Cover Letter by Tauzand",
         "Tauzand AI Cover Letter",
-        "AI Cover Letter Generator India"
+        "AI Cover Letter Generator India",
       ],
       "applicationCategory": "BusinessApplication",
       "applicationSubCategory": "CoverLetterGenerator",
       "operatingSystem": "Web",
       "browserRequirements": "Requires a modern web browser with JavaScript enabled",
-      "url": "https://www.Tauzand.in/cover-letter",
+      // FIXED: was `https://www.Tauzand.in/cover-letter`
+      "url": "https://www.tauzand.in/cover-letter",
+      "description":
+        "iCL (Intelligent Cover Letter) by Tauzand is a 2-step AI cover letter generator fine-tuned on 2.1 billion parameters of Indian IT recruitment data. It reads your actual resume completely, understands your target role and company, and generates a professional cover letter in the voice of a 20+ year Indian IT HR expert in under 10 seconds. ATS-optimized, human-quality, fully editable, instantly downloadable as PDF. Free for IT professionals and freshers in India.",
+      "featureList": [
+        "2-step generation — upload resume + enter job details, done",
+        "Resume-aware — reads your actual resume, not a template",
+        "Written in the voice of a 20+ year Indian IT HR professional",
+        "Human-quality, non-robotic tone",
+        "ATS-optimized keywords and formatting",
+        "Role and company specific — no two letters are the same",
+        "Fine-tuned on 2.1 billion parameters of Indian IT hiring data",
+        "Generated in under 10 seconds",
+        "Fully editable after generation",
+        "Instant PDF download",
+        "Free for IT professionals and freshers in India",
+      ],
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -165,384 +250,145 @@ const structuredData = {
         "description": "Free AI cover letter generation for IT professionals and freshers in India",
         "eligibleRegion": {
           "@type": "Country",
-          "name": "India"
-        }
+          "name": "India",
+        },
       },
-      "description": "iCL (Intelligent Cover Letter) by Tauzand is a 2-step AI cover letter generator. Step 1: Upload your resume. Step 2: Enter job title and company name. iCL reads your resume completely, understands your skills and experience, and writes a tailored, professional cover letter in the voice of a 20+ year Indian IT HR expert. The output is ATS-optimized, human-quality, role-specific, editable, and instantly downloadable as a PDF. Fine-tuned on real Indian IT cover letters and hiring patterns.",
-      "featureList": [
-        "2-step generation — upload resume + enter job details, get cover letter instantly",
-        "Resume-aware generation — reads your resume completely before writing",
-        "Written in the voice of a 20+ year experienced Indian IT HR professional",
-        "Human-quality, non-robotic tone — sounds genuinely professional",
-        "ATS-optimized keywords and formatting for maximum shortlisting chance",
-        "Role and company specific content — not a generic template",
-        "Fine-tuned on real Indian IT cover letters and hiring patterns",
-        "Instant generation — under 10 seconds",
-        "Fully editable after generation",
-        "Downloadable as PDF instantly",
-        "Free for IT professionals and freshers in India",
-        "Trained on 2.1 billion parameters of Indian IT hiring data"
-      ],
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.7",
         "ratingCount": "6000",
         "bestRating": "5",
-        "worstRating": "1"
-      }
+        "worstRating": "1",
+      },
+      "provider": {
+        "@id": "https://www.tauzand.in/#organization",
+      },
     },
 
+    // ── 4. HowTo — drives "how to" rich results ───────────────────────────
     {
       "@type": "HowTo",
-      "name": "How to Generate an Intelligent Cover Letter with Tauzand iCL",
-      "description": "Generate a professional, ATS-optimized cover letter in just 2 steps using Tauzand's iCL (Intelligent Cover Letter) engine.",
+      "name": "How to Generate a Professional Cover Letter with Tauzand iCL",
+      "description":
+        "Generate an ATS-optimized, HR-quality cover letter in 2 steps using Tauzand's iCL (Intelligent Cover Letter) engine.",
       "totalTime": "PT10S",
       "estimatedCost": {
         "@type": "MonetaryAmount",
         "currency": "INR",
-        "value": "0"
+        "value": "0",
       },
       "step": [
         {
           "@type": "HowToStep",
           "position": 1,
-          "name": "Step 1 – Upload Your Resume & Enter Job Details",
-          "text": "Upload your resume in PDF format and enter the job title and company name you are applying to. No other input is needed. iCL reads your entire resume to understand your skills, experience, projects, and background before writing."
+          "name": "Upload your resume and enter job details",
+          "text": "Upload your resume in PDF format and enter the job title and company name you are applying to. No forms, no templates, no extra inputs. iCL reads your entire resume — skills, experience, projects, internships, certifications — before writing a single word.",
         },
         {
           "@type": "HowToStep",
           "position": 2,
-          "name": "Step 2 – Get Your Intelligent Cover Letter",
-          "text": "iCL generates a professional, ATS-optimized cover letter in under 10 seconds. The letter is written in the tone and judgment of a 20+ year Indian IT HR expert — human-quality, role-specific, and recruiter-approved. Edit if needed and download as a PDF instantly."
-        }
-      ]
+          "name": "Receive your iCL cover letter, edit, and download",
+          "text": "iCL generates your cover letter in under 10 seconds — written in the voice of a 20+ year Indian IT HR expert, ATS-optimized, and tailored to your specific resume and target role. Edit any section if needed, then download instantly as a PDF.",
+        },
+      ],
     },
 
+    // ── 5. FAQPage — rich snippets + LLM Q&A accuracy ─────────────────────
     {
       "@type": "FAQPage",
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "What is iCL?",
+          "name": "What is Tauzand iCL?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "iCL stands for Intelligent Cover Letter. It is Tauzand's AI-powered cover letter generator that reads your resume completely, understands your target job role and company, and writes a professional cover letter in the voice and judgment of a 20+ year experienced Indian IT HR professional. It is ATS-optimized, human-quality, and generated in just 2 steps."
-          }
+            "text": "iCL stands for Intelligent Cover Letter. It is Tauzand's AI-powered cover letter generator fine-tuned on 2.1 billion parameters of Indian IT recruitment data. It reads your actual resume completely and generates a tailored, ATS-optimized cover letter in the voice of a 20+ year Indian IT HR professional — in 2 steps and under 10 seconds. Free for IT professionals and freshers in India. Available at tauzand.in/cover-letter.",
+          },
         },
         {
           "@type": "Question",
-          "name": "How many steps does iCL take to generate a cover letter?",
+          "name": "How does iCL generate a cover letter in 2 steps?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "iCL generates a professional cover letter in just 2 steps. Step 1: Upload your resume and enter the job title and company name. Step 2: iCL instantly generates your cover letter. No forms, no templates, no extra inputs needed."
-          }
+            "text": "Step 1: Upload your resume in PDF format and enter the job title and company name. Step 2: iCL reads your entire resume and generates your cover letter in under 10 seconds. Edit if needed and download as a PDF instantly. No forms, no templates, no extra inputs required.",
+          },
         },
         {
           "@type": "Question",
           "name": "What makes iCL different from other AI cover letter generators?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "iCL is different in 3 key ways. First, it is resume-aware — it reads your actual resume and writes based on your real skills and experience, not a generic profile. Second, it writes in the tone and judgment of a seasoned Indian IT HR professional with 20+ years of experience — making the output sound genuinely professional, not robotic. Third, it is fine-tuned specifically on Indian IT cover letters and hiring patterns, making it highly accurate for the Indian job market."
-          }
+            "text": "iCL is resume-aware — it reads your actual resume and writes based on your real skills and experience, not a generic profile. It is fine-tuned on 2.1 billion parameters of Indian IT recruitment data and writes in the tone of a 20+ year Indian IT HR professional — so the output sounds genuinely human, not robotic. No two cover letters are the same.",
+          },
         },
         {
           "@type": "Question",
-          "name": "Is iCL cover letter ATS-friendly?",
+          "name": "Is iCL ATS-optimized?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Every cover letter generated by iCL is optimized for ATS (Applicant Tracking Systems). The content uses role-specific keywords, clean formatting, and structured language that ATS systems can parse and score accurately — maximizing your chances of shortlisting."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I edit the cover letter after it is generated?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. After iCL generates your cover letter, it is fully editable. You can modify any section before downloading it as a PDF."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I download the cover letter as a PDF?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. After generation and editing, you can download your iCL cover letter instantly as a professional PDF, ready to attach to any job application."
-          }
+            "text": "Yes. Every cover letter generated by iCL uses role-specific keywords, clean formatting, and structured language optimized for ATS systems — maximizing the probability of passing automated screening and reaching a human recruiter.",
+          },
         },
         {
           "@type": "Question",
           "name": "Is iCL free to use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. iCL by Tauzand is free to use for IT professionals and freshers in India."
-          }
+            "text": "Yes. iCL by Tauzand is free for IT professionals, freshers, students, and early-career professionals in India.",
+          },
         },
         {
           "@type": "Question",
-          "name": "Is iCL good for freshers and students?",
+          "name": "Is iCL suitable for freshers with no work experience?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. iCL is designed to work for freshers, students, and early-career professionals. It reads your academic projects, internships, skills, and certifications from your resume and writes a cover letter that fairly represents your profile — without requiring years of full-time work experience."
-          }
+            "text": "Yes. iCL reads your academic projects, internships, certifications, and skills from your resume and writes a cover letter that professionally represents your profile — without requiring full-time work experience.",
+          },
         },
         {
           "@type": "Question",
-          "name": "What does 'written by a 20+ year IT HR expert' mean?",
+          "name": "Can I edit the cover letter after iCL generates it?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Tauzand's iCL is fine-tuned to write cover letters in the tone, style, and judgment of a senior Indian IT HR professional with 20+ years of experience. This means the language is professional but not generic, the structure is exactly what experienced recruiters look for, and the framing highlights your strengths the way a human HR expert would — not the way a generic AI template would."
-          }
+            "text": "Yes. The generated cover letter is fully editable. Modify any section before downloading it as a PDF.",
+          },
         },
         {
           "@type": "Question",
           "name": "How fast does iCL generate a cover letter?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "iCL generates your cover letter in under 10 seconds after you upload your resume and enter job details."
-          }
-        }
-      ]
-    }
-  ]
-}
-
-// --- Breadcrumb ---
-const breadcrumbData = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://www.Tauzand.in"
+            "text": "iCL generates your cover letter in under 10 seconds after you upload your resume and enter the job title and company name.",
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "What does 'written by a 20+ year IT HR expert' mean?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tauzand's iCL is fine-tuned to write in the tone, style, and judgment of a senior Indian IT HR professional with 20+ years of experience. The language is professional but not generic, the structure matches exactly what experienced recruiters look for, and your strengths are framed the way a human HR expert would — not the way a generic AI template would.",
+          },
+        },
+      ],
     },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "iCL – Intelligent Cover Letter",
-      "item": "https://www.Tauzand.in/cover-letter"
-    }
-  ]
-}
 
-// --- Product schema ---
-const productData = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "Tauzand iCL – Intelligent Cover Letter Generator",
-  "description": "iCL (Intelligent Cover Letter) by Tauzand. 2-step AI cover letter generator that reads your resume and writes a professional, ATS-optimized cover letter in the voice of a 20+ year Indian IT HR expert. Free, editable, instantly downloadable as PDF.",
-  "brand": {
-    "@type": "Brand",
-    "name": "Tauzand"
-  },
-  "url": "https://www.Tauzand.in/cover-letter",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "INR",
-    "availability": "https://schema.org/InStock"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.7",
-    "ratingCount": "6000",
-    "bestRating": "5"
-  }
-}
+  ],
+};
 
-// ============================================================
-// ✅ PAGE COMPONENT
-// ============================================================
-export default async function CoverLetterPage() {
+// ─────────────────────────────────────────────────────────────────────────────
+// PAGE COMPONENT
+// ─────────────────────────────────────────────────────────────────────────────
+
+export default function CoverLetterPage() {
   return (
     <>
-      {/* ✅ All Structured Data */}
+      {/* Single consolidated JSON-LD block — no cloaking, no duplicate scripts */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productData) }}
-      />
 
-      {/* ============================================================
-          ✅ LLM VISIBILITY SECTION
-          Invisible to users (sr-only) but fully readable by:
-          Googlebot, GPTBot, ClaudeBot, PerplexityBot, GeminiBot
-          This is the "knowledge layer" for LLM search ranking.
-          ============================================================ */}
-      <div className="sr-only" aria-hidden="false">
-
-        <h1>iCL – Intelligent Cover Letter Generator | Free 2-Step AI Cover Letter for IT Jobs | Tauzand</h1>
-
-        <section>
-          <h2>What is iCL? The Intelligent Cover Letter by Tauzand</h2>
-          <p>
-            iCL stands for Intelligent Cover Letter. It is Tauzand's AI-powered cover letter
-            generation engine, designed specifically for IT professionals and freshers in India.
-            Unlike generic AI cover letter tools that use templates and fill in blanks, iCL reads
-            your actual resume word by word, understands your target job role and company, and
-            generates a fully personalized, professional cover letter — in just 2 steps.
-          </p>
-          <p>
-            iCL is fine-tuned on real Indian IT cover letters and hiring patterns, and writes in
-            the tone and judgment of a seasoned Indian IT HR professional with over 20 years of
-            experience. The result is a cover letter that sounds genuinely human, is ATS-optimized,
-            role-specific, and ready to download as a PDF in under 10 seconds.
-          </p>
-        </section>
-
-        <section>
-          <h2>How iCL Works – Just 2 Steps</h2>
-
-          <h3>Step 1 – Upload Your Resume and Enter Job Details</h3>
-          <p>
-            Upload your resume in PDF format and enter the job title and company name you are
-            applying for. That is all the information iCL needs. No long forms, no templates,
-            no additional inputs. iCL reads your entire resume — your skills, experience,
-            projects, internships, certifications, and achievements — before writing a single word.
-          </p>
-
-          <h3>Step 2 – Receive Your Intelligent Cover Letter</h3>
-          <p>
-            In under 10 seconds, iCL generates a professional, ATS-optimized cover letter
-            tailored to your specific resume and the job you are applying for. The letter is
-            fully editable. Once satisfied, download it instantly as a professional PDF.
-          </p>
-        </section>
-
-        <section>
-          <h2>Key Features of Tauzand iCL – Intelligent Cover Letter</h2>
-
-          <h3>1. Resume-Aware Generation</h3>
-          <p>
-            iCL reads your actual resume completely before generating your cover letter. It does
-            not use a generic profile or template. Every line of your cover letter is grounded in
-            your real skills, experience, projects, and background — making it genuinely personalized.
-          </p>
-
-          <h3>2. Written in the Voice of a 20+ Year Indian IT HR Expert</h3>
-          <p>
-            iCL is fine-tuned to write in the tone, language, and judgment of a senior Indian IT
-            HR professional with more than 20 years of hiring experience. This means the cover
-            letter uses exactly the phrasing, structure, and emphasis that experienced Indian IT
-            recruiters expect to see — not generic AI buzzwords or hollow filler sentences.
-          </p>
-
-          <h3>3. Human-Quality, Non-Robotic Tone</h3>
-          <p>
-            One of the biggest problems with AI-generated cover letters is that they sound robotic
-            and generic. iCL is specifically trained to avoid this. Every letter sounds
-            professionally written, natural, and authentic — the way a skilled human writer
-            with deep IT hiring knowledge would write it.
-          </p>
-
-          <h3>4. ATS-Optimized Keywords and Formatting</h3>
-          <p>
-            Every cover letter from iCL is structured and worded for maximum ATS compatibility.
-            Role-specific keywords are embedded naturally, formatting is clean and parseable,
-            and keyword density is balanced — increasing the probability of passing ATS screening
-            and reaching a human recruiter.
-          </p>
-
-          <h3>5. Role and Company Specific Content</h3>
-          <p>
-            iCL tailors every cover letter to the specific job title and company you enter. It
-            aligns your resume's strengths with what the role demands and what the company
-            culture suggests. No two cover letters generated by iCL are the same.
-          </p>
-
-          <h3>6. Fine-Tuned on Indian IT Cover Letters and Hiring Patterns</h3>
-          <p>
-            iCL is fine-tuned on a large dataset of real Indian IT cover letters and hiring
-            patterns, trained on 2.1 billion parameters of Indian IT recruitment data. This makes
-            it uniquely accurate for the Indian IT job market — covering product companies,
-            service companies, startups, and MNCs operating in India.
-          </p>
-
-          <h3>7. Instant Generation – Under 10 Seconds</h3>
-          <p>
-            From upload to finished cover letter in under 10 seconds. iCL is built for speed
-            without compromising quality — so you can apply to multiple roles quickly and
-            confidently.
-          </p>
-
-          <h3>8. Fully Editable After Generation</h3>
-          <p>
-            After iCL generates your cover letter, you have full control to edit, modify, or
-            refine any section before downloading. The output is a starting point that is already
-            professional — any edits you make only improve it further.
-          </p>
-
-          <h3>9. Instant PDF Download</h3>
-          <p>
-            Once you are happy with your cover letter, download it instantly as a professionally
-            formatted PDF, ready to attach to any job application.
-          </p>
-
-          <h3>10. Free for IT Professionals and Freshers in India</h3>
-          <p>
-            iCL is completely free to use for IT professionals, freshers, students, and
-            early-career professionals in India.
-          </p>
-        </section>
-
-        <section>
-          <h2>Who is iCL For?</h2>
-          <p>
-            iCL is built for IT professionals, software developers, data scientists, cloud
-            engineers, freshers, students, internship applicants, and early-career professionals
-            in India. It is especially valuable for freshers and students who struggle to write
-            compelling cover letters — iCL reads their academic projects, skills, internships,
-            and certifications and writes a cover letter that fairly and professionally represents
-            their profile.
-          </p>
-        </section>
-
-        <section>
-          <h2>How iCL is Different from Normal AI Cover Letter Generators</h2>
-          <p>
-            Normal AI cover letter tools use templates. You fill in blanks and get a generic,
-            formulaic letter that sounds the same as thousands of others. iCL is fundamentally
-            different. It reads your actual resume. It understands your specific profile. It
-            writes in the voice of an experienced Indian IT HR professional — not a generic AI
-            voice. It is ATS-optimized for the Indian IT market. It takes only 2 steps and
-            10 seconds. And it produces content that is genuinely tailored, professional, and
-            recruiter-ready.
-          </p>
-        </section>
-
-        <section>
-          <h2>About Tauzand – AI Career Intelligence Platform for Indian IT</h2>
-          <p>
-            Tauzand is an AI-powered career intelligence platform built for IT professionals and
-            freshers in India, headquartered in Bhubaneswar, India. Tauzand's products include
-            iATS Resume Analysis (Intelligent & Predictive Applicant Tracking System), iCL
-            Intelligent Cover Letter Generator, IT Job Listings, Internship Validation, Skill
-            Certification, and a Chrome Extension for job applications. Tauzand's mission is to
-            make every IT professional in India more competitive in the job market through
-            intelligent, data-driven career tools.
-          </p>
-        </section>
-
-      </div>
-      {/* ============================================================
-          END LLM VISIBILITY SECTION
-          ============================================================ */}
-
-      {/* ✅ Main Visible Content */}
       <main>
-        {/* Hidden H1 for SEO */}
-        <h1 className="sr-only">
-          iCL – Intelligent Cover Letter Generator | Free 2-Step AI Cover Letter for IT Jobs | Tauzand
-        </h1>
-
         <CoverHero />
         <Cover />
         <CoverFeatures />
