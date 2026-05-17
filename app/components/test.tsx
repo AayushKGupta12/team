@@ -4,45 +4,45 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 const stats = [
-  { label: "Resume Analysed", value: "740+", color: "text-amber-500" },
-  { label: "Extension Users", value: "1.6k+", color: "text-emerald-500" },
-  { label: "Certifications Earned", value: "900+", color: "text-blue-500" },
-  { label: "Blogs Read Daily", value: "960+", color: "text-purple-500" },
+  { label: "Resumes Analysed", value: "740+", color: "text-amber-500" },
+  { label: "Chrome Extension Users", value: "1.6K+", color: "text-emerald-500" },
+  { label: "Internships Completed", value: "634+", color: "text-blue-500" },
+  { label: "Active Developers", value: "8K+", color: "text-purple-500" },
 ];
 
 const testimonials = [
   {
-    quote: "The advanced resume analysis didn’t just rewrite my CV. It evaluated my technical depth and ATS score.",
+    quote: "The advanced resume analysis didn’t just rewrite my CV — it evaluated my technical depth and gave me a clear ATS score.",
     name: "Riya Kumari",
     role: "Software Engineer",
     company: "Walmart",
   },
   {
-    quote: "The application process felt purpose built for job seekers. Only role relevant insights and verified opportunities.",
+    quote: "The platform felt purpose-built for serious job seekers. I only received role-relevant insights and verified opportunities.",
     name: "Sanu Gupta",
-    role: "Sr Data Scientist",
+    role: "Sr. Data Scientist",
     company: "Databricks",
   },
   {
-    quote: "The two step cover letter builder used my resume data and the job description together. Smart logic.",
+    quote: "The two-step cover letter builder intelligently combined my resume with the job description. Very smart.",
     name: "Shambhavi Kiran",
     role: "Product Manager",
     company: "Google",
   },
   {
-    quote: "Within minutes, I knew where my resume was weak and which jobs I realistically matched.",
+    quote: "Within minutes, I could clearly see where my resume was weak and which roles I was realistically qualified for.",
     name: "Arjun Mehta",
     role: "Full Stack Developer",
     company: "TCS",
   },
   {
-    quote: "Resume scoring gave precise, actionable feedback based on real hiring parameters.",
+    quote: "The resume scoring gave precise, actionable feedback based on real industry hiring parameters.",
     name: "Sneha Roy",
     role: "SDE Intern",
     company: "Microsoft",
   },
   {
-    quote: "Only verified job listings matched to my resume. No fake posts, just accurate opportunities.",
+    quote: "Only verified job listings matched to my profile. No fake posts — just accurate, high-quality opportunities.",
     name: "Karan Singh",
     role: "Cloud Engineer",
     company: "AWS",
@@ -66,7 +66,7 @@ export default function Testimonials() {
           Success Stories
         </motion.span>
         <h2 className="text-4xl md:text-5xl font-bold text-zinc-900 tracking-tight">
-          What Our Community Says
+          Loved by Developers Across India
         </h2>
       </div>
 
@@ -98,10 +98,10 @@ export default function Testimonials() {
       <div className="mt-24 bg-[#0d2440] py-16 sm:py-20 px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">
           <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-300">
-            Trusted by 18,000+ Users
+            Trusted by 8,000+ Users
           </h3>
           <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto opacity-80 font-light">
-            Join thousands building better careers through our community
+            Join thousands of Indian developers building stronger tech careers
           </p>
         </div>
 

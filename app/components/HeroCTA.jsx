@@ -20,7 +20,7 @@ export default function HeroCTA() {
         </h1>
 
         <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-light max-w-4xl mx-auto leading-relaxed mb-10 opacity-95">
-          Trusted by Thousands of developers by all over India
+          Trusted by thousands of developers across India
         </div>
 
         <Link href="/sign-up">

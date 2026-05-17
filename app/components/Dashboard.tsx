@@ -22,10 +22,11 @@ const noAxes = {
   scales: { x: { display: false }, y: { display: false } },
 };
 
-function Sparkline({ points, color, fill }) {
+function Sparkline({ points, color, fill }: { points: number[]; color: string; fill: string }) {
   const max = Math.max(...points);
   const min = Math.min(...points);
-  const w = 80; const h = 32;
+  const w = 80; 
+  const h = 32;
   const coords = points.map((v, i) => {
     const x = (i / (points.length - 1)) * w;
     const y = h - ((v - min) / (max - min || 1)) * (h - 4) - 2;
@@ -51,37 +52,33 @@ const stats = [
     spark: [31, 80, 220, 430, 680, 740],
     color: "#2E5E99",
     fill: "#2E5E99",
-    lightBg: "#EEF4FF",
   },
   {
     val: "360+",
-    label: "Cover Letters",
+    label: "Cover Letters Generated",
     change: "+22% this month",
     good: true,
     spark: [18, 26, 39, 51, 64, 78],
     color: "#059669",
     fill: "#059669",
-    lightBg: "#ECFDF5",
   },
   {
     val: "1.6K+",
-    label: "Extension Uses",
-    change: "Chrome · Edge · Brave",
+    label: "Chrome Extension Uses",
+    change: "Across 3 browsers",
     good: null,
     spark: [120, 240, 480, 900, 1300, 1600],
     color: "#7C3AED",
     fill: "#7C3AED",
-    lightBg: "#F5F3FF",
   },
   {
     val: "634",
     label: "Internships Completed",
-    change: "Across 3 tracks",
+    change: "30 / 45 / 60-day tracks",
     good: null,
     spark: [80, 130, 210, 310, 450, 634],
     color: "#2E5E99",
     fill: "#2E5E99",
-    lightBg: "#EEF4FF",
   },
 ];
 
@@ -123,29 +120,30 @@ export default function ProductAnalytics() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
         {/* Header */}
-        <div className="mb-10">
-          <h2 className="text-3xl sm:text-4xl font-bold mt-4 text-[#e7f0fa]">
-            Tauzand.in :  Number's
+        <div className="mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white">
+            Platform Performance
           </h2>
-          <p className="text-[#d7edff] mt-2 text-sm sm:text-base max-w-xl">
-            A snapshot of how our tools are being used across
+          <p className="text-[#d7edff] mt-2 text-base max-w-xl">
+            Real-time impact and growth metrics as of May 2026
           </p>
         </div>
 
-        {/* ── Stat cards ─────────────────────────────────────────────── */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-6">
-          {stats.map((s) => (
+        {/* Stat Cards */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+          {stats.map((s, index) => (
             <div
-              key={s.label}
-              className="bg-white rounded-2xl px-4 py-4 flex flex-col justify-between gap-3 border border-gray-100 shadow-sm"
+              key={index}
+              className="bg-white rounded-2xl px-5 py-5 flex flex-col justify-between border border-gray-100 shadow-sm"
             >
-              <div className="flex items-start justify-between gap-1">
-                <p className="text-[12px] text-gray-700 leading-tight">{s.label}</p>
+              <div className="flex items-start justify-between">
+                <p className="text-sm text-gray-600 font-medium">{s.label}</p>
                 <Sparkline points={s.spark} color={s.color} fill={s.fill} />
               </div>
-              <div>
-                <div className="text-2xl font-bold text-gray-900 leading-none">{s.val}</div>
-                <div className={`text-[10px] mt-1 font-medium ${s.good ? "text-emerald-600" : "text-gray-400"}`}>
+
+              <div className="mt-4">
+                <div className="text-3xl font-bold text-gray-900">{s.val}</div>
+                <div className={`text-xs mt-1 font-medium ${s.good ? "text-emerald-600" : "text-gray-500"}`}>
                   {s.change}
                 </div>
               </div>
@@ -153,131 +151,49 @@ export default function ProductAnalytics() {
           ))}
         </div>
 
-        {/* ── Two chart cards ─────────────────────────────────────────── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+        {/* Charts */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-          {/* Growth trend */}
-          <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex flex-col gap-4">
-            <div className="flex items-center justify-between">
+          {/* Growth Trend */}
+          <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+            <div className="flex justify-between items-start mb-6">
               <div>
-                <p className="text-[10px] text-[#0d2440] uppercase tracking-wide font-semibold">Growth Trend</p>
-                <h3 className="text-sm font-semibold text-gray-800 mt-0.5">Resumes vs Job Applications</h3>
+                <p className="uppercase text-xs tracking-widest font-semibold text-gray-500">Growth Trend</p>
+                <h3 className="text-lg font-semibold text-gray-800 mt-1">Resumes vs Applications</h3>
               </div>
-              <div className="flex items-center gap-3">
-                {[["#2E5E99", "Resumes"], ["#0EA47A", "Applications"]].map(([c, l]) => (
-                  <span key={l} className="flex items-center gap-1 text-[10px] text-gray-500">
-                    <span className="w-2 h-2 rounded-full" style={{ background: c }} />{l}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div style={{ background: "#F8FAFF", borderRadius: 12, padding: "12px 12px 8px" }}>
-              <div style={{ height: 140 }}>
-                <Line
-                  data={growthData}
-                  options={{
-                    maintainAspectRatio: false,
-                    plugins: {
-                      legend: { display: false },
-                      tooltip: { mode: "index", intersect: false },
-                    },
-                    scales: { x: { display: false }, y: { display: false } },
-                  }}
-                />
-              </div>
-            </div>
-            <p className="text-gray-700 text-xs">Jan – Jun 2025 · updated monthly</p>
-          </div>
-
-          {/* Internship completions */}
-          <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex flex-col gap-4">
-            <div>
-              <p className="text-[10px] text-[#0d2440] uppercase tracking-wide font-semibold">Internship Completions</p>
-              <h3 className="text-sm font-semibold text-gray-800 mt-0.5">Verified graduates per month</h3>
-            </div>
-            <div style={{ background: "#F0F7FF", borderRadius: 12, padding: "12px 12px 8px" }}>
-              <div style={{ height: 140 }}>
-                <Bar
-                  data={internshipBar}
-                  options={{
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false }, tooltip: { enabled: true } },
-                    scales: { x: { display: false }, y: { display: false } },
-                  }}
-                />
-              </div>
-            </div>
-            <p className="text-gray-700 text-xs">634 total · 30 · 45 · 60 day tracks combined</p>
-          </div>
-
-        </div>
-
-        {/* ── Bottom text analysis row ─────────────────────────────────── */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-
-          {[
-            {
-              icon: "📄",
-              title: "Resume & Cover Letter",
-              lines: [
-                { label: "Avg. ATS score improvement", val: "+34 pts" },
-                { label: "Cover letters generated", val: "360+" },
-                { label: "User satisfaction", val: "94%" },
-              ],
-              accent: "#2E5E99", light: "#EEF4FF",
-            },
-            {
-              icon: "💼",
-              title: "Job Application Engine",
-              lines: [
-                { label: "Applications placed", val: "3,600+" },
-                { label: "Shortlist rate", val: "41%" },
-                { label: "Avg. response time", val: "3.2 days" },
-              ],
-              accent: "#059669", light: "#ECFDF5",
-            },
-            {
-              icon: "🎓",
-              title: "Internship Program",
-              lines: [
-                { label: "Mentor-verified certificates", val: "634" },
-                { label: "Full-time offers made", val: "89" },
-              ],
-              accent: "#D97706", light: "#FFFBEB",
-            },
-          ].map((p) => (
-            <div key={p.title} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex flex-col gap-4">
-              <div className="flex items-center gap-2">
-                <span
-                  className="w-10 h-10 rounded-xl flex items-center justify-center text-lg shrink-0"
-                  style={{ background: p.light }}
-                >
-                  {p.icon}
-                </span>
-                <h3 className="text-sm font-semibold text-gray-800">{p.title}</h3>
-              </div>
-              <div className="flex flex-col gap-2.5">
-                {p.lines.map((l) => (
-                  <div key={l.label} className="flex items-center justify-between">
-                    <span className="text-xs text-gray-700">{l.label}</span>
-                    <span
-                      className="text-xs font-bold px-2 py-0.5 rounded-full"
-                      style={{ background: p.light, color: p.accent }}
-                    >
-                      {l.val}
-                    </span>
+              <div className="flex gap-4">
+                {[
+                  { color: "#2E5E99", label: "Resumes" },
+                  { color: "#0EA47A", label: "Applications" }
+                ].map((item) => (
+                  <div key={item.label} className="flex items-center gap-1.5 text-xs text-gray-500">
+                    <div className="w-2.5 h-2.5 rounded-full" style={{ background: item.color }} />
+                    {item.label}
                   </div>
                 ))}
               </div>
-              <div className="h-px bg-gray-100 mt-auto" />
-              <div
-                className="w-20 h-1 rounded-full"
-                style={{ background: p.accent }}
-              />
             </div>
-          ))}
 
+            <div className="h-[160px] bg-[#F8FAFF] rounded-xl p-3">
+              <Line data={growthData} options={{ maintainAspectRatio: false, ...noAxes }} />
+            </div>
+            <p className="text-center text-xs text-gray-500 mt-3">September 2025 – February 2026 • Updated Monthly</p>
+          </div>
+
+          {/* Internship Completions */}
+          <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+            <div className="mb-6">
+              <p className="uppercase text-xs tracking-widest font-semibold text-gray-500">Internship Program</p>
+              <h3 className="text-lg font-semibold text-gray-800 mt-1">Verified Completions per Month</h3>
+            </div>
+
+            <div className="h-[160px] bg-[#F0F7FF] rounded-xl p-3">
+              <Bar data={internshipBar} options={{ maintainAspectRatio: false, ...noAxes }} />
+            </div>
+            <p className="text-center text-xs text-gray-500 mt-3">Total 634 internships • Across all tracks</p>
+          </div>
         </div>
+
       </div>
     </section>
   );

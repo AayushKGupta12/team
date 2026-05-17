@@ -3,7 +3,7 @@ import FAQ from "./components/FAQ";
 import Hero from "./components/Hero";
 import Features from "./components/FeatureSection";
 import HeroCTA from "./components/HeroCTA";
-import Countdown from "./components/Countdown";
+// import Countdown from "./components/Countdown";
 import Testimonials from "./components/test";
 import CongratsPopup from "./components/CongratsPopUp";
 import Banner from "./components/Banner";
@@ -308,7 +308,7 @@ const Page = () => {
 
       <Banner
         isPositive={false}
-        message="VFound is now Tauzand! Same platform, stronger identity."
+        message="Formerly VFound! Same platform, stronger identity."
       />
       <Hero />
       <YouTubePreview />
@@ -319,7 +319,7 @@ const Page = () => {
       <CongratsPopup />
       <Updates />
       <HeroCTA />
-      <Countdown />
+      {/* <Countdown /> */}
     </>
   );
 };

@@ -47,13 +47,13 @@ export default function Hero() {
         {/* Main Content */}
         <div className="relative z-10 max-w-4xl text-center md:text-left mt-8">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-[#0b1724] leading-tight md:leading-none">
-            <span className="block">India’s Largest</span>
-            <span className="text-[#2e5e99]">Developer Builder</span>
+            <span className="block">Developer-First</span>
+            <span className="text-[#2e5e99]">Career Platform</span>
           </h1>
 
           <p className="mt-8 text-xl md:text-2xl text-gray-700 font-light max-w-2xl">
-           Career operating system<br />
-            <span className="font-semibold text-[#0d2440]">We build your entire <span className="bg-[#ffe8b1] px-2">tech career.</span></span>
+           Career Operating System<br />
+            <span className="font-semibold text-[#0d2440]">We build your complete <span className="bg-[#ffe8b1] px-2">tech career.</span></span>
           </p>
 
           {/* Premium Gradient Button */}
@@ -68,7 +68,7 @@ export default function Hero() {
               </span>
 
               <span className="relative flex items-center gap-4">
-                Analyze Your Career
+                Analyse Your Career
                 <svg className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>

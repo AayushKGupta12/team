@@ -72,11 +72,11 @@ export default function FAQ() {
               <span className="inline-block text-[10px] font-bold text-yellow-400 uppercase
                 tracking-[0.2em] mb-3 bg-yellow-400/10 border border-yellow-400/20
                 px-3 py-1 rounded-full">
-                Stay connectedclea
+                Stay connected
               </span>
               <h2 className="text-white text-2xl sm:text-3xl font-bold leading-snug mb-2">
-                Follow Tauzanddd for updates,<br className="hidden sm:block"/>
-                opportunities &amp; more
+                Follow Tauzand for updates,<br className="hidden sm:block"/>
+                opportunities & more
               </h2>
               
             </div>
@@ -148,7 +148,7 @@ export default function FAQ() {
                 acceptedAnswer: {
                   "@type": "Answer",
                   text:
-                    "Yes, Tauzand uses advanced AI and Algorithm's to analyze resumes, detect skill gaps, and optimize content for modern hiring systems."
+                    "Yes, Tauzand uses advanced AI and Algorithms to analyze resumes, detect skill gaps, and optimize content for modern hiring systems."
                 }
               }
             ]
@@ -159,8 +159,8 @@ export default function FAQ() {
       <section className="w-full py-16 bg-white">
         <div className="max-w-5xl mx-auto px-6">
 
-          <h1 className="text-6xl font-bold text-center mb-10 text-gray-900 kaushan-script-regular">
-            Frequently asked Question 
+          <h1 className="text-5xl md:text-6xl font-bold text-center mb-12 text-gray-900">
+            Frequently Asked Questions
           </h1>
 
           <div className="space-y-6">
@@ -224,21 +224,21 @@ export default function FAQ() {
                 index={8}
                 openIndex={openIndex}
                 toggleFAQ={toggleFAQ}
-                question="Who are we ?"
+                question="Who are we?"
                 answer={
-                  <>
-                    <p className="mb-3 text-gray-700">
-                      Tauzand is a developer builder tooklit where early professional come to get career insights and improve their job readiness.
-                      <span className="bg-[#ffe8b1] px-2">career intelligence platform</span> that connects users with real world scenarios and opportunities.
-                    </p>
-                    <ul className="list-disc ml-6 space-y-1 text-gray-700">
-                      <li>Resume in-depth insights and analysis</li>
-                      <li>AI-powered career roadmap guidance</li>
-                      <li>live <span className="bg-[#ffe8b1] px-2">english speaking</span> practice sessions</li>
-                      <li>Live and personalized mocks tech-interview</li>
-                    </ul>
-                  </>
-                }
+                      <>
+                        <p className="mb-3 text-gray-700">
+                          Tauzand is a <span className="bg-[#ffe8b1] px-2">developer-first career intelligence platform</span> built for early-career professionals and freshers. 
+                          We help you gain real career insights, improve job readiness, and connect with genuine opportunities.
+                        </p>
+                        <ul className="list-disc ml-6 space-y-1 text-gray-700">
+                          <li>In-depth resume analysis and insights</li>
+                          <li>AI-powered career guidance</li>
+                          <li>Live English speaking practice sessions</li>
+                          <li>Personalized mock tech interviews</li>
+                        </ul>
+                      </>
+                    }
               />
             </section>
 
@@ -281,7 +281,7 @@ export default function FAQ() {
                   <>
                     <p className="mb-3 text-gray-700">
                       Our learning and career roadmaps are <span className="bg-[#ffe8b1] px-2">updated every month</span>
-                      to reflect the fast changing technology industry and
+                      to reflect the fast-changing technology industry and
                       current hiring <span className="bg-[#ffe8b1] px-2">trends.</span>
                     </p>
                     <ul className="list-disc ml-6 space-y-1 text-gray-700">
@@ -330,7 +330,7 @@ export default function FAQ() {
               answer={
                 <>
                   <p className="mb-3 text-gray-700">
-                    Yes, Tauzand offers a <span className="bg-[#ffe8b1] px-2">free trial that</span> allows users to experience core
+                    Yes, Tauzand offers a <span className="bg-[#ffe8b1] px-2">free trial</span> allows users to experience core
                     platform features before committing to any paid plans. The free trial
                     is designed to help you understand how our tools work and how they can
                     improve your job readiness.
@@ -360,7 +360,7 @@ export default function FAQ() {
                     <p className="mb-3 text-gray-700">
                       Yes, Tauzand uses advanced AI and large language models to
                       power its resume analysis and <span className="bg-[#ffe8b1] px-2">content optimization tools.</span>
-                      The goal is to provide context aware and role specific
+                      The goal is to provide context-aware and role-specific
                       insights.
                     </p>
                     <ul className="list-disc ml-6 space-y-1 text-gray-700">

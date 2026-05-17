@@ -10,7 +10,7 @@ interface YouTubePreviewProps {
 
 export default function YouTubePreview({
   videoId = "674Dj3HwsNM",
-  title = "See how it works",
+  title = "See How It Works",
 }: YouTubePreviewProps) {
   const [muted, setMuted] = useState(true);
 
@@ -21,21 +21,21 @@ export default function YouTubePreview({
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
           {/* ── LEFT CONTENT ── */}
           <div className="flex flex-col items-start gap-8 max-w-xl order-2 lg:order-1">
-            <h2 className="text-4xl md:text-5xl md:mt-10 lg:text-6xl font-bold text-neutral-900 leading-[1.1] tracking-tight">
-              {title}
-            </h2>
+           <h2 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold text-neutral-900 leading-[1.05] tracking-tighter">
+  {title}
+</h2>
 
             {/* Feature Pills */}
             <div className="flex flex-wrap gap-3">
-              <span className="px-4 py-2 bg-neutral-100 rounded-full text-sm font-medium text-neutral-700">
-                🚀 No credit card required
-              </span>
-              <span className="px-4 py-2 bg-neutral-100 rounded-full text-sm font-medium text-neutral-700">
-                ⏱️ 5-min setup
-              </span>
-              <span className="px-4 py-2 bg-neutral-100 rounded-full text-sm font-medium text-neutral-700">
-                🔒 Enterprise security
-              </span>
+              <span className="px-3.5 py-2 bg-neutral-100 rounded-full text-xs sm:text-sm font-medium text-neutral-700">
+  🚀 No credit card required
+</span>
+<span className="px-3.5 py-2 bg-neutral-100 rounded-full text-xs sm:text-sm font-medium text-neutral-700">
+  ⏱️ 5-minute setup
+</span>
+<span className="px-3.5 py-2 bg-neutral-100 rounded-full text-xs sm:text-sm font-medium text-neutral-700">
+  🔒 Enterprise-grade security
+</span>
             </div>
           </div>
 
@@ -69,11 +69,11 @@ export default function YouTubePreview({
 
               {/* Caption */}
               <p className="text-center mt-4 mb-3">
-                <span className="inline-flex items-center gap-2 px-5 py-2 bg-white/80 backdrop-blur-sm rounded-full text-sm font-semibold text-[#0d2440] shadow-sm border border-neutral-200/60">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                  Product Overview
-                </span>
-              </p>
+  <span className="inline-flex items-center gap-2 px-5 py-2 bg-white/80 backdrop-blur-sm rounded-full text-sm font-semibold text-[#0d2440] shadow-sm border border-neutral-200/60">
+    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+    Live Product Demo
+  </span>
+</p>
             </div>
           </div>
         </div>

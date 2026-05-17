@@ -93,7 +93,7 @@ const features = [
     link: "/extension"
   },
   {
-    title : "DSA Dashboard and Company wise Question Bank",
+    title : "DSA Dashboard and Company-wise Question Bank",
     description:
 `• Access a comprehensive collection of DSA questions from top companies
 • Practice and improve your problem-solving skills
@@ -361,17 +361,12 @@ export default function FeatureSection() {
             className="max-w-5xl mx-auto text-center mb-20 px-6"
           >
             <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold text-slate-800 leading-tight mb-4">
-              Complete{" "}
               <span className="relative inline-block">
-                <span className="relative z-10 px-3">Career Toolkit</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-amber-200 to-yellow-200 transform -rotate-1 rounded-lg" />
+                <span className="relative z-10 px-3">Career Intelligence</span>
+                <span className="absolute inset-0 bg-gradient-to-r from-amber-200 to-yellow-200 transform rounded-lg" />
               </span>{" "}
-              for Developers
+              for Indian IT Students
             </h1>
-
-            <p className="mt-3 text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-              Career intelligence & Developer tool Kit
-            </p>
 
             <div className="mt-4 flex flex-wrap items-center justify-center gap-6 text-sm">
               <div className="flex items-center gap-2 text-slate-600">
@@ -380,7 +375,7 @@ export default function FeatureSection() {
               </div>
               <div className="flex items-center gap-2 text-slate-600">
                 <Users className="w-5 h-5 text-blue-600" />
-                <span className="font-semibold">Built for Early Career</span>
+                <span className="font-semibold">Built for Early-Career Developers</span>
               </div>
             </div>
           </motion.header>
@@ -423,26 +418,6 @@ export default function FeatureSection() {
                 </div>
 
                 <div className="w-full lg:w-1/2 space-y-6">
-                  <div className="flex items-center gap-3">
-                    <div className={`inline-flex items-center gap-2 bg-gradient-to-r ${
-                      index % 3 === 0
-                        ? "from-blue-100 to-indigo-100"
-                        : index % 3 === 1
-                        ? "from-amber-100 to-yellow-100"
-                        : "from-emerald-100 to-teal-100"
-                    } px-4 py-2 rounded-full border border-slate-200/60`}>
-                      <feature.icon className={`w-4 h-4 ${
-                        index % 3 === 0
-                          ? "text-blue-600"
-                          : index % 3 === 1
-                          ? "text-amber-600"
-                          : "text-emerald-600"
-                      }`} />
-                      <span className="text-sm font-semibold text-slate-700">
-                        {feature.category}
-                      </span>
-                    </div>
-                  </div>
 
                   <h2 className="text-3xl lg:text-4xl font-bold text-slate-800 leading-tight">
                     {feature.title}
@@ -455,11 +430,9 @@ export default function FeatureSection() {
                   </ul>
 
                   <a href={feature.link}>
-                    <div className="inline-flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-lg border border-emerald-200 hover:scale-105 transition-transform duration-200">
-                      <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-                      <span className="text-sm font-semibold text-emerald-700">
-                        Visit
-                      </span>
+                    <div className="inline-flex items-center gap-2 bg-neutral-900 hover:bg-neutral-950 px-6 py-3 rounded-md border border-neutral-700 text-sm font-semibold text-white transition-all duration-200 hover:scale-[1.1]">
+                      View Details
+                      <ArrowRight className="w-4 h-4 hover:rotate-2" />
                     </div>
                   </a>
                 </div>
@@ -499,7 +472,7 @@ export default function FeatureSection() {
                     Always Evolving
                   </span>
                   <h2 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight mb-3">
-                    We&apos;re crafted many{" "}
+                    We&apos;ve built many{" "}
                     <span className="underline decoration-amber-700 decoration-4 underline-offset-4">
                       Intelligence Systems
                     </span>{" "}

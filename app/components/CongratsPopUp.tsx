@@ -10,7 +10,6 @@ export default function CongratsPopup() {
   useEffect(() => {
     if (!isLoaded) return;
 
-    // show only once after login/signup
     const alreadyShown = localStorage.getItem("freeCoinsPopupShown");
 
     if (isSignedIn && !alreadyShown) {
@@ -22,42 +21,44 @@ export default function CongratsPopup() {
   if (!show) return null;
 
   return (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs">
-    <div className="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl border border-gray-100">
-      {/* Header */}
-      <div className="text-center mb-6">
-        <div className="mx-auto w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white text-3xl mb-4 shadow-lg">
-          ✓
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md">
+      <div className="bg-[#0a0a0a] border border-gray-800 rounded-3xl p-10 max-w-md w-full mx-4 shadow-2xl">
+        
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="mx-auto w-20 h-20 bg-white rounded-2xl flex items-center justify-center text-4xl mb-6 shadow-inner">
+            ✓
+          </div>
+          <h2 className="text-3xl font-bold text-white tracking-tight">
+            Congratulations
+          </h2>
+          <p className="text-gray-400 mt-2 text-lg">Account successfully activated</p>
         </div>
-        <h2 className="text-3xl font-bold text-gray-900">
-          Congratulations!
-        </h2>
-      </div>
 
-      {/* Message */}
-      <div className="text-center">
-        <p className="text-lg text-gray-700 leading-relaxed">
-          You’ve successfully received <span className="font-semibold text-green-600">75 Free Coins</span>
-        </p>
-        <p className="mt-1 text-sm text-gray-500">
-          Use them to access premium features.
-        </p>
-      </div>
+        {/* Message */}
+        <div className="text-center bg-[#111111] border border-gray-800 rounded-2xl p-6 mb-8">
+          <p className="text-2xl font-semibold text-white">
+            You’ve received <span className="text-emerald-400">75 Coins</span>
+          </p>
+          <p className="text-gray-400 mt-2 text-[15px]">
+            These coins can be used to unlock premium AI features and priority tools.
+          </p>
+        </div>
 
-      {/* Button */}
-      <div className="mt-6 flex justify-center">
+        {/* Button */}
         <button
           onClick={() => setShow(false)}
-          className="border relative h-12 py-1 p-8 text-black text-2xl font-bold overflow-hidden bg-white rounded-4xl transition-all duration-200 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-700 before:to-blue-400 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
-          Start Using
+          className="w-full h-14 bg-white text-black font-semibold text-lg rounded-2xl 
+                     hover:bg-gray-200 active:scale-[0.985] transition-all duration-200"
+        >
+          Explore Premium Features
         </button>
-      </div>
 
-      {/* Subtle footer note (optional) */}
-      <p className="mt-6 text-xs text-gray-500 text-center">
-        Coins are credited instantly and ready for use. <br/>T&C apply.
-      </p>
+        {/* Footer Note */}
+        <p className="text-center text-xs text-gray-500 mt-6">
+          Coins credited instantly • T&C apply
+        </p>
+      </div>
     </div>
-  </div>
-);
+  );
 }
