@@ -13,15 +13,6 @@ interface UpdateItem {
 
 const updates: UpdateItem[] = [
   {
-    id: '1',
-    category: 'Quarterly Results',
-    title: 'Tauzand.in Crosses 74,000 Active Users',
-    description: 'We’ve achieved a major milestone by reaching 74,000 active users. This growth showcases the increasing trust in our AI-powered career intelligence platform. With exciting new features in the pipeline, we remain committed to empowering the next generation of tech talent.',
-    date: 'April 2026',
-    size: 'medium',
-    href: '/news/Q1-result-2026-great-start'
-  },
-  {
     id: '2',
     category: 'Product Update',
     title: 'VFound is now Tauzand.in',

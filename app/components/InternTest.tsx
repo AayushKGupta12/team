@@ -1,8 +1,9 @@
 import React from 'react';
 
+
 const testimonials = [
   {
-    quote: "The 'No-Nonsense' approach is what hooked me. They don't give you boring videos; you get a real PR to solve. My mentor helped me fix structural flaws in my code. It’s basically a real job experience.",
+    quote: "The 'No-Nonsense' approach is what hooked me. They don't give you boring videos; you get a real pull request to solve. My mentor helped me fix structural flaws in my code. It's essentially real job experience.",
     name: "Arjun Mehta",
     role: "SDE Internship",
     batch: "Batch of 2026",
@@ -10,7 +11,7 @@ const testimonials = [
     projectUrl: "https://Tauzand.in/certificate/VF2026DO00001"
   },
   {
-    quote: "Placement season was stressful with no real projects on my resume. Tauzand changed that in 45 days. The globally verifiable certificate actually helped me stand out in my Bangalore startup interviews.",
+    quote: "Placement season was stressful—I had no real projects on my resume. Tauzand changed that in 45 days. The globally verifiable certificate actually helped me stand out in my Bangalore startup interviews.",
     name: "Ishita Kapoor",
     role: "Frontend Developer",
     batch: "Batch of 2025",
@@ -26,7 +27,7 @@ const testimonials = [
     projectUrl: "https://Tauzand.in/certificate/VF2026SD00002"
   },
   {
-    quote: "The Code Reviews were brutal but necessary. My mentor pushed me to write clean, optimized code. This isn't just a certificate; it's a real validation of my engineering skills.",
+    quote: "The code reviews were brutal but necessary. My mentor pushed me to write clean, optimized code. This isn't just a certificate; it's a real validation of my engineering skills.",
     name: "Priya Patel",
     role: "Java Intern",
     batch: "Batch of 2025",
@@ -34,7 +35,7 @@ const testimonials = [
     projectUrl: "https://Tauzand.in/certificate/VF2025BJ00001"
   },
   {
-    quote: "Tauzand provided the exact edge I needed for off-campus drives. Practical project work and mentor sign-offs made my resume extremely credible to recruiters.",
+    quote: "Tauzand provided the exact edge I needed for off-campus drives. Practical project work and mentor approvals made my resume extremely credible to recruiters.",
     name: "Aman Gupta",
     role: "Data Science Intern",
     batch: "Batch of 2026",
@@ -66,7 +67,7 @@ const testimonials = [
     projectUrl: "https://Tauzand.in/certificate/VF2025SD00004"
   },
   {
-    quote: "Worked on real-world datasets and model deployment. The certificate is a huge boost for anyone targeting high-paying Applied ML roles in India.",
+    quote: "Worked on real-world datasets and model deployment. The certificate is a huge boost for anyone targeting high-paying applied machine learning roles in India.",
     name: "Rohan Das",
     role: "ML Intern",
     batch: "Batch of 2026",
@@ -83,12 +84,13 @@ const testimonials = [
   }
 ];
 
+
 export default function InfiniteScrollingTestimonials() {
   const duplicatedTestimonials = [...testimonials, ...testimonials];
 
+
   return (
     <section className="py-24 bg-[#0d1626] overflow-hidden rounded-3xl ">
-      {/* Inline Styles for the Marquee Animation */}
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes marquee {
           0% { transform: translateX(0); }
@@ -104,20 +106,22 @@ export default function InfiniteScrollingTestimonials() {
         }
       `}} />
 
+
       <div className="w-full">
         {/* Header */}
-         <div className="text-center mb-24">
+         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tighter mb-4">
-            Built by engineers, <span className="italic font-light text-yellow-500">& their's thoughts</span>
+            Our Intern's <span className="text-5xl font-bold text-yellow-400 tracking-tighter leading-[0.95]"> feedback</span>
           </h2>
-          <p className="text-slate-400">Professional proof-of-work, validated by industry experts.</p>
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto">Real projects. Industry mentors. Globally verifiable certificates that prove your skills to recruiters.</p>
         </div>
+
 
         {/* Marquee Container */}
         <div className="relative group">
-          {/* Side Fades */}
           <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#0d1626] to-transparent z-10 pointer-events-none" />
           <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#0d1626] to-transparent z-10 pointer-events-none" />
+
 
           <div className="animate-marquee gap-8 flex">
             {duplicatedTestimonials.map((t, i) => (
@@ -129,6 +133,7 @@ export default function InfiniteScrollingTestimonials() {
                   "{t.quote}"
                 </p>
 
+
                 <div className="flex items-center justify-between mt-auto pt-6 border-t border-slate-800/50">
                   <div className="flex items-center gap-3">
                     <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full border border-slate-700" />
@@ -137,6 +142,7 @@ export default function InfiniteScrollingTestimonials() {
                       <p className="text-[12px] text-slate-300">{t.role} • {t.batch}</p>
                     </div>
                   </div>
+
 
                   <a 
                     href={t.projectUrl}
@@ -147,7 +153,7 @@ export default function InfiniteScrollingTestimonials() {
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
-                    Verify Work
+                    Verify Certificate
                   </a>
                 </div>
               </div>
@@ -155,18 +161,19 @@ export default function InfiniteScrollingTestimonials() {
           </div>
         </div>
 
+
         {/* Proof Line */}
-        <div className="mt-16 flex justify-center items-center gap-2 px-6">
+        <div className="mt-12 flex justify-center items-center gap-3 px-6">
            <div className="flex -space-x-2">
               {[1,2,3,4].map(i => (
-                <div key={i} className="w-8 h-8 rounded-full border-2 border-[#0d1626] bg-slate-800 overflow-hidden">
-                  <img src={`https://i.pravatar.cc/100?img=${i+30}`} alt="user" />
+                <div key={i} className="w-9 h-9 rounded-full border-2 border-[#0d1626] bg-slate-800 overflow-hidden">
+                  <img src={`https://i.pravatar.cc/100?img=${i+30}`} alt="student" />
                 </div>
               ))}
            </div>
-           <p className="text-sm text-slate-300 ml-2">
-             Joined by <span className="text-white font-medium">1380+</span> engineering students.
-           </p>
+           <p className="text-sm text-slate-300">
+            Join <span className="text-white font-medium">700+</span> engineering students who validated their skills with Tauzand
+          </p>
         </div>
       </div>
     </section>

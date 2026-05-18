@@ -25,7 +25,7 @@ const features = [
 • Identify missing keywords and technical skills for IT jobs
 • Receive clear suggestions to improve your resume`,
     image:
-      "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=80",
+      "/iats.png",
     alt: "AI resume analysis dashboard evaluating ATS score, technical skills and job readiness for software engineering roles",
     icon: FileText,
     category: "Resume Intelligence",
@@ -40,7 +40,7 @@ const features = [
 • Tailored for software engineering and IT roles
 • Copy, edit, or download instantly`,
     image:
-      "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=1200&q=80",
+      "/icl.png",
     alt: "Professional cover letter generation tool helping developers create job application letters",
     icon: Sparkles,
     category: "Cover Intelligence",
@@ -55,7 +55,7 @@ const features = [
 • Find roles in software development, AI, data science, and cloud
 • Built for freshers and early-career developers`,
     image:
-      "https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=1200&q=80",
+      "/jobs.png",
     alt: "IT job search platform helping developers find software engineering and data science roles",
     icon: Briefcase,
     category: "Search Intelligence",
@@ -70,7 +70,7 @@ const features = [
 • Choose 30, 45, or 60-day internship tracks
 • Earn a verified internship certificate after approval`,
     image:
-      "https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1200&q=80",
+      "/SampleCertificate.png",
     alt: "Students collaborating on technical internship projects in software development and data science",
     icon: GraduationCap,
     category: "Internship Intelligence",
@@ -85,7 +85,7 @@ const features = [
 • Generate summaries and technical insights in your browser
 • Learn faster without switching tools`,
     image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+      "/extension.png",
     alt: "Developer using AI powered browser extension for technical research and learning",
     icon: Chrome,
     category: "AI Productivity Tools",
@@ -99,7 +99,7 @@ const features = [
 • Practice and improve your problem-solving skills
 • Track your progress and performance over time`,
     image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+      "/dsa.png",
     alt: "DSA question bank platform for software engineering interview preparation",
     icon: GraduationCap,
     category: "DSA Preparation",
@@ -408,8 +408,8 @@ export default function FeatureSection() {
                       src={feature.image}
                       alt={feature.alt}
                       fill
-                      className="object-cover"
-                      priority={index === 0}
+                      className="object-fit"
+                      
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                       quality={90}
                       loading={index === 0 ? "eager" : "lazy"}

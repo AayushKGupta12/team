@@ -54,8 +54,7 @@ export const metadata: Metadata = {
 
   // Description: ≤160 chars — mentor-backed, fast, risk-free pricing, trust
   description:
-    "Get a mentor-verified internship certificate in under 3 days. 70+ expert mentors. 60% AI + 40% human review. Monthly updated projects. ₹269 one-time. Risk-free.",
-
+    "Mentor-verified internship certificates with real project validation. 70+ industry mentors. 60% AI + 40% human review. Industry-aligned projects updated monthly. One-time registration ₹269 only.",
   keywords: [
     // Primary intent
     "internship certificate validation India",
@@ -149,7 +148,7 @@ const organizationSchema = {
   "url": "https://www.tauzand.in",
   "description":
     "MSME-registered, Startup India-recognized AI career intelligence platform providing mentor-backed internship certificate validation and project verification for students and freshers across India.",
-  "foundingDate": "2024",
+  "foundingDate": "2025",
   "areaServed": { "@type": "Country", "name": "India" },
   "founder": {
     "@type": "Person",
@@ -203,7 +202,7 @@ const programSchema = {
     "@id": "https://www.tauzand.in/#organization",
   },
   "educationalProgramMode": "online",
-  "timeToComplete": "P3D",
+  "timeToComplete": "P60D",
   "inLanguage": "en",
   "occupationalCategory": ["Web Development", "Artificial Intelligence", "Data Science"],
   "offers": {
@@ -225,7 +224,7 @@ const faqSchema = {
       "name": "Is Tauzand a legitimate project verification platform?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Tauzand is an MSME-registered, Startup India-recognized platform founded in 2024. It operates with 70+ active expert mentors who manually review student project submissions alongside an AI screening system. Every certificate carries a unique verifiable ID. Authenticity can be checked instantly at tauzand.in/internship/validate.",
+        "text": "Yes. Tauzand is an MSME-registered, Startup India-recognized platform founded in 2025. It operates with 70+ active expert mentors who manually review student project submissions alongside an AI screening system. Every certificate carries a unique verifiable ID. Authenticity can be checked instantly at tauzand.in/internship/validate.",
       },
     },
     {
@@ -314,7 +313,7 @@ export default function InternshipPage() {
       <main>
         <InternshipHero />
         <ProblemSection />
-        <ComparisonSection />
+        {/* <ComparisonSection /> */}
         <InternshipFeature />
         <InternshipShowcase />
         <InternshipFeature3 />

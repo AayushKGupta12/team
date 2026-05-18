@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 
 export default function InternshipHero() {
   const router = useRouter();
-  const [isMuted, setIsMuted] = useState(true);
 
   return (
     <section className="w-full bg-white text-slate-900 py-24 px-6">
@@ -18,12 +17,13 @@ export default function InternshipHero() {
           </div>
           
           <h1 className="text-6xl md:text-7xl font-bold tracking-tighter leading-[0.9]">
-            Engineering <br />
-            <span className="italic font-light text-slate-400">Validated.</span>
+            Engineering with<br />
+            <span className="italic font-light text-slate-400"> Verified Internship.</span>
           </h1>
 
           <p className="text-xl text-slate-600 leading-relaxed max-w-md">
-            Skip vanity certificates. Build professional-grade software, pass peer-reviewed audits, and earn a credential that actually moves the needle.
+            Skip vanity certificates. Build real projects, get mentor-reviewed validation, 
+            and earn a credential that recruiters actually trust.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -31,19 +31,17 @@ export default function InternshipHero() {
               onClick={() => router.push("/internship/userdashboard")}
               className="px-8 py-4 bg-slate-900 text-white font-bold text-sm rounded-full hover:bg-blue-600 transition cursor-pointer"
             >
-              START BUILD TRACK
+              Start Your Internship
             </button>
             <button 
               onClick={() => router.push("/internship/validate")}
-              className="px-8 py-4 border border-slate-200 font-bold text-sm rounded-full hover:bg-slate-50 transition cursor-pointer">
-              VERIFY CREDENTIAL
+              className="px-8 py-4 border border-slate-200 font-bold text-sm rounded-full hover:bg-slate-200 transition cursor-pointer">
+              Verify Credential
             </button>
           </div>
         </div>
 
-        {/* Right: Floating Video Frame */}
-        {/* Right: Visual Frame */}
-          <div className="relative group">
+        <div className="relative group">
             {/* Ambient Glow */}
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-100 to-transparent rounded-[40px] scale-105 blur-2xl" />
             

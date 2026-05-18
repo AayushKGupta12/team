@@ -1,5 +1,6 @@
 "use client";
 
+
 /**
  * SEO & AI VISIBILITY IMPROVEMENTS:
  * 1. Fixed h1 → h2 (h1 belongs in the page-level metadata, not mid-page components)
@@ -14,11 +15,14 @@
  * 9. Used <Script strategy="beforeInteractive"> → schema loads before page hydration
  */
 
+
 import { useState } from "react";
 import Script from "next/script";
 
+
 // ── FAQ Data ──────────────────────────────────────────────────────────────────
-// Centralised here so schema + UI are always in sync — no drift between JSON-LD and visible text
+// Centralized here so schema + UI are always in sync — no drift between JSON-LD and visible text
+
 
 const SOCIALS = [
   {
@@ -59,11 +63,12 @@ const SOCIALS = [
   },
 ];
 
+
 const faqs = [
   {
     question: "What is the Tauzand Skill Validation Program and how is it different from a traditional internship?",
     answer:
-      "The Tauzand Skill Validation Program is an advanced internship-style experience where you complete real-world, industry-level tasks to prove your skills. Unlike traditional internships that focus on participation, Tauzand focuses on validated output. Your work is evaluated and only then you become eligible for a verified certificate.",
+      "The Tauzand Skill Validation Program is an advanced internship-style experience where you complete real-world, industry-level tasks to prove your skills. Unlike traditional internships that focus on participation, Tauzand focuses on validated output. Your work is evaluated, and only then do you become eligible for a verified certificate.",
     bullets: [
       "Internship-style structure with real-world tasks",
       "Focus on skill validation instead of participation",
@@ -89,36 +94,36 @@ const faqs = [
     bullets: [
       "Task-based evaluation system",
       "Performance-based validation",
-      "Real-world problem solving approach",
+      "Real-world problem-solving approach",
       "Certificate unlocked only after completion",
     ],
   },
   {
-  question: "Is this a paid internship or a paid certification program?",
-  answer:
-    "Tauzand follows a one-time registration model. To get started, users are required to pay a ₹269 registration fee, which gives full access to the Skill Validation Program, including tasks, dashboard, and progress tracking. After completing the program, users can optionally unlock their verified certificate and detailed skill report.",
-  bullets: [
-    "₹269 one-time registration fee",
-    "Access to full Skill Validation Program and tasks",
-    "No recurring or hidden charges",
-    "Certificate and skill report unlock available after completion",
-  ],
-},
+    question: "Is this a paid internship or a paid certification program?",
+    answer:
+      "Tauzand follows a one-time registration model. To get started, you pay a ₹269 registration fee, which gives full access to the Skill Validation Program, including tasks, dashboard, and progress tracking. After completing the program, you can optionally unlock your verified certificate and detailed skill report.",
+    bullets: [
+      "₹269 one-time registration fee",
+      "Access to full Skill Validation Program and tasks",
+      "No recurring or hidden charges",
+      "Certificate and skill report unlock available after completion",
+    ],
+  },
   {
     question: "What is the duration of the Skill Validation Program or internship?",
     answer:
-      "The program typically follows a structured timeline of 30, 45, or 60 days depending on the track you choose. Each duration includes a set of tasks, evaluations, and progress milestones designed to simulate a real internship experience.",
+      "The program follows a structured timeline of 30, 45, or 60 days depending on the track you choose. Each duration includes a set of tasks, evaluations, and progress milestones designed to simulate a real internship experience.",
     bullets: [
-      "30, 45, and 60 day options available",
+      "30-, 45-, and 60-day options available",
       "Structured task-based progression",
       "Designed like a real internship timeline",
-      "Flexible completion based on user pace",
+      "Flexible completion based on your pace",
     ],
   },
   {
     question: "Which domains are available under the Tauzand program?",
     answer:
-      "Tauzand offers multiple high-demand domains where users can validate their skills through practical tasks. Each domain includes curated assignments aligned with industry requirements to ensure real-world relevance.",
+      "Tauzand offers multiple high-demand domains where you can validate your skills through practical tasks. Each domain includes curated assignments aligned with industry requirements to ensure real-world relevance.",
     bullets: [
       "Multiple in-demand domains available",
       "Domain-specific task assignments",
@@ -138,7 +143,7 @@ const faqs = [
     ],
   },
   {
-    question: "Why should I choose Tauzandd over other internship platforms?",
+    question: "Why should I choose Tauzand over other internship platforms?",
     answer:
       "Most platforms provide certificates for participation. Tauzand focuses on proof of work. You complete real tasks, get evaluated, and only then earn certification. This makes your profile more credible and valuable in the job market.",
     bullets: [
@@ -151,14 +156,18 @@ const faqs = [
 ];
 
 
+
 // ── Component ─────────────────────────────────────────────────────────────────
+
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
 
   return (
     <>
@@ -189,7 +198,8 @@ export default function FAQ() {
         }}
       />
 
-      
+
+
 
       <section
         className="w-full py-16 bg-white"
@@ -199,6 +209,7 @@ export default function FAQ() {
         itemType="https://schema.org/FAQPage"
       >
         <div className="max-w-5xl mx-auto px-6">
+
 
           {/*
            * FIXED: was <h1> — incorrect for a mid-page component.
@@ -212,6 +223,7 @@ export default function FAQ() {
             Frequently Asked Questions
           </h2>
 
+
           <div className="space-y-6">
             {faqs.map((faq, index) => (
               <FAQItem
@@ -222,87 +234,98 @@ export default function FAQ() {
                 question={faq.question}
                 answer={faq.answer}
                 bullets={faq.bullets}
-                highlight={"~"}
+                highlight={null}
               />
             ))}
           </div>
         </div>
       </section>
 
+
       <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 pb-12 mt-auto">
-  <div className="relative bg-gradient-to-br from-[#111111] via-[#1a1a1a] to-[#222222]
-    rounded-3xl px-8 sm:px-12 py-12 overflow-hidden border border-white/10">
+        <div className="relative bg-gradient-to-br from-[#111111] via-[#1a1a1a] to-[#222222]
+          rounded-3xl px-8 sm:px-12 py-12 overflow-hidden border border-white/10">
 
-    {/* Glow Effects */}
-    <div className="absolute -top-12 -right-12 w-56 h-56 bg-yellow-400 rounded-full opacity-[0.15] blur-3xl pointer-events-none"/>
-    <div className="absolute -bottom-8 left-1/4 w-48 h-32 bg-yellow-300 rounded-full opacity-[0.08] blur-3xl pointer-events-none"/>
 
-    <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+          {/* Glow Effects */}
+          <div className="absolute -top-12 -right-12 w-56 h-56 bg-yellow-400 rounded-full opacity-[0.15] blur-3xl pointer-events-none"/>
+          <div className="absolute -bottom-8 left-1/4 w-48 h-32 bg-yellow-300 rounded-full opacity-[0.08] blur-3xl pointer-events-none"/>
 
-      {/* LEFT CONTENT */}
-      <div className="text-center lg:text-left max-w-xl">
 
-        {/* HEADING */}
-        <h2 className="text-white text-3xl sm:text-4xl font-bold leading-snug mb-3">
-          Don’t just collect certificates. <br className="hidden sm:block"/>
-          <span className="text-yellow-400">Prove your skills.</span>
-        </h2>
+          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
 
-        {/* CTA BUTTON */}
-        <a
-          href="https://Tauzand.in/certificate/VF2026DO00001"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 bg-yellow-400 hover:bg-yellow-300 text-black font-semibold text-sm sm:text-base px-6 py-3 rounded-xl transition-all hover:scale-[1.04] shadow-lg"
-        >
-          View Sample Certificate →
-        </a>
 
-        {/* MICRO TRUST */}
-        <p className="mt-4 text-xs text-gray-200">
-          Trusted by 70+ experts • 76K+ interactions in 2026
-        </p>
+            {/* LEFT CONTENT */}
+            <div className="text-center lg:text-left max-w-xl">
+
+
+              {/* HEADING */}
+              <h2 className="text-white text-3xl sm:text-4xl font-bold leading-snug mb-3">
+                Don't just collect certificates. <br className="hidden sm:block"/>
+                <span className="text-yellow-400">Prove your skills.</span>
+              </h2>
+
+
+              {/* CTA BUTTON */}
+              <a
+                href="https://Tauzand.in/certificate/VF2026DO00001"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-yellow-400 hover:bg-yellow-300 text-black font-semibold text-sm sm:text-base px-6 py-3 rounded-xl transition-all hover:scale-[1.04] shadow-lg"
+              >
+                View Sample Certificate →
+              </a>
+
+
+              {/* MICRO TRUST */}
+              <p className="mt-4 text-xs text-gray-400">
+                Trusted by 70+ experts • 700+ interactions in 2026
+              </p>
+            </div>
+
+
+            {/* RIGHT SIDE (UNCHANGED SOCIALS) */}
+            <div className="flex flex-col gap-3 w-full lg:w-auto lg:min-w-[260px]">
+              {SOCIALS.map(s => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 px-5 py-3 rounded-2xl
+                    bg-white/[0.06] hover:bg-yellow-400
+                    border border-white/10 hover:border-yellow-400
+                    text-white hover:text-black
+                    transition-all duration-200 hover:scale-[1.02]
+                    hover:shadow-xl hover:shadow-yellow-400/20"
+                >
+                  <span className="w-8 h-8 rounded-xl bg-white/10 group-hover:bg-black/10
+                    flex items-center justify-center shrink-0 transition-colors">
+                    {s.icon}
+                  </span>
+                  <span className="text-sm font-semibold flex-1">
+                    Follow on {s.label}
+                  </span>
+                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" strokeWidth={2.5}
+                    className="opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-200">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </a>
+              ))}
+            </div>
+
+
+          </div>
+        </div>
       </div>
-
-      {/* RIGHT SIDE (UNCHANGED SOCIALS) */}
-      <div className="flex flex-col gap-3 w-full lg:w-auto lg:min-w-[260px]">
-        {SOCIALS.map(s => (
-          <a
-            key={s.label}
-            href={s.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center gap-3 px-5 py-3 rounded-2xl
-              bg-white/[0.06] hover:bg-yellow-400
-              border border-white/10 hover:border-yellow-400
-              text-white hover:text-black
-              transition-all duration-200 hover:scale-[1.02]
-              hover:shadow-xl hover:shadow-yellow-400/20"
-          >
-            <span className="w-8 h-8 rounded-xl bg-white/10 group-hover:bg-black/10
-              flex items-center justify-center shrink-0 transition-colors">
-              {s.icon}
-            </span>
-            <span className="text-sm font-semibold flex-1">
-              Follow on {s.label}
-            </span>
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" strokeWidth={2.5}
-              className="opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-200">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
-            </svg>
-          </a>
-        ))}
-      </div>
-
-    </div>
-  </div>
-</div>
     </>
   );
 }
 
+
 // ── FAQ Item ──────────────────────────────────────────────────────────────────
+
 
 function FAQItem({
   index,
@@ -324,6 +347,7 @@ function FAQItem({
   const isOpen = openIndex === index;
   const questionId = `faq-question-${index}`;
   const answerId = `faq-answer-${index}`;
+
 
   return (
     /*
@@ -369,6 +393,7 @@ function FAQItem({
         </svg>
       </button>
 
+
       {/*
        * ── Answer Panel ────────────────────────────────────────
        * CRITICAL SEO FIX: The answer is ALWAYS in the DOM (not conditionally rendered).
@@ -391,16 +416,7 @@ function FAQItem({
       >
         <div className="px-6 pb-4" itemProp="text">
           <p className="mb-3 text-gray-700">
-            {highlight ? (
-              <>
-                <span className="bg-[#ffe8b1] px-2">{highlight}</span>{" "}
-                {answer.startsWith(highlight)
-                  ? answer.slice(highlight.length).trimStart()
-                  : answer}
-              </>
-            ) : (
-              answer
-            )}
+            {answer}
           </p>
           <ul className="list-disc ml-6 space-y-1 text-gray-700">
             {bullets.map((bullet, i) => (
