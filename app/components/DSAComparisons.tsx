@@ -1,189 +1,164 @@
 'use client';
+
 import React from 'react';
-import { Check, X, ShieldCheck,Trophy, ArrowUpRight,BrainCircuit, Target, Repeat, Timer, Code2 } from 'lucide-react';
+import { Check, X, ShieldCheck, Trophy, ArrowUpRight, BrainCircuit, Target, Repeat, Timer, Code2 } from 'lucide-react';
 
-const StatusPill = ({ children, variant = "blue" }) => {
-  const styles = {
-    blue: "bg-blue-500/10 text-blue-600 border-blue-200/50",
-    red: "bg-rose-500/10 text-rose-600 border-rose-200/50",
-    slate: "bg-slate-500/10 text-slate-500 border-slate-200/50"
-  };
-  return (
-    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${styles[variant]} uppercase tracking-tighter`}>
-      {children}
-    </span>
-  );
-};
-
-export default function PremiumComparison() {
-
-const tableData = [
+const comparisonData = [
   {
-    label: "Learning Method",
-    sub: "Core strategy",
-    trad: "Random Grinding",
-    tauzand: "Pattern-First Approach",
-    icon: <BrainCircuit size={16} />,
+    label: "Learning Approach",
+    legacy: "Random Practice",
+    tauzand: "Pattern-First Learning",
+    icon: <BrainCircuit size={18} />,
   },
   {
-    label: "Retention",
-    sub: "Knowledge sustainability",
-    trad: "Forget after 2 weeks",
-    tauzand: "Approach remembered forever",
-    icon: <Repeat size={16} />,
+    label: "Knowledge Retention",
+    legacy: "Forgotten in 2 weeks",
+    tauzand: "Remembered Long Term",
+    icon: <Repeat size={18} />,
   },
   {
-    label: "Efficiency",
-    sub: "Preparation time",
-    trad: "6+ months / Burnout",
-    tauzand: "8-12 weeks ready",
-    icon: <Timer size={16} />,
+    label: "Preparation Time",
+    legacy: "6+ months with burnout",
+    tauzand: "Ready in 8-12 weeks",
+    icon: <Timer size={18} />,
   },
   {
-    label: "Variation Handling",
-    sub: "Adaptability in interviews",
-    trad: "Can't solve variations",
-    tauzand: "Solve any variation",
-    icon: <Target size={16} />,
+    label: "Handling New Questions",
+    legacy: "Struggles with variations",
+    tauzand: "Solves any variation easily",
+    icon: <Target size={18} />,
   },
   {
-    label: "Coding Practice",
-    sub: "Environment requirements",
-    trad: "IDE dependency",
-    tauzand: "IDE-agnostic skill",
-    icon: <Code2 size={16} />,
+    label: "Coding Skills",
+    legacy: "Depends on specific IDE",
+    tauzand: "Works in any environment",
+    icon: <Code2 size={18} />,
   },
 ];
 
+export default function PremiumComparison() {
   return (
-    <section className="w-full bg-slate-50/50 py-32 font-sans antialiased selection:bg-blue-100">
-      <div className="max-w-6xl mx-auto px-6">
-        
-        {/* Header: Editorial Style */}
-        <div className="mb-16">
-          <span className="inline-block border border-slate-900 rounded-full px-4 py-1 text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
-            Comparison Matrix // 2026
-          </span>
-          <h2 className="text-5xl md:text-6xl font-bold tracking-tighter leading-[0.9]">
-            Stop collecting paper.<br />
-            <span className="italic font-light text-slate-400">Start proving impact.</span>
+    <section className="w-full bg-slate-50 py-24 px-6">
+      <div className="max-w-6xl mx-auto">
+
+        {/* Header */}
+        <div className="text-left mb-10">
+          <div className="inline-block border border-slate-900 rounded-full px-5 py-1.5 text-xs font-bold tracking-[0.2em] mb-6">
+            DSA PREPARATION 2026
+          </div>
+          <h2 className="text-5xl md:text-6xl font-bold tracking-tighter leading-tight text-slate-950">
+            Start Solving Now
           </h2>
         </div>
 
-        {/* The Bento Table */}
-        <div className="grid grid-cols-12 gap-4">
+        {/* Main Comparison Table */}
+        <div className="bg-white rounded-3xl border border-slate-100 shadow-lg overflow-hidden">
           
-          {/* Main Comparison Block */}
-          <div className="col-span-12 lg:col-span-9 bg-white rounded-[2.5rem] border border-slate-200/60 shadow-xl shadow-slate-200/40 overflow-hidden">
-            <div className="grid grid-cols-12 border-b border-slate-100 bg-slate-100">
-              <div className="col-span-6 p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest">Structural Feature</div>
-              <div className="col-span-3 p-8 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center">Legacy</div>
-              <div className="col-span-3 p-8 text-[11px] font-black text-blue-600 uppercase tracking-widest text-center bg-blue-100">Tauzand.in</div>
-            </div>
-
-            {tableData.map((row, i) => (
-              <div key={i} className="grid grid-cols-12 group transition-all hover:bg-slate-50">
-                <div className="col-span-6 p-8 flex items-start gap-5 border-b border-slate-200">
-                  <div className="mt-1 text-blue-600 opacity-40 group-hover:opacity-100 transition-opacity">
-                    {row.icon}
-                  </div>
-                  <div>
-                    <h4 className="text-base font-bold text-slate-900 tracking-tight">{row.label}</h4>
-                    <p className="text-xs text-slate-400 font-medium">{row.sub}</p>
-                  </div>
-                </div>
-                
-                <div className="col-span-3 p-8 border-l border-slate-50 border-b border-slate-50 flex flex-col items-center justify-center gap-2">
-                  <X className="text-slate-300" size={18} />
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">{row.trad}</span>
-                </div>
-
-                <div className="col-span-3 p-8 border-l border-blue-100/50 bg-blue-50/10 border-b border-slate-50 flex flex-col items-center justify-center gap-2 relative">
-                  <div className="w-2 h-2 rounded-full bg-blue-500 absolute top-4 right-4 animate-pulse" />
-                  <Check className="text-blue-600" size={20} strokeWidth={3} />
-                  <span className="text-[10px] font-bold text-blue-700 uppercase tracking-tighter text-center">{row.tauzand}</span>
-                </div>
-              </div>
-            ))}
-            
-            {/* Table Footer CTA */}
-            <div className="p-8 bg-slate-950 flex items-center justify-between group cursor-pointer">
-              <div className="flex items-center gap-4">
-                <div className="h-px w-8 bg-blue-500/50 group-hover:w-12 transition-all" />
-                <span className="text-white font-bold tracking-tight">Ready to bridge the credibility gap?</span>
-              </div>
-              <a href="/internship/userdashboard" className="flex items-center gap-2 text-blue-400 font-bold text-sm" target='blank'>
-                Apply for Now <ArrowUpRight size={18} />
-              </a>
-            </div>
+          {/* Table Header */}
+          <div className="grid grid-cols-12 bg-slate-100 border-b border-slate-200">
+            <div className="col-span-5 p-6 text-xs font-bold text-slate-500 uppercase tracking-widest">Feature</div>
+            <div className="col-span-3 p-6 text-xs font-bold text-slate-500 uppercase tracking-widest text-center">Traditional Method</div>
+            <div className="col-span-4 p-6 text-xs font-bold text-blue-600 uppercase tracking-widest text-center bg-blue-50">Tauzand Method</div>
           </div>
 
-          {/* Side Stats Bento */}
-          <div className="col-span-12 lg:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
-  {/* Card 1: Success Metric */}
-  <div className="bg-blue-600 rounded-[2rem] p-8 text-white flex flex-col justify-between overflow-hidden relative group">
-    <Trophy className="absolute -right-4 -bottom-4 text-white/10 group-hover:scale-110 transition-transform" size={120} />
-    <div>
-      <h3 className="text-3xl font-black leading-tight tracking-tighter">92%</h3>
-      <p className="text-blue-100 text-xs font-medium mt-2">
-        Higher recruiter response rate compared to standard certificates.
-      </p>
-    </div>
-    <div className="mt-6 flex items-center gap-2">
-      <div className="h-1 flex-1 bg-white/20 rounded-full overflow-hidden">
-        <div className="h-full bg-white w-[92%]"></div>
-      </div>
-      <span className="text-[10px] font-bold">LIVE</span>
-    </div>
-  </div>
+          {/* Table Rows */}
+          {comparisonData.map((item, i) => (
+            <div key={i} className="grid grid-cols-12 border-b border-slate-100 hover:bg-slate-50 transition-colors group">
+              
+              {/* Feature Name */}
+              <div className="col-span-5 p-6 flex items-start gap-4">
+                <div className="mt-0.5 text-blue-600 opacity-40 group-hover:opacity-100 transition-opacity">
+                  {item.icon}
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-900">{item.label}</p>
+                </div>
+              </div>
 
-  {/* Card 2: Map & Reach */}
-  <div className="bg-white rounded-[2rem] p-8 border border-slate-200 flex flex-col justify-between shadow-sm relative overflow-hidden group">
+              {/* Traditional Method */}
+              <div className="col-span-3 p-6 flex items-center justify-center gap-2 border-l border-slate-100 text-slate-400">
+                <X size={18} />
+                <span className="text-sm font-medium text-center">{item.legacy}</span>
+              </div>
 
-    <div className="relative z-10">
-      <StatusPill variant="slate">Network</StatusPill>
-      <h4 className="text-slate-900 font-bold mt-4 tracking-tight leading-tight">
-        Pan-India <br/> Talent Cloud
-      </h4>
-      <p className="text-[11px] text-slate-500 mt-2 leading-relaxed">
-        Connecting verified developers from Bangalore to Delhi with top-tier product firms.
-      </p>
-    </div>
-
-    <div className="mt-8 flex items-center justify-between relative z-10">
-      <div className="flex -space-x-2">
-        {[1, 2, 3].map((i) => (
-          <div key={i} className="w-8 h-8 rounded-full bg-slate-100 border-2 border-white overflow-hidden">
-            <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="user" className="w-full h-full object-cover grayscale" />
-          </div>
-        ))}
-        <div className="w-8 h-8 rounded-full bg-slate-900 border-2 border-white flex items-center justify-center text-[10px] text-white font-bold">
-          +2k
+              {/* Tauzand Method */}
+              <div className="col-span-4 p-6 flex items-center justify-center gap-2 border-l border-blue-100 bg-blue-50/30">
+                <Check size={18} className="text-blue-600" strokeWidth={3} />
+                <span className="text-sm font-semibold text-blue-700 text-center">{item.tauzand}</span>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-      <div className="flex flex-col items-end">
-        <span className="text-[10px] font-black text-emerald-600">● ACTIVE</span>
-      </div>
-    </div>
-  </div>
 
-  {/* Card 3: Security/Trust */}
-  <div className="bg-gray-200 rounded-[2rem] p-8 border border-slate-200/50 flex flex-col justify-between hover:bg-white transition-colors duration-500 group">
-    <div>
-      <div className="w-8 h-8 bg-blue-600/10 rounded-lg flex items-center justify-center text-blue-600 mb-4 group-hover:scale-110 transition-transform">
-        <ShieldCheck size={18} />
-      </div>
-      <h4 className="text-slate-900 font-bold tracking-tight">V-Audit™ Secure</h4>
-      <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">
-        Automated plagiarism detection & manual logic review for every commit.
-      </p>
-    </div>
-    <div className="mt-6 pt-4 border-t border-slate-200/60 flex items-center justify-between">
-      <span className="text-[10px] font-mono text-slate-400">ID: VF-SEC-2026</span>
-      <ArrowUpRight size={14} className="text-slate-300 group-hover:text-blue-500 transition-colors" />
-    </div>
-  </div>
-</div>
+                {/* === Premium Early Bird CTA === */}
+        <div className="max-w-5xl mx-auto bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden grid grid-cols-1 md:grid-cols-2 mt-20">
+          
+          {/* Left Column: Creative Context */}
+          <div className="p-8 md:p-12 flex flex-col justify-between bg-green-100 border-b md:border-b-0 md:border-r border-green-300">
+            <div className="space-y-4">
+              <div className="inline-flex items-center gap-2 bg-white text-emerald-800 text-xs font-semibold px-2.5 py-1 rounded">
+                <span className="w-1.5 h-1.5 rounded-full border border-green-700 bg-green-500 animate-ping"></span>
+                Limited Enrollment Tier
+              </div>
+              
+              <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">
+                Accelerate Your Professional Journey.
+              </h3>
+              <div className="mt-8 hidden md:block">
+              <p className="text-md uppercase tracking-wider font-semibold mb-2">Program Features</p>
+              <ul className="text-xs space-y-1.5 text-slate-700">
+                <li>✓ 800+ Real Company Interview Questions</li>
+                <li>✓ Pattern-First Learning Methodology</li>
+                <li>✓ Topic-wise & Level-wise Practice</li>
+                <li>✓ Hands-on Coding Projects</li>
+                <li>✓ Full Dashboard & Progress Analytics</li>
+                <li>✓ Lifetime Access & Updates</li>
+              </ul>
+            </div>
+            </div>
+          </div>
+
+          {/* Right Column: Receipt & Checkout */}
+          <div className="p-8 md:p-12 flex flex-col justify-center bg-white">
+            {/* Receipt Header */}
+            <div className="text-center pb-4 mb-6 border-b border-dashed border-gray-300">
+              <p className="text-xs font-bold uppercase tracking-widest text-gray-700">Invoice Summary</p>
+              <p className="text-[11px] text-gray-700 font-mono mt-0.5">REF: EARLY-BIRD-OFFER</p>
+            </div>
+
+            {/* Receipt Line Items */}
+            <div className="space-y-3.5 text-sm text-gray-600 mb-6">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-500">Standard Program Fee</span>
+                <span className="font-mono text-gray-600">₹399.00</span>
+              </div>
+              
+              <div className="flex justify-between items-center text-emerald-700 font-medium">
+                <span>Early Bird Waiver (78%)</span>
+                <span className="font-mono">-₹310.00</span>
+              </div>
+              
+              {/* Total Due */}
+              <div className="flex justify-between items-center pt-3.5 border-t border-gray-200 text-gray-900 font-semibold">
+                <span>Total Payable</span>
+                <span className="font-mono text-xl text-gray-900">₹89.00</span>
+              </div>
+            </div>
+
+            {/* Metadata & Rules */}
+            <p className="text-center text-[12px] text-gray-600 mb-6 leading-normal">
+              Includes lifetime access & global system updates. <br />
+              <span className="text-center text-[10px] text-gray-600 mb-6 leading-normal underline"> If Already paid, you can ignore this </span>
+            </p>
+
+            {/* Clean CTA Button */}
+            <a
+              href="/DSA/userdashboard"
+              className="block w-full bg-gray-900 text-white font-medium text-sm py-3 px-4 rounded text-center tracking-wide border border-gray-900 transition-colors duration-150"
+            >
+              Proceed to Payment
+            </a>
+          </div>
 
         </div>
 
@@ -191,9 +166,3 @@ const tableData = [
     </section>
   );
 }
-
-const TechBadge = ({ children }) => (
-  <span className="text-[10px] font-mono bg-slate-950 text-white px-3 py-1 rounded-full uppercase tracking-[0.2em]">
-    {children}
-  </span>
-);

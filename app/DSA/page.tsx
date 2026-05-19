@@ -91,7 +91,6 @@ export const metadata: Metadata = {
 
   openGraph: {
     type: "website",
-    // FIXED: was "https://tauzand.in/dsa" — wrong case + no www
     url: "https://www.tauzand.in/DSA",
     siteName: "Tauzand",
     title: "DSA Company-wise PYQs | Tauzand",
@@ -100,11 +99,10 @@ export const metadata: Metadata = {
     locale: "en_IN",
     images: [
       {
-        // FIXED: was "https://tauzand.in/og/dsa-course.jpg" — no www
-        url: "https://www.tauzand.in/og/dsa-course.jpg",
+        url: "https://www.tauzand.in/og/dsa.png",
         width: 1200,
         height: 630,
-        alt: "Tauzand DSA — Company-wise Coding Interview Preparation Platform India",
+        alt: "Tauzand DSA — Company-wise Coding Round Preparation Platform India",
       },
     ],
   },
@@ -117,7 +115,7 @@ export const metadata: Metadata = {
     description:
       "800+ PYQs from 70+ companies. Pattern-first approach. Easy/Medium/Hard. 1380+ students. Placement-ready in 8–12 weeks.",
     // FIXED: was "https://tauzand.in/og/dsa-course.jpg" — no www
-    images: ["https://www.tauzand.in/og/dsa-course.jpg"],
+    images: ["https://www.tauzand.in/og/dsa.png"],
   },
 
   // FIXED: was "https://tauzand.in/dsa" — no www + wrong case
@@ -144,7 +142,7 @@ const jsonLd = {
       "logo": {
         "@type": "ImageObject",
         // FIXED: was "https://tauzand.in/logo.png" — no www
-        "url": "https://www.tauzand.in/logo.png",
+        "url": "https://www.tauzand.in/tauzand.png",
       },
       "sameAs": [
         "https://twitter.com/tauzand",
@@ -156,15 +154,13 @@ const jsonLd = {
     // ── 2. Course — triggers Google Course rich result cards ──────────────
     {
       "@type": "Course",
-      // FIXED: was "https://tauzand.in/dsa#course" — no www + wrong case
       "@id": "https://www.tauzand.in/DSA#course",
       "name": "Tauzand DSA — Company-wise Coding Interview Preparation",
       "alternateName": "Company's DSA PYQ",
       "description":
         "800+ company-wise Data Structures & Algorithms previous year questions (PYQs) from real coding interviews at 70+ companies including Google, Microsoft, Amazon, Apple, Meta, Netflix, Adobe, Oracle, Infosys, TCS, Wipro, and more. Questions organized company-wise and topic-wise with Easy, Medium, and Hard difficulty levels. Pattern-first approach curated by FAANG engineers. 1380+ engineering students enrolled. Placement-ready in 8–12 weeks.",
-      // FIXED: was "https://tauzand.in/dsa" — no www + wrong case
       "url": "https://www.tauzand.in/DSA",
-      "image": "https://www.tauzand.in/og/dsa-course.jpg",
+      "image": "https://www.tauzand.in/og/dsa.png",
       "inLanguage": "en-IN",
       "provider": {
         "@id": "https://www.tauzand.in/#organization",

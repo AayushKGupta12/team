@@ -59,61 +59,120 @@ export default function DSAPayment() {
   }
 
   return (
-  <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-all hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)]">
-    {/* Subtle Background Accent */}
-    <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-blue-50/50 blur-3xl" />
+  <div className="max-w-4xl mx-auto bg-white border border-gray-200 rounded-md shadow-sm overflow-hidden grid grid-cols-1 md:grid-cols-2">
     
-    {/* Go Back Link - Polished Position */}
-    <a 
-      href="/DSA" 
-      className="absolute top-6 right-6 flex items-center justify-center rounded-full bg-slate-50 px-4 py-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:bg-slate-100 hover:text-slate-900 transition-all z-20"
-    >
-      ← Go Back
-    </a>
+    {/* Left Column - Light Green Context */}
+    <div className="bg-green-100 p-5 md:p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-gray-200">
+      <div>
+        <div className="flex justify-between items-center">
+        {/* Left side */}
+        <div className="inline-block bg-white text-emerald-700 text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm border border-emerald-100 w-fit">
+          EARLY-BIRD-OFFER
+        </div>
 
-    <div className="relative z-10">
-      {/* Badge with subtle pulse */}
-      <div className="inline-flex items-center gap-2 rounded-full bg-amber-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-amber-600 border border-amber-100 mb-6">
-        <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />
-        Limited Time Offer
-      </div>
-      
-      <h2 className="text-3xl font-black tracking-tight text-slate-900 leading-[1.1]">
-        Unlock Company's DSA Secrets.
-      </h2>
-      
-      <p className="mt-4 text-slate-500 text-sm leading-relaxed max-w-[320px]">
-        Master patterns used by <span className="text-slate-900 font-semibold">FAANG</span>. 
-        Instant access to <span className="text-slate-900 font-semibold">800+ questions</span> from 
-        <span className="text-slate-900 font-semibold"> 70+ companies</span>.
-      </p>
-
-      <div className="mt-10 flex flex-col gap-4">
-        {/* Main CTA - Cleaned up text for better readability */}
-        <button 
-          onClick={handlePayment} 
-          className="group relative flex items-center justify-center gap-3 rounded-2xl bg-slate-900 py-4 px-6 text-sm font-bold text-white transition-all hover:bg-blue-600 hover:shadow-xl hover:shadow-blue-100 active:scale-[0.97]"
+        {/* Right side */}
+        <a
+          href="/DSA"
+          className="inline-block bg-white text-gray-700 text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-sm border border-gray-100 w-fit"
         >
-          <span>Get Full Access @ ₹89</span>
-          <span className="text-slate-400 group-hover:translate-x-1 group-hover:text-white transition-all">→</span>
-        </button>
+          Go Back
+        </a>
+      </div>
 
-        {/* Value Props & Trust Labels */}
-        <div className="space-y-3">
-          <div className="flex items-center justify-center gap-2 text-[11px] font-bold text-slate-600">
-             <span className="flex h-4 w-4 items-center justify-center rounded-full bg-green-100 text-green-600">✓</span>
-             One-time payment • Lifetime Validity
-          </div>
-          
-          <div className="rounded-xl bg-slate-50 p-3">
-            <p className="text-center text-[10px] font-medium leading-relaxed text-slate-400">
-              Secure checkout. A digital money receipt will be <br /> 
-              sent to your <span className="text-slate-600">registered email ID</span> instantly.
-            </p>
-          </div>
+        
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900 mb-4 md:mb-6 leading-tight">
+          Accelerate Your<br className="hidden md:block" /> Problem Solving.
+        </h2>
+
+        <div>
+          <p className="uppercase text-[10px] font-bold text-gray-800 mb-2.5 tracking-widest">PROGRAM FEATURES</p>
+          <ul className="space-y-2 text-xs md:text-sm text-gray-600">
+            <li className="flex items-center gap-2">
+              <span className="text-emerald-600 font-bold">✓</span>
+              800+ Real Company Interview Questions
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="text-emerald-600 font-bold">✓</span>
+              Pattern-First Learning Methodology
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="text-emerald-600 font-bold">✓</span>
+              Topic-wise & Level-wise Practice
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="text-emerald-600 font-bold">✓</span>
+              Hands-on Coding Projects
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="text-emerald-600 font-bold">✓</span>
+              Full Dashboard & Progress Analytics
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="text-emerald-600 font-bold">✓</span>
+              Lifetime Access & Updates
+            </li>
+          </ul>
         </div>
       </div>
     </div>
+
+    {/* Right Column - Compact Razorpay Receipt Style */}
+    <div className="p-5 md:p-8 bg-white flex flex-col justify-center">
+      
+      {/* Razorpay Sub-Receipt Container */}
+      <div className="border border-gray-200 rounded-sm p-4 bg-gray-50/50 relative">
+        
+        {/* Receipt Header */}
+        <div className="text-center pb-3 mb-4 border-b border-dashed border-gray-300">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-gray-800">RAZORPAY INVOICE</p>
+          <p className="text-[10px] text-gray-600 font-mono mt-0.5">REF: EARLY-BIRD-OFFER</p>
+        </div>
+
+        {/* Line Items */}
+        <div className="space-y-2 text-xs md:text-sm mb-4">
+          <div className="flex justify-between text-gray-600">
+            <span>Standard Program Fee</span>
+            <span className="font-mono">₹399.00</span>
+          </div>
+
+          <div className="flex justify-between text-emerald-700 font-medium">
+            <span>Early Bird Waiver (78%)</span>
+            <span className="font-mono">-₹310.00</span>
+          </div>
+
+          <div className="pt-3 border-t border-dashed border-gray-300 flex justify-between items-center text-base md:text-lg font-bold text-gray-900">
+            <span>Total Payable</span>
+            <span className="font-mono text-gray-900">₹89.00</span>
+          </div>
+        </div>
+
+        {/* Status indicator / Meta updates */}
+        <div className="text-center pt-1 space-y-0.5 border-t border-gray-100">
+          <p className="text-[11px] text-gray-600">
+            Includes lifetime access & global updates.
+          </p>
+          <p className="text-[10px] text-gray-800 underline decoration-gray-300">
+            If already paid, you can ignore this.
+          </p>
+        </div>
+      </div>
+
+      {/* Button and Post-Action Details Outside Receipt Frame */}
+      <div className="mt-4 space-y-3">
+        <button
+          onClick={handlePayment}
+          className="w-full bg-gray-900 hover:bg-black text-white font-medium py-2.5 rounded-md text-sm transition-colors duration-150 active:scale-[0.99]"
+        >
+          Proceed to Payment
+        </button>
+
+        <p className="text-center text-[10px] text-gray-800 tracking-wide">
+          Secure checkout via <span className='font-bold'>Razorpay</span> • Receipt sent instantly
+        </p>
+      </div>
+
+    </div>
+
   </div>
 );
 }

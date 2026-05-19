@@ -10,9 +10,6 @@ const UnifiedPricing = () => {
         
         {/* Editorial Header */}
         <div className="mb-16 text-center">
-          <span className="bg-green-200 border rounded-md px-3 py-1 text-[11px] font-bold uppercase tracking-widest mb-6">
-            Pricing Model
-          </span>
           <h2 className="text-4xl md:text-5xl font-semibold text-slate-900 tracking-tight leading-tight">
             One-Time Access. <span className="text-slate-400 font-normal">Unlimited Potential.</span>
           </h2>
@@ -62,7 +59,7 @@ const UnifiedPricing = () => {
               </div>
             </div>
             <div className="mb-6">
-              <span className="text-5xl font-semibold tracking-tight">Starts at ₹2 <span className="text-lg font-normal text-slate-400">per project</span></span>
+              <span className="text-5xl font-semibold tracking-tight">Starts at ₹ 2 <span className="text-lg font-normal text-slate-400">per project</span></span>
               <p className="text-slate-400 text-sm mt-2">Submit unlimited projects. Pay only a nominal audit fee per submission for verification by industry engineers.</p>
             </div>
             <div className="space-y-3 mt-auto">

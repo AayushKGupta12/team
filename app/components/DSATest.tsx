@@ -1,45 +1,40 @@
+'use client';
+
 import React from 'react';
+import { Check, X, ShieldCheck, Trophy, ArrowUpRight, BrainCircuit, Target, Repeat, Timer, Code2 } from 'lucide-react';
 
 const testimonials = [
   {
-    quote: "Tauzadn's DSA course was a game-changer for me. The pattern-first approach made it so much easier to understand and solve problems. I went from struggling with basic questions to confidently tackling complex ones in just a few weeks.",
+    quote: "Tauzand's DSA course completely changed how I approach problems. The pattern-first method helped me solve questions faster and with better understanding.",
     name: "Ishita Kapoor",
-    role: "SDE Internship",
+    role: "SDE Intern",
     batch: "Batch of 2026",
-    avatar: "https://i.pravatar.cc/150?u=arjun",
-    projectUrl: "https://Tauzand.in/certificate/VF2026DO00001"
+    avatar: "https://i.pravatar.cc/150?u=ishita",
+    projectUrl: "https://www.tauzand.in/certificate/VF2026DO00001"
   },
   {
-    quote: "DSA used to be my nightmare, but Tauzand's method of teaching patterns first really clicked for me. The retention was incredible - I still remember the concepts clearly even after months. It’s like they’ve cracked the code to learning DSA effectively.",
+    quote: "I used to forget concepts quickly. But Tauzand’s structured approach helped me remember patterns long-term. It made DSA much easier.",
     name: "Arjun Mehta",
     role: "Frontend Developer",
     batch: "Batch of 2025",
-    avatar: "https://i.pravatar.cc/150?u=ishita",
-    projectUrl: "https://Tauzand.in/certificate/VF2025SD00001"
+    avatar: "https://i.pravatar.cc/150?u=arjun",
+    projectUrl: "https://www.tauzand.in/certificate/VF2025SD00001"
   },
   {
-    quote: "I rember spending hours on end trying to memorize solutions from YouTube videos, but it never stuck. Tauzand's approach of teaching the underlying patterns and principles made it so much easier to learn and apply. I felt ready for interviews in just a couple of months.",
+    quote: "Instead of memorizing solutions, I now understand the logic behind every problem. My interview performance improved significantly in just two months.",
     name: "Priya Patel",
     role: "Full Stack Engineer",
     batch: "Batch of 2026",
-    avatar: "https://i.pravatar.cc/150?u=rahul",
-    projectUrl: "https://Tauzand.in/certificate/VF2026SD00002"
-  },
-  {
-    quote: "The code reviews were intense but incredibly helpful. My mentor pushed me to write cleaner, more optimized code. I could see a clear improvement in my problem-solving skills and coding style. This isn’t just a course; it’s a real validation of your engineering abilities.",
-    name: "Rahul Sharma",
-    role: "Java Intern",
-    batch: "Batch of 2025",
     avatar: "https://i.pravatar.cc/150?u=priya",
-    projectUrl: "https://Tauzand.in/certificate/VF2025BJ00001"
+    projectUrl: "https://www.tauzand.in/certificate/VF2026SD00002"
   },
   {
-    quote: "Company wise preparation was a huge help. I could focus on the specific patterns and questions that were relevant to the companies I was targeting. It made my preparation much more efficient and effective.",
-    name: "Aman Gupta",
-    role: "Data Science Intern",
-    batch: "Batch of 2026",
-    avatar: "https://i.pravatar.cc/150?u=aman",
-    projectUrl: "https://Tauzand.in/certificate/VF2026DS00001"
+    quote: "The mentor feedback was very detailed. It helped me write cleaner and more optimized code. This program gave me real confidence.",
+    name: "Rahul Sharma",
+    role: "Java Developer",
+    batch: "Batch of 2025",
+    avatar: "https://i.pravatar.cc/150?u=rahul",
+    projectUrl: "https://www.tauzand.in/certificate/VF2025BJ00001"
   },
 ];
 
@@ -47,8 +42,7 @@ export default function InfiniteScrollingTestimonials() {
   const duplicatedTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <section className="py-24 bg-[#0d1626] overflow-hidden rounded-3xl ">
-      {/* Inline Styles for the Marquee Animation */}
+    <section className="py-24 bg-[#0d1626] overflow-hidden rounded-3xl">
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes marquee {
           0% { transform: translateX(0); }
@@ -65,17 +59,17 @@ export default function InfiniteScrollingTestimonials() {
       `}} />
 
       <div className="w-full">
-        {/* Header */}
-         <div className="text-center mb-24">
-          <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tighter mb-4">
-            Start Solving <span className="italic font-light text-yellow-500">Today itself</span>
+
+        {/* Clear Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter mb-4">
+            Real Student Stories
           </h2>
-          <p className="text-slate-400">Company-wise preparation for DSA interviews & Coding round's</p>
+          <p className="text-slate-400 text-lg">How Tauzand helped them crack DSA interviews</p>
         </div>
 
-        {/* Marquee Container */}
+        {/* Marquee */}
         <div className="relative group">
-          {/* Side Fades */}
           <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#0d1626] to-transparent z-10 pointer-events-none" />
           <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#0d1626] to-transparent z-10 pointer-events-none" />
 
@@ -85,7 +79,7 @@ export default function InfiniteScrollingTestimonials() {
                 key={i} 
                 className="w-[450px] flex flex-col bg-[#142033] border border-slate-800 p-8 rounded-2xl transition-all hover:border-blue-900/50 hover:bg-[#1a2942]"
               >
-                <p className="text-slate-300 leading-relaxed text-[15px] mb-8 italic">
+                <p className="text-slate-300 leading-relaxed text-[15px] mb-8">
                   "{t.quote}"
                 </p>
 
@@ -103,19 +97,20 @@ export default function InfiniteScrollingTestimonials() {
           </div>
         </div>
 
-        {/* Proof Line */}
-        <div className="mt-16 flex justify-center items-center gap-2 px-6">
-           <div className="flex -space-x-2">
-              {[1,2,3,4].map(i => (
-                <div key={i} className="w-8 h-8 rounded-full border-2 border-[#0d1626] bg-slate-800 overflow-hidden">
-                  <img src={`https://i.pravatar.cc/100?img=${i+30}`} alt="user" />
-                </div>
-              ))}
-           </div>
-           <p className="text-sm text-slate-300 ml-2">
-             Joined by <span className="text-white font-medium">1380+</span> engineering students.
-           </p>
+        {/* Bottom Trust Line */}
+        <div className="mt-16 flex justify-center items-center gap-3 px-6">
+          <div className="flex -space-x-2">
+            {[1,2,3,4].map(i => (
+              <div key={i} className="w-8 h-8 rounded-full border-2 border-[#0d1626] bg-slate-700 overflow-hidden">
+                <img src={`https://i.pravatar.cc/100?img=${i+30}`} alt="user" />
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-400">
+            Trusted by <span className="text-white font-medium">thousand's</span> students
+          </p>
         </div>
+
       </div>
     </section>
   );

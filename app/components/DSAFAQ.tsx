@@ -197,9 +197,8 @@ export default function FAQ() {
           <div className="relative z-10 flex flex-col items-center justify-between gap-8 lg:flex-row">
             <div className="max-w-xl text-center lg:text-left">
               <h2 className="mb-3 text-3xl font-bold leading-snug text-white sm:text-4xl">
-                Don’t just collect answers.
-                <br className="hidden sm:block" />
-                <span className="text-yellow-400">Build interview confidence.</span>
+                Don’t just practise DSA.<br className="hidden sm:block" />
+                <span className="text-yellow-400">Build real interview confidence.</span>
               </h2>
 
               <a
@@ -212,7 +211,7 @@ export default function FAQ() {
               </a>
 
               <p className="mt-4 text-xs text-gray-200">
-                Company-wise prep • Topic-wise practice • 800+ questions
+                "Company-wise Questions • Topic-wise Practice • 800+ Curated Problems"
               </p>
             </div>
 

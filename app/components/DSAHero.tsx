@@ -41,9 +41,9 @@ export default function InternshipHero() {
           <div className="flex flex-col sm:flex-row gap-4">
             <button 
               onClick={() => router.push("/DSA/userdashboard")}
-              className="px-8 py-4 bg-slate-900 text-white font-bold text-sm rounded-full hover:bg-blue-600 transition"
+              className="px-8 py-4 bg-slate-900 text-white font-bold text-sm rounded-full hover:bg-blue-600 transition cursor-pointer"
             >
-              START BUILD TRACK
+              START SOLVING
             </button>
           </div>
         </div>
