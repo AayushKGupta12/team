@@ -210,7 +210,7 @@ export default function ApplyInternship({ onSuccess }: Props) {
   /* ── Submit — calls onSuccess immediately, no payment gate ── */
   const handleSubmit = async () => {
     if (!validateStep()) return;
-    if (!user?.id) { setError("Authentication error. Please login."); return; }
+    if (!user?.id) { setError("Please login First"); return; }
 
     setSubmitting(true); setError("");
 
