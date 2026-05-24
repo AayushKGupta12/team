@@ -9,10 +9,10 @@ import { supabase } from "../../../lib/supabase-client";
 const mentors = [
   {
     name: "Aayush Gupta",
-    role: "Executive Admin and Mentor at Tauzand",
+    role: "CEO & Founder at Tauzand",
     university: "KIIT University",
-    specialization: "Career Intelligence & Product Strategy",
-    linkedin: "https://www.linkedin.com/in/aayush-kumar-gupta-2b7952219/",
+    specialization: "Strategy, Operations, Growth",
+    linkedin: "",
   },
   {
     name: "Durgesh Panda",
@@ -288,13 +288,24 @@ ${emailFooter(m)}`,
 /* ═══════════════════════════════════════════════════
    TYPES
 ═══════════════════════════════════════════════════ */
+// AFTER
 type Intern = {
   id: string;
   intern_id: string | null;
   first_name: string;
   last_name: string;
   email: string;
+  phone: string | null;
+  university: string | null;
+  course: string | null;
+  graduation_year: number | null;
+  duration: string | null;
+  domain: string | null;
   status: string;
+  due_date: string | null;
+  google_drive_link: string | null;
+  payment_status: string | null;
+  transaction_id: string | null;
   assigned_projects: object | null;
   active_applicant: boolean;
 };
@@ -378,7 +389,7 @@ export default function AdminApplicantsClient() {
   async function fetchInterns() {
     const { data } = await supabase
       .from("interns")
-      .select("id, intern_id, first_name, last_name, email, status, assigned_projects, active_applicant")
+      .select("id, intern_id, first_name, last_name, email, phone, university, course, graduation_year, duration, domain, status, due_date, google_drive_link, payment_status, transaction_id, assigned_projects, active_applicant")
       .eq("active_applicant", true)
       .order("created_at", { ascending: false });
 
@@ -390,7 +401,6 @@ export default function AdminApplicantsClient() {
     }
   }
 
-  /* ── Send email via API ── */
   /* ── Send email via API ── */
 async function callSendEmail(payload: object, key: string) {
   setEmailKey(key);
@@ -490,9 +500,11 @@ async function callSendEmail(payload: object, key: string) {
   async function sendCustomEmail() {
     if (!modalIntern || !modalMessage.trim()) return;
     const m = mentors.find((x) => x.name === modalMentor) ?? mentors[0];
-    const body = buildCustomEmail(modalIntern.first_name, modalIntern.intern_id ?? "N/A", modalMessage, m);
-    const subject = modalSubject.trim() ||
-      `Important Update — Tauzand Internship Program | ${modalIntern.first_name} ${modalIntern.last_name}`;
+    // ✅ AFTER — destructure just like the other email senders do
+    const { subject: autoSubject, body } = buildCustomEmail(
+      modalIntern.first_name, modalIntern.intern_id ?? "N/A", modalMessage, m
+    );
+    const subject = modalSubject.trim() || autoSubject;
     await callSendEmail({ to: modalIntern.email, subject, body }, `${modalIntern.id}_custom`);
     setModalIntern(null);
     setModalMessage("");
@@ -737,16 +749,26 @@ Tauzand | ${LINKS.home}`}
         <div className="bg-white border border-slate-200 rounded-lg shadow-sm hidden md:block overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 text-xs uppercase tracking-wide">
-                <th className="px-4 py-3 text-left">ID</th>
-                <th className="px-4 py-3 text-left">Name</th>
-                <th className="px-4 py-3 text-left">Email</th>
-                <th className="px-4 py-3 text-left">Project</th>
-                <th className="px-4 py-3 text-left">Status</th>
-                <th className="px-4 py-3 text-left">Update</th>
-                <th className="px-4 py-3 text-left">Email</th>
-                <th className="px-4 py-3 text-left">Active</th>
-              </tr>
+                <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 text-xs uppercase tracking-wide">
+                  <th className="px-4 py-3 text-left">ID</th>
+                  <th className="px-4 py-3 text-left">Name</th>
+                  <th className="px-4 py-3 text-left">Email</th>
+                  <th className="px-4 py-3 text-left">Phone</th>
+                  <th className="px-4 py-3 text-left">University</th>
+                  <th className="px-4 py-3 text-left">Course</th>
+                  <th className="px-4 py-3 text-left">Grad Year</th>
+                  <th className="px-4 py-3 text-left">Duration</th>
+                  <th className="px-4 py-3 text-left">Domain</th>
+                  <th className="px-4 py-3 text-left">Due Date</th>
+                  <th className="px-4 py-3 text-left">Project</th>
+                  <th className="px-4 py-3 text-left">Status</th>
+                  <th className="px-4 py-3 text-left">View_Proj.</th>
+                  <th className="px-4 py-3 text-left">Update Status</th>
+                  <th className="px-4 py-3 text-left">Action</th>
+                  <th className="px-4 py-3 text-left">Payment</th>
+                  <th className="px-4 py-3 text-left">Reg Txn ID</th>
+                  <th className="px-4 py-3 text-left">Active</th>
+                </tr>
             </thead>
             <tbody>
               {filtered.length === 0 && (
@@ -769,16 +791,67 @@ Tauzand | ${LINKS.home}`}
                       {intern.email}
                     </td>
 
-                    <td className="px-4 py-3 whitespace-nowrap">
-                      {intern.assigned_projects
-                        ? <span className="text-xs bg-green-50 text-green-700 border border-green-200 px-2 py-0.5 rounded-md">Assigned</span>
-                        : <span className="text-xs bg-slate-100 text-slate-400 px-2 py-0.5 rounded-md">None</span>}
+                    <td className="px-4 py-3 text-slate-500 text-xs whitespace-nowrap">
+                      {intern.phone ?? "—"}
                     </td>
+
+                    <td className="px-4 py-3 text-slate-600 text-xs max-w-[160px] truncate" title={intern.university ?? ""}>
+                      {intern.university ?? "—"}
+                    </td>
+
+                    <td className="px-4 py-3 text-slate-600 text-xs whitespace-nowrap">
+                      {intern.course ?? "—"}
+                    </td>
+
+                    <td className="px-4 py-3 text-slate-500 text-xs whitespace-nowrap">
+                      {intern.graduation_year ?? "—"}
+                    </td>
+
+                    <td className="px-4 py-3 text-slate-500 text-xs whitespace-nowrap">
+                      {intern.duration ?? "—"}
+                    </td>
+
+                    <td className="px-4 py-3 text-slate-500 text-xs whitespace-nowrap">
+                      {intern.domain ?? "—"}
+                    </td>
+
+                    <td className="px-4 py-3 text-slate-500 text-xs whitespace-nowrap">
+                      {intern.due_date
+                        ? new Date(intern.due_date).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" })
+                        : "—"}
+                    </td>
+
+                    {/* Project assigned */}
+                      <td className="px-4 py-3 whitespace-nowrap">
+                        {intern.assigned_projects
+                          ? <span className="text-xs bg-green-50 text-green-700 border border-green-200 px-2 py-0.5 rounded-md">Assigned</span>
+                          : <span className="text-xs bg-slate-100 text-slate-400 px-2 py-0.5 rounded-md">None</span>}
+                      </td>
 
                     <td className="px-4 py-3 whitespace-nowrap">
                       <span className={`text-xs border px-2 py-0.5 rounded-md ${statusBadge(intern.status)}`}>
                         {statusLabel(intern.status)}
                       </span>
+                    </td>
+
+                    <td className="px-4 py-3 whitespace-nowrap">
+                      {intern.google_drive_link
+                        ? (
+                          
+                           <a href={intern.google_drive_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-indigo-600 border border-indigo-200 bg-indigo-50 px-2 py-0.5 rounded-md
+                                      hover:bg-indigo-100 transition-colors inline-flex items-center gap-1"
+                          >
+                            <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+                            </svg>
+                            Open
+                          </a>
+                        )
+                        : <span className="text-xs text-slate-300">—</span>}
                     </td>
 
                     <td className="px-4 py-3 whitespace-nowrap">
@@ -812,6 +885,22 @@ Tauzand | ${LINKS.home}`}
                     <td className="px-4 py-3 whitespace-nowrap">
                       <EmailActions intern={intern} />
                     </td>
+
+                      {/* Payment status */}
+                      <td className="px-4 py-3 whitespace-nowrap">
+                        {intern.payment_status === "paid"
+                          ? <span className="text-xs bg-green-50 text-green-700 border border-green-200 px-2 py-0.5 rounded-md">Paid</span>
+                          : intern.payment_status === "unpaid"
+                          ? <span className="text-xs bg-red-50 text-red-600 border border-red-200 px-2 py-0.5 rounded-md">Unpaid</span>
+                          : <span className="text-xs bg-amber-50 text-amber-600 border border-amber-200 px-2 py-0.5 rounded-md">
+                              {intern.payment_status ?? "—"}
+                            </span>}
+                      </td>
+
+                      {/* Transaction ID */}
+                      <td className="px-4 py-3 text-slate-400 text-xs font-mono whitespace-nowrap">
+                        {intern.transaction_id ?? "—"}
+                      </td>
 
                     <td className="px-4 py-3 whitespace-nowrap">
                       <select
