@@ -691,21 +691,25 @@ export default function InternshipDashboard() {
 
       {/* Help */}
       <div className="border border-gray-400 rounded-md px-4 py-4">
-        <p className="text-[13px] font-semibold text-gray-800 mb-1.5">Need help?</p>
-        <p className="text-xs text-gray-600 leading-relaxed">
-          At any time,{" "}
-          <span className="font-semibold">if you are unable to access your past applications</span>, you may
-          inform your mentor and then You can fill out a new form.{" "}
-          <br />
-          <span className="font-semibold">Please mention your details:</span>
-          <br />
-          Email <br /> InternID <br /> Issues faced <br />
-          <a href="mailto:aayushkumargupta.yt.12@gmail.com" className="font-semibold text-blue-800 underline">
-            Mail Here.
-          </a>
-          .
-        </p>
-      </div>
+  <p className="text-[13px] font-semibold text-gray-800 mb-1.5">Need Support ? </p>
+  <p className="text-xs text-gray-600 leading-relaxed">
+    When contacting support, include the following: 
+    <li className="list-disc list-inside text-gray-600 mt-1">
+      <span className="font-semibold text-gray-800">Email ID:</span> [Your Email ID]
+    </li>
+    <li className="list-disc list-inside text-gray-600 mt-1">
+      <span className="font-semibold text-gray-800">Intern ID:</span> [Your Intern ID]
+    </li>
+    <li className="list-disc list-inside text-gray-600 mt-1">
+      <span className="font-semibold text-gray-800">Issue Description:</span> A clear and concise explanation of the problem you're facing.
+    </li> 
+
+    <br />
+    Send these details to <a href="mailto:avishikta.vfound@diaghan.resend.app" className="font-semibold text-blue-800 underline">Us At Here</a>.
+  </p>
+</div>
+
+
 
       {/* ── Registration section — shown only when there's an active (non-completed) internship ── */}
       {internId && !intern?.is_completed && (
@@ -763,6 +767,19 @@ export default function InternshipDashboard() {
           )}
         </>
       )}
+
+      <div className="border border-rose-200 rounded-md p-3 w-full hover:bg-rose-50">
+        <details className="w-full">
+          <summary className="text-[12px] font-semibold text-rose-500 cursor-pointer">
+            if <span className="font-semibold">Status :</span> <span className="font-semibold underline text-rose-500"> Submission Approved</span> ?
+          </summary>
+          <p className="text-xs text-gray-600 leading-relaxed mt-2">
+            You have <span className="font-semibold">3 days</span> from <span className="font-semibold">Status :</span> <span className="font-semibold underline text-blue-600"> Submission Approved</span> to complete payment for Automation and Maintenance charges. 
+            <span className="font-semibold">Failure to pay within this period</span> may result in automatic deactivation of your application. 
+            If charges are already paid, please ignore this message. <a href="/term-of-use" className="underline text-blue-600 text-xs">T&C</a>
+          </p>
+        </details>
+      </div>
 
       {/* Permanently Deactivate — only for active (non-completed) internships */}
       {internId && !intern?.is_completed && (
@@ -897,14 +914,14 @@ export default function InternshipDashboard() {
       </AnimatePresence>
 
       {/* ── PAGE ── */}
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-10">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-26 lg:py-10">
 
         {/* Heading */}
         <div className="flex items-start justify-between mb-8">
           <div>
-            <p className="text-sm text-gray-400 mb-1">{greeting}</p>
+            <p className="text-sm text-gray-700 mb-1">{greeting}</p>
             <h1 className="text-2xl font-bold text-gray-900 leading-tight">Internship Dashboard</h1>
-            <p className="text-sm text-gray-400 mt-1.5">
+            <p className="text-sm text-gray-700 mt-1.5">
               {intern
                 ? "Welcome back : your progress has been restored."
                 : "Get started by applying to an internship and following the steps to earn your certificate."}
@@ -912,13 +929,13 @@ export default function InternshipDashboard() {
           </div>
           <button
             onClick={() => setSidebarOpen(true)}
-            className="lg:hidden flex items-center gap-2 px-3 py-2 bg-white border border-gray-200
-              rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors shrink-0 mt-1"
+            className="lg:hidden flex items-center gap-2 px-3 py-2 bg-emerald-100 border border-emerald-400
+              rounded-md text-sm font-medium hover:bg-emerald-200 transition-colors shrink-0 mt-1"
           >
             <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
-            Steps
+            Payment's & More
           </button>
         </div>
 
