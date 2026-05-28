@@ -3,89 +3,111 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  SignedIn,
-  SignedOut,
-  UserButton,
-  useUser,
-} from "@clerk/nextjs";
-
-import {
-  Menu,
-} from "lucide-react";
-
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { Menu, ChevronDown, Home, Layers, Cpu, Compass, Users, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import UsageProvider from "./UsageProvider";
 
-// Reorganized NavItems structure to meet your blueprint
+// Merged & expanded structural layout for a massive screen footprint
 const navItems = [
-  { 
-    label: "Services", 
-    dropdown: [
-      { label: "Skill & Internships validation", href: "/internship" },
-      { label: "User_Dashboard", href: "/internship/userdashboard" },
-      { label: "Available Project", href: "/internship/project" },
-      { label: "Validate Certificate", href: "/internship/validate" },
-    ]
-  },
-  { 
-    label: "Tools", 
-    dropdown: [
-      { label: "iATS Resume Analysis", href: "/ai-resume-analyser" },
-      { label: "iCL Cover Letter", href: "/cover-letter" },
+  {
+    label: "Services",
+    icon: Layers,
+    subtitle: "Career Development",
+    sections: [
+      {
+        title: "Skill's & Internship",
+        items: [
+          { label: "Skill & Internship Validation", href: "/internship", desc: "Get your skills and internships officially verified by industry mentors." },
+          { label: "User Dashboard", href: "/internship/userdashboard", desc: "Manage your projects, track progress, and access all tools." },
+          { label: "Available Projects", href: "/internship/project", desc: "Browse and apply for verified internship projects." },
+          { label: "Validate Certificate", href: "/internship/validate", desc: "Verify the authenticity of any Tauzand certificate." },
+        ]
+      },
+      {
+        title: "Intelligent Tools",
+        items: [
+          { label: "AI Resume Analyzer", href: "/ai-resume-analyser", desc: "Get deep insights and improvement suggestions for your resume." },
+          { label: "AI Cover Letter Generator", href: "/cover-letter", desc: "Create personalized, job-specific cover letters instantly." },
+        ]
+      }
     ]
   },
   {
-    label:"Research Agent",
-    dropdown :[
-      { label: "Research Extension", href: "/extension" },
-      { label : "Download Extension", href: "https://github.com/AayushKGupta12/Tauzand_extension/archive/refs/heads/main.zip"},
-      { label: "Documentation", href:"/extension/api-doc"},
-      { label: "Term of Use", href:"/term-of-use"}
-    ]
-  },
-  { 
-    label: "Cheat Sheet", 
-    dropdown: [
-      { label: "Company's DSA PYQ", href: "/DSA" },
-      { label: "DSA Dashboard", href: "/DSA/userdashboard" },
-    ]
-  },
-  { 
-    label: "Updates & Jobs", 
-    dropdown: [
-      { label: "IT Jobs", href: "/it-jobs" },
-      { label: "Blogs", href: "/blog" },
-      { label: "NewsLetter", href: "/news" },
-    ]
-  },
-  { 
-    label: "Companies info", 
-    dropdown: [
-      { label: "About us", href: "/about" },
-      { label: "Contact Us", href: "/contact" },
-      { label: "FAQ's", href: "/FAQ" },
-      { label: "Careers with us", href: "/careers" },
-      { label: "Pricing", href: "/pricing" },
+    label: "Research & Placements",
+    icon: Cpu,
+    subtitle: "Learning & Development",
+    sections: [
+      {
+        title: "Developer Tools",
+        items: [
+          { label: "AI Research Extension", href: "/extension", desc: "Instant insights while browsing technical content." },
+          { label: "User Dashboard", href:"/extension/extension_userdashboard", desc:"See your usages, re-generate API & more"},
+          { label: "Download Core Extension", href: "https://github.com/AayushKGupta12/Tauzand_extension/archive/refs/heads/main.zip", desc: "Download the browser extension package." },
+          { label: "API Documentation", href: "/extension/api-doc", desc: "Technical documentation and integration guides." },
+        ]
+      },
+      {
+        title: "Placement Prep 2026",
+        items: [
+          { label: "Company-wise DSA", href: "/DSA", desc: "800+ interview questions from top companies." },
+          { label: "DSA Dashboard", href: "/DSA/userdashboard", desc: "Track your DSA practice and performance." },
+          { label: "Terms of Use", href: "/term-of-use", desc: "Platform rules and guidelines." },
+        ]
+      }
     ]
   },
   {
-    label: "We are Hiring",
-    dropdown: [
-      { label: "Technical Roles", href: "https://docs.google.com/forms/d/e/1FAIpQLScUZ5y_RpNN9FXlm5U5ZtGaZuAmOeb_PDwldEUrMG6RO-lRXA/alreadyresponded" },
-      { label: "Non-Technical Roles", href: "https://docs.google.com/forms/d/e/1FAIpQLSe4tiJZCXpelNcGauAiqCDtROksL15gXo9I7V18UyPnUFP7Yw/viewform" },
+    label: "Updates & Media",
+    icon: Compass,
+    subtitle: "News & Opportunities",
+    sections: [
+      {
+        title: "Intelligence Channels",
+        items: [
+          { label: "IT Job Openings", href: "/it-jobs", desc: "Discover active job opportunities in tech." },
+          { label: "Engineering Blog", href: "/blog", desc: "Insights on technology, career, and industry trends." },
+          { label: "Weekly Newsletter", href: "/news", desc: "Curated industry updates delivered to your inbox." },
+        ]
+      }
+    ]
+  },
+  {
+    label: "Company",
+    icon: Users,
+    subtitle: "About Us & Careers",
+    sections: [
+      {
+        title: "Corporate Identity",
+        items: [
+          { label: "About Tauzand", href: "/about", desc: "Our mission, vision, and story." },
+          { label: "Contact Us", href: "/contact", desc: "Get in touch with our team." },
+          { label: "Frequently Asked Questions", href: "/FAQ", desc: "Quick answers to common questions." },
+          { label: "Pricing", href: "/pricing", desc: "Transparent plans and pricing." },
+        ]
+      },
+      {
+        title: "Join Our Team",
+        items: [
+          { label: "Technical Role", href: "https://docs.google.com/forms/d/e/1FAIpQLScUZ5y_RpNN9FXlm5U5ZtGaZuAmOeb_PDwldEUrMG6RO-lRXA/alreadyresponded", desc: "Engineering, development, and technical positions." },
+          { label: "Non-Technical Roles", href: "https://docs.google.com/forms/d/e/1FAIpQLSe4tiJZCXpelNcGauAiqCDtROksL15gXo9I7V18UyPnUFP7Yw/viewform", desc: "Marketing, operations, and strategy roles." },
+          { label: "Careers", href: "/careers", desc: "Life at Tauzand and open opportunities." },
+          { label: "Our Founder", href:"/founder", desc: "Face behind Execution"}
+        ]
+      }
     ]
   }
 ];
 
 export default function Navbar(): React.JSX.Element {
-  const [open, setOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [visible, setVisible] = useState(true);
-  // Track open state for individual category dropdowns in mobile view
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+
   const lastY = useRef(0);
   const ticking = useRef(false);
-  const { user } = useUser();
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -94,7 +116,7 @@ export default function Navbar(): React.JSX.Element {
       if (!ticking.current) {
         window.requestAnimationFrame(() => {
           const currentY = window.scrollY;
-          if (currentY > lastY.current + 10) setVisible(false);
+          if (currentY > lastY.current + 10 && currentY > 100) setVisible(false);
           else if (currentY < lastY.current - 10) setVisible(true);
           lastY.current = currentY;
           ticking.current = false;
@@ -106,82 +128,306 @@ export default function Navbar(): React.JSX.Element {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const toggleDropdown = (label: string) => {
-    setOpenDropdown(openDropdown === label ? null : label);
-  };
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setActiveDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
 
   if (pathname === "/sign-in" || pathname === "/sign-up") return null;
 
   return (
     <>
-      {/* ================= DESKTOP & MOBILE TOP NAV ================= */}
-      <header className="fixed inset-x-0 top-2 z-40 flex justify-end pointer-events-none">
-        <div className={`w-full pointer-events-auto transition-transform duration-300 ${visible ? "translate-y-0" : "-translate-y-32"}`}>
-          <div className="max-w-110 md:max-w-110 ml-auto px-2 md:px-1">
-            <div className="flex items-center justify-between gap-2 md:gap-4 rounded-2xl bg-[#7ba4d0]/10 border border-black/50 backdrop-blur-xl shadow-xl pr-4 md:pr-6 py-2 md:py-3">
-              
-              <div className="flex items-center gap-3 ml-2">
-                <img src="/tauzand.png" alt="logo" className="md:hidden h-10 w-10 rounded-lg" />
-                <Link href="/" className="text-[#0d2440] kaushan-script-regular text-2xl md:text-4xl font-bold">
-                  Tauzand.in
-                </Link>
+      {/* ================= DESKTOP STRETCH NAVBAR ================= */}
+      <header
+        className={`rounded-3xl fixed top-2 left-15 right-15 h-18 bg-white/95 border border-gray-100 shadow-md z-50 items-center justify-between px-10 transition-transform duration-300 hidden md:flex ${
+          visible ? "translate-y-0" : "-translate-y-full"
+        }`}
+        ref={dropdownRef}
+      >
+        {/* Left Side: Brand Logo Wrapper */}
+        <div className="flex items-center gap-10">
+          <Link href="/" className="flex items-center gap-2.5">
+            <img src="/tauzand.png" alt="Logo" className="h-18 w-auto object-contain rounded-md" />
+          </Link>
+        </div>
+
+        {/* Center: Merged Large Target Triggers */}
+        <nav className="flex items-center gap-2">
+
+          {navItems.map((item) => {
+            const isCurrentlyOpen = activeDropdown === item.label;
+            return (
+              <button
+                key={item.label}
+                onClick={() => setActiveDropdown(isCurrentlyOpen ? null : item.label)}
+                className={`flex items-center gap-1 px-2 py-1.5 text-[15px] font-semibold transition-all rounded-md cursor-pointer${
+                  isCurrentlyOpen 
+                    ? "text-[#0d2440] bg-blue-100" 
+                    : "hover:bg-[#ffd77a] cursor-pointer"
+                }`}
+              >
+                <span>{item.label}</span>
+                <ChevronDown
+                  size={15}
+                  className={`transition-transform duration-200 text-gray-800 ${isCurrentlyOpen ? "rotate-180 text-blue-600" : ""}`}
+                />
+              </button>
+            );
+          })}
+        </nav>
+
+        {/* Right Side: Auth & System Controls */}
+        <div className="flex items-center gap-4">
+          <SignedIn>
+            <div className="flex items-center gap-5">
+              <div className="hidden lg:block">
+                <UsageProvider />
               </div>
-
-              <div className="flex items-center gap-2">
-                <SignedIn>
-                  <div className="hidden md:flex items-center gap-3 rounded-full border border-white bg-[#ffd77a]/80 px-4 pr-1 py-2 shadow-md backdrop-blur-md">
-                    <span className="font-semibold text-gray-900">{user?.firstName || user?.username}</span>
-                    <div className="scale-140 -mb-2.5"><UserButton /></div>
-                  </div>
-                </SignedIn>
-
-                <button onClick={() => setOpen(true)} className="md:hidden p-1.5 rounded-lg hover:bg-black/10">
-                  <Menu className="h-7 w-7 text-[#0d2440]" />
-                </button>
+              <div className="scale-180 px-1 rounded-full shadow-inner">
+                <UserButton afterSignOutUrl="/"/>
               </div>
             </div>
-          </div>
+          </SignedIn>
+
+          <SignedOut>
+            <div className="flex items-center gap-5">
+              <Link
+                href="/sign-in"
+                className="text-[15px] font-bold text-gray-600 hover:text-blue-600 transition-colors"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/sign-up"
+                className="bg-[#3b82f6] text-white px-5 py-2.5 rounded-xl font-bold text-[15px] shadow-lg shadow-blue-500/10 hover:bg-blue-600 transition-all active:scale-[0.98]"
+              >
+                Get Started
+              </Link>
+            </div>
+          </SignedOut>
+        </div>
+
+        {/* ================= MASSIVE FULL-WIDTH HORIZONTAL FLYOUT PANELS ================= */}
+        <AnimatePresence>
+          {activeDropdown && (() => {
+            const currentConfig = navItems.find((n) => n.label === activeDropdown);
+            if (!currentConfig) return null;
+            const TargetIcon = currentConfig.icon;
+
+            return (
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="absolute left-0 right-0 top-21 w-full bg-white border-b border-slate-200 shadow-2xl grid grid-cols-12 overflow-hidden z-40 max-h-[520px] rounded-2xl"
+              >
+                {/* Left Segment: Broad Hero Overview Column */}
+                <div className="col-span-3 bg-[#ffd77a]/40 border-r border-slate-300 p-8 flex flex-col justify-between">
+                  <div className="space-y-4">
+                    <div className="p-3 bg-white border border-slate-200 rounded-xl w-fit shadow-xs text-blue-600">
+                      <TargetIcon size={24} />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-extrabold text-[#0d2440] tracking-tight">
+                        {currentConfig.label}
+                      </h3>
+                      <p className="text-xs font-medium text-[#0d2440] mt-0.5 uppercase tracking-wider">
+                        {currentConfig.subtitle}
+                      </p>
+                    </div>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      Optimize operational throughput and manage core technical intelligence components efficiently.
+                    </p>
+                  </div>
+                  <div className="text-xs font-semibold text-slate-600">
+                    Tauzand Platform v4.4.0
+                  </div>
+                </div>
+
+                {/* Right Segment: dynamic layout columns (1 or 2 columns based on contents) */}
+                <div className={`col-span-9 p-8 grid gap-8 overflow-y-auto ${
+                  currentConfig.sections.length > 1 ? "grid-cols-2" : "grid-cols-1"
+                }`}>
+                  {currentConfig.sections.map((sect, sIdx) => (
+                    <div key={sIdx} className="space-y-4">
+                      <h4 className="text-xs font-bold text-[#0d2440] uppercase tracking-widest border-b border-slate-400 pb-2">
+                        {sect.title}
+                      </h4>
+                      <div className="grid gap-2">
+                        {sect.items.map((subItem) => (
+                          <Link
+                            key={subItem.href}
+                            href={subItem.href}
+                            onClick={() => setActiveDropdown(null)}
+                            className="group flex flex-col p-3 rounded-2xl hover:bg-[#ffd77a]/40 border border-transparent hover:border-yellow-500 transition-all"
+                          >
+                            <span className="text-sm font-bold text-[#0d2440] transition-colors">
+                              {subItem.label}
+                            </span>
+                            <span className="text-xs text-slate-700 font-medium mt-1 transition-colors line-clamp-1">
+                              {subItem.desc}
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })()}
+        </AnimatePresence>
+      </header>
+
+      {/* ================= COMPACT MOBILE HEADER BAR ================= */}
+      <header
+        className={`rounded-2xl fixed top-2 left-4 right-4 h-16 bg-white border border-gray-100 shadow-md z-50 flex md:hidden items-center justify-between px-5 transition-transform duration-300 ${
+          visible ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
+        <Link href="/" className="flex items-center gap-2.5">
+          <img src="/tauzand.png" alt="Logo" className="h-10 w-auto object-contain rounded-md" />
+        </Link>
+        <div className="flex items-center gap-3">
+          {/* Show UserButton inline in header when signed in */}
+          <SignedIn>
+            <div className="p-0.5 scale-130 mt-2 ">
+              <UserButton afterSignOutUrl="/" />
+            </div>
+          </SignedIn>
+          <button
+            onClick={() => setMobileOpen(true)}
+            className="p-2 rounded-md text-[#0d2440]"
+            aria-label="Open menu"
+          >
+            <Menu size={25} strokeWidth={2.5} />
+          </button>
         </div>
       </header>
 
-      {/* ================= MOBILE SIDEBAR WITH DROPDOWNS ================= */}
-      <div className={`fixed inset-0 z-[99] md:hidden transition-opacity ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
-        <div onClick={() => setOpen(false)} className="absolute inset-0 bg-black/40" />
-        <aside className={`fixed right-0 inset-y-0 w-2/3 bg-white shadow-md transform transition-transform duration-300 ${open ? "translate-x-0" : "translate-x-full"} p-6 overflow-y-auto`}>
-          <button onClick={() => setOpen(false)} className="mb-6 h-8 w-8 rounded bg-[#0d2440] text-white font-bold">✕</button>
+      {/* ================= MOBILE NAVIGATION DRAWER ================= */}
+      <div
+        className={`fixed inset-0 z-[100] md:hidden transition-opacity duration-300 ${
+          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        {/* Backdrop */}
+        <div
+          onClick={() => setMobileOpen(false)}
+          className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+        />
 
-          <div className="flex flex-col gap-2">
+        {/* Drawer Panel — matches desktop: white/95, rounded-3xl, border gray-100, shadow-md */}
+        <aside
+          className={`fixed right-3 top-3 bottom-3 w-[82vw] max-w-[340px] bg-white/95 border border-gray-100 shadow-md rounded-3xl transform transition-transform duration-300 flex flex-col overflow-hidden ${
+            mobileOpen ? "translate-x-0" : "translate-x-[calc(100%+16px)]"
+          }`}
+        >
+          {/* Drawer Header — mirrors desktop header height & padding feel */}
+          <div className="h-16 px-5 border-b border-gray-100 flex items-center justify-between shrink-0">
+            <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5">
+              <img src="/tauzand.png" alt="Logo" className="h-12 w-auto object-contain rounded-md" />
+            </Link>
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="text-[#0d2440]"
+              aria-label="Close menu"
+            >
+              <X size={26} strokeWidth={2.5} />
+            </button>
+          </div>
+
+          {/* Scrollable Nav Items */}
+          <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
             {navItems.map((item) => {
-              const isDropdownOpen = openDropdown === item.label;
+              const isDropdownOpen = mobileDropdown === item.label;
+              const ItemIcon = item.icon;
               return (
-                <div key={item.label} className="border-b border-gray-100 py-1">
-                  {/* Category Toggle Button */}
-                  <button 
-                    onClick={() => toggleDropdown(item.label)}
-                    className="flex items-center justify-between w-full py-2 text-left text-[#0d2440] font-bold text-sm uppercase tracking-widest"
+                <div
+                  key={item.label}
+                  className={`rounded-xl border overflow-hidden transition-colors ${
+                    isDropdownOpen
+                      ? "border-gray-600"
+                      : "border-gray-100 bg-white"
+                  }`}
+                >
+                  {/* Section trigger */}
+                  <button
+                    onClick={() => setMobileDropdown(isDropdownOpen ? null : item.label)}
+                    className="flex items-center justify-between w-full py-3.5 px-4 text-left"
                   >
-                    <span>{item.label}</span>
-                    <span className="text-xs text-gray-400">
-                      {isDropdownOpen ? "▲" : "▼"}
-                    </span>
+                    <div className="flex items-center gap-2.5">
+                      <div className={`p-1.5 rounded-lg border ${
+                        isDropdownOpen
+                          ? "bg-white text-gray-600"
+                          : "bg-slate-200 border-slate-100 text-[#0d2440]"
+                      }`}>
+                        <ItemIcon size={18} strokeWidth={2.5} />
+                      </div>
+                      <div>
+                        <span className="text-[14px] font-bold text-[#0d2440] block leading-tight">
+                          {item.label}
+                        </span>
+                        <span className="text-[10px] font-medium text-slate-600 uppercase tracking-wider">
+                          {item.subtitle}
+                        </span>
+                      </div>
+                    </div>
+                    <ChevronDown
+                      size={15}
+                      strokeWidth={2.5}
+                      className={`text-slate-400 transition-transform duration-200 ${
+                        isDropdownOpen ? "rotate-180 text-blue-600" : ""
+                      }`}
+                    />
                   </button>
-                  
-                  {/* Dropdown Items Links Container */}
+
+                  {/* Expanded section — mirrors flyout panel section titles & items */}
                   {isDropdownOpen && (
-                    <div className="pl-2 flex flex-col bg-gray-50/50 rounded-lg mt-1">
-                      {item.dropdown.map((d) => (
-                        <Link 
-                          key={d.href} 
-                          href={d.href} 
-                          onClick={() => {
-                            setOpen(false);
-                            setOpenDropdown(null);
-                          }} 
-                          className="flex items-center gap-2 py-2 text-[#0d2440] font-medium text-sm active:bg-blue-50"
-                        >
-                          <span className="w-1.5 h-1.5 bg-blue-400 rounded-full" />
-                          {d.label}
-                        </Link>
+                    <div className="px-3 pb-3 pt-2 space-y-3">
+                      {item.sections.map((sect, sIdx) => (
+                        <div key={sIdx}>
+                          {/* Section title — same as desktop: uppercase tracking-widest border-b */}
+                          <p className="text-[10px] font-bold text-[#0d2440] uppercase tracking-widest border-b border-slate-300 pb-1.5 mb-2 px-1">
+                            {sect.title}
+                          </p>
+                          <div className="space-y-1">
+                            {sect.items.map((subItem) => (
+                              <Link
+                                key={subItem.href}
+                                href={subItem.href}
+                                onClick={() => {
+                                  setMobileOpen(false);
+                                  setMobileDropdown(null);
+                                }}
+                                className="flex flex-col p-2.5 rounded-2xl border border-transparent"
+                              >
+                                <span className="text-[13px] font-bold text-[#0d2440]">
+                                  {subItem.label}
+                                </span>
+                                <span className="text-[11px] text-slate-600 font-medium mt-0.5 line-clamp-1">
+                                  {subItem.desc}
+                                </span>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
                       ))}
                     </div>
                   )}
@@ -190,22 +436,42 @@ export default function Navbar(): React.JSX.Element {
             })}
           </div>
 
-          <hr className="bg-gray-300 my-4"/>
+          {/* Drawer Footer — Auth controls, mirrors desktop right-side auth */}
+          <div className="px-4 pb-4 pt-3 border-t border-gray-100 shrink-0 space-y-3">
+            <SignedIn>
+              {/* Usage provider full-width */}
+              <div className="rounded-2xl border border-gray-100 bg-slate-50/60 px-3 py-2.5">
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                  Active Workspace
+                </p>
+                <UsageProvider />
+              </div>
+            </SignedIn>
 
-          <SignedIn>
-            <div className="flex items-center justify-between rounded-xl border border-gray-200 bg-[#fff8e7] px-4 py-3 shadow-sm">
-              <span className="text-sm font-semibold">{user?.firstName}</span>
-              <UserButton />
-            </div>
-            <div className="mt-4"><UsageProvider /></div>
-          </SignedIn>
-          
-          <SignedOut>
-             <div className="flex flex-col gap-3">
-               <a href="/sign-in" className="w-full py-2 text-center border rounded-xl font-bold">Sign In</a>
-               <a href="/sign-up" className="w-full py-2 text-center bg-[#0d2440] text-white rounded-xl font-bold">Sign Up</a>
-             </div>
-          </SignedOut>
+            <SignedOut>
+              <div className="grid grid-cols-2 gap-2.5">
+                <Link
+                  href="/sign-in"
+                  onClick={() => setMobileOpen(false)}
+                  className="w-full py-3 text-center border border-gray-100 rounded-xl font-bold text-[14px] text-[#0d2440] bg-white shadow-sm"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/sign-up"
+                  onClick={() => setMobileOpen(false)}
+                  className="w-full py-3 text-center bg-[#3b82f6] text-white rounded-xl font-bold text-[14px] shadow-lg shadow-blue-500/10"
+                >
+                  Get Started
+                </Link>
+              </div>
+            </SignedOut>
+
+            {/* Platform badge — mirrors desktop flyout footer */}
+            <p className="text-[10px] font-semibold text-slate-400 text-center">
+              Tauzand Platform v4.4.0
+            </p>
+          </div>
         </aside>
       </div>
     </>

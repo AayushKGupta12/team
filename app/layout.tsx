@@ -61,26 +61,13 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
         >
           <div className="relative min-h-screen w-full">
-            {/* SIDEBAR (fixed) */}
-            <DesktopSidebar
-              collapsed={collapsed}
-              setCollapsed={setCollapsed}
-            />
 
             {/* MAIN CONTENT */}
-            <main
-              className={`
-                min-h-screen w-full
-                transition-all duration-300 ease-in-out
-                pl-0
-                ${collapsed ? "lg:pl-20" : "lg:pl-54"}
-              `}
-            >
+            <main>
               <Navbar />
               <PageTransition>
                 {children}
               </PageTransition>
-              
               <CongratsPopup />
               <Footer />
             </main>

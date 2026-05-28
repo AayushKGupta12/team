@@ -224,7 +224,7 @@ export default function ExtensionDashboard() {
       <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 py-12 lg:py-16 space-y-14">
 
         {/* ── Header ── */}
-        <header className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6">
+        <header className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mt-10">
           <div>
             <h1 className="text-4xl font-bold tracking-tight" style={{ color: T.navy }}>
               Your Dashboard

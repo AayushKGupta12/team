@@ -25,7 +25,7 @@ export default function InternshipHero() {
           
           {/* Left: Copy Content */}
           <div className="space-y-8">
-          <div className="inline-block border border-slate-900 rounded-full px-4 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">
+          <div className="inline-block border border-slate-900 rounded-full px-4 py-1 text-[10px] font-bold uppercase tracking-[0.2em] mt-10">
             Placement's 2026
           </div>
           
@@ -86,18 +86,18 @@ export default function InternshipHero() {
     {companies.slice(0, 11).map((company, index) => (
       <div
         key={`${company}-${index}`}
-        className="flex items-center justify-center bg-white h-24 p-4 transition-colors hover:bg-slate-50"
+        className="flex items-center justify-center bg-white h-24 p-4 transition-colors"
       >
-        <span className="text-xl font-black uppercase tracking-tighter text-slate-400 grayscale hover:text-slate-900 transition-all cursor-default">
+        <span className="text-xl font-black uppercase tracking-tighter text-slate-400">
           {company}
         </span>
       </div>
     ))}
 
     {/* The "+76 More" Block */}
-    <div className="flex items-center justify-center bg-yellow-50 h-24 p-4">
+    <div className="flex items-center justify-center bg-white h-24 p-4">
       <span className="text-xl font-bold uppercase tracking-widest text-yellow-500">
-        + 59 More
+        + More
       </span>
     </div>
   </div>

@@ -7,7 +7,7 @@ export default function InternshipHero() {
   const router = useRouter();
 
   return (
-    <section className="w-full bg-white text-slate-900 py-24 px-6">
+    <section className="w-full bg-white text-slate-900 py-28 px-6 mt-5">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
         
         {/* Left: Minimalist Copy */}
@@ -18,7 +18,7 @@ export default function InternshipHero() {
           
           <h1 className="text-6xl md:text-7xl font-bold tracking-tighter leading-[0.9]">
             Engineering with<br />
-            <span className="italic font-light text-slate-400"> Verified Internship.</span>
+            <span className="font-light text-slate-400"> Verified Internship.</span>
           </h1>
 
           <p className="text-xl text-slate-600 leading-relaxed max-w-md">

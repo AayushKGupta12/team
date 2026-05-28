@@ -97,7 +97,7 @@ const ApiDocumentation = () => {
     <div className="min-h-screen bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
         {/* Header */}
-        <header className="mb-12 pb-8 border-b border-gray-200">
+        <header className="mb-12 pb-8 border-b border-gray-200 mt-20">
           <div className="flex items-center justify-between">
             <div>
               <div className="flex items-center gap-3 mb-2">
@@ -105,7 +105,7 @@ const ApiDocumentation = () => {
                   <BookOpen className="w-5 h-5 text-white" />
                 </div>
                 <h1 className="text-3xl font-semibold text-gray-900">
-                  Extension Documentation | <span className='bg-yellow-300 p-2 rotate-1 rounded-md'><a href="www.Tauzand.in">Tauzand.in</a></span>
+                  Extension Documentation | <span className='bg-yellow-300 px-2 rotate-1 rounded-md'><a href="www.Tauzand.in">Tauzand.in</a></span>
                 </h1>
               </div>
               <p className="text-base text-gray-600 ml-13">

@@ -109,8 +109,24 @@ const UseCasesSection: React.FC = () => {
           className="text-center text-4xl sm:text-5xl md:text-6xl font-semibold text-gray-900 leading-tight tracking-tight mb-20 md:mb-32"
           itemProp="headline"
         >
-          Your 24/7 Solution Engineer
+          Your 24/7 Solution Engineer <br/>
+          <a
+            href="/extension/extension_userdashboard"
+            className="relative inline-flex items-center justify-center px-6 py-3 mb-12 
+                      text-lg font-semibold text-blue-600 bg-white border border-blue-600 
+                      rounded-xl shadow-lg transition-all duration-300 ease-in-out 
+                      hover:bg-blue-600 hover:text-white hover:scale-105 active:scale-95"
+          >
+            <span className="flex items-center gap-2">
+              Go to Dashboard
+            </span>
+
+            {/* Animated ripple effect */}
+            <span className="absolute inset-0 rounded-full border-2 border-blue-400 opacity-0 
+                            hover:animate-ping hover:opacity-100"></span>
+          </a>
         </h2>
+
 
         {/* Use Case Cards Grid */}
         <ol

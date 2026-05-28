@@ -94,7 +94,7 @@ export default function FormalBlogGrid() {
   const displayed = articles.slice(0, 40);
 
   return (
-    <section className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8 mt-10">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <motion.div

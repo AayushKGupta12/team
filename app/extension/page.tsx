@@ -379,7 +379,6 @@ export default function ExtensionPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <ExtensionDashboard />
       <ExtensionFeature />
       <ExtensionCTA />
       <FAQ4 />

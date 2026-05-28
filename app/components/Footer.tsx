@@ -170,22 +170,14 @@ export default function Footer() {
             <p>© {currentYear} Tauzand Career Intelligence. All rights reserved.</p>
             
             <div className="flex items-center gap-3 text-white">
-                <span className="text-yellow-400">|</span>
-                <span className="text-xs font-mono uppercase tracking-widest text-zinc-600">Built for the future of tech</span>
+                <span className="text-yellow-400/40">|</span>
+                <span className="text-xs font-mono uppercase tracking-widest text-yellow-400/40">Built for the future of tech</span>
             </div>
           </div>
           
           <div className="mt-4 text-[10px] text-zinc-700 max-w-lg leading-relaxed">
               Disclaimer: This platform uses artificial intelligence to analyze data. Insights provided should be considered guidance. Recognized by Startup India & MSME. Bhubaneswar, India.
           </div>
-        </div>
-      </div>
-
-      <div className="py-2 overflow-hidden relative pointer-events-none opacity-70 text-center">
-        <div className="whitespace-nowrap animate-[marquee_30s_linear_infinite]">
-          <span className="text-[7vw] font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-blue-500/20 to-yellow-400/20">
-            Career Intelligence
-          </span>
         </div>
       </div>
 

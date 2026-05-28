@@ -414,7 +414,7 @@ export default function TechHiringCompanies() {
   return (
     <div className="w-full bg-white rounded-2xl overflow-hidden px-8 md:mt-10 mt-14" style={{ fontFamily: "'DM Sans', 'Outfit', system-ui, sans-serif" }}>
       {/* Header */}
-      <div className="px-6 pt-6 pb-4 border-b border-gray-100">
+      <div className="px-6 pt-6 pb-4 border-b border-gray-100 mt-10">
         <h2 className="text-xl font-bold text-gray-900 tracking-tight mb-0.5">Companies Hiring</h2>
         <p className="text-xs text-gray-400 mb-4">{totalCount}+ companies across MAANG, product, service, unicorn, startup &amp; seed</p>
         {/* Tabs */}
