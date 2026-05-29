@@ -19,7 +19,7 @@ const navItems = [
         title: "Skill's & Internship",
         items: [
           { label: "Skill & Internship Validation", href: "/internship", desc: "Get your skills and internships officially verified by industry mentors." },
-          { label: "User Dashboard", href: "/internship/userdashboard", desc: "Manage your projects, track progress, and access all tools." },
+          { label: "Project Dashboard", href: "/internship/userdashboard", desc: "Manage your projects, track progress, and access all tools." },
           { label: "Available Projects", href: "/internship/project", desc: "Browse and apply for verified internship projects." },
           { label: "Validate Certificate", href: "/internship/validate", desc: "Verify the authenticity of any Tauzand certificate." },
         ]
@@ -42,7 +42,7 @@ const navItems = [
         title: "Developer Tools",
         items: [
           { label: "AI Research Extension", href: "/extension", desc: "Instant insights while browsing technical content." },
-          { label: "User Dashboard", href:"/extension/extension_userdashboard", desc:"See your usages, re-generate API & more"},
+          { label: "Extension Dashboard", href:"/extension/extension_userdashboard", desc:"See your usages, re-generate API & more"},
           { label: "Download Core Extension", href: "https://github.com/AayushKGupta12/Tauzand_extension/archive/refs/heads/main.zip", desc: "Download the browser extension package." },
           { label: "API Documentation", href: "/extension/api-doc", desc: "Technical documentation and integration guides." },
         ]
@@ -154,7 +154,7 @@ export default function Navbar(): React.JSX.Element {
     <>
       {/* ================= DESKTOP STRETCH NAVBAR ================= */}
       <header
-        className={`rounded-3xl fixed top-2 left-15 right-15 h-18 bg-white/95 border border-gray-100 shadow-md z-50 items-center justify-between px-10 transition-transform duration-300 hidden md:flex ${
+        className={`rounded-3xl fixed top-2 left-15 right-15 h-18 bg-[#e7f0fa] border border-blue-500 shadow-md z-50 items-center justify-between px-10 transition-transform duration-300 hidden md:flex ${
           visible ? "translate-y-0" : "-translate-y-full"
         }`}
         ref={dropdownRef}
@@ -177,7 +177,7 @@ export default function Navbar(): React.JSX.Element {
                 onClick={() => setActiveDropdown(isCurrentlyOpen ? null : item.label)}
                 className={`flex items-center gap-1 px-2 py-1.5 text-[15px] font-semibold transition-all rounded-md cursor-pointer${
                   isCurrentlyOpen 
-                    ? "text-[#0d2440] bg-blue-100" 
+                    ? "text-[#0d2440] bg-blue-200" 
                     : "hover:bg-[#ffd77a] cursor-pointer"
                 }`}
               >
@@ -297,12 +297,15 @@ export default function Navbar(): React.JSX.Element {
 
       {/* ================= COMPACT MOBILE HEADER BAR ================= */}
       <header
-        className={`rounded-2xl fixed top-2 left-4 right-4 h-16 bg-white border border-gray-100 shadow-md z-50 flex md:hidden items-center justify-between px-5 transition-transform duration-300 ${
+        className={`rounded-2xl fixed top-2 left-4 right-4 h-16 bg-[#e7f0fa] border border-blue-500 shadow-md z-50 flex md:hidden items-center justify-between px-5 transition-transform duration-300 ${
           visible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
         <Link href="/" className="flex items-center gap-2.5">
           <img src="/tauzand.png" alt="Logo" className="h-10 w-auto object-contain rounded-md" />
+          <span className="text-xl font-semibold text-gray-700">
+            Tauzand
+          </span>
         </Link>
         <div className="flex items-center gap-3">
           {/* Show UserButton inline in header when signed in */}
@@ -437,14 +440,19 @@ export default function Navbar(): React.JSX.Element {
           </div>
 
           {/* Drawer Footer — Auth controls, mirrors desktop right-side auth */}
-          <div className="px-4 pb-4 pt-3 border-t border-gray-100 shrink-0 space-y-3">
+          <div className="px-4 pb-4 pt-3 border-t border-gray-300 shrink-0">
             <SignedIn>
               {/* Usage provider full-width */}
               <div className="rounded-2xl border border-gray-100 bg-slate-50/60 px-3 py-2.5">
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">
                   Active Workspace
                 </p>
-                <UsageProvider />
+                <div className="flex items-center space-x-2">
+                  {/** @ts-ignore */}
+                  <div></div>
+                  <UserButton afterSignOutUrl="/"/>
+                  <UsageProvider />
+                </div>
               </div>
             </SignedIn>
 
