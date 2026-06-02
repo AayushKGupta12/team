@@ -11,29 +11,6 @@ import UsageProvider from "./UsageProvider";
 // Merged & expanded structural layout for a massive screen footprint
 const navItems = [
   {
-    label: "Services",
-    icon: Layers,
-    subtitle: "Career Development",
-    sections: [
-      {
-        title: "Skill's & Internship",
-        items: [
-          { label: "Skill & Internship Validation", href: "/internship", desc: "Get your skills and internships officially verified by industry mentors." },
-          { label: "Project Dashboard", href: "/internship/userdashboard", desc: "Manage your projects, track progress, and access all tools." },
-          { label: "Available Projects", href: "/internship/project", desc: "Browse and apply for verified internship projects." },
-          { label: "Validate Certificate", href: "/internship/validate", desc: "Verify the authenticity of any Tauzand certificate." },
-        ]
-      },
-      {
-        title: "Intelligent Tools",
-        items: [
-          { label: "AI Resume Analyzer", href: "/ai-resume-analyser", desc: "Get deep insights and improvement suggestions for your resume." },
-          { label: "AI Cover Letter Generator", href: "/cover-letter", desc: "Create personalized, job-specific cover letters instantly." },
-        ]
-      }
-    ]
-  },
-  {
     label: "Research & Placements",
     icon: Cpu,
     subtitle: "Learning & Development",
@@ -57,6 +34,30 @@ const navItems = [
       }
     ]
   },
+  {
+    label: "Services",
+    icon: Layers,
+    subtitle: "Career Development",
+    sections: [
+      {
+        title: "Skill's & Internship",
+        items: [
+          { label: "Skill & Internship Validation", href: "/internship", desc: "Get your skills and internships officially verified by industry mentors." },
+          { label: "Project Dashboard", href: "/internship/userdashboard", desc: "Manage your projects, track progress, and access all tools." },
+          { label: "Available Projects", href: "/internship/project", desc: "Browse and apply for verified internship projects." },
+          { label: "Validate Certificate", href: "/internship/validate", desc: "Verify the authenticity of any Tauzand certificate." },
+        ]
+      },
+      {
+        title: "Intelligent Tools",
+        items: [
+          { label: "AI Resume Analyzer", href: "/ai-resume-analyser", desc: "Get deep insights and improvement suggestions for your resume." },
+          { label: "AI Cover Letter Generator", href: "/cover-letter", desc: "Create personalized, job-specific cover letters instantly." },
+        ]
+      }
+    ]
+  },
+
   {
     label: "Updates & Media",
     icon: Compass,
@@ -87,12 +88,13 @@ const navItems = [
         ]
       },
       {
-        title: "Join Our Team",
+        title: "We Us Ours",
         items: [
-          { label: "Technical Role", href: "https://docs.google.com/forms/d/e/1FAIpQLScUZ5y_RpNN9FXlm5U5ZtGaZuAmOeb_PDwldEUrMG6RO-lRXA/alreadyresponded", desc: "Engineering, development, and technical positions." },
-          { label: "Non-Technical Roles", href: "https://docs.google.com/forms/d/e/1FAIpQLSe4tiJZCXpelNcGauAiqCDtROksL15gXo9I7V18UyPnUFP7Yw/viewform", desc: "Marketing, operations, and strategy roles." },
+          // { label: "Technical Role", href: "https://docs.google.com/forms/d/e/1FAIpQLScUZ5y_RpNN9FXlm5U5ZtGaZuAmOeb_PDwldEUrMG6RO-lRXA/alreadyresponded", desc: "Engineering, development, and technical positions." },
+          // { label: "Non-Technical Roles", href: "https://docs.google.com/forms/d/e/1FAIpQLSe4tiJZCXpelNcGauAiqCDtROksL15gXo9I7V18UyPnUFP7Yw/viewform", desc: "Marketing, operations, and strategy roles." },
           { label: "Careers", href: "/careers", desc: "Life at Tauzand and open opportunities." },
-          { label: "Our Founder", href:"/founder", desc: "Face behind Execution"}
+          { label: "Teams" , href: "/team", desc: "Face Behind Execution"},
+          { label: "Our Founder", href:"/founder", desc: "Face behind Intelligence"},
         ]
       }
     ]
@@ -162,7 +164,7 @@ export default function Navbar(): React.JSX.Element {
         {/* Left Side: Brand Logo Wrapper */}
         <div className="flex items-center gap-10">
           <Link href="/" className="flex items-center gap-2.5">
-            <img src="/tauzand.png" alt="Logo" className="h-18 w-auto object-contain rounded-md" />
+            <img src="/tauzand.png" alt="Logo" className="h-17 w-auto object-contain rounded-md" />
           </Link>
         </div>
 

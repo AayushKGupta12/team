@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import {Shield, Award, Sparkles,Terminal } from 'lucide-react';
 
 export default function HeroAndAbout() {
   return (
@@ -32,11 +33,6 @@ export default function HeroAndAbout() {
               <span className="block text-[#2e5e99]">Builder</span>
             </h1>
 
-            {/* <p className="mt-8 text-xl md:text-2xl text-gray-700 max-w-2xl leading-relaxed">
-              We don’t just help developers find jobs.<br />
-              <span className="font-semibold text-[#0d2440]">We help them become unstoppable.</span>
-            </p> */}
-
             <div className="mt-10 flex gap-6">
               <a
                 href="#about"
@@ -48,23 +44,33 @@ export default function HeroAndAbout() {
         </div>
       </section>
 
-      {/* ABOUT SECTION – Strict SaaS Minimalist (White Background & Rounded-md UI) */}
-      <section id="about" className="py-20 bg-white border-t border-slate-100">
+      {/* ABOUT SECTION – Strict SaaS Minimalist (White Background & Bold Border UI) */}
+      <section id="about" className="py-24 bg-white border-t border-slate-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
 
+          {/* Corporate Framework Title & Subtitle */}
+          <div className="text-center max-w-3xl mx-auto space-y-4">
+            <h2 className="text-4xl font-extrabold text-slate-900 tracking-tight sm:text-5xl">
+              We built the platform we wished existed.
+            </h2>
+            <p className="text-base sm:text-lg text-slate-500 leading-relaxed font-normal max-w-2xl mx-auto">
+              Tauzand is an AI-Based Career Platform as a Service. Registered in <span className="font-semibold text-slate-900">Startup India</span> and operated under UDYAM software status <span className="font-mono font-semibold text-slate-900">(UDYAM-BR-26-0222297)</span> as an India-based software and AI enterprise since March 2026.
+            </p>
+          </div>
+
           {/* Who We Are & Story Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4">
             <div className="lg:col-span-4 space-y-3">
-              <div className="inline-flex items-center px-2.5 py-0.5 bg-slate-100 text-slate-800 text-xs font-semibold uppercase tracking-wider rounded-md">
-                Our Story
+              <div className="inline-flex items-center px-2.5 py-1 bg-slate-100 text-slate-800 text-xs font-semibold uppercase tracking-wider rounded-md border border-slate-200">
+                Our Foundation
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+              <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
                 Building India's career intelligence network.
-              </h2>
+              </h3>
             </div>
-            <div className="lg:col-span-8 space-y-6 text-slate-600 text-base leading-relaxed">
+            <div className="lg:col-span-8 space-y-6 text-slate-500 text-base leading-relaxed">
               <p>
-                Most job platforms treat software engineers like interchangeable items on a database list. We see you as a core developer with specific talents, practical architecture skills, and scaling potential. Founded by <span className="text-slate-900 font-semibold underline decoration-indigo-400 decoration-2 underline-offset-4">Aayush Gupta</span>, Developer Builder balances the line between personal skill metrics and direct industry placement.
+                Most job platforms treat software engineers like interchangeable items on a database list. We see you as a core developer with specific talents, practical architecture skills, and scaling potential. Founded by <span className="text-slate-900 font-semibold underline decoration-blue-500 decoration-2 underline-offset-4">Aayush K. Gupta</span>, Tauzand balances the line between personal skill metrics and direct industry placement.
               </p>
               <p>
                 We use internal automated evaluation pathways to deeply unpack code structures, highlight contextual gaps, map personalized progression roadmaps, and connect developers straight to engineering teams looking for precise talent stacks.
@@ -72,79 +78,86 @@ export default function HeroAndAbout() {
             </div>
           </div>
 
-          {/* Mission Block - Clean SaaS Banner Accent */}
-          <div className="p-8 bg-slate-50 border border-slate-200/60 rounded-xl relative overflow-hidden">
-            <div className="max-w-3xl space-y-3">
-              <span className="text-xs font-bold tracking-widest text-indigo-600 uppercase block">The Core Mission</span>
-              <p className="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight leading-snug">
-                One click <span className="text-indigo-600">→</span> direct validation by high-impact tech teams who respect raw engineering skill.
+          {/* Mission & Story Dual Card Grid (Styled matching reference) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Mission Card */}
+            <div className="border-2 border-slate-200 bg-white rounded-2xl p-6 shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl">
+              <h4 className="text-xl font-bold text-slate-900 tracking-tight mb-3">Our mission</h4>
+              <p className="text-sm text-slate-500 leading-relaxed">
+                Software solutions designed to optimize operations and drive measurable career growth. Tauzand delivers innovative software and AI tools built explicitly to balance validation channels for students and developers who live on IT engineering paths.
               </p>
-              <p className="text-sm text-slate-500 max-w-xl">
-                Eliminating structural pipeline noise, recruitment spam, and black-box resume ghosting through open and responsive automation loops.
+            </div>
+
+            {/* Story Card */}
+            <div className="border-2 border-slate-200 bg-white rounded-2xl p-6 shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl">
+              <h4 className="text-xl font-bold text-slate-900 tracking-tight mb-3">Our story</h4>
+              <p className="text-sm text-slate-500 leading-relaxed">
+                We kept watching IT undergraduates glue together a CV, a resume, an internship tracker, and half a dozen AI tools—then spend weeks reconciling data between systems. So we built one platform with all of it, operated by our team as an Indian engineering organization for gaining direct career velocity.
               </p>
             </div>
           </div>
 
-          {/* Values Section */}
-          <div className="space-y-6">
+          {/* Ecosystem Principles Section */}
+          <div className="space-y-8 pt-4">
             <div>
-              <h3 className="text-lg font-bold text-slate-900 tracking-tight">Ecosystem Principles</h3>
+              <h3 className="text-2xl font-bold text-slate-900 tracking-tight">Ecosystem Principles</h3>
               <p className="text-sm text-slate-500">The functional guidelines behind our architecture and network operations.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
                 { 
                   title: "Radical Honesty", 
                   desc: "Clear telemetry metrics on your code profiles. Absolute objectivity regarding engineering gaps helps you iterate faster.",
-                  icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  icon: Shield
                 },
                 { 
                   title: "Real Growth", 
                   desc: "Contextual engineering milestones and sandbox workflows explicitly targeted at stepping up from junior to senior code paradigms.",
-                  icon: "M13 10V3L4 14h7v7l9-11h-7z"
+                  icon: Terminal
                 },
                 { 
                   title: "Zero BS Infrastructure", 
                   desc: "Verified profiles interact exclusively with tech systems actively looking to hire. No phantom postings or automated ghost layers.",
-                  icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  icon: Award
                 },
                 { 
                   title: "Community Driven", 
                   desc: "Our platform blueprints are developed in tight, transparent collaboration loops alongside thousands of active open-source engineers.",
-                  icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  icon: Sparkles
                 }
-              ].map((value) => (
-                <div key={value.title} className="p-5 bg-white border border-slate-200 rounded-lg hover:border-slate-300 transition-colors shadow-sm flex gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 bg-slate-50 text-slate-600 rounded-md flex items-center justify-center border border-slate-100">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={value.icon} />
-                    </svg>
+              ].map((value) => {
+                const IconComponent = value.icon;
+                return (
+                  <div key={value.title} className="border-2 border-slate-200 bg-white rounded-2xl p-6 shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl flex gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-slate-50 text-slate-700 rounded-xl flex items-center justify-center border border-slate-200">
+                      <IconComponent className="w-5 h-5" />
+                    </div>
+                    <div className="space-y-1">
+                      <h4 className="text-base font-bold text-slate-900 tracking-tight">{value.title}</h4>
+                      <p className="text-sm text-slate-500 leading-relaxed font-normal">{value.desc}</p>
+                    </div>
                   </div>
-                  <div className="space-y-1">
-                    <h4 className="text-sm font-semibold text-slate-900">{value.title}</h4>
-                    <p className="text-xs text-slate-500 leading-relaxed">{value.desc}</p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
           {/* Compact SaaS CTA Block */}
-          <div className="p-6 bg-slate-950 text-white rounded-xl flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="p-8 bg-slate-950 text-white rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md hover:shadow-xl transition-shadow duration-200">
             <div className="text-center sm:text-left space-y-1">
-              <h4 className="text-base font-semibold">Ready to switch to a transparent tech career loop?</h4>
+              <h4 className="text-lg font-bold tracking-tight">Ready to switch to a transparent tech career loop?</h4>
               <p className="text-xs text-slate-400">Upgrade how your code profile reaches key organizations.</p>
             </div>
             <div className="flex items-center gap-4 flex-shrink-0 w-full sm:w-auto justify-center sm:justify-end">
               <a
                 href="mailto:support@Tauzand.in"
-                className="inline-flex items-center justify-center text-center px-4 py-2 bg-white text-slate-950 text-xs font-medium rounded-md hover:bg-slate-100 transition-colors shadow-sm"
+                className="inline-flex items-center justify-center text-center px-5 py-2.5 bg-white text-slate-950 text-xs font-semibold rounded-xl hover:bg-slate-100 transition-colors shadow-sm"
               >
                 Let's Talk
               </a>
               <div className="text-left hidden xs:block border-l border-slate-800 pl-4">
-                <span className="block text-[10px] text-slate-500 uppercase tracking-wider">Engineering SLA</span>
+                <span className="block text-[9px] text-slate-500 uppercase tracking-wider font-bold">Engineering SLA</span>
                 <span className="text-xs font-medium text-slate-300">Under 24h response</span>
               </div>
             </div>
