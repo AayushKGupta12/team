@@ -1,6 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import { 
+  FileSearch, 
+  Sparkles, 
+  Chrome, 
+  QrCode, 
+  Cpu, 
+  Newspaper,
+  Volume2,
+  VolumeX
+} from "lucide-react";
 
 interface YouTubePreviewProps {
   videoId?: string;
@@ -17,65 +27,136 @@ export default function YouTubePreview({
   return (
     <section className="w-full bg-gradient-to-b from-white to-neutral-50 py-24 px-6 lg:px-16 rounded-b-4xl">
       <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-start gap-16 lg:gap-20">
+          
+          {/* ── LEFT CONTENT (Storytelling Flowchart) ── */}
+          <div className="flex flex-col items-start gap-12 max-w-xl order-2 lg:order-1">
+            <div className="flex flex-col gap-3">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 leading-[1.05] tracking-tighter">
+                Your Complete Career Growth Journey
+              </h2>
+            </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
-          {/* ── LEFT CONTENT ── */}
-          <div className="flex flex-col items-start gap-8 max-w-xl order-2 lg:order-1">
-           <h2 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold text-neutral-900 leading-[1.05] tracking-tighter">
-  {title}
-</h2>
+            {/* Vertical Timeline/Flowchart */}
+            <div className="relative flex flex-col gap-12 pl-2">
+              {/* Decorative Gradient Line */}
+              <div className="absolute left-[30px] top-4 bottom-4 w-[8px] bg-gradient-to-b from-rose-200 via-blue-200 to-yellow-200" />
 
-            {/* Feature Pills */}
-            <div className="flex flex-wrap gap-3">
-              <span className="px-3.5 py-2 bg-neutral-100 rounded-full text-xs sm:text-sm font-medium text-neutral-700">
-  🚀 No credit card required
-</span>
-<span className="px-3.5 py-2 bg-neutral-100 rounded-full text-xs sm:text-sm font-medium text-neutral-700">
-  ⏱️ 5-minute setup
-</span>
-<span className="px-3.5 py-2 bg-neutral-100 rounded-full text-xs sm:text-sm font-medium text-neutral-700">
-  🔒 Enterprise-grade security
-</span>
+              {/* Step 1 */}
+              <div className="relative flex gap-6 items-start group">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white border border-neutral-900 shadow-sm text-neutral-900">
+                  <FileSearch className="w-5 h-5" />
+                </div>
+                <div className="flex flex-col gap-1.5 pt-1">
+                  <h3 className="text-lg font-bold text-neutral-900 tracking-tight">1. AI Resume Analysis</h3>
+                  <p className="text-sm text-neutral-600 leading-relaxed font-medium">
+                    Get a comprehensive evaluation of your resume across 32 key parameters. Receive actionable insights to significantly improve your chances with recruiters.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="relative flex gap-6 items-start group">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white border border-neutral-900 shadow-sm text-neutral-900">  <Sparkles className="w-5 h-5" />
+                </div>
+                <div className="flex flex-col gap-1.5 pt-1">
+                  <h3 className="text-lg font-bold text-neutral-900 tracking-tight">2. Smart Cover Letter Generation</h3>
+                  <p className="text-sm text-neutral-600 leading-relaxed font-medium">
+                    Create highly personalized cover letters tailored to specific job descriptions in seconds. Ready to download and send instantly.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="relative flex gap-6 items-start group">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white border border-neutral-900 shadow-sm text-neutral-900">  <Chrome className="w-5 h-5" />
+                </div>
+                <div className="flex flex-col gap-1.5 pt-1">
+                  <h3 className="text-lg font-bold text-neutral-900 tracking-tight">3. AI Research Extension</h3>
+                  <p className="text-sm text-neutral-600 leading-relaxed font-medium">
+                    Get instant explanations, summaries, and technical insights while browsing the web. Accelerate your learning and research.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 4 */}
+              <div className="relative flex gap-6 items-start group">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white border border-neutral-900 shadow-sm text-neutral-900">  <QrCode className="w-5 h-5" />
+                </div>
+                <div className="flex flex-col gap-1.5 pt-1">
+                  <h3 className="text-lg font-bold text-neutral-900 tracking-tight">4. Verified Internship Certificate</h3>
+                  <p className="text-sm text-neutral-600 leading-relaxed font-medium">
+                    Complete real projects and earn a mentor-verified certificate with public validation and QR code authentication.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 5 */}
+              <div className="relative flex gap-6 items-start group">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white border border-neutral-900 shadow-sm text-neutral-900">
+                  <Cpu className="w-5 h-5" />
+                </div>
+                <div className="flex flex-col gap-1.5 pt-1">
+                  <h3 className="text-lg font-bold text-neutral-900 tracking-tight">5. Company-wise DSA Practice</h3>
+                  <p className="text-sm text-neutral-600 leading-relaxed font-medium">
+                    Practice 800+ interview questions from top companies with structured tracking and performance insights.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 6 */}
+              <div className="relative flex gap-6 items-start group">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white border border-neutral-900 shadow-sm text-neutral-900">
+                  <Newspaper className="w-5 h-5" />
+                </div>
+                <div className="flex flex-col gap-1.5 pt-1">
+                  <h3 className="text-lg font-bold text-neutral-900 tracking-tight">6. Engineering Insights</h3>
+                  <p className="text-sm text-neutral-600 leading-relaxed font-medium">
+                    Stay updated with high-quality blogs covering latest technologies, career strategies, and industry trends.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* ── VIDEO ── */}
-          <div className="flex justify-center order-1 lg:order-2">
+          {/* ── RIGHT CONTENT (Sticky Video Panel) ── */}
+          <div className="flex justify-center order-1 lg:order-2 lg:sticky lg:top-24">
             <div className="relative w-full max-w-3xl">
-              {/* Decorative elements */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-yellow-400 rounded-3xl" />
-              
+              {/* Accent Glow Backplate */}
+              <div className="absolute -inset-1.5 bg-gradient-to-r from-yellow-400 to-yellow-400 rounded-3xl opacity-95" />
+
               {/* Video container */}
-              <div className="relative w-full aspect-video rounded-3xl overflow-hidden bg-black shadow-xl ring-1 ring-neutral-800/10">
+              <div className="relative w-full aspect-video rounded-3xl overflow-hidden bg-black shadow-2xl ring-1 ring-neutral-900/10 z-10">
                 <iframe
-                  className="w-full h-full"
+                  className="w-full h-full object-cover"
                   src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=${muted ? 1 : 0}&controls=0&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=${videoId}`}
-                  title="Product overview"
+                  title="Product overview layout"
                   allow="autoplay; encrypted-media; picture-in-picture"
                   allowFullScreen
                 />
-                
-                {/* ── FUNCTIONAL SOUND BUTTON (INSIDE VIDEO) ── */}
+
+                {/* Sound Control Toggle */}
                 <div className="absolute bottom-4 right-4 z-20">
                   <button
                     onClick={() => setMuted(!muted)}
-                    className="flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-full text-xs font-semibold text-white hover:bg-black/80 transition-all border border-white/10"
+                    className="flex items-center gap-2 px-3.5 py-2 bg-black/70 backdrop-blur-md rounded-full text-xs font-semibold text-white hover:bg-black/90 active:scale-95 transition-all border border-white/10 shadow-lg"
                   >
-                    <span>{muted ? "🔇" : "🔊"}</span>
+                    {muted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
                     <span>{muted ? "Unmute" : "Mute"}</span>
                   </button>
                 </div>
               </div>
 
-              {/* Caption */}
-              <p className="text-center mt-4 mb-3">
-  <span className="inline-flex items-center gap-2 px-5 py-2 bg-white/80 backdrop-blur-sm rounded-full text-sm font-semibold text-[#0d2440] shadow-sm border border-neutral-200/60">
-    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-    Live Product Demo
-  </span>
-</p>
+              {/* Status Indicator pill */}
+              <p className="text-center mt-6">
+                <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/90 backdrop-blur-md rounded-full text-xs font-bold uppercase tracking-wider text-[#0d2440] shadow-sm border border-neutral-200/80">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  Live Product Demo
+                </span>
+              </p>
             </div>
           </div>
+
         </div>
       </div>
     </section>

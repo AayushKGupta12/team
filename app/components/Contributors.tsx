@@ -192,7 +192,7 @@ export default function Contributors() {
           <h2 className='font-bold text-6xl pb-12'>
           We built the platform we wished existed.
           </h2>
-          Tauzand ( ie. Formerely Vfound.in )  is a AI Based Career Platform as a Service. It's operated by Tauzand Career Intelligence, a Delaware corporation, wholly-owned by <span className="font-bold font-mono">Aayush IT & Services (UDYAM-BR-26-0222297)</span> an India-based software and AI company with a years of experience shipping enterprise-grade systems.
+          Tauzand ( ie. Formerly Vfound.in )  is a AI Based Career Platform as a Service. It's operated by Tauzand Career Intelligence, a Delaware corporation, wholly-owned by <span className="font-bold font-mono">Aayush IT & Services (UDYAM-BR-26-0222297)</span> an India-based software and AI company with a years of experience shipping enterprise-grade systems.
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Mission Card */}
