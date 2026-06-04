@@ -365,7 +365,7 @@ export default function FeatureSection() {
                 <span className="relative z-10 px-3">Career Intelligence</span>
                 <span className="absolute inset-0 bg-gradient-to-r from-amber-200 to-yellow-200 transform rounded-lg" />
               </span>{" "}
-              for Indian IT Students
+              for IT Students
             </h1>
 
             <div className="mt-4 flex flex-wrap items-center justify-center gap-6 text-sm">

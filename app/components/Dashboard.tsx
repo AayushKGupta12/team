@@ -72,7 +72,7 @@ const stats = [
     fill: "#7C3AED",
   },
   {
-    val: "634",
+    val: "1634",
     label: "Internships Completed",
     change: "30 / 45 / 60-day tracks",
     good: null,

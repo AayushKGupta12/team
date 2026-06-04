@@ -33,7 +33,7 @@ export default function YouTubePreview({
           <div className="flex flex-col items-start gap-12 max-w-xl order-2 lg:order-1">
             <div className="flex flex-col gap-3">
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 leading-[1.05] tracking-tighter">
-                Your Complete Career Growth Journey
+                Find What's Holding Back Your Career
               </h2>
             </div>
 
@@ -48,7 +48,7 @@ export default function YouTubePreview({
                   <FileSearch className="w-5 h-5" />
                 </div>
                 <div className="flex flex-col gap-1.5 pt-1">
-                  <h3 className="text-lg font-bold text-neutral-900 tracking-tight">1. AI Resume Analysis</h3>
+                  <h3 className="text-xl font-bold text-neutral-900 tracking-tight">1. Not Getting Interview Calls?</h3>
                   <p className="text-sm text-neutral-600 leading-relaxed font-medium">
                     Get a comprehensive evaluation of your resume across 32 key parameters. Receive actionable insights to significantly improve your chances with recruiters.
                   </p>
@@ -60,9 +60,9 @@ export default function YouTubePreview({
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white border border-neutral-900 shadow-sm text-neutral-900">  <Sparkles className="w-5 h-5" />
                 </div>
                 <div className="flex flex-col gap-1.5 pt-1">
-                  <h3 className="text-lg font-bold text-neutral-900 tracking-tight">2. Smart Cover Letter Generation</h3>
+                  <h3 className="text-xl font-bold text-neutral-900 tracking-tight">2. Applications Getting Ignored?</h3>
                   <p className="text-sm text-neutral-600 leading-relaxed font-medium">
-                    Create highly personalized cover letters tailored to specific job descriptions in seconds. Ready to download and send instantly.
+                    Generate personalized cover letters that match job descriptions and improve response rates.
                   </p>
                 </div>
               </div>
@@ -72,7 +72,7 @@ export default function YouTubePreview({
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white border border-neutral-900 shadow-sm text-neutral-900">  <Chrome className="w-5 h-5" />
                 </div>
                 <div className="flex flex-col gap-1.5 pt-1">
-                  <h3 className="text-lg font-bold text-neutral-900 tracking-tight">3. AI Research Extension</h3>
+                  <h3 className="text-xl font-bold text-neutral-900 tracking-tight">3. Learning Taking Too Much Time?</h3>
                   <p className="text-sm text-neutral-600 leading-relaxed font-medium">
                     Get instant explanations, summaries, and technical insights while browsing the web. Accelerate your learning and research.
                   </p>
@@ -84,9 +84,9 @@ export default function YouTubePreview({
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white border border-neutral-900 shadow-sm text-neutral-900">  <QrCode className="w-5 h-5" />
                 </div>
                 <div className="flex flex-col gap-1.5 pt-1">
-                  <h3 className="text-lg font-bold text-neutral-900 tracking-tight">4. Verified Internship Certificate</h3>
+                  <h3 className="text-xl font-bold text-neutral-900 tracking-tight">4. No Internship Experience?</h3>
                   <p className="text-sm text-neutral-600 leading-relaxed font-medium">
-                    Complete real projects and earn a mentor-verified certificate with public validation and QR code authentication.
+                    Work on real projects and earn a mentor-verified certificate with public validation and QR authentication.
                   </p>
                 </div>
               </div>
@@ -97,9 +97,9 @@ export default function YouTubePreview({
                   <Cpu className="w-5 h-5" />
                 </div>
                 <div className="flex flex-col gap-1.5 pt-1">
-                  <h3 className="text-lg font-bold text-neutral-900 tracking-tight">5. Company-wise DSA Practice</h3>
+                  <h3 className="text-xl font-bold text-neutral-900 tracking-tight">5. Struggling in Coding Interviews?</h3>
                   <p className="text-sm text-neutral-600 leading-relaxed font-medium">
-                    Practice 800+ interview questions from top companies with structured tracking and performance insights.
+                    Practice company-specific DSA questions with structured tracking and performance insights.
                   </p>
                 </div>
               </div>
@@ -110,7 +110,7 @@ export default function YouTubePreview({
                   <Newspaper className="w-5 h-5" />
                 </div>
                 <div className="flex flex-col gap-1.5 pt-1">
-                  <h3 className="text-lg font-bold text-neutral-900 tracking-tight">6. Engineering Insights</h3>
+                  <h3 className="text-xl font-bold text-neutral-900 tracking-tight">6. Unsure What To Learn Next?</h3>
                   <p className="text-sm text-neutral-600 leading-relaxed font-medium">
                     Stay updated with high-quality blogs covering latest technologies, career strategies, and industry trends.
                   </p>

@@ -10,6 +10,7 @@ import Banner from "./components/Banner";
 import YouTubePreview from "./components/Youtube";
 import Dashboard from "./components/Dashboard";
 import Updates from "./components/Updates";
+import ToolsExplorer from "./components/ToolsExplorer";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // METADATA
@@ -312,6 +313,7 @@ const Page = () => {
       />
       <Hero />
       <YouTubePreview />
+      <ToolsExplorer />
       <Features />
       <Dashboard />
       <Testimonials />
