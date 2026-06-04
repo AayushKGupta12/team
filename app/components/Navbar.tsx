@@ -156,7 +156,7 @@ export default function Navbar(): React.JSX.Element {
     <>
       {/* ================= DESKTOP STRETCH NAVBAR ================= */}
       <header
-        className={`rounded-3xl fixed top-2 left-15 right-15 h-18 bg-[#e7f0fa] border border-blue-500 shadow-md z-50 items-center justify-between px-10 transition-transform duration-300 hidden md:flex ${
+        className={`rounded-md fixed top-2 left-15 right-15 h-18 bg-[#e7f0fa]/70 border border-gray-500 shadow-md z-50 items-center justify-between px-10 transition-transform duration-300 hidden md:flex ${
           visible ? "translate-y-0" : "-translate-y-full"
         }`}
         ref={dropdownRef}
