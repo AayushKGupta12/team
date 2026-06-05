@@ -20,7 +20,7 @@ export default function InternshipHero() {
         <div className="absolute bottom-[-10%] left-[-10%] h-[500px] w-[500px] rounded-full bg-slate-50 blur-[120px]" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 pt-20 pb-12">
+      <div className="relative max-w-7xl mx-auto px-6 pt-30 pb-12">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           
           {/* Left: Copy Content */}
@@ -49,59 +49,46 @@ export default function InternshipHero() {
         </div>
 
           {/* Right: Visual Frame */}
-          <div className="relative group">
-            {/* Ambient Glow */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-100 to-transparent rounded-[40px] scale-105 blur-2xl" />
-            
-            <div className="relative transition-transform duration-500 group-hover:rotate-0">
-              <div className="rounded-[15px] border border-slate-200 bg-gray-100 p-2 shadow-[0_40px_100px_rgba(15,23,42,0.12)]">
-                <div className="overflow-hidden rounded-[12px] bg-slate-100 aspect-auto lg:aspect-auto xl:aspect-auto">
+            <div className="relative w-full max-w-4xl lg:max-w-6xl xl:max-w-7xl lg:translate-x-15">
+              {/* Ambient Glow */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-rose-200 to-yellow-200 scale-130 blur-xl opacity-60" />
+              
+              {/* Container with relative context and transition layout */}
+              <div className="relative transition-all duration-500 rounded-2xl overflow-hidden scale-150 -right-40 pt-10">
+                <div className="w-full h-auto">
                   <img
                     src="/DSADashboard.png"
                     alt="Dashboard preview"
-                    className="h-full w-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 </div>
               </div>
-              
-              {/* Floating Badge */}
-              <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 hidden md:block animate-bounce-slow">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold">✓</div>
-                  <div>
-                    <p className="text-xs font-bold text-slate-900">Curated Content</p>
-                    <p className="text-[10px] text-slate-400">By FAANG Engineers</p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
         {/* Marquee Section */}
         <div className="mt-24 max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-slate-200 border border-slate-200 rounded-xl overflow-hidden">
+            {/* 11 Company Names */}
+            {companies.slice(0, 11).map((company, index) => (
+              <div
+                key={`${company}-${index}`}
+                className="flex items-center justify-center bg-white h-24 p-4 transition-colors"
+              >
+                <span className="text-xl font-black uppercase tracking-tighter text-slate-400">
+                  {company}
+                </span>
+              </div>
+            ))}
 
-  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-slate-200 border border-slate-200 rounded-xl overflow-hidden">
-    {/* 11 Company Names */}
-    {companies.slice(0, 11).map((company, index) => (
-      <div
-        key={`${company}-${index}`}
-        className="flex items-center justify-center bg-white h-24 p-4 transition-colors"
-      >
-        <span className="text-xl font-black uppercase tracking-tighter text-slate-400">
-          {company}
-        </span>
-      </div>
-    ))}
-
-    {/* The "+76 More" Block */}
-    <div className="flex items-center justify-center bg-white h-24 p-4">
-      <span className="text-xl font-bold uppercase tracking-widest text-yellow-500">
-        + More
-      </span>
-    </div>
-  </div>
-</div>
+            {/* The "+76 More" Block */}
+            <div className="flex items-center justify-center bg-white h-24 p-4">
+              <span className="text-xl font-bold uppercase tracking-widest text-yellow-500">
+                + More
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -39,6 +39,8 @@ import DSAFeature from "../components/DSAFeature";
 import DSAComparisons from "../components/DSAComparisons";
 import DSAFAQ from "../components/DSAFAQ";
 import DSATest from "../components/DSATest";
+import Banner from "../components/Banner";
+import Countdown from "../components/Countdown";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // METADATA
@@ -318,6 +320,10 @@ const Page = () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      <Banner
+        isPositive={false}
+        message="V4.4.1 is Live. For support, please contact dsa.support@diaghan.resend.app."
+      />
       <DSAHero />
       <DSAFeature />
       <DSAComparisons />

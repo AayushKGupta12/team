@@ -1,11 +1,10 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-
 import { useUser } from '@clerk/nextjs';
-
 import DSAQuestionsPage from '../../components/DSAQuestionsPage';
 import DSAPayment from '../../components/DSAPayment';
+import Banner from '../../components/Banner';
 
 const Page = () => {
 
@@ -162,24 +161,42 @@ const Page = () => {
         }
       >
         <DSAQuestionsPage />
+        <Banner
+        isPositive={false}
+        message="V4.4.1 is Live. For support, please contact dsa.support@diaghan.resend.app."/>
       </div>
 
       {/* PAYMENT OVERLAY */}
       {!userPaid && (
-
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-xs">
-
           <div className="w-full max-w-4xl px-4">
-
             <DSAPayment />
-
           </div>
-
         </div>
       )}
-
     </div>
   );
 };
 
 export default Page;
+
+
+// 'use client';
+
+// import React from 'react';
+// import DSAQuestionsPage from '../../components/DSAQuestionsPage';
+// import Banner from '../../components/Banner';
+
+// const Page = () => {
+//   return (
+//     <div className="relative min-h-screen bg-gray-50">
+//       <DSAQuestionsPage />
+//       <Banner
+//         isPositive={false}
+//         message="V4.4.1 is Live. For support, please contact dsa.support@diaghan.resend.app."
+//       />
+//     </div>
+//   );
+// };
+
+// export default Page;
