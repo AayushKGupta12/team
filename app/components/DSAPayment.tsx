@@ -167,7 +167,7 @@ export default function DSAPayment() {
         </button>
 
         <p className="text-center text-[10px] text-gray-800 tracking-wide">
-          Secure checkout via <span className='font-bold'>Razorpay</span> • Receipt sent instantly
+          Secure checkout via <span className='font-extrabold italic'>Razorpay</span> • Receipt sent instantly
         </p>
       </div>
 

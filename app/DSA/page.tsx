@@ -322,7 +322,7 @@ const Page = () => {
 
       <Banner
         isPositive={false}
-        message="V4.4.1 is Live. For support, please contact dsa.support@diaghan.resend.app."
+        message="V4.4.2 is Live. For support, please contact dsa.support@diaghan.resend.app."
       />
       <DSAHero />
       <DSAFeature />

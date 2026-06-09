@@ -59,6 +59,7 @@ export default function DSAQuestionsPage() {
   const [completedQuestions, setCompletedQuestions] = useState<Set<string>>(new Set());
   const [selectedCompany, setSelectedCompany] = useState<string | null>(null);
   const [activeQuestion, setActiveQuestion] = useState<any>(null);
+  const [confirmId, setConfirmId] = useState<number | null>(null);
 
   // Sidebar & filter panel
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -496,15 +497,38 @@ return (
                         <ExternalLink size={15}/> SOLVE
                       </button>
                       <button
-                        onClick={() => markAsDone(q.id)}
+                        onClick={() => {
+                          if (confirmId !== q.id) {
+                            setConfirmId(q.id);
+                            return;
+                          }
+
+                          markAsDone(q.id);
+                          setConfirmId(null);
+                        }}
                         disabled={isDone}
-                        className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-md border text-[11px] font-bold tracking-wide ${
+                        className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-md border text-[11px] font-bold tracking-wide transition-all duration-200 ${
                           isDone
-                            ? 'bg-emerald-100 border-emerald-600 text-emerald-600 cursor-pointer'
-                            : 'border-slate-600 text-slate-600 bg-gray-50 hover:bg-gray-100 cursor-pointer'
+                            ? 'bg-emerald-100 border-emerald-600 text-emerald-700 cursor-not-allowed'
+                            : confirmId === q.id
+                            ? 'bg-amber-100 border-amber-600 text-amber-600 cursor-pointer'
+                            : 'border-slate-600 text-slate-600 bg-gray-100 hover:bg-gray-100 cursor-pointer'
                         }`}
                       >
-                        {isDone ? <><CheckCircle size={15} /> DONE</> : 'MARK DONE'}
+                        <span
+                          key={`${q.id}-${confirmId === q.id}`}
+                          className="animate-flip"
+                        >
+                          {isDone ? (
+                            <>
+                              <CheckCircle size={15} />
+                            </>
+                          ) : confirmId === q.id ? (
+                            'SURE?'
+                          ) : (
+                            'MARK DONE'
+                          )}
+                        </span>
                       </button>
                     </div>
                   </motion.div>

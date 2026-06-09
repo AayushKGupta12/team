@@ -19,7 +19,8 @@ export default function CoverLetterGenerator() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
-
+  const [jobDescription, setJobDescription] = useState('');
+  const [warnings, setWarnings] = useState<string[]>([]);
   const { user, isSignedIn } = useUser();
   const { fetchStatus } = useUsageStatus();
 
@@ -88,8 +89,11 @@ export default function CoverLetterGenerator() {
         throw new Error(data.error || 'Failed to upload resume');
       }
 
+      
       setIsResumeUploaded(true);
       setError('');
+      setWarnings([]);
+      setCoverLetter('');
     } catch (err) {
       if (err.message && err.message.includes('fetch')) {
         setError('Cannot connect to backend');
@@ -103,6 +107,18 @@ export default function CoverLetterGenerator() {
   };
 
   const handleGenerateCoverLetter = async () => {
+
+    const newWarnings: string[] = [];
+  
+    if (!jobDescription || jobDescription.trim().length < 100)
+      newWarnings.push("Job description seems too short, paste the full JD for best results.");
+    if (jobDescription.length > 8000)
+      newWarnings.push("Job description is very long, consider trimming to key responsibilities.");
+    if (!jobDescription.toLowerCase().includes(jobTitle.toLowerCase()))
+      newWarnings.push("Job title not found in JD, double check they match.");
+    
+    setWarnings(newWarnings);
+
     if (!isResumeUploaded) {
       setError('Please upload your resume first');
       return;
@@ -123,10 +139,7 @@ export default function CoverLetterGenerator() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          job_title: jobTitle,
-          company: company,
-        }),
+        body: JSON.stringify({ job_title: jobTitle, company: company, job_description: jobDescription }),
       });
 
       const data = await response.json();
@@ -406,21 +419,45 @@ async function handlePaidCoverLetter() {
                   />
                 </div>
 
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Job Description *
+                  </label>
+                  <textarea
+                    value={jobDescription}
+                    onChange={(e) => setJobDescription(e.target.value)}
+                    placeholder="Paste the full job description here..."
+                    disabled={!isResumeUploaded}
+                    rows={5}
+                    className="w-full px-3 py-2 border border-gray-400 rounded-lg focus:ring-2 focus:ring-[#7ba4d0] focus:border-[#7ba4d0] disabled:bg-gray-100 disabled:cursor-not-allowed bg-white/70 resize-none text-sm"
+                  />
+                  <div className="flex justify-between items-center mt-1">
+                    <span className="text-[13px] text-gray-700">
+                      {jobDescription.length === 0 ? "" : jobDescription.length < 100 ? "⚠ Too short" : jobDescription.length > 8000 ? "⚠ Very long" : "✓ Good length"}
+                    </span>
+                    <span className="text-[12px] text-yellow-800 bg-yellow-100 rounded-md px-1 py-.5 border border-yellow-700">{jobDescription.length > 0 ? `${jobDescription.length} chars` : ""}</span>
+                  </div>
+                </div>
+
+                {warnings.length > 0 && (
+                  <div className="space-y-1">
+                    {warnings.map((w, i) => (
+                      <div key={i} className="flex items-start gap-2 px-3 py-2 bg-amber-100 border border-amber-700 rounded-lg">
+                        <span className="text-amber-700 text-xs mt-0.5">⚠</span>
+                        <p className="text-xs text-amber-800">{w}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 <button
                   onClick={() => {
-                    if (!isResumeUploaded || !jobTitle || !company) {
-                      return;
-                    }
-
+                    if (!isResumeUploaded || !jobTitle || !company || !jobDescription) return;
                     if (isSignedIn) {
                       handlePaidCoverLetter();
                     } else {
                       setPendingCoverLetter(true);
-                      try {
-                        clerk.openSignIn();
-                      } catch {
-                        window.location.href = "/sign-in";
-                      }
+                      try { clerk.openSignIn(); } catch { window.location.href = "/sign-in"; }
                     }
                   }}
                   disabled={!isResumeUploaded || !jobTitle || !company || isGenerating}

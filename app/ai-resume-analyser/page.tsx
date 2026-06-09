@@ -52,6 +52,7 @@ import ResumeFAQ from "../components/ResumeFAQ";
 import FAQ from "../components/ResumeTest";
 import ResumeCTA from "../components/ResumeCTA";
 import FAQNewResume from "../components/FAQNewResume";
+import Banner from "../components/Banner";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // METADATA
@@ -456,17 +457,10 @@ export default async function Page() {
       <main>
         <ResumeHero />
         <ATSResumeCheckerApp />
-
-        {userId ? (
-          <div className="mt-12 px-4 max-w-7xl mx-auto">
-            <CareerHealthDashboard clerkUserId={userId} />
-          </div>
-        ) : (
-          <div className="text-center py-10 text-gray-600 bg-red-100">
-            Please sign in to view your career health dashboard
-          </div>
-        )}
-
+        <Banner
+          isPositive={false}
+          message="This page is under maintenance. Results may not be satisfactory. We apologize for the inconvenience and will fix this soon."
+        />
         <ResumeFAQ />
         <FAQ />
         <FAQNewResume />
