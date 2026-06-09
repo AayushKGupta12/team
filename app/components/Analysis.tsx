@@ -15,8 +15,7 @@ import CreditUsedToast from "./CreditUsedToast";
 
 /* ─────────────── TYPES ────────────────────────────────────── */
 interface ImprovementItem { priority: "High"|"Medium"|"Low"; category: string; action: string; impact: string; }
-
-interface GrammarExample { original: string; fix: string; }
+interface GrammarExample { original: string; fix: string; type?: string; }
 interface RedFlag { flag: string; detail: string; severity: "Low"|"Medium"|"High"; fix?: string; }
 interface Contradiction { element: string; detail: string; fix?: string; }
 
