@@ -94,7 +94,7 @@ const navItems = [
           // { label: "Non-Technical Roles", href: "https://docs.google.com/forms/d/e/1FAIpQLSe4tiJZCXpelNcGauAiqCDtROksL15gXo9I7V18UyPnUFP7Yw/viewform", desc: "Marketing, operations, and strategy roles." },
           { label: "Careers", href: "/careers", desc: "Life at Tauzand and open opportunities." },
           { label: "Teams" , href: "/team", desc: "Face Behind Execution"},
-          { label: "Our Founder", href:"/founder", desc: "Face behind Intelligence"},
+          // { label: "Our Founder", href:"/founder", desc: "Face behind Intelligence"},
         ]
       }
     ]
