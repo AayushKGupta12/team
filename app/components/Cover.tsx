@@ -23,6 +23,7 @@ export default function CoverLetterGenerator() {
   const [warnings, setWarnings] = useState<string[]>([]);
   const { user, isSignedIn } = useUser();
   const { fetchStatus } = useUsageStatus();
+  const [resumeText, setResumeText] = useState('');
 
 
 
@@ -91,6 +92,7 @@ export default function CoverLetterGenerator() {
 
       
       setIsResumeUploaded(true);
+      setResumeText(data.text || '');
       setError('');
       setWarnings([]);
       setCoverLetter('');
@@ -139,7 +141,12 @@ export default function CoverLetterGenerator() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ job_title: jobTitle, company: company, job_description: jobDescription }),
+        body: JSON.stringify({ 
+          job_title: jobTitle, 
+          company: company, 
+          job_description: jobDescription,
+          resume_text: resumeText
+        }),
       });
 
       const data = await response.json();
