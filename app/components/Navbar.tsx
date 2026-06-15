@@ -156,9 +156,15 @@ export default function Navbar(): React.JSX.Element {
     <>
       {/* ================= DESKTOP STRETCH NAVBAR ================= */}
       <header
-        className={`rounded-md fixed top-2 left-15 right-15 h-18 bg-[#e7f0fa]/70 border border-gray-500 shadow-md z-50 items-center justify-between px-10 transition-transform duration-300 hidden md:flex ${
-          visible ? "translate-y-0" : "-translate-y-full"
-        }`}
+        className={`rounded-4xl fixed top-2 left-15 right-15 h-18 
+        bg-[#e7f0fa]/40 
+        border border-gray-300 
+        shadow-xl
+        backdrop-blur-xs
+        bg-gradient-to-r from-white/20 to-white/10 
+        z-50 items-center justify-between px-10 
+        transition-transform duration-500 hidden md:flex 
+        ${visible ? "translate-y-0" : "-translate-y-full"}`}
         ref={dropdownRef}
       >
         {/* Left Side: Brand Logo Wrapper */}
@@ -298,8 +304,10 @@ export default function Navbar(): React.JSX.Element {
       </header>
 
       {/* ================= COMPACT MOBILE HEADER BAR ================= */}
+
       <header
-        className={`rounded-2xl fixed top-2 left-4 right-4 h-16 bg-[#e7f0fa] border border-blue-500 shadow-md z-50 flex md:hidden items-center justify-between px-5 transition-transform duration-300 ${
+        className={`rounded-xs fixed top-2 left-3 right-3 h-15 bg-[#e7f0fa]/70  border border-gray-300 
+        shadow-xl backdrop-blur-xs z-50 flex md:hidden items-center justify-between px-10  transition-transform duration-500 ${
           visible ? "translate-y-0" : "-translate-y-full"
         }`}
       >

@@ -47,12 +47,11 @@ import { Metadata } from "next";
 import { auth } from "@clerk/nextjs/server";
 import ResumeHero from "../components/ResumeHero";
 import ATSResumeCheckerApp from "../components/Analysis";
-import CareerHealthDashboard from "../components/CareerHealthDashboard";
 import ResumeFAQ from "../components/ResumeFAQ";
 import FAQ from "../components/ResumeTest";
 import ResumeCTA from "../components/ResumeCTA";
 import FAQNewResume from "../components/FAQNewResume";
-import Banner from "../components/Banner";
+// import Banner from "../components/Banner";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // METADATA
@@ -457,10 +456,10 @@ export default async function Page() {
       <main>
         <ResumeHero />
         <ATSResumeCheckerApp />
-        <Banner
+        {/* <Banner
           isPositive={false}
-          message="This page is under maintenance. Results may not be satisfactory. We apologize for the inconvenience and will fix this soon."
-        />
+          message="Use our state of the are "
+        /> */}
         <ResumeFAQ />
         <FAQ />
         <FAQNewResume />
