@@ -872,6 +872,128 @@ const page = () => {
         </p>
       </section>
 
+      <section>
+        <h1 id="NDA" className="text-2xl font-medium">
+          Non-Disclosure Agreement
+        </h1>
+
+        <p className="text-md text-gray-700 mt-2">
+          This section constitutes a binding confidentiality and non-disclosure clause applicable to
+          all current, past, and future candidates, interns, employees, mentors, contractors, and
+          collaborators associated with Tauzand ("the Company"). By engaging with the Company in any
+          capacity, the individual ("the Covenantor") agrees to be bound by the terms set out below.
+        </p>
+
+        <h2 className="text-lg font-medium mt-4">1. Confidential Information</h2>
+        <p className="text-md text-gray-700 mt-2">
+          Confidential Information includes, without limitation: details of any project, product,
+          codebase, dataset, model, strategy, or process the Covenantor was exposed to or worked on;
+          internal communications, business plans, pricing, and client/user data; and any
+          compensation, stipend, salary, or remuneration details extended to the Covenantor or any
+          other individual associated with the Company.
+        </p>
+
+        <h2 className="text-lg font-medium mt-4">2. Restrictions</h2>
+        <p className="text-md text-gray-700 mt-2">
+          The Covenantor shall not, at any time during or after their association with the Company,
+          disclose, publish, share, copy, reproduce, or otherwise make available any Confidential
+          Information to any third party, on any platform (including but not limited to social media,
+          professional networks, forums, or private messaging), without the prior written consent of
+          the Company.
+        </p>
+
+        <h2 className="text-lg font-medium mt-4">3. Consequences of Breach</h2>
+        <p className="text-md text-gray-700 mt-2">
+          In the event of a breach of this Agreement by the Covenantor, the Company reserves the right
+          to pursue any or all of the following remedies, at its sole discretion:
+        </p>
+        <ul className="list-disc list-inside text-md text-gray-700 mt-2 space-y-1">
+          <li>Immediate termination or withdrawal of employment, internship, or engagement, with forfeiture of any pending stipend, salary, or benefits;</li>
+          <li>A liquidated damages payment of a minimum of ₹75,000, without prejudice to the Company's right to claim additional damages where actual losses exceed this amount;</li>
+          <li>Recovery of all legal costs, attorney's fees, and expenses incurred by the Company in enforcing this Agreement or pursuing remedies for its breach;</li>
+          <li>Revocation of any certificates, letters of recommendation, or experience letters issued or promised to the Covenantor;</li>
+          <li>Initiation of civil proceedings for breach of contract and, where applicable, criminal proceedings under relevant provisions of Indian law relating to confidentiality, data protection, and trade secrets;</li>
+          <li>A permanent record of the breach maintained by the Company, which may be disclosed to prospective employers or institutions upon lawful request;</li>
+          <li>Any other remedy available to the Company under applicable law.</li>
+        </ul>
+
+        <h2 className="text-lg font-medium mt-4">4. Acknowledgement</h2>
+        <p className="text-md text-gray-700 mt-2">
+          By proceeding with their engagement with the Company in any capacity, the Covenantor confirms
+          that they have read, understood, and irrevocably agreed to be bound by all terms of this
+          Non-Disclosure Agreement, including the penalties and remedies described herein.
+        </p>
+      </section>
+
+      <section>
+  <h2 className="text-xl font-medium">Important Notice for Interns & Candidates</h2>
+
+  <h3 className="text-lg font-medium mt-4">1. Payments for Additional Internship Programs</h3>
+  <p className="text-md text-gray-700 mt-2">
+    Tauzand is a career intelligence company. We offer an optional "Additional Internship"
+    program for candidates seeking to build employability skills. Any payment for this
+    program is accepted exclusively through our official page:{" "}
+    <a href="https://www.tauzand.in/internship" className="text-blue-600 underline">
+      https://www.tauzand.in/internship
+    </a>. We do not accept payments through any other channel, individual, or representative.
+  </p>
+
+  <h3 className="text-lg font-medium mt-4">2. Departmental Interns (Software Development, Product Marketing, Admin & HR)</h3>
+  <p className="text-md text-gray-700 mt-2">
+    Interns working directly under Tauzand's Software Development, Product Marketing, Admin,
+    or HR departments are treated as Tauzand employees for the duration of their engagement.
+    Upon successful conversion to a Full-Time Remote Offer, they are issued an official
+    Tauzand.in email ID. <strong>No payment of any kind is requested from departmental interns
+    at any stage.</strong>
+  </p>
+
+  <h3 className="text-lg font-medium mt-4">3. Reporting Fraudulent Requests</h3>
+  <p className="text-md text-gray-700 mt-2">
+    If any individual claiming to represent Tauzand requests payment of any amount — however
+    small — from a departmental intern or candidate, this should be reported immediately to
+    the concerned HR authority at Tauzand. Such requests are not authorized by the Company
+    and may constitute fraud committed in the Company's name.
+  </p>
+  <h3 className="text-lg font-medium mt-4">4. Internship Commitment</h3>
+<p className="text-md text-gray-700 mt-2">
+  Our internship programs typically run for 2–3 months. The Company invests significant time,
+  mentorship, and proprietary training resources in the development of each candidate's
+  professional skills. Candidates are expected to complete the full duration of the internship
+  as agreed at the time of onboarding.
+</p>
+<p className="text-md text-gray-700 mt-2">
+  Early discontinuation without valid reason and without prior written communication to HR
+  (minimum notice period as specified in the onboarding letter) may result in:
+</p>
+<ul className="list-disc list-inside text-md text-gray-700 mt-2 space-y-1">
+  <li>Withholding of the internship completion certificate, experience letter, and any letter of recommendation;</li>
+  <li>Permanent removal from future hiring or program consideration at Tauzand;</li>
+  <li>The discontinuation and its circumstances being recorded and shared with the candidate's academic institution or placement cell, where applicable;</li>
+  <li>Where the discontinuation involves a breach of confidentiality, misuse of Company materials, or unauthorized retention/use of proprietary resources, the Company reserves the right to pursue civil remedies and recovery of legal costs as outlined under the Non-Disclosure Agreement.</li>
+</ul>
+
+<h3 className="text-lg font-medium mt-4">5. Rewards, Vouchers & Goodies</h3>
+<p className="text-md text-gray-700 mt-2">
+  As part of our internship experience, unpaid interns at Tauzand may be awarded performance
+  or milestone-based rewards, including goodies, gift vouchers, and food delivery vouchers
+  (e.g., Zomato/Swiggy), at the Company's discretion.
+</p>
+<p className="text-md text-gray-700 mt-2">
+  These rewards are extended on the condition that the intern completes the agreed internship
+  duration. If an intern who has received such rewards discontinues the internship before
+  completion — without valid reason and prior written communication to HR — the Company
+  reserves the right to:
+</p>
+<ul className="list-disc list-inside text-md text-gray-700 mt-2 space-y-1">
+  <li>Require reimbursement of the monetary value of any vouchers, goodies, or rewards already redeemed or availed by the intern, calculated at MRP;</li>
+  <li>Adjust or recover this amount against any pending dues, certificates, or documents owed to the intern, where applicable;</li>
+  <li>Withhold the issuance of further rewards or benefits for the remainder of the program.</li>
+</ul>
+<p className="text-md text-gray-700 mt-2">
+  Interns who do not wish to be bound by this condition may opt out of the rewards program
+  at the time of onboarding, with no impact on their internship status.
+</p>
+</section>
 
       <section className="space-y-5">
         <h1 id="disclaimer" className="text-2xl font-medium">
