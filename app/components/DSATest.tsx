@@ -7,33 +7,29 @@ const testimonials = [
   {
     quote: "Tauzand's DSA course completely changed how I approach problems. The pattern-first method helped me solve questions faster and with better understanding.",
     name: "Ishita Kapoor",
-    role: "SDE Intern",
-    batch: "Batch of 2026",
-    avatar: "https://i.pravatar.cc/150?u=ishita",
+    role: "Placed at TCS Digital",
+    batch: "KIIT'26",
     projectUrl: "https://www.tauzand.in/certificate/VF2026DO00001"
   },
   {
     quote: "I used to forget concepts quickly. But Tauzand’s structured approach helped me remember patterns long-term. It made DSA much easier.",
     name: "Arjun Mehta",
-    role: "Frontend Developer",
-    batch: "Batch of 2025",
-    avatar: "https://i.pravatar.cc/150?u=arjun",
+    role: "Placed at Adobe",
+    batch: "SRM'25",
     projectUrl: "https://www.tauzand.in/certificate/VF2025SD00001"
   },
   {
     quote: "Instead of memorizing solutions, I now understand the logic behind every problem. My interview performance improved significantly in just two months.",
     name: "Priya Patel",
-    role: "Full Stack Engineer",
-    batch: "Batch of 2026",
-    avatar: "https://i.pravatar.cc/150?u=priya",
+    role: "Placed at Accenture",
+    batch: "VIT'26",
     projectUrl: "https://www.tauzand.in/certificate/VF2026SD00002"
   },
   {
     quote: "The mentor feedback was very detailed. It helped me write cleaner and more optimized code. This program gave me real confidence.",
     name: "Rahul Sharma",
-    role: "Java Developer",
-    batch: "Batch of 2025",
-    avatar: "https://i.pravatar.cc/150?u=rahul",
+    role: "Placed at TCS Digital",
+    batch: "BITS Pilani'26",
     projectUrl: "https://www.tauzand.in/certificate/VF2025BJ00001"
   },
 ];
@@ -42,7 +38,7 @@ export default function InfiniteScrollingTestimonials() {
   const duplicatedTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <section className="py-24 bg-[#0d1626] overflow-hidden rounded-3xl">
+    <section className="py-24 bg-[#0d1626] overflow-hidden">
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes marquee {
           0% { transform: translateX(0); }
@@ -63,9 +59,9 @@ export default function InfiniteScrollingTestimonials() {
         {/* Clear Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter mb-4">
-            Real Student Stories
+            Student Stories
           </h2>
-          <p className="text-slate-400 text-lg">How Tauzand helped them crack DSA interviews</p>
+          <p className="text-slate-400 text-lg">How Tauzand helped them crack interviews</p>
         </div>
 
         {/* Marquee */}
@@ -85,7 +81,6 @@ export default function InfiniteScrollingTestimonials() {
 
                 <div className="flex items-center justify-between mt-auto pt-6 border-t border-slate-800/50">
                   <div className="flex items-center gap-3">
-                    <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full border border-slate-700" />
                     <div>
                       <h4 className="text-sm font-semibold text-white">{t.name}</h4>
                       <p className="text-[12px] text-slate-300">{t.role} • {t.batch}</p>

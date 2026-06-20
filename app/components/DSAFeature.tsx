@@ -7,15 +7,15 @@ const PROBLEMS = [
   {
   icon: BookOpen,
   tag: "Question Bank",
-  title: "800+ PYQs",
-  body: "Practice 800+ real interview questions collected from top companies, neatly organized for efficient preparation.",
+  title: "70+ Companies",
+  body: "Practice 800+ interview questions collected from top companies, neatly organized for efficient preparation.",
   badges: ["Real Interview Questions", "Quick Practice"],
   },
   {
   icon: Layers3,
   tag: "Company Coverage",
-  title: "70+ Companies",
-  body: "Targeted practice for 70+ top companies with dedicated question sets for each recruiter.",
+  title: "Preparing for Amazon?",
+  body: "Practice only Amazon's interview patterns instead of solving random DSA questions.",
   badges: ["Top Tech Companies", "Regularly Updated"],
   },
   {
@@ -24,6 +24,27 @@ const PROBLEMS = [
   title: "Topic-wise + 3 Levels",
   body: "Practice by topic and difficulty level (Easy, Medium, Hard) to gradually build strong problem-solving skills.",
   badges: ["Topic-wise", "3 Difficulty Levels"],
+  },
+  {
+  icon: Gauge,
+  tag: "Difficulty Flow",
+  title: "Interview-Like Learning",
+  body: "Questions are organized the way interviewers think.",
+  badges: ["Interview Oriented", "University Students"],
+  },
+  {
+  icon: Gauge,
+  tag: "Difficulty Flow",
+  title: "Built for Placements",
+  body: "Every feature is designed around one goal: helping you clear coding interviews faster.",
+  badges: ["Grab Fast", "On - Campus"],
+  },
+  {
+  icon: Gauge,
+  tag: "Difficulty Flow",
+  title: "No More Random Practice",
+  body: "85% of coding interviews repeat familiar patterns.",
+  badges: ["Organised", "Less Question"],
   },
 ];
 
@@ -70,6 +91,16 @@ export default function ProblemSection() {
               </div>
             </div>
           ))}
+          
+        </div>
+        <div className="py-20 flex justify-center">
+          <h2 className="max-w-6xl text-center text-2xl md:text-4xl font-serif">
+            "We tell you exactly which questions matter for your 
+            <span className="underline underline-offset-8 decoration-2 bg-yellow-100 px-1 py-0.5 rounded-sm ml-2">
+               dream company
+            </span>
+            "
+          </h2>
         </div>
       </div>
     </section>

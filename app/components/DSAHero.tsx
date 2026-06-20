@@ -30,12 +30,12 @@ export default function InternshipHero() {
           </div>
           
           <h1 className="text-6xl md:text-7xl font-bold tracking-tighter leading-[0.9]">
-            Data Structure <br />
-            <span className="italic font-light text-slate-400">& Algorithms</span>
+            Crack Your <br />
+            <span className="font-light text-slate-400 italic">Dream Company</span>
           </h1>
 
           <p className="text-xl text-slate-600 leading-relaxed max-w-md">
-            Solve company-specific DSA problems
+            Practice 800+ real interview questions from 70+ top companies.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -51,10 +51,10 @@ export default function InternshipHero() {
           {/* Right: Visual Frame */}
             <div className="relative w-full max-w-4xl lg:max-w-6xl xl:max-w-7xl lg:translate-x-15">
               {/* Ambient Glow */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-rose-200 to-yellow-200 scale-130 blur-xl opacity-60" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-rose-200 to-yellow-200 scale-150 blur-xl opacity-60" />
               
               {/* Container with relative context and transition layout */}
-              <div className="relative transition-all duration-500 rounded-2xl overflow-hidden scale-150 -right-40 pt-10">
+              <div className="relative transition-all duration-500 rounded-2xl overflow-hidden scale-175 -right-40 pt-10">
                 <div className="w-full h-auto">
                   <img
                     src="/DSADashboard.png"

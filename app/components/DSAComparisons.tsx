@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Check, X, ShieldCheck, Trophy, ArrowUpRight, BrainCircuit, Target, Repeat, Timer, Code2 } from 'lucide-react';
-import Countdown from './Countdown';
+// import Countdown from './Countdown';
 
 const comparisonData = [
   {
@@ -163,11 +163,11 @@ export default function PremiumComparison() {
 
         </div>
 
-          <Countdown 
+          {/* <Countdown 
             title="Offer's end In:" 
-            targetDate="2026-06-20T00:00:00.000Z" 
+            targetDate="2026-09-20T00:00:00.000Z" 
             backgroundColor="bg-rose-400" 
-          />
+          /> */}
 
       </div>
     </section>
