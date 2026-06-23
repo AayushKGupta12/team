@@ -551,7 +551,7 @@ export default function InternshipDashboard() {
               <div className="h-full bg-blue-600 rounded-full animate-loading-bar origin-left"></div>
             </div>
             <p className="text-[11px] font-medium text-slate-400 uppercase tracking-widest animate-pulse">
-              Verifying Proof of Work…
+              Just a second... 
             </p>
           </div>
           <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
@@ -914,12 +914,12 @@ export default function InternshipDashboard() {
       </AnimatePresence>
 
       {/* ── PAGE ── */}
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-26 lg:py-10">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-26 lg:py-10 mt-18">
 
         {/* Heading */}
         <div className="flex items-start justify-between mb-8">
           <div>
-            <p className="text-sm text-gray-700 mb-1">{greeting}</p>
+            <p className="text-xl text-gray-700 mb-1 underline-offset-2 underline">{greeting}</p>
             <h1 className="text-2xl font-bold text-gray-900 leading-tight">Internship Dashboard</h1>
             <p className="text-sm text-gray-700 mt-1.5">
               {intern

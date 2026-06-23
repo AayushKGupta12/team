@@ -6,7 +6,6 @@ import Script from "next/script";
 import { useEffect, useState } from "react";
 
 import "./globals.css";
-import DesktopSidebar from "./components/DesktopSidebar";
 import CongratsPopup from "./components/CongratsPopUp";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";

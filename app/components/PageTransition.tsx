@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
 export default function PageTransition({
@@ -11,19 +11,18 @@ export default function PageTransition({
   const pathname = usePathname();
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={pathname} // 👈 THIS IS THE MAGIC
-        initial={{ opacity: 0.4, y: 0 }}
-        animate={{ opacity: 1, y: 0 }}
-        // exit={{ opacity: 0.4, y: 0 }}
-        transition={{
-          duration: 0.4,
-          ease: "easeOut",
-        }}
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+    <motion.div
+      key={pathname}
+      initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      exit={{ opacity: 0, y: -6, filter: "blur(2px)" }}
+      transition={{
+        duration: 0.22,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      style={{ willChange: "transform, opacity, filter" }}
+    >
+      {children}
+    </motion.div>
   );
 }
