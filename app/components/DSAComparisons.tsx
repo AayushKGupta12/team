@@ -103,17 +103,18 @@ export default function PremiumComparison() {
               </div>
               
               <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">
-                Accelerate Your Professional Journey.
+                Start solving. Get placed faster.
               </h3>
               <div className="mt-8 hidden md:block">
               <p className="text-md uppercase tracking-wider font-semibold mb-2">Program Features</p>
               <ul className="text-xs space-y-1.5 text-slate-700">
-                <li>✓ 800+ Real Company Interview Questions</li>
+                <li>✓ 800+ Company Interview Questions</li>
                 <li>✓ Pattern-First Learning Methodology</li>
                 <li>✓ Topic-wise & Level-wise Practice</li>
                 <li>✓ Hands-on Coding Projects</li>
                 <li>✓ Full Dashboard & Progress Analytics</li>
                 <li>✓ Lifetime Access & Updates</li>
+                <li>✓ Premium UI and Immediate Support</li>
               </ul>
             </div>
             </div>
@@ -135,7 +136,7 @@ export default function PremiumComparison() {
               </div>
               
               <div className="flex justify-between items-center text-emerald-700 font-medium">
-                <span>Early Bird Waiver (52%)</span>
+                <span>Early Bird Waiver (47%)</span>
                 <span className="font-mono">-₹189.00</span>
               </div>
               

@@ -90,12 +90,9 @@ const navItems = [
       {
         title: "We Us Ours",
         items: [
-          // { label: "Technical Role", href: "https://docs.google.com/forms/d/e/1FAIpQLScUZ5y_RpNN9FXlm5U5ZtGaZuAmOeb_PDwldEUrMG6RO-lRXA/alreadyresponded", desc: "Engineering, development, and technical positions." },
-          // { label: "Non-Technical Roles", href: "https://docs.google.com/forms/d/e/1FAIpQLSe4tiJZCXpelNcGauAiqCDtROksL15gXo9I7V18UyPnUFP7Yw/viewform", desc: "Marketing, operations, and strategy roles." },
           { label: "Careers", href: "/careers", desc: "Life at Tauzand and open opportunities." },
           { label: "Teams" , href: "/team", desc: "Face Behind Execution"},
-          // { label: "Our Founder", href:"/founder", desc: "Face behind Intelligence"},
-        ]
+          ]
       }
     ]
   }
