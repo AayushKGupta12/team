@@ -52,7 +52,15 @@ function PieChart({ slices }: { slices: { value: number; color: string; label: s
   );
 }
 
-export default function DSAQuestionsPage() {
+const FREE_COMPANIES = ['TCS Ninja', 'Infosys', 'Google', 'Flipkart'];
+
+export default function DSAQuestionsPage({
+  unlocked = false,
+  onRequestUnlock,
+}: {
+  unlocked?: boolean;
+  onRequestUnlock?: () => void;
+}) {
   const [questions, setQuestions] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
@@ -60,6 +68,8 @@ export default function DSAQuestionsPage() {
   const [selectedCompany, setSelectedCompany] = useState<string | null>(null);
   const [activeQuestion, setActiveQuestion] = useState<any>(null);
   const [confirmId, setConfirmId] = useState<number | null>(null);
+  const [showSignInPopup, setShowSignInPopup] = useState(false);
+  const [popupHandled, setPopupHandled] = useState(false);
 
   // Sidebar & filter panel
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -88,6 +98,19 @@ export default function DSAQuestionsPage() {
     else document.documentElement.classList.remove('dark');
   };
 
+  useEffect(() => {
+    if (isSignedIn) {
+      setShowSignInPopup(false);
+      setPopupHandled(true);
+      return;
+    }
+    if (popupHandled) return;
+    const timer = setTimeout(() => {
+      if (!isSignedIn) setShowSignInPopup(true);
+    }, 30000);
+    return () => clearTimeout(timer);
+  }, [isSignedIn, popupHandled]);
+
   // Fetch questions + progress
   useEffect(() => {
     const fetchData = async () => {
@@ -95,7 +118,10 @@ export default function DSAQuestionsPage() {
         const qRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dsa/questions`);
         const qData = await qRes.json();
         setQuestions(qData.questions || []);
-        if (qData.questions?.length > 0) setSelectedCompany(qData.questions[0].company_name);
+        if (qData.questions?.length > 0) {
+          const hasTCS = qData.questions.some((q: any) => q.company_name === 'TCS');
+          setSelectedCompany(hasTCS ? 'TCS' : qData.questions[0].company_name);
+        }
 
         if (isSignedIn && user?.id) {
           const pRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dsa/progress/${user.id}`);
@@ -131,8 +157,9 @@ export default function DSAQuestionsPage() {
   const companies = useMemo(() => {
     const counts: Record<string, number> = {};
     questions.forEach(q => { counts[q.company_name] = (counts[q.company_name] || 0) + 1; });
-    return Object.entries(counts).sort();
-  }, [questions]);
+    const all = Object.entries(counts).sort();
+    return unlocked ? all : all.filter(([name]) => FREE_COMPANIES.includes(name));
+  }, [questions, unlocked]);
 
   const filteredQuestions = useMemo(() => {
     return questions.filter(q => {
@@ -224,6 +251,14 @@ const SidebarContent = ({ mobile = false }: { mobile?: boolean }) => (
           </button>
         );
       })}
+      {!unlocked && (!sidebarCollapsed || mobile) && (
+        <button
+          onClick={() => (isSignedIn ? onRequestUnlock?.() : setShowSignInPopup(true))}
+          className="w-full flex items-center justify-center gap-1.5 px-3 py-3 mt-5 rounded-md text-[14px] font-semibold text-yellow-700 bg-yellow-100/70 border border-dashed border-yellow-700 hover:bg-yellow-200 cursor-pointer "
+        >
+          🔒 Unlock more companies
+        </button>
+      )}
     </div>
   </>
 );
@@ -599,6 +634,33 @@ return (
                 className="w-full py-2.5 rounded-md bg-slate-900 text-white font-bold text-sm tracking-wide"
               >
                 Open on {activeQuestion.problem_source || 'LeetCode'}
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+
+    <AnimatePresence>
+      {showSignInPopup && (
+        <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/30 backdrop-blur-xs px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
+            className="w-full max-w-sm bg-white rounded-xl border border-slate-200 p-6 shadow-xl"
+          >
+            <p className="text-sm font-semibold text-slate-800 mb-4 text-center">
+              Sign in to unlock the complete company list.
+            </p>
+            <div className="flex flex-col gap-2">
+              <a href="https://www.tauzand.in/sign-in"
+                 className="w-full text-center py-2 rounded-md bg-green-100 text-green-700 border border-green-700 font-bold cursor-pointer hover:bg-green-200 transition-colors">
+                Sign In
+              </a>
+              <button
+                onClick={() => { setShowSignInPopup(false); setPopupHandled(true); }}
+                className="w-full text-center py-2 rounded-md border border-slate-200 font-semibold text-slate-500 cursor-pointer hover:bg-slate-100 transition-colors"
+              >
+                Not now
               </button>
             </div>
           </motion.div>
