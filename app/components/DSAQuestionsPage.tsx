@@ -52,7 +52,7 @@ function PieChart({ slices }: { slices: { value: number; color: string; label: s
   );
 }
 
-const FREE_COMPANIES = ['TCS Ninja', 'Infosys', 'Google', 'Flipkart'];
+const FREE_COMPANIES = ['TCS Ninja', 'Google', 'Flipkart', 'Cognizant'];
 
 export default function DSAQuestionsPage({
   unlocked = false,
@@ -107,7 +107,7 @@ export default function DSAQuestionsPage({
     if (popupHandled) return;
     const timer = setTimeout(() => {
       if (!isSignedIn) setShowSignInPopup(true);
-    }, 30000);
+    }, 80000);
     return () => clearTimeout(timer);
   }, [isSignedIn, popupHandled]);
 
