@@ -137,12 +137,12 @@ export default function DSAPayment() {
 
           <div className="flex justify-between text-emerald-700 font-medium">
             <span>Early Bird Waiver (52%)</span>
-            <span className="font-mono">-₹180.00</span>
+            <span className="font-mono">-₹210.00</span>
           </div>
 
           <div className="pt-3 border-t border-dashed border-gray-300 flex justify-between items-center text-base md:text-lg font-bold text-gray-900">
             <span>Total Payable</span>
-            <span className="font-mono text-gray-900">₹210.00</span>
+            <span className="font-mono text-gray-900">₹189.00</span>
           </div>
         </div>
 

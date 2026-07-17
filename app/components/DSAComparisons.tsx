@@ -136,14 +136,14 @@ export default function PremiumComparison() {
               </div>
               
               <div className="flex justify-between items-center text-emerald-700 font-medium">
-                <span>Early Bird Waiver (47%)</span>
-                <span className="font-mono">-₹189.00</span>
+                <span>Early Bird Waiver (52%)</span>
+                <span className="font-mono">-₹210.00</span>
               </div>
               
               {/* Total Due */}
               <div className="flex justify-between items-center pt-3.5 border-t border-gray-200 text-gray-900 font-semibold">
                 <span>Total Payable</span>
-                <span className="font-mono text-xl text-gray-900">₹210.00</span>
+                <span className="font-mono text-xl text-gray-900">₹189.00</span>
               </div>
             </div>
 
