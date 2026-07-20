@@ -6,7 +6,6 @@ import Script from "next/script";
 import { useEffect, useState } from "react";
 
 import "./globals.css";
-import CongratsPopup from "./components/CongratsPopUp";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import PageTransition from "./components/PageTransition";
@@ -38,23 +37,6 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <head>
-          {/* Google Analytics */}
-          <Script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-RFS8XFXTZ7"
-          />
-          <Script id="ga-init" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-RFS8XFXTZ7');
-            `}
-          </Script>
-          <meta name="google-adsense-account" content="ca-pub-1545445003970128"></meta>
-          <meta name="google-adsense-account" content="ca-pub-2884987145159373"></meta>
-        </head>
 
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
@@ -64,10 +46,7 @@ export default function RootLayout({
             {/* MAIN CONTENT */}
             <main>
               <Navbar />
-              <PageTransition>
                 {children}
-              </PageTransition>
-              <CongratsPopup />
               <Footer />
             </main>
           </div>
