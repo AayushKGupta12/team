@@ -7,20 +7,85 @@ import YouTubePreview from "./components/Youtube";
 import Updates from "./components/Updates";
 import ToolsExplorer from "./components/ToolsExplorer";
 
-// Rule For Modification :
-// THis Repo is solely ment for Modification relared to UIUX improvement
-// - UiUX Imporovement
-// - Frontend Code modicatoin which does not require Backend changes / backend Involvement
+/*
+===============================================================================
+                    UI/UX Contribution Guidelines
+===============================================================================
 
-// Sole auther : 
-// - Students
-// - Intern's
-// - Contract COntributors
+This repository is intended ONLY for frontend and UI/UX contributions.
 
-// How to add changes : Follow this method
+Who can contribute?
+- Students
+- Interns
+- Open Source Contributors
+- Contract Contributors
 
-// - Your code must be in a seperate route and must be in a "Folder" with your name and your changes must be in that folder only
-// - to access your folder search Folder name in the "app" folder and add your changes in that folder only
+Allowed Changes
+---------------
+✅ UI/UX improvements
+✅ New frontend components
+✅ Styling enhancements
+✅ Responsive design improvements
+✅ Accessibility improvements
+✅ Frontend performance optimizations
+
+Not Allowed
+-----------
+❌ Backend modifications
+❌ API changes
+❌ Database changes
+❌ Authentication logic changes
+❌ Editing existing production pages or components without approval
+
+Repository Structure
+--------------------
+
+Every contributor MUST create a separate folder inside the `app/` directory.
+
+Example:
+
+app/
+├── page.tsx                  // Existing production page (Do NOT modify)
+├── Aayush_Intern/
+│   └── page.tsx
+├── John_Doe/
+│   └── page.tsx
+├── Jane_Smith/
+│   └── page.tsx
+
+Rules
+-----
+
+1. Create a folder using your full name or assigned contributor name.
+
+2. Place ALL your code inside your own folder.
+
+3. Do NOT modify:
+   - app/page.tsx
+   - Existing production components
+   - Shared layouts
+   - Backend code
+
+4. Your implementation should be accessible via:
+
+   /Your_Folder_Name_Intern
+
+Example:
+
+   Folder/
+   └── Aayush_Intern/
+       └── page.tsx
+
+Access it at:
+
+   http://localhost:3000/Aayush_Intern
+
+5. Keep your implementation self-contained.
+
+6. Ensure the project builds successfully before submitting a Pull Request.
+
+===============================================================================
+*/
 
 const Page = () => {
   return (

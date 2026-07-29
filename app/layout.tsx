@@ -42,7 +42,6 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
         >
           <div className="relative min-h-screen w-full">
-
             {/* MAIN CONTENT */}
             <main>
               <Navbar />
