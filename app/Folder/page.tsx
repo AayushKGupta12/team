@@ -13,6 +13,7 @@ import { AlertCircle, FileText, ExternalLink, CheckCircle2, AlertTriangle } from
   
   This page outlines the complete contribution methodology, standards, and guidelines for the team project.
   Frontend-only contributions with no backend API dependencies required.
+  
   Deployment: https://team-six-rosy.vercel.app/
   Repository: https://github.com/AayushKGupta12/team
   Documentation Link: https://drive.google.com/file/d/1r2ZqUKwjWEVir1dilernOPYjgsCMrEVu/view?usp=drive_link

@@ -9,17 +9,18 @@ import ToolsExplorer from "./components/ToolsExplorer";
 
 // Rule For Modification :
 // THis Repo is solely ment for Modification relared to UIUX improvement
-// -UiUX Imporovement
+// - UiUX Imporovement
 // - Frontend Code modicatoin which does not require Backend changes / backend Involvement
 
-// SOle auther : 
+// Sole auther : 
 // - Students
 // - Intern's
 // - Contract COntributors
 
 // How to add changes : Follow this method
 
-// - Your code must be in a seperate branch and must be in a separate folder with your name and your changes must be in that folder only
+// - Your code must be in a seperate route and must be in a "Folder" with your name and your changes must be in that folder only
+// - to access your folder search Folder name in the "app" folder and add your changes in that folder only
 
 const Page = () => {
   return (
@@ -37,12 +38,12 @@ const Page = () => {
 
 export default Page;
 
+// Some Development Environment Variables
 
-// NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
-// CLERK_SECRET_KEY=
-// CLERK_WEBHOOK_SECRET=
-
-// CLERK_JWT_ISSUER=
+// NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_cGxlYXNhbnQtZG9nLTM5LmNsZXJrLmFjY291bnRzLmRldiQ
+// CLERK_SECRET_KEY=sk_test_T8yaog7A8PoT3nr9mPpyuzq5BjdwEgajrs0wlcEef4
+// CLERK_WEBHOOK_SECRET=whsec_i5U/hKtu5/jkMivO7VQZNDK+obeM8o9g
+// CLERK_JWT_ISSUER=https://clerk.vfound.in
 
 
 // NEXT_PUBLIC_SUPABASE_URL=
