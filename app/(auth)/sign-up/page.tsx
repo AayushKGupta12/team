@@ -14,7 +14,7 @@ import Link from "next/link";
   column runs the full page height alongside it.
 */
 
-const HERO_IMAGE = "/jonathan-borba-BjNXpLGnJI0-unsplash.jpg";
+const HERO_IMAGE = "/Auth_Design.jpg";
 
 export default function SignUpPage() {
   return (
@@ -23,19 +23,22 @@ export default function SignUpPage() {
       <div className="relative hidden lg:block">
         <Image
           src={HERO_IMAGE}
-          alt="Abstract image"
+          alt="Auth Background"
           fill
           priority
-          className="object-cover"
+          quality={100}
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-        <div className="absolute bottom-28 left-8 right-8 text-white">
-          <p className="text-3xl font-bold leading-snug">
-            One step closer to your dream job.
-          </p>
-          <p className="mt-3 text-lg font-light text-white/80">
-            Build resumes, track applications, and get real insights - all in
-            one place.
+        {/* Gradient overlay with subtle backdrop blur for legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-black/10" />
+        {/* Content container */}
+        <div className="absolute bottom-20 left-10 right-10 z-10 text-white">
+          <h2 className="text-3xl font-bold tracking-tight text-white drop-shadow-md sm:text-4xl">
+            Welcome aboard.
+          </h2>
+          <p className="mt-2 text-lg font-normal leading-relaxed text-slate-200/90 drop-shadow">
+            Set up your account in less than a minute.
           </p>
         </div>
       </div>
