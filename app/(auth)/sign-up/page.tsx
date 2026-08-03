@@ -14,7 +14,7 @@ import Link from "next/link";
   column runs the full page height alongside it.
 */
 
-const HERO_IMAGE = "/sterling-higgins-mHU-KmTfbBw-unsplash.jpg";
+const HERO_IMAGE = "/jonathan-borba-BjNXpLGnJI0-unsplash.jpg";
 
 export default function SignUpPage() {
   return (
@@ -23,11 +23,21 @@ export default function SignUpPage() {
       <div className="relative hidden lg:block">
         <Image
           src={HERO_IMAGE}
-          alt="Glass office towers viewed from street level"
+          alt="Abstract image"
           fill
           priority
           className="object-cover"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+        <div className="absolute bottom-28 left-8 right-8 text-white">
+          <p className="text-3xl font-bold leading-snug">
+            One step closer to your dream job.
+          </p>
+          <p className="mt-3 text-lg font-light text-white/80">
+            Build resumes, track applications, and get real insights - all in
+            one place.
+          </p>
+        </div>
       </div>
 
       {/* RIGHT — heading + Clerk widget on top, footer pinned at bottom of this column only */}
@@ -54,13 +64,13 @@ export default function SignUpPage() {
         </div>
 
         {/* FOOTER — only under this column, not under the image */}
-        <footer className="border-t border-white/10 bg-[#050505] py-3 text-center text-sm text-zinc-500">
+        <footer className="border-t border-white/10 bg-[#050505] py-3 text-center text-sm text-white">
           <div className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-15">
             <span>© {new Date().getFullYear()} Tauzand.in</span>
-            <Link href="/term-of-use" className="hover:text-white">
+            <Link href="/term-of-use" className="hover:text-white/70">
               Terms of Use
             </Link>
-            <Link href="/term-of-use#disclaimer" className="hover:text-white">
+            <Link href="/term-of-use#disclaimer" className="hover:text-white/70">
               Disclaimer
             </Link>
           </div>
