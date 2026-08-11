@@ -13,7 +13,7 @@
     "incremental": true,
     "module": "esnext",
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
@@ -29,8 +29,11 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     "**/*.ts",
-    "**/*.tsx"
-, "app/components/Jobs.tsx", "app/components/Navbar.tsx", "app/components/Features.tsx"  ],
+    "**/*.tsx",
+    "app/components/Jobs.tsx",
+    "app/components/Navbar.tsx",
+    "app/components/Features.tsx"
+  ],
   "exclude": [
     "node_modules"
   ]

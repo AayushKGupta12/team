@@ -3,8 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { Menu, ChevronDown, Home, Layers, Cpu, Compass, Users, X } from "lucide-react";
+import { SignedIn, SignedOut, UserButton, useClerk, useUser } from "@clerk/nextjs";
+import { Menu, ChevronDown, Home, Layers, Cpu, Compass, Users, X, Settings, LogOut, Briefcase, GraduationCap, Newspaper, Building2, ShieldCheck } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import UsageProvider from "./UsageProvider";
 
@@ -98,16 +98,53 @@ const navItems = [
   }
 ];
 
+// Mobile-drawer-only accent colors per category (desktop styling is untouched)
+// Mobile-drawer-only icons per category (desktop icons/styling are untouched)
+const mobileIcons: Record<string, typeof Briefcase> = {
+  "Services": Briefcase,
+  "Research & Placements": GraduationCap,
+  "Updates & Media": Newspaper,
+  "Company": Building2,
+};
+
+const mobileAccentColors: Record<string, { bg: string; text: string }> = {
+  "Services": { bg: "bg-orange-50", text: "text-orange-500" },
+  "Research & Placements": { bg: "bg-amber-50", text: "text-amber-600" },
+  "Updates & Media": { bg: "bg-pink-50", text: "text-pink-500" },
+  "Company": { bg: "bg-purple-50", text: "text-purple-500" },
+};
+
 export default function Navbar(): React.JSX.Element {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  const [mobileAccountOpen, setMobileAccountOpen] = useState(false);
+  const [mobileUsage, setMobileUsage] = useState<{ plan: string; used: number; total: number } | null>(null);
+  const [clerkLogoFailed, setClerkLogoFailed] = useState(false);
 
   const lastY = useRef(0);
   const ticking = useRef(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const { user } = useUser();
+  const { signOut, openUserProfile } = useClerk();
+
+  useEffect(() => {
+    if (!user) return;
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/usage-status`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ user_id: user.id }),
+    })
+      .then((res) => res.json())
+      .then(setMobileUsage)
+      .catch(() => {});
+  }, [user]);
+
+  const mobileUsagePercent = mobileUsage
+    ? Math.min(Math.round((mobileUsage.used / mobileUsage.total) * 100), 100)
+    : 0;
 
   useEffect(() => {
     lastY.current = window.scrollY;
@@ -332,24 +369,30 @@ export default function Navbar(): React.JSX.Element {
       </header>
 
       {/* ================= MOBILE NAVIGATION DRAWER ================= */}
-      <div
-        className={`fixed inset-0 z-[100] md:hidden transition-opacity duration-300 ${
-          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
-      >
-        {/* Backdrop */}
-        <div
-          onClick={() => setMobileOpen(false)}
-          className="absolute inset-0 bg-black/40 backdrop-blur-sm"
-        />
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            className="fixed inset-0 z-[100] md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+          >
+            {/* Backdrop */}
+            <div
+              onClick={() => setMobileOpen(false)}
+              className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            />
 
-        {/* Drawer Panel — matches desktop: white/95, rounded-3xl, border gray-100, shadow-md */}
-        <aside
-          className={`fixed right-3 top-3 bottom-3 w-[82vw] max-w-[340px] bg-white/95 border border-gray-100 shadow-md rounded-3xl transform transition-transform duration-300 flex flex-col overflow-hidden ${
-            mobileOpen ? "translate-x-0" : "translate-x-[calc(100%+16px)]"
-          }`}
-        >
-          {/* Drawer Header — mirrors desktop header height & padding feel */}
+            {/* Drawer Panel — matches desktop: white/95, rounded-3xl, border gray-100, shadow-md */}
+            <motion.aside
+              className="fixed right-3 top-3 bottom-3 w-[82vw] max-w-[340px] bg-white/95 border border-gray-100 shadow-md rounded-3xl flex flex-col overflow-hidden"
+              initial={{ x: "calc(100% + 16px)" }}
+              animate={{ x: 0 }}
+              exit={{ x: "calc(100% + 16px)" }}
+              transition={{ duration: 0.28, ease: "easeOut" }}
+            >
+              {/* Drawer Header — mirrors desktop header height & padding feel */}
           <div className="h-16 px-5 border-b border-gray-100 flex items-center justify-between shrink-0">
             <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5">
               <img src="/tauzand.png" alt="Logo" className="h-12 w-auto object-contain rounded-md" />
@@ -363,18 +406,64 @@ export default function Navbar(): React.JSX.Element {
             </button>
           </div>
 
+          {/* Signed-out promo banner — mirrors Figma top-of-drawer bar for logged-out state */}
+          <SignedOut>
+            <div className="px-5 pt-2.5 pb-1 shrink-0">
+              <Link
+                href="/sign-up"
+                onClick={() => setMobileOpen(false)}
+                className="block text-center text-[12px] font-bold text-[#3b82f6]"
+              >
+                Sign up to get FREE credits
+              </Link>
+            </div>
+          </SignedOut>
+
+          {/* Active Workspace usage — mirrors Figma top-of-drawer bar */}
+          <SignedIn>
+            <div className="px-5 pt-3 pb-1 shrink-0">
+              <div className="rounded-2xl border border-gray-200 bg-slate-50 px-4 py-3">
+                <div className="flex items-center justify-between text-[13px] font-semibold text-slate-500 mb-2">
+                  <span>Active Workspace</span>
+                  <span className="text-[#0d2440]">
+                    {mobileUsage ? `${mobileUsage.used}/${mobileUsage.total}` : "0/75"}
+                  </span>
+                  <span className="text-[#0d2440] font-bold">{mobileUsage?.plan?.toUpperCase() ?? "Free"}</span>
+                </div>
+                <div className="relative w-full h-6 rounded-full bg-gray-200 overflow-hidden">
+                  <motion.div
+                    className="absolute inset-y-0 left-0 rounded-full bg-blue-100"
+                    initial={{ width: 0 }}
+                    animate={{ width: `${mobileUsagePercent}%` }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                  />
+                  <span className="absolute inset-0 flex items-center justify-center text-[11px] font-semibold text-slate-500">
+                    {mobileUsagePercent}%
+                  </span>
+                </div>
+              </div>
+            </div>
+          </SignedIn>
+
+          {/* Browse label */}
+          <p className="px-5 pt-2 pb-1 text-[11px] font-bold text-black uppercase tracking-widest shrink-0">
+            Browse
+          </p>
+
           {/* Scrollable Nav Items */}
           <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2">
             {navItems.map((item) => {
               const isDropdownOpen = mobileDropdown === item.label;
-              const ItemIcon = item.icon;
+              const ItemIcon = mobileIcons[item.label] ?? item.icon;
+              const accent = mobileAccentColors[item.label] ?? { bg: "bg-slate-100", text: "text-slate-600" };
+              const sectionSummary = item.sections.map((s) => s.title).join(" | ");
               return (
                 <div
                   key={item.label}
                   className={`rounded-xl border overflow-hidden transition-colors ${
                     isDropdownOpen
-                      ? "border-gray-600"
-                      : "border-gray-100 bg-white"
+                      ? "border-gray-600 bg-slate-50"
+                      : "border-gray-100 bg-slate-50"
                   }`}
                 >
                   {/* Section trigger */}
@@ -383,19 +472,15 @@ export default function Navbar(): React.JSX.Element {
                     className="flex items-center justify-between w-full py-3.5 px-4 text-left"
                   >
                     <div className="flex items-center gap-2.5">
-                      <div className={`p-1.5 rounded-lg border ${
-                        isDropdownOpen
-                          ? "bg-white text-gray-600"
-                          : "bg-slate-200 border-slate-100 text-[#0d2440]"
-                      }`}>
+                      <div className={`p-1.5 rounded-lg ${accent.bg} ${accent.text}`}>
                         <ItemIcon size={18} strokeWidth={2.5} />
                       </div>
                       <div>
                         <span className="text-[14px] font-bold text-[#0d2440] block leading-tight">
                           {item.label}
                         </span>
-                        <span className="text-[10px] font-medium text-slate-600 uppercase tracking-wider">
-                          {item.subtitle}
+                        <span className="text-[10px] font-medium text-slate-500 normal-case tracking-normal">
+                          {sectionSummary}
                         </span>
                       </div>
                     </div>
@@ -409,38 +494,48 @@ export default function Navbar(): React.JSX.Element {
                   </button>
 
                   {/* Expanded section — mirrors flyout panel section titles & items */}
-                  {isDropdownOpen && (
-                    <div className="px-3 pb-3 pt-2 space-y-3">
-                      {item.sections.map((sect, sIdx) => (
-                        <div key={sIdx}>
-                          {/* Section title — same as desktop: uppercase tracking-widest border-b */}
-                          <p className="text-[10px] font-bold text-[#0d2440] uppercase tracking-widest border-b border-slate-300 pb-1.5 mb-2 px-1">
-                            {sect.title}
-                          </p>
-                          <div className="space-y-1">
-                            {sect.items.map((subItem) => (
-                              <Link
-                                key={subItem.href}
-                                href={subItem.href}
-                                onClick={() => {
-                                  setMobileOpen(false);
-                                  setMobileDropdown(null);
-                                }}
-                                className="flex flex-col p-2.5 rounded-2xl border border-transparent"
-                              >
-                                <span className="text-[13px] font-bold text-[#0d2440]">
-                                  {subItem.label}
-                                </span>
-                                <span className="text-[11px] text-slate-600 font-medium mt-0.5 line-clamp-1">
-                                  {subItem.desc}
-                                </span>
-                              </Link>
-                            ))}
-                          </div>
+                  <AnimatePresence initial={false}>
+                    {isDropdownOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-3 pb-3 pt-2 space-y-3">
+                          {item.sections.map((sect, sIdx) => (
+                            <div key={sIdx}>
+                              {/* Section heading — bolder, darker underline */}
+                              <p className="text-[9px] font-extrabold text-[#0d2440] uppercase tracking-widest border-b-2 border-slate-400 pb-1.5 mb-2 px-1">
+                                {sect.title}
+                              </p>
+                              <div className="space-y-1">
+                                {sect.items.map((subItem) => (
+                                  <Link
+                                    key={subItem.href}
+                                    href={subItem.href}
+                                    onClick={() => {
+                                      setMobileOpen(false);
+                                      setMobileDropdown(null);
+                                    }}
+                                    className="flex flex-col p-2.5 rounded-2xl border border-transparent"
+                                  >
+                                    <span className="text-[11px] font-semibold text-[#0d2440]">
+                                      {subItem.label}
+                                    </span>
+                                    <span className="text-[10px] text-slate-500 font-medium mt-0.5 line-clamp-1">
+                                      {subItem.desc}
+                                    </span>
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
-                  )}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               );
             })}
@@ -449,18 +544,96 @@ export default function Navbar(): React.JSX.Element {
           {/* Drawer Footer — Auth controls, mirrors desktop right-side auth */}
           <div className="px-4 pb-4 pt-3 border-t border-gray-300 shrink-0">
             <SignedIn>
-              {/* Usage provider full-width */}
-              <div className="rounded-2xl border border-gray-100 bg-slate-50/60 px-3 py-2.5">
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">
-                  Active Workspace
-                </p>
-                <div className="flex items-center space-x-2">
-                  {/** @ts-ignore */}
-                  <div></div>
-                  <UserButton afterSignOutUrl="/"/>
-                  <UsageProvider />
+              {/* Expandable account menu */}
+              <AnimatePresence>
+                {mobileAccountOpen && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="rounded-2xl border border-gray-200 bg-white mb-2 overflow-hidden">
+                      <div className="flex items-center gap-2.5 px-3 py-2.5 border-b border-gray-300">
+                        <img
+                          src={user?.imageUrl}
+                          alt={user?.fullName ?? "User"}
+                          className="h-9 w-9 rounded-full object-cover"
+                        />
+                        <div className="min-w-0">
+                          <p className="text-[13px] font-bold text-[#0d2440] truncate">{user?.fullName}</p>
+                          <p className="text-[11px] text-slate-500 truncate">
+                            {user?.primaryEmailAddress?.emailAddress}
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => openUserProfile()}
+                        className="w-full flex items-center gap-2.5 px-3 py-2.5 text-[13px] font-semibold text-[#0d2440] border-b border-gray-300"
+                      >
+                        <Settings size={16} strokeWidth={2.25} />
+                        Manage Account
+                      </button>
+                      <button
+                        onClick={() => signOut()}
+                        className="w-full flex items-center gap-2.5 px-3 py-2.5 text-[13px] font-semibold text-[#0d2440] border-b border-gray-300"
+                      >
+                        <LogOut size={16} strokeWidth={2.25} />
+                        Sign out
+                      </button>
+                      <div className="flex justify-center py-2.5 bg-slate-50">
+                        <span className="inline-flex items-center gap-1.5 text-[10px] font-medium text-slate-500">
+                          Secured by
+                          {/* Download the official icon SVG from https://clerk.com/brand-assets
+                              and save it as /public/clerk-logo.svg — this references that file.
+                              Falls back to text if the file isn't found yet.
+                              Note: the downloaded logo already includes the "Clerk" wordmark,
+                              so we don't repeat "Clerk" as separate text. */}
+                          {clerkLogoFailed ? (
+                            <span className="inline-flex items-center gap-1 font-semibold text-slate-700">
+                              <ShieldCheck size={14} strokeWidth={2.25} />
+                              Clerk
+                            </span>
+                          ) : (
+                            <img
+                              src="/clerk-logo.svg"
+                              alt="Clerk"
+                              className="h-[10px] w-auto"
+                              onError={() => setClerkLogoFailed(true)}
+                            />
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Collapsed profile trigger row */}
+              <button
+                onClick={() => setMobileAccountOpen((o) => !o)}
+                className="w-full flex items-center gap-2.5 rounded-2xl bg-[#0074D933] px-3 py-2.5"
+              >
+                <img
+                  src={user?.imageUrl}
+                  alt={user?.fullName ?? "User"}
+                  className="h-9 w-9 rounded-full object-cover"
+                />
+                <div className="min-w-0 flex-1 text-left">
+                  <p className="text-[13px] font-bold text-[#0d2440] truncate">{user?.fullName}</p>
+                  <p className="text-[11px] text-slate-500 truncate">
+                    {user?.primaryEmailAddress?.emailAddress}
+                  </p>
                 </div>
-              </div>
+                <ChevronDown
+                  size={16}
+                  strokeWidth={2.5}
+                  className={`text-slate-400 transition-transform duration-200 ${
+                    mobileAccountOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
             </SignedIn>
 
             <SignedOut>
@@ -487,8 +660,10 @@ export default function Navbar(): React.JSX.Element {
               Tauzand Platform v4.4.0
             </p>
           </div>
-        </aside>
-      </div>
+            </motion.aside>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
